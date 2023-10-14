@@ -2,9 +2,13 @@ import {useState} from "react";
 import {parse} from "csv-parse/browser/esm";
 import {Button, Col, Divider, Radio, Row, Space, Statistic, Upload} from "antd";
 import {ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined} from "@ant-design/icons";
+import { createDataset } from "../lib/datasets";
+
+const EM_DASH = "—";
 
 const DatasetStep = ({onFinish}) => {
     const [option, setOption] = useState(0);
+    const [parsing, setParsing] = useState(false);
     const [dataset, setDataset] = useState(null);
 
     return <>
@@ -22,17 +26,25 @@ const DatasetStep = ({onFinish}) => {
                                 const fileObj = info.fileList[0]?.originFileObj;
                                 if (!fileObj) return;
 
+                                setParsing(true);
+
                                 (async () => {
-                                    // noinspection JSUnresolvedReference
-                                    const csvContents = await fileObj.text();
+                                    try {
+                                        // noinspection JSUnresolvedReference
+                                        const csvContents = await fileObj.text();
 
-                                    parse(csvContents, {}, (err, data) => {
-                                        if (err) throw err;
+                                        parse(csvContents, { columns: true }, (err, data) => {
+                                            if (err) throw err;
 
-                                        setOption(1);
-                                        setDataset(data);
-                                        console.log(data);
-                                    });
+                                            setOption(1);
+
+                                            const dataset = createDataset(data);
+                                            console.log(dataset);
+                                            setDataset(dataset);
+                                        });
+                                    } finally {
+                                        setParsing(false);
+                                    }
                                 })();
                             }} beforeUpload={() => false}>
                                 <Button icon={<UploadOutlined />}>Upload Primer/Taxa Matrix</Button>
@@ -44,10 +56,20 @@ const DatasetStep = ({onFinish}) => {
             <Col flex={1}>
                 <Row gutter={24}>
                     <Col>
-                        <Statistic title="Primers" value={"TODO"} prefix={<ExperimentOutlined />} />
+                        <Statistic
+                            title="Primers"
+                            value={dataset?.primers?.length ?? EM_DASH}
+                            loading={parsing}
+                            prefix={<ExperimentOutlined />}
+                        />
                     </Col>
                     <Col>
-                        <Statistic title="Taxa" value={"TODO"} prefix={<ApartmentOutlined />} />
+                        <Statistic
+                            title="Taxa"
+                            value={dataset?.nTaxa ?? "—"}
+                            loading={parsing}
+                            prefix={<ApartmentOutlined />}
+                        />
                     </Col>
                 </Row>
             </Col>
@@ -58,7 +80,8 @@ const DatasetStep = ({onFinish}) => {
                 type="primary"
                 size="large"
                 icon={<ArrowRightOutlined />}
-                disabled={option === 1 && dataset === null}
+                loading={parsing}
+                disabled={parsing || (option === 1 && dataset === null)}
                 onClick={() => onFinish(dataset)}
             >Next Step</Button>
         </div>

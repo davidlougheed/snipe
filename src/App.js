@@ -1,5 +1,5 @@
-import {Card, Divider, Layout, Steps, Typography, Upload} from "antd";
-import {useMemo, useState} from "react";
+import { Card, Divider, Layout, Steps, Typography } from "antd";
+import { useMemo, useState } from "react";
 import DatasetStep from "./steps/DatasetStep";
 import TaxaStep from "./steps/TaxaStep";
 import MatchesStep from "./steps/MatchesStep";
@@ -26,16 +26,18 @@ const stepItems = [
 
 const App = () => {
     const [currentStep, setCurrentStep] = useState(0);
+    const [dataset, setDataset] = useState(null);
 
     /** @type ReactNode */
     const stepNode = useMemo(() => {
        switch (currentStep) {
            case 0:
-               return <DatasetStep onFinish={() => {
+               return <DatasetStep onFinish={(dataset) => {
+                   setDataset(dataset);
                    setCurrentStep(1);
                }} />;
            case 1:
-               return <TaxaStep />;
+               return <TaxaStep dataset={dataset} />;
            case 2:
                return <MatchesStep />;
            case 3:
@@ -46,7 +48,7 @@ const App = () => {
     }, [currentStep]);
 
     return <Layout>
-        <Layout.Content style={{height: "100vh", padding: 36}}>
+        <Layout.Content style={{minHeight: "100vh", padding: 36}}>
             <div style={{maxWidth: 1250, margin: "0 auto"}}>
                 <Card>
                     <Typography.Title level={1}>eDNA Primer Selector</Typography.Title>
