@@ -54,9 +54,9 @@ const App = () => {
             <div style={{maxWidth: 1400, margin: "0 auto"}}>
                 <Card>
                     {/*<Typography.Title level={1}>eDNA Primer Selector</Typography.Title>*/}
-                    <div style={{ display: "flex", gap: "1.5rem" }}>
-                        <Typography.Title level={1}>SNIPE</Typography.Title>
-                        <span style={{ fontSize: 18, marginTop: 10, fontStyle: "italic", color: "#555" }}>
+                    <div style={{ display: "flex", gap: "1.5rem", justifyContent: "center" }}>
+                        <Typography.Title level={1} style={{ fontStyle: "italic", fontWeight: 300 }}>SNIPE</Typography.Title>
+                        <span style={{ fontSize: 18, marginTop: 10, fontStyle: "italic", color: "#5F5F5F" }}>
                             <strong>S</strong>electing{" "}
                             <strong>N</strong>ovel{" "}
                             <strong>I</strong>nformative{" "}
@@ -79,7 +79,11 @@ const App = () => {
                         <a href="https://sclougheed.ca" target="_blank" rel="noreferrer">Lougheed Lab</a>.
                         The web application component is &copy;{" "}
                         <a href="https://dlougheed.com" target="_blank" rel="noreferrer">David Lougheed</a> 2023;
-                        the source code is available on Github under the terms of the GPL v3 license.
+                        the{" "}
+                        <a href="https://github.com/davidlougheed/edna_primer_selector"
+                           target="_blank"
+                           rel="noreferrer">source code is available on Github</a>{" "}
+                        under the terms of the GPL v3 license.
                     </Typography.Paragraph>
                 </div>
             </div>
