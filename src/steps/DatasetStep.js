@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { parse } from "csv-parse/browser/esm";
-import { Button, Col, Divider, Radio, Row, Space, Statistic, Upload } from "antd";
+import { Button, Col, Divider, Modal, Radio, Row, Space, Statistic, Typography, Upload } from "antd";
 import { ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined } from "@ant-design/icons";
 import { createDataset } from "../lib/datasets";
+
+const { Paragraph, Text } = Typography;
 
 const EM_DASH = "—";
 
@@ -10,6 +12,14 @@ const DatasetStep = ({onFinish}) => {
     const [option, setOption] = useState(0);
     const [parsing, setParsing] = useState(false);
     const [dataset, setDataset] = useState(null);
+
+    const [showFormatModal, setShowFormatModal] = useState(false);
+
+    const onShowFormatModal = useCallback((e = undefined) => {
+        if (e) e.preventDefault();
+        setShowFormatModal(true);
+    }, []);
+    const hideFormatModal = useCallback(() => setShowFormatModal(false), []);
 
     return <>
         <Row>
@@ -45,8 +55,12 @@ const DatasetStep = ({onFinish}) => {
                                     }
                                 })();
                             }} beforeUpload={() => false}>
-                                <Button icon={<UploadOutlined />}>Upload Primer/Taxa Matrix</Button>
+                                <Button icon={<UploadOutlined />}>Upload Primer/Taxa Matrix</Button> <br />
                             </Upload>
+                            <Text type="secondary">
+                                You must upload a CSV which follows the tool's{" "}
+                                <a href="#" onClick={onShowFormatModal}>formatting requirements</a>.
+                            </Text>
                         </Radio>
                     </Space>
                 </Radio.Group>
@@ -83,6 +97,43 @@ const DatasetStep = ({onFinish}) => {
                 onClick={() => onFinish(dataset)}
             >Next Step</Button>
         </div>
+        <Modal
+            open={showFormatModal}
+            title="Dataset formatting requirements"
+            onCancel={hideFormatModal}
+            footer={null}
+            width={960}
+        >
+            <Paragraph>
+                SNIPE takes as input a CSV with eight columns:
+            </Paragraph>
+            <ul>
+                <li>
+                    <Text code={true}>Taxa_group</Text>:
+                    A top-level grouping (which may be sub-phylum or super-phylum), e.g., "Invertebrates" or "Mammals".
+                </li>
+                <li><Text code={true}>Phylum</Text></li>
+                <li><Text code={true}>Family</Text></li>
+                <li><Text code={true}>Genus</Text></li>
+                <li><Text code={true}>Species</Text></li>
+                <li>
+                    <Text code={true}>Final_ID</Text>:
+                    The final ID of the taxon for this row, e.g., <em>Castor canadensis</em>,{" "}
+                    <em>Castor sp.</em>, or "Castoridae".
+                </li>
+                <li>
+                    <Text code={true}>Primer_name</Text>:
+                    The name of the primer for this row, meaning that this primer can detect the presence of this taxon.
+                </li>
+            </ul>
+            {/*<Paragraph>*/}
+            {/*    TODO: Maximum number of different primers supported*/}
+            {/*</Paragraph>*/}
+            <Paragraph>
+                This data should be "long-form", i.e., for each <Text code={true}>Final_ID</Text>, there may be multiple
+                entries: one per primer.
+            </Paragraph>
+        </Modal>
     </>;
 };
 
