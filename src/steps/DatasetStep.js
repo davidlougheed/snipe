@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { Fragment, useCallback, useState } from "react";
 import { parse } from "csv-parse/browser/esm";
 import { Button, Col, Divider, Modal, Radio, Row, Space, Statistic, Typography, Upload } from "antd";
 import { ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined } from "@ant-design/icons";
@@ -8,10 +8,9 @@ const { Paragraph, Text } = Typography;
 
 const EM_DASH = "—";
 
-const DatasetStep = ({onFinish}) => {
+const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
     const [option, setOption] = useState(0);
     const [parsing, setParsing] = useState(false);
-    const [dataset, setDataset] = useState(null);
 
     const [showFormatModal, setShowFormatModal] = useState(false);
 
@@ -21,6 +20,7 @@ const DatasetStep = ({onFinish}) => {
     }, []);
     const hideFormatModal = useCallback(() => setShowFormatModal(false), []);
 
+    if (!visible) return <Fragment />;
     return <>
         <Row>
             <Col flex={1}>
@@ -55,7 +55,7 @@ const DatasetStep = ({onFinish}) => {
                                     }
                                 })();
                             }} beforeUpload={() => false}>
-                                <Button icon={<UploadOutlined />}>Upload Primer/Taxa Matrix</Button> <br />
+                                <Button icon={<UploadOutlined />}>Upload Taxa/Primer List</Button> <br />
                             </Upload>
                             <Text type="secondary">
                                 You must upload a CSV which follows the tool's{" "}
@@ -94,7 +94,7 @@ const DatasetStep = ({onFinish}) => {
                 icon={<ArrowRightOutlined />}
                 loading={parsing}
                 disabled={parsing || (option === 1 && dataset === null)}
-                onClick={() => onFinish(dataset)}
+                onClick={onFinish}
             >Next Step</Button>
         </div>
         <Modal

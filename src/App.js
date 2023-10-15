@@ -1,5 +1,5 @@
 import { Card, Divider, Layout, Steps, Typography } from "antd";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import DatasetStep from "./steps/DatasetStep";
 import DiscoverStep from "./steps/DiscoverStep";
 // import MatchesStep from "./steps/MatchesStep";
@@ -32,22 +32,19 @@ const App = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [dataset, setDataset] = useState(null);
 
+    const onBack = useCallback(() => setCurrentStep(Math.max(0, currentStep - 1)), [currentStep]);
+    const onNext = useCallback(
+        () => setCurrentStep(Math.min(stepItems.length, currentStep + 1)),
+        [currentStep]);
+
     /** @type ReactNode */
-    const stepNode = useMemo(() => {
-       switch (currentStep) {
-           case 0:
-               return <DatasetStep onFinish={(dataset) => {
-                   setDataset(dataset);
-                   setCurrentStep(1);
-               }} />;
-           case 1:
-               return <DiscoverStep dataset={dataset} />;
-           case 3:
-               return <DownloadStep />;
-           default:
-               return <div />;
-       }
-    }, [currentStep]);
+    const stepNode = useMemo(() => (
+       <>
+           <DatasetStep visible={currentStep === 0} dataset={dataset} setDataset={setDataset} onFinish={onNext} />
+           <DiscoverStep visible={currentStep === 1} dataset={dataset} onBack={onBack} />
+           <DownloadStep visible={currentStep === 2} />
+       </>
+    ), [currentStep, dataset]);
 
     return <Layout>
         <Layout.Content style={{minHeight: "100vh", padding: 36}}>

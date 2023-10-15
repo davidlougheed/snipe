@@ -1,14 +1,18 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { Alert, Button, Card, Col, Divider, Form, InputNumber, Modal, Row, Space, Tree, Typography } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 
-const DiscoverStep = ({ dataset, onBack, onFinish }) => {
+const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
     const [modalVisible, selectModalVisible] = useState(false);
 
     const [expandedKeys, setExpandedKeys] = useState([]);
     const [checkedKeys, setCheckedKeys] = useState([]);
 
-    const [nPrimers, setNPrimers] = useState(dataset.primers.length);
+    const [nPrimers, setNPrimers] = useState(1);
+
+    useEffect(() => {
+        setNPrimers(dataset?.primers?.length ?? 1);
+    }, [dataset]);
 
     const onCheck = useCallback((keys) => {
         setCheckedKeys(keys);
@@ -38,6 +42,8 @@ const DiscoverStep = ({ dataset, onBack, onFinish }) => {
     );
 
     useEffect(() => {
+        if (!dataset) return;
+
         const checkedRecords = checkedLeaves.map((key) => dataset.recordsByKey[key]);
         const primerSubset = new Set(checkedRecords.map((rec) => rec["Primer_name"]));
 
@@ -48,6 +54,7 @@ const DiscoverStep = ({ dataset, onBack, onFinish }) => {
     const showModal = useCallback(() => selectModalVisible(true), []);
     const hideModal = useCallback(() => selectModalVisible(false), []);
 
+    if (!visible) return <Fragment />;
     // noinspection JSCheckFunctionSignatures
     return <>
         <Row gutter={[24, 24]}>
