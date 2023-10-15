@@ -1,7 +1,7 @@
-import {useState} from "react";
-import {parse} from "csv-parse/browser/esm";
-import {Button, Col, Divider, Radio, Row, Space, Statistic, Upload} from "antd";
-import {ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined} from "@ant-design/icons";
+import { useState } from "react";
+import { parse } from "csv-parse/browser/esm";
+import { Button, Col, Divider, Radio, Row, Space, Statistic, Upload } from "antd";
+import { ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined } from "@ant-design/icons";
 import { createDataset } from "../lib/datasets";
 
 const EM_DASH = "—";
@@ -21,8 +21,6 @@ const DatasetStep = ({onFinish}) => {
                         </Radio>
                         <Radio value={1}>
                             <Upload name="file" onChange={(info) => {
-                                console.log(info);
-
                                 const fileObj = info.fileList[0]?.originFileObj;
                                 if (!fileObj) return;
 
@@ -66,7 +64,7 @@ const DatasetStep = ({onFinish}) => {
                     <Col>
                         <Statistic
                             title="Taxa"
-                            value={dataset?.nTaxa ?? "—"}
+                            value={dataset?.records?.length ?? "—"}
                             loading={parsing}
                             prefix={<ApartmentOutlined />}
                         />
@@ -75,7 +73,7 @@ const DatasetStep = ({onFinish}) => {
             </Col>
         </Row>
         <Divider />
-        <div style={{display: "flex", justifyContent: "flex-end"}}>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button
                 type="primary"
                 size="large"

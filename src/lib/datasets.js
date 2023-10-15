@@ -1,6 +1,11 @@
 import groupBy from "lodash/groupBy";
+import { Popover } from "antd";
 
 export const PRIMER_GROUPINGS = ["Taxa_group", "Phylum", "Order", "Family", "Genus", "Final_ID"];
+
+const preventDefault = (e) => {
+    e.preventDefault();
+};
 
 const taxaRecGroup = (arr, groupings, pathStr) => {
     const res = groupBy(arr, groupings[0]);
@@ -16,7 +21,18 @@ const taxaRecGroup = (arr, groupings, pathStr) => {
         }
 
         const baseRecord = {
-            title: isSpeciesLevel ? <em>{k.split("_").join(" ")}</em> : k,
+            title: isSpeciesLevel ? <span>
+                <em>{k.split("_").join(" ")}</em>{" "}
+                <Popover title="Primers" content={<ul style={{ margin: 0, paddingLeft: "1em" }}>
+                    {v.map(p => <li key={`${k}-${p["Primer_name"]}`} style={{ fontFamily: "monospace" }}>
+                        {p["Primer_name"]}
+                    </li>)}
+                </ul>}>
+                    (<a href="#" onClick={preventDefault}>
+                        {v.length} available {v.length === 1 ? "primer" : "primers"}
+                    </a>)
+                </Popover>
+            </span> : k,
             key: fullKey,
         };
 
@@ -33,10 +49,18 @@ const taxaRecGroup = (arr, groupings, pathStr) => {
             children: children[0]?.title === "Chordata" ? children[0]?.children : children,
         };
     });
-}
+};
 
-export const createDataset = (objs) => {
-    const tree = taxaRecGroup(objs, PRIMER_GROUPINGS, "root");
-    const primers = new Set(objs.map((x) => x["Primer_name"]));
-    return { tree, primers: Array.from(primers), nTaxa: objs.length };
+const buildLeafKey = (rec) => `root-${PRIMER_GROUPINGS.map((g) => rec[g]).join("-")}-leaf`;
+
+export const createDataset = (records) => {
+    const tree = taxaRecGroup(records, PRIMER_GROUPINGS, "root");
+    const primers = new Set(records.map((x) => x["Primer_name"]));
+    const recordsWithKey = records.map((rec) => ({ ...rec, key: buildLeafKey(rec) }));
+    return {
+        tree,
+        primers: Array.from(primers),
+        records: recordsWithKey,
+        recordsByKey: Object.fromEntries(recordsWithKey.map((rec) => [rec.key, rec])),
+    };
 };
