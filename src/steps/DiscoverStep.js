@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Alert, Button, Card, Col, Divider, Form, InputNumber, Modal, Row, Space, Tree, Typography } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
 
-const TaxaStep = ({ dataset, onBack, onFinish }) => {
+const DiscoverStep = ({ dataset, onBack, onFinish }) => {
     const [modalVisible, selectModalVisible] = useState(false);
 
     const [expandedKeys, setExpandedKeys] = useState([]);
@@ -130,4 +130,4 @@ const TaxaStep = ({ dataset, onBack, onFinish }) => {
     </>;
 };
 
-export default TaxaStep;
+export default DiscoverStep;

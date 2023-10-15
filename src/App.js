@@ -1,7 +1,7 @@
 import { Card, Divider, Layout, Steps, Typography } from "antd";
 import { useMemo, useState } from "react";
 import DatasetStep from "./steps/DatasetStep";
-import DiscoverStep from "./steps/TaxaStep";
+import DiscoverStep from "./steps/DiscoverStep";
 // import MatchesStep from "./steps/MatchesStep";
 import DownloadStep from "./steps/DownloadStep";
 
