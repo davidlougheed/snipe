@@ -1,17 +1,49 @@
-import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Alert, Button, Card, Col, Divider, Form, InputNumber, Modal, Row, Space, Tree, Typography } from "antd";
-import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
 
 const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
-    const [modalVisible, selectModalVisible] = useState(false);
+    const worker = useRef(null);
+    const searching = useRef(false);  // ref so that the closure can get the true value
+
+    const [modalVisible, setModalVisible] = useState(false);
 
     const [expandedKeys, setExpandedKeys] = useState([]);
     const [checkedKeys, setCheckedKeys] = useState([]);
 
-    const [nPrimers, setNPrimers] = useState(1);
+    const [nPrimers, setNPrimers] = useState(dataset?.primers?.length ?? 1);
+
+    const [hasSearched, setHasSearched] = useState(false);
 
     useEffect(() => {
+        // On first load, set up the worker
+        const w = new Worker(new URL("../lib/worker.js", import.meta.url));
+        worker.current = w;
+        w.onmessage = ({ data }) => {
+            // if we receive error/result, and we're not searching, it means it's from a previous dataset/selection, so
+            // just ignore the result I guess.
+
+            const { type } = data;
+
+            if (type === "error" && searching.current) {
+                // TODO
+                searching.current = false;
+            } else if (type === "result" && searching.current) {
+                // TODO
+                searching.current = false;
+            } else if (type === "progress" && searching.current) {
+                // TODO
+                console.log("from worker", data);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        // Reset state when dataset changes
         setNPrimers(dataset?.primers?.length ?? 1);
+        setModalVisible(false);
+        setExpandedKeys([]);
+        setCheckedKeys([]);
     }, [dataset]);
 
     const onCheck = useCallback((keys) => {
@@ -51,8 +83,29 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
         console.log(primerSubset);
     }, [dataset, checkedLeaves]);
 
-    const showModal = useCallback(() => selectModalVisible(true), []);
-    const hideModal = useCallback(() => selectModalVisible(false), []);
+    const showModal = useCallback(() => setModalVisible(true), []);
+    const hideModal = useCallback(() => setModalVisible(false), []);
+
+    const onSearch = useCallback(() => {
+        if (!dataset) return;
+        if (!worker.current) {
+            console.error("Cannot find worker");
+            return;
+        }
+
+        if (!checkedLeaves.length) return;
+        const checkedRecords = checkedLeaves.map((key) => dataset.recordsByKey[key]);
+
+        worker.current.postMessage({
+            type: "search",
+            data: {
+                records: checkedRecords,
+                maxPrimers: nPrimers,
+            },
+        });
+        setHasSearched(true);
+        searching.current = true;
+    }, [dataset, worker, checkedLeaves, nPrimers]);
 
     if (!visible) return <Fragment />;
     // noinspection JSCheckFunctionSignatures
@@ -69,11 +122,11 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                         </Form.Item>
                         <Form.Item
                             label="Max. Primers"
-                            style={{ marginBottom: 0 }}
                             help={
                                 `If this value is higher than the number of primers needed, only the fewest needed 
                                 primers will be used.`
                             }
+                            style={{ overflow: "hidden" }}
                         >
                             <InputNumber
                                 min={1}
@@ -82,15 +135,27 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                                 onChange={(v) => setNPrimers(v)}
                             />
                         </Form.Item>
+                        <Form.Item style={{ marginBottom: 0 }}>
+                            <Button
+                                type="primary"
+                                icon={<SearchOutlined />}
+                                disabled={!checkedLeaves.length || searching.current}
+                                loading={searching.current}
+                                onClick={onSearch}
+                            >Search</Button>
+                        </Form.Item>
                     </Form>
                 </Card>
             </Col>
             <Col md={24} lg={14} xl={16}>
                 <Typography.Title level={3}>Results</Typography.Title>
-                {checkedKeys.length === 0 && (
+                {!hasSearched && (
                     <Alert
                         message="No results yet"
-                        description={<span>Select taxa in order to see corresponding primer sets.</span>}
+                        description={<span>
+                            Select taxa, choose your desired maximum number of primers, and press "Search" in order to
+                            see corresponding primer sets. Searching may take a few seconds.
+                        </span>}
                         type="info"
                         showIcon={true}
                     />
@@ -129,7 +194,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                     type="primary"
                     size="large"
                     icon={<ArrowRightOutlined />}
-                    disabled={checkedKeys.length === 0}
+                    disabled={!hasSearched}
                     onClick={() => onFinish()}
                 >Next Step</Button>
             </Col>
