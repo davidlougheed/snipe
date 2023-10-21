@@ -19,11 +19,13 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
         // On first load, set up the worker
         const w = new Worker(new URL("../lib/worker.js", import.meta.url));
         worker.current = w;
-        w.onmessage = ({ data }) => {
+        w.onmessage = ({ data: message }) => {
             // if we receive error/result, and we're not searching, it means it's from a previous dataset/selection, so
             // just ignore the result I guess.
 
-            const { type } = data;
+            console.log("main received", message);
+
+            const { type, data } = message;
 
             if (type === "error" && searching.current) {
                 // TODO
