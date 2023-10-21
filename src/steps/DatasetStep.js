@@ -8,6 +8,8 @@ const { Paragraph, Text } = Typography;
 
 const EM_DASH = "—";
 
+const beforeUploadNothing = () => false;
+
 const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
     const [messageApi, contextHolder] = message.useMessage();
 
@@ -16,16 +18,36 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
     const [fetchingDefault, setFetchingDefault] = useState(false);
     const [fetchingDefaultFailed, setFetchingDefaultFailed] = useState(false);
 
+    const parseDataset = useCallback((csvGetter, onParseFinish=undefined) => {
+        setParsing(true);
+        return (async () => {
+            try {
+                const csvContents = await csvGetter();
+
+                parse(csvContents, { columns: true }, (err, data) => {
+                    if (err) throw err;
+
+                    if (onParseFinish) onParseFinish();
+
+                    const dataset = createDataset(data);
+                    console.log(dataset);
+                    setDataset(dataset);
+                });
+            } finally {
+                setParsing(false);
+            }
+        })();
+    }, []);
+
     useEffect(() => {
         // On page load, fetch the default dataset
         setFetchingDefault(true);
         (async () => {
             try {
                 const res = await fetch(
-                    "/datasets/Tournayre_et_al_2023.json",
-                    { headers: { "Content-Type": "application/json" } });
-                const data = await res.json();
-                setDataset(data);
+                    "/datasets/Tournayre_et_al_2023.csv",
+                    { headers: { "Content-Type": "text/csv" } });
+                await parseDataset(() => res.text());
             } catch (e) {
                 const errStr = `Error fetching default dataset: ${e}`;
                 console.error(errStr);
@@ -46,6 +68,12 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
     }, []);
     const hideFormatModal = useCallback(() => setShowFormatModal(false), []);
 
+    const onUpload = useCallback((info) => {
+        const fileObj = info.fileList[0]?.originFileObj;
+        if (!fileObj) return;
+        parseDataset(() => fileObj.text(), () => setOption(1)).catch(console.error);
+    }, [parseDataset]);
+
     if (!visible) return <Fragment />;
     return <>
         {contextHolder}
@@ -59,31 +87,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                             </Spin>
                         </Radio>
                         <Radio value={1}>
-                            <Upload name="file" onChange={(info) => {
-                                const fileObj = info.fileList[0]?.originFileObj;
-                                if (!fileObj) return;
-
-                                setParsing(true);
-
-                                (async () => {
-                                    try {
-                                        // noinspection JSUnresolvedReference
-                                        const csvContents = await fileObj.text();
-
-                                        parse(csvContents, { columns: true }, (err, data) => {
-                                            if (err) throw err;
-
-                                            setOption(1);
-
-                                            const dataset = createDataset(data);
-                                            console.log(dataset);
-                                            setDataset(dataset);
-                                        });
-                                    } finally {
-                                        setParsing(false);
-                                    }
-                                })();
-                            }} beforeUpload={() => false}>
+                            <Upload name="file" onChange={onUpload} beforeUpload={beforeUploadNothing}>
                                 <Button icon={<UploadOutlined />}>Upload Taxa/Primer List</Button> <br />
                             </Upload>
                             <Text type="secondary">
