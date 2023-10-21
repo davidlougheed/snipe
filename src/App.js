@@ -2,7 +2,6 @@ import { Card, Divider, Layout, Modal, Steps, Typography } from "antd";
 import { useCallback, useMemo, useState } from "react";
 import DatasetStep from "./steps/DatasetStep";
 import DiscoverStep from "./steps/DiscoverStep";
-// import MatchesStep from "./steps/MatchesStep";
 import DownloadStep from "./steps/DownloadStep";
 
 const { Title, Paragraph } = Typography;
@@ -20,14 +19,6 @@ const stepItems = [
         title: <strong>Choose or upload a dataset</strong>,
         description: "Use the default primer dataset or upload your own.",
     },
-    // {
-    //     title: <strong>Choose taxa and max. # primers</strong>,
-    //     description: "Choose the taxa you wish to detect the presence of.",
-    // },
-    // {
-    //     title: <strong>Find matching primer sets</strong>,
-    //     description: "See which primer sets match your criteria.",
-    // },
     {
         title: <strong>Discover primer sets</strong>,
         description: "Choose taxa for presence detection and find matching primer sets.",
