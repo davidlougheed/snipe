@@ -74,6 +74,7 @@ const findBestPrimerSets = (records, maxPrimers) => {
         });
 
         bestPrimerCombinations.push({
+            nPrimers,
             coverage: bestCoverage,
             results: bestResultsForPrimerCount,
         });

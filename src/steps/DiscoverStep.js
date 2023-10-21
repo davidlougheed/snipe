@@ -11,6 +11,7 @@ import {
     Progress,
     Row,
     Space,
+    Tabs,
     Tree,
     Typography
 } from "antd";
@@ -49,7 +50,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                 // TODO
                 searching.current = false;
                 console.debug("received results", data);
-                setResults(data);
+                setResults(data.results);
             } else if (type === "progress" && searching.current) {
                 setProgress(data.percent);
             }
@@ -197,6 +198,34 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                         type="info"
                         showIcon={true}
                     />
+                )}
+                {!!results && (
+                    <Tabs items={[...results].reverse().map((res) => ({
+                        label: <span>
+                            {res.nPrimers} Primers: {(res.coverage * 100).toFixed(0)}%
+                            {res.results.length > 1 ? <>{" "}({res.results.length})</> : null}
+                        </span>,
+                        key: `tab-${res.nPrimers}-primers`,
+                        children: (
+                            <div>
+                                <div style={{ display: "flex", gap: 16 }}>
+                                    {res.results.map((r, i) => (
+                                        <Card
+                                            key={`primers-${res.nPrimers}-primer-set-${i+1}`}
+                                            title={`Primer set ${i+1}`}
+                                            size="small"
+                                            style={{ width: 200 }}
+                                        >
+                                            Primers:
+                                            <ul style={{ marginBottom: 0, paddingLeft: "1em" }}>
+                                                {Array.from(r.primers).map((p) => <li>{p}</li>)}
+                                            </ul>
+                                        </Card>
+                                    ))}
+                                </div>
+                            </div>
+                        ),
+                    }))} />
                 )}
             </Col>
         </Row>
