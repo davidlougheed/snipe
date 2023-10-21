@@ -48,7 +48,7 @@ const ResultsTabs = ({ results }) => (
                             return (
                                 <Card
                                     key={`primers-${nPrimers}-primer-set-${j + 1}`}
-                                    title={`Primer set ${j + 1}`}
+                                    title={`Primer set ${nPrimers}-${j + 1}`}
                                     size="small"
                                     style={{ width: "calc(50% - 8px)" }}
                                 >
