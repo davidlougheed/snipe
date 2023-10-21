@@ -12,6 +12,9 @@ COPY package-lock.json .
 COPY index.html .
 COPY src src
 
+# files: datasets
+COPY datasets datasets
+
 # install dependencies
 RUN npm ci
 
