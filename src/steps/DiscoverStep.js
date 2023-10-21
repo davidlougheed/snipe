@@ -14,11 +14,12 @@ import {
     Progress,
     Row,
     Space,
-    Tabs,
+    Tabs, Tag,
     Tree,
     Typography
 } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
+import { pluralize } from "../lib/utils";
 
 const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
     const worker = useRef(null);
@@ -210,7 +211,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
 
                         return {
                             label: <span>
-                                {nPrimers} Primers: {(res.coverage * 100).toFixed(1)}%
+                                {nPrimers} {pluralize("Primer", nPrimers)}: {(res.coverage * 100).toFixed(1)}%
                                 {nRes > 1 ? <>{" "}({nRes})</> : null}
                             </span>,
                             key: `tab-${nPrimers}-primers`,
@@ -230,19 +231,35 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                                                     key={`primers-${nPrimers}-primer-set-${j + 1}`}
                                                     title={`Primer set ${j + 1}`}
                                                     size="small"
-                                                    style={{ width: 200 }}
+                                                    style={{ width: "calc(50% - 8px)" }}
                                                 >
-                                                    Primers:
-                                                    <ul style={{ marginBottom: 0, paddingLeft: "1em" }}>
-                                                        {Array.from(r.primers).map((p) => <li key={p}>{p}</li>)}
-                                                    </ul>
-                                                    {newTaxa
-                                                        ? <span>
-                                                            {newTaxa.length}{" "}
-                                                            new taxa vs. {results[i + 1].nPrimers} primers
-                                                            {newTaxa.length < 5 ? `: ${newTaxa.join(", ")}` : null}
-                                                        </span>
-                                                        : null}
+                                                    <Space direction="vertical">
+                                                        <div>
+                                                            <strong>Primers:</strong><br />
+                                                            {Array.from(r.primers).map((p) => (
+                                                                <Tag style={{ marginRight: "0.5em" }}>{p}</Tag>
+                                                            ))}
+                                                        </div>
+                                                        <div>
+                                                            <strong>Taxa:</strong> {r.coveredTaxa.size}
+                                                            {newTaxa
+                                                                ? <>
+                                                                    <br />
+                                                                    <span>
+                                                                        {newTaxa.length}{" "}
+                                                                        new {pluralize(
+                                                                            "taxon",
+                                                                            newTaxa.length,
+                                                                        )}{" "}
+                                                                        vs. {results[i + 1].nPrimers} primers
+                                                                        {newTaxa.length < 8
+                                                                            ? `: ${newTaxa.join(", ")}`
+                                                                            : null}
+                                                                    </span>
+                                                                </>
+                                                                : null}
+                                                        </div>
+                                                    </Space>
                                                 </Card>
                                             );
                                         })}
@@ -290,7 +307,8 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                     type="primary"
                     size="large"
                     icon={<ArrowRightOutlined />}
-                    disabled={!hasSearched}
+                    // disabled={!hasSearched}
+                    disabled={true}  // for now
                     onClick={() => onFinish()}
                 >Next Step</Button>
             </Col>
