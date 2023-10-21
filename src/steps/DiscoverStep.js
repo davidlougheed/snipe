@@ -208,7 +208,12 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
             <Col md={24} lg={10} xl={8}>
                 <Card title="Criteria">
                     <Form layout="vertical">
-                        <Form.Item label="Taxa">
+                        <Form.Item
+                            label="Taxa"
+                            help={<div style={{ height: 68 }}>
+                                The taxa available here are just those which are detectable by the dataset specified.
+                            </div>}
+                        >
                             <Space>
                                 <Button onClick={showModal}>Select Taxa &hellip;</Button>
                                 <span style={{ color: nCheckedLeaves === 0 ? "#EE4433" : undefined }}>
@@ -222,7 +227,6 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                                 If this value is higher than the number of primers needed, only the fewest needed
                                 primers will be used.
                             </div>}
-                            style={{ overflow: "hidden" }}
                         >
                             <InputNumber
                                 min={1}
