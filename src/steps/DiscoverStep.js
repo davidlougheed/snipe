@@ -61,7 +61,7 @@ const ResultsTabs = ({ results }) => (
                                             <strong>Taxa:</strong> {r.coveredTaxa.size}
                                             {newTaxa
                                                 ? <details open={newTaxa.length < 8}>
-                                                    <summary>
+                                                    <summary style={{ cursor: "pointer" }}>
                                                         Adds {newTaxa.length} new {" "}
                                                         {pluralize("taxon", newTaxa.length)}{" "}
                                                         vs. with {results[i + 1].nPrimers}{" "}
