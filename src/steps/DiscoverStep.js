@@ -219,7 +219,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                         return {
                             label: <span>
                                 {nPrimers} {pluralize("Primer", nPrimers)}: {(res.coverage * 100).toFixed(1)}%
-                                {nRes > 1 ? <>{" "}({nRes})</> : null}
+                                {nRes > 1 ? <>{" "}({nRes} sets)</> : null}
                             </span>,
                             key: `tab-${nPrimers}-primers`,
                             children: (
