@@ -1,5 +1,5 @@
 {
-  "name": "edna_primer_selector",
+  "name": "@davidlougheed/snipe",
   "version": "0.1.0",
   "description": "A web tool for optimally choosing eDNA primer pairs to identify a set of taxa. ",
   "main": "index.js",
