@@ -1,6 +1,6 @@
-import { Fragment, useCallback, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { parse } from "csv-parse/browser/esm";
-import { Button, Col, Divider, Modal, Radio, Row, Space, Statistic, Typography, Upload } from "antd";
+import { Button, Col, Divider, message, Modal, Radio, Row, Space, Spin, Statistic, Typography, Upload } from "antd";
 import { ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined } from "@ant-design/icons";
 import { createDataset } from "../lib/datasets";
 
@@ -9,8 +9,34 @@ const { Paragraph, Text } = Typography;
 const EM_DASH = "—";
 
 const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
+    const [messageApi, contextHolder] = message.useMessage();
+
     const [option, setOption] = useState(0);
     const [parsing, setParsing] = useState(false);
+    const [fetchingDefault, setFetchingDefault] = useState(false);
+    const [fetchingDefaultFailed, setFetchingDefaultFailed] = useState(false);
+
+    useEffect(() => {
+        // On page load, fetch the default dataset
+        setFetchingDefault(true);
+        (async () => {
+            try {
+                const res = await fetch(
+                    "/datasets/Tournayre_et_al_2023.json",
+                    { headers: { "Content-Type": "application/json" } });
+                const data = await res.json();
+                setDataset(data);
+            } catch (e) {
+                const errStr = `Error fetching default dataset: ${e}`;
+                console.error(errStr);
+                messageApi.error(errStr)
+                setOption(1);
+                setFetchingDefaultFailed(true);
+            } finally {
+                setFetchingDefault(false);
+            }
+        })();
+    }, [messageApi]);
 
     const [showFormatModal, setShowFormatModal] = useState(false);
 
@@ -22,12 +48,15 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
 
     if (!visible) return <Fragment />;
     return <>
+        {contextHolder}
         <Row>
             <Col flex={1}>
-                <Radio.Group value={option} onChange={(e) => setOption(e.target.value)}>
+                <Radio.Group value={option} onChange={(e) => setOption(e.target.value)} disabled={fetchingDefault}>
                     <Space direction="vertical">
-                        <Radio value={0}>
-                            Use primer dataset from Tournayre <em>et al.</em> (2023)
+                        <Radio value={0} disabled={fetchingDefaultFailed}>
+                            <Spin spinning={fetchingDefault}>
+                                Use primer dataset from Tournayre <em>et al.</em> (2023)
+                            </Spin>
                         </Radio>
                         <Radio value={1}>
                             <Upload name="file" onChange={(info) => {

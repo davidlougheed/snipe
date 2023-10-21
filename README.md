@@ -2,7 +2,13 @@
 
 > **S**electing **N**ovel **I**nformative **P**rimer-sets for **ᴇ**-DNA
 
-A web tool for optimally choosing eDNA primer pairs to identify a set of taxa. <br />
+A web tool for optimally choosing eDNA primer pairs to identify a set of taxa.
+
+## Copyright and License Notice
+
+Note that the terms of the license DO NOT apply to anything under the [./datasets](./datasets) folder; for those files,
+all rights are reserved by their copyright holders.
+
 Copyright &copy; 2023 David Lougheed ([david.lougheed@gmail.com](mailto:david.lougheed@gmail.com))
 
     This program is free software: you can redistribute it and/or modify

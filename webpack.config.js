@@ -1,6 +1,7 @@
 // Generated using webpack-cli https://github.com/webpack/webpack-cli
 
 const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -22,8 +23,11 @@ const config = {
         new HtmlWebpackPlugin({
             template: 'index.html',
         }),
-        // Add your plugins here
-        // Learn more about plugins from https://webpack.js.org/configuration/plugins/
+        new CopyPlugin({
+            patterns: [
+                { from: "datasets/*", to: "[path][name][ext]" },
+            ],
+        }),
     ],
     module: {
         rules: [
