@@ -34,8 +34,8 @@ const findBestPrimerSets = (records, maxPrimers) => {
         });
     };
 
-    allPrimerCombinations.forEach((primerCombinations, i) => {
-        const nPrimers = i + 1;
+    for (let nPrimers = 1; nPrimers <= maxPrimersNeeded; nPrimers++) {
+        const primerCombinations = allPrimerCombinations[nPrimers - 1];
 
         console.info(`trying ${nPrimers}/${maxPrimersNeeded} for ${records.length} records`);
 
@@ -86,7 +86,15 @@ const findBestPrimerSets = (records, maxPrimers) => {
 
         console.info(
             `processed ${primerCombinations.length} combinations for ${nPrimers}/${maxPrimersNeeded} primers`);
-    });
+
+        if (bestCoverage === 1) {
+            console.info("achieved 100% coverage");
+            if (nPrimers < maxPrimersNeeded) {
+                console.info(`  => terminating early at ${nPrimers} primers`);
+            }
+            break;
+        }
+    }
 
     postMessage({
         type: "result",
