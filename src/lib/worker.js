@@ -99,7 +99,7 @@ const findBestPrimerSets = (records, maxPrimers) => {
 
     postMessage({
         type: "result",
-        data: { results: bestPrimerCombinations },
+        data: { results: bestPrimerCombinations.reverse() },
     });
 };
 

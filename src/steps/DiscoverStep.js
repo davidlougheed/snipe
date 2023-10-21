@@ -1,4 +1,7 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+
+import difference from "set.prototype.difference";
+
 import {
     Alert,
     Button,
@@ -147,10 +150,10 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                         </Form.Item>
                         <Form.Item
                             label="Max. Primers"
-                            help={
-                                `If this value is higher than the number of primers needed, only the fewest needed 
-                                primers will be used.`
-                            }
+                            help={<div style={{ height: 68 }}>
+                                If this value is higher than the number of primers needed, only the fewest needed
+                                primers will be used.
+                            </div>}
                             style={{ overflow: "hidden" }}
                         >
                             <InputNumber
@@ -200,32 +203,54 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                     />
                 )}
                 {!!results && (
-                    <Tabs items={[...results].reverse().map((res) => ({
-                        label: <span>
-                            {res.nPrimers} Primers: {(res.coverage * 100).toFixed(0)}%
-                            {res.results.length > 1 ? <>{" "}({res.results.length})</> : null}
-                        </span>,
-                        key: `tab-${res.nPrimers}-primers`,
-                        children: (
-                            <div>
-                                <div style={{ display: "flex", gap: 16 }}>
-                                    {res.results.map((r, i) => (
-                                        <Card
-                                            key={`primers-${res.nPrimers}-primer-set-${i+1}`}
-                                            title={`Primer set ${i+1}`}
-                                            size="small"
-                                            style={{ width: 200 }}
-                                        >
-                                            Primers:
-                                            <ul style={{ marginBottom: 0, paddingLeft: "1em" }}>
-                                                {Array.from(r.primers).map((p) => <li>{p}</li>)}
-                                            </ul>
-                                        </Card>
-                                    ))}
+                    <Tabs items={results.map((res, i) => {
+                        const { nPrimers, results: npResults } = res;
+
+                        const nRes = npResults.length;
+
+                        return {
+                            label: <span>
+                                {nPrimers} Primers: {(res.coverage * 100).toFixed(1)}%
+                                {nRes > 1 ? <>{" "}({nRes})</> : null}
+                            </span>,
+                            key: `tab-${nPrimers}-primers`,
+                            children: (
+                                <div>
+                                    <div style={{ display: "flex", gap: 16 }}>
+                                        {npResults.map((r, j) => {
+                                            const newTaxa = (i < results.length - 1)
+                                                ? Array.from(difference(
+                                                    r.coveredTaxa,
+                                                    results[i + 1].results[0].coveredTaxa
+                                                ))
+                                                : null;
+
+                                            return (
+                                                <Card
+                                                    key={`primers-${nPrimers}-primer-set-${j + 1}`}
+                                                    title={`Primer set ${j + 1}`}
+                                                    size="small"
+                                                    style={{ width: 200 }}
+                                                >
+                                                    Primers:
+                                                    <ul style={{ marginBottom: 0, paddingLeft: "1em" }}>
+                                                        {Array.from(r.primers).map((p) => <li key={p}>{p}</li>)}
+                                                    </ul>
+                                                    {newTaxa
+                                                        ? <span>
+                                                            {newTaxa.length}{" "}
+                                                            new taxa vs. {results[i + 1].nPrimers} primers
+                                                            {newTaxa.length < 5 ? `: ${newTaxa.join(", ")}` : null}
+                                                        </span>
+                                                        : null}
+                                                </Card>
+                                            );
+                                        })}
+                                    </div>
                                 </div>
-                            </div>
-                        ),
-                    }))} />
+                            ),
+                        };
+                    })} />
                 )}
             </Col>
         </Row>
