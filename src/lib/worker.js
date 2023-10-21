@@ -18,9 +18,26 @@ const findBestPrimerSets = (records, maxPrimers) => {
 
     const bestPrimerCombinations = [];  // array-indexed by (nPrimers - 1)
 
-    for (let nPrimers = 1; nPrimers <= maxPrimersNeeded; nPrimers++) {
+    const allPrimerCombinations = [];
+
+    for (let np = 1; np <= maxPrimersNeeded; np++) {
+        allPrimerCombinations.push(choose(primerSubset, np));
+    }
+
+    let nTriedPrimerCombinations = 0;
+    const nTotalPrimerCombinations = allPrimerCombinations.flat().length;
+
+    const sendProgress = (nPrimers) => {
+        postMessage({
+            type: "progress",
+            data: { nPrimers, percent: (nTriedPrimerCombinations / nTotalPrimerCombinations) * 100 },
+        });
+    };
+
+    allPrimerCombinations.forEach((primerCombinations, i) => {
+        const nPrimers = i + 1;
+
         console.info(`trying ${nPrimers}/${maxPrimersNeeded} for ${records.length} records`);
-        const primerCombinations = choose(primerSubset, nPrimers);
 
         let bestCoverage = 0;
         let bestResultsForPrimerCount = [];
@@ -49,7 +66,11 @@ const findBestPrimerSets = (records, maxPrimers) => {
             }
             // Otherwise, discard
 
-            console.debug("primer combination:", pc, `coverage: ${(coverage * 100).toFixed(1)}%`);
+            nTriedPrimerCombinations += 1;
+
+            if (nTriedPrimerCombinations % 1000 === 0) {
+                sendProgress(nPrimers);
+            }
         });
 
         bestPrimerCombinations.push({
@@ -61,15 +82,11 @@ const findBestPrimerSets = (records, maxPrimers) => {
             `best primer combinations: coverage=${(bestCoverage * 100).toFixed(1)}`,
             bestResultsForPrimerCount);
 
-        postMessage({
-            type: "progress",
-            data: { nPrimers },
-            // TODO
-        });
+        sendProgress(nPrimers);
 
         console.info(
             `processed ${primerCombinations.length} combinations for ${nPrimers}/${maxPrimersNeeded} primers`);
-    }
+    });
 
     postMessage({
         type: "result",
