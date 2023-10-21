@@ -14,6 +14,7 @@ export const formatTaxon = (finalID) => {
         // Not a latin name
         return <>{finalID}</>;
     }
-    return <em>{parts.join(" ")}{parts.at(-1) === "sp" ? "." : ""}</em>;
-};
 
+    // \xa0 <=> &nbsp;
+    return <em>{parts.join("\xa0")}{parts.at(-1) === "sp" ? "." : ""}</em>;
+};
