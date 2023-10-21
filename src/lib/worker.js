@@ -11,6 +11,9 @@ export const choose = (arr, k) => chooseRec(arr, k, []).map((c) => new Set(c));
 // Processing ----------------------------------------------------------------------------------------------------------
 
 const findBestPrimerSets = (records, maxPrimers) => {
+    // All taxon IDs, deduplicated
+    const allTaxa = new Set(records.map((rec) => rec["Final_ID"]));
+
     // Subset of primers which can be used to identify
     const primerSubset = Array.from(new Set(records.map((rec) => rec["Primer_name"])));
     // - This is the largest possible set of primers we'll need, but fewer may be sufficient.
@@ -56,7 +59,7 @@ const findBestPrimerSets = (records, maxPrimers) => {
                 }
             });
 
-            const coverage = coveredTaxa.size / records.length;
+            const coverage = coveredTaxa.size / allTaxa.size;
 
             if (coverage > bestCoverage) {
                 bestCoverage = coverage;
