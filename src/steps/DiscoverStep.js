@@ -16,14 +16,76 @@ import {
     Space,
     Spin,
     Tabs,
-    Tag,
     Tree,
     Typography
 } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
 
 import Primer from "../bits/Primer";
-import { pluralize } from "../lib/utils";
+import { formatTaxon, pluralize } from "../lib/utils";
+
+
+const ResultsTabs = ({ results }) => (
+    <Tabs items={results.map((res, i) => {
+        const { nPrimers, results: npResults } = res;
+
+        const nRes = npResults.length;
+
+        return {
+            label: <span>
+                {nPrimers} {pluralize("Primer", nPrimers)}: {(res.coverage * 100).toFixed(1)}%
+                {nRes > 1 ? <>{" "}({nRes} sets)</> : null}
+            </span>,
+            key: `tab-${nPrimers}-primers`,
+            children: (
+                <div>
+                    <div style={{ display: "flex", gap: 16 }}>
+                        {npResults.map((r, j) => {
+                            const newTaxa = (i < results.length - 1)
+                                ? Array.from(difference(r.coveredTaxa, results[i + 1].results[0].coveredTaxa))
+                                : null;
+
+                            return (
+                                <Card
+                                    key={`primers-${nPrimers}-primer-set-${j + 1}`}
+                                    title={`Primer set ${j + 1}`}
+                                    size="small"
+                                    style={{ width: "calc(50% - 8px)" }}
+                                >
+                                    <Space direction="vertical">
+                                        <div>
+                                            <strong>Primers:</strong><br/>
+                                            {Array.from(r.primers).map((p) => <Primer key={p} name={p}/>)}
+                                        </div>
+                                        <div>
+                                            <strong>Taxa:</strong> {r.coveredTaxa.size}
+                                            {newTaxa
+                                                ? <details open={newTaxa.length < 8}>
+                                                    <summary>
+                                                        Adds {newTaxa.length} new {" "}
+                                                        {pluralize("taxon", newTaxa.length)}{" "}
+                                                        vs. with {results[i + 1].nPrimers}{" "}
+                                                        {pluralize("primer", results[i + 1].nPrimers)}
+                                                    </summary>
+                                                    <>
+                                                        {newTaxa.map((t, ti) => <>
+                                                            {formatTaxon(t)}
+                                                            {ti < newTaxa.length - 1 ? ", " : ""}
+                                                        </>)}
+                                                    </>
+                                                </details>
+                                                : null}
+                                        </div>
+                                    </Space>
+                                </Card>
+                            );
+                        })}
+                    </div>
+                </div>
+            ),
+        };
+    })}/>
+);
 
 const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
     const worker = useRef(null);
@@ -75,6 +137,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
 
     const onCheck = useCallback((keys) => {
         setCheckedKeys(keys);
+        setProgress(0);
     }, []);
 
     const onExpand = useCallback((keys, e) => {
@@ -99,11 +162,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
     }, [dataset]);
     const deselectAll = useCallback(() => setCheckedKeys([]), []);
 
-    /** @type React.ReactNode */
-    const selectedNode = useMemo(
-        () => <span>{checkedLeaves.length} entries selected</span>,
-        [checkedLeaves],
-    );
+    const nCheckedLeaves = checkedLeaves.length;
 
     useEffect(() => {
         if (!dataset) return;
@@ -142,7 +201,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
         searching.current = true;
     }, [dataset, worker, checkedLeaves, nPrimers]);
 
-    if (!visible) return <Fragment />;
+    if (!visible) return <Fragment/>;
     // noinspection JSCheckFunctionSignatures
     return <>
         <Row gutter={[24, 24]}>
@@ -152,7 +211,9 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                         <Form.Item label="Taxa">
                             <Space>
                                 <Button onClick={showModal}>Select Taxa &hellip;</Button>
-                                {selectedNode}
+                                <span style={{ color: nCheckedLeaves === 0 ? "#EE4433" : undefined }}>
+                                    {checkedLeaves.length} entries selected
+                                </span>
                             </Space>
                         </Form.Item>
                         <Form.Item
@@ -177,8 +238,8 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                             <div style={{ display: "flex", gap: 12, width: "100%", alignItems: "baseline" }}>
                                 <Button
                                     type="primary"
-                                    icon={<SearchOutlined />}
-                                    disabled={!checkedLeaves.length || searching.current}
+                                    icon={<SearchOutlined/>}
+                                    disabled={!nCheckedLeaves || searching.current}
                                     loading={searching.current}
                                     onClick={onSearch}
                                 >Search</Button>
@@ -210,74 +271,9 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                     />
                 )}
                 {searching.current && (
-                    <Spin size="large" spinning={true} />
+                    <Spin size="large" spinning={true}/>
                 )}
-                {!!results && (
-                    <Tabs items={results.map((res, i) => {
-                        const { nPrimers, results: npResults } = res;
-
-                        const nRes = npResults.length;
-
-                        return {
-                            label: <span>
-                                {nPrimers} {pluralize("Primer", nPrimers)}: {(res.coverage * 100).toFixed(1)}%
-                                {nRes > 1 ? <>{" "}({nRes} sets)</> : null}
-                            </span>,
-                            key: `tab-${nPrimers}-primers`,
-                            children: (
-                                <div>
-                                    <div style={{ display: "flex", gap: 16 }}>
-                                        {npResults.map((r, j) => {
-                                            const newTaxa = (i < results.length - 1)
-                                                ? Array.from(difference(
-                                                    r.coveredTaxa,
-                                                    results[i + 1].results[0].coveredTaxa
-                                                ))
-                                                : null;
-
-                                            return (
-                                                <Card
-                                                    key={`primers-${nPrimers}-primer-set-${j + 1}`}
-                                                    title={`Primer set ${j + 1}`}
-                                                    size="small"
-                                                    style={{ width: "calc(50% - 8px)" }}
-                                                >
-                                                    <Space direction="vertical">
-                                                        <div>
-                                                            <strong>Primers:</strong><br />
-                                                            {Array.from(r.primers).map((p) => (
-                                                                <Primer key={p} name={p} />
-                                                            ))}
-                                                        </div>
-                                                        <div>
-                                                            <strong>Taxa:</strong> {r.coveredTaxa.size}
-                                                            {newTaxa
-                                                                ? <>
-                                                                    <br />
-                                                                    <span>
-                                                                        {newTaxa.length}{" "}
-                                                                        new {pluralize(
-                                                                            "taxon",
-                                                                            newTaxa.length,
-                                                                        )}{" "}
-                                                                        vs. {results[i + 1].nPrimers} primers
-                                                                        {newTaxa.length < 8
-                                                                            ? `: ${newTaxa.join(", ")}`
-                                                                            : null}
-                                                                    </span>
-                                                                </>
-                                                                : null}
-                                                        </div>
-                                                    </Space>
-                                                </Card>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            ),
-                        };
-                    })} />
-                )}
+                {!!results && <ResultsTabs results={results} />}
             </Col>
         </Row>
 
@@ -291,7 +287,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
         >
             <Space direction="vertical">
                 <Space direction="horizontal">
-                    {selectedNode}
+                    {nCheckedLeaves} entries selected
                     <Button size="small" onClick={selectAll}>Select All</Button>
                     <Button size="small" onClick={deselectAll}>Deselect All</Button>
                 </Space>
@@ -306,16 +302,16 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                 />
             </Space>
         </Modal>
-        <Divider />
+        <Divider/>
         <Row>
             <Col flex={1}>
-                <Button size="large" icon={<ArrowLeftOutlined />} onClick={onBack}>Back</Button>
+                <Button size="large" icon={<ArrowLeftOutlined/>} onClick={onBack}>Back</Button>
             </Col>
             <Col flex={1} style={{ display: "flex", justifyContent: "flex-end" }}>
                 <Button
                     type="primary"
                     size="large"
-                    icon={<ArrowRightOutlined />}
+                    icon={<ArrowRightOutlined/>}
                     // disabled={!hasSearched}
                     disabled={true}  // for now
                     onClick={() => onFinish()}

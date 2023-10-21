@@ -1,6 +1,7 @@
 import groupBy from "lodash/groupBy";
 import { Popover } from "antd";
 import Primer from "../bits/Primer";
+import { formatTaxon } from "./utils";
 
 export const PRIMER_GROUPINGS = ["Taxa_group", "Phylum", "Order", "Family", "Genus", "Final_ID"];
 
@@ -23,7 +24,7 @@ const taxaRecGroup = (arr, groupings, pathStr) => {
 
         const baseRecord = {
             title: isSpeciesLevel ? <span>
-                <em>{k.split("_").join(" ")}</em>{" "}
+                {formatTaxon(k)}{" "}
                 <Popover title="Primers" content={
                     v.map(p => <Primer key={`${k}-${p["Primer_name"]}`} name={p["Primer_name"]} />)
                 }>
@@ -54,12 +55,15 @@ const buildLeafKey = (rec) => `root-${PRIMER_GROUPINGS.map((g) => rec[g]).join("
 
 export const createDataset = (records) => {
     const tree = taxaRecGroup(records, PRIMER_GROUPINGS, "root");
-    const primers = new Set(records.map((x) => x["Primer_name"]));
+    const primers = new Set(records.map((rec) => rec["Primer_name"]));
     const recordsWithKey = records.map((rec) => ({ ...rec, key: buildLeafKey(rec) }));
+    const recordsByKey = Object.fromEntries(recordsWithKey.map((rec) => [rec.key, rec]));
+
     return {
         tree,
         primers: Array.from(primers),
         records: recordsWithKey,
-        recordsByKey: Object.fromEntries(recordsWithKey.map((rec) => [rec.key, rec])),
+        recordsByKey,
+        recordsByFinalID: Object.fromEntries(recordsWithKey.map((rec) => [rec["FinalID"], rec])),
     };
 };
