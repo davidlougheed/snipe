@@ -16,7 +16,7 @@ COPY src src
 RUN npm ci
 
 # build
-RUN npm build
+RUN npm run build
 
 
 FROM nginx:1.25-bookworm
