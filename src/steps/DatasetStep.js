@@ -30,7 +30,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                     if (onParseFinish) onParseFinish();
 
                     const dataset = createDataset(data);
-                    console.log(dataset);
+                    console.debug("dataset:", dataset);
                     setDataset(dataset);
                 });
             } finally {

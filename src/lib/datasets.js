@@ -1,5 +1,6 @@
 import groupBy from "lodash/groupBy";
 import { Popover } from "antd";
+import Primer from "../bits/Primer";
 
 export const PRIMER_GROUPINGS = ["Taxa_group", "Phylum", "Order", "Family", "Genus", "Final_ID"];
 
@@ -23,11 +24,9 @@ const taxaRecGroup = (arr, groupings, pathStr) => {
         const baseRecord = {
             title: isSpeciesLevel ? <span>
                 <em>{k.split("_").join(" ")}</em>{" "}
-                <Popover title="Primers" content={<ul style={{ margin: 0, paddingLeft: "1em" }}>
-                    {v.map(p => <li key={`${k}-${p["Primer_name"]}`} style={{ fontFamily: "monospace" }}>
-                        {p["Primer_name"]}
-                    </li>)}
-                </ul>}>
+                <Popover title="Primers" content={
+                    v.map(p => <Primer key={`${k}-${p["Primer_name"]}`} name={p["Primer_name"]} />)
+                }>
                     (<a href="#" onClick={preventDefault}>
                         {v.length} available {v.length === 1 ? "primer" : "primers"}
                     </a>)

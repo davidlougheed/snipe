@@ -21,6 +21,8 @@ import {
     Typography
 } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
+
+import Primer from "../bits/Primer";
 import { pluralize } from "../lib/utils";
 
 const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
@@ -244,7 +246,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                                                         <div>
                                                             <strong>Primers:</strong><br />
                                                             {Array.from(r.primers).map((p) => (
-                                                                <Tag style={{ marginRight: "0.5em" }}>{p}</Tag>
+                                                                <Primer key={p} name={p} />
                                                             ))}
                                                         </div>
                                                         <div>
