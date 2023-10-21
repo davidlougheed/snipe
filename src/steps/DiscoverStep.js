@@ -30,6 +30,8 @@ const ResultsTabs = ({ results }) => (
         const { nPrimers, results: npResults } = res;
 
         const nRes = npResults.length;
+        const isNotLastTab = i < results.length - 1;
+        const nextTabResults = isNotLastTab ? results[i + 1] : null;
 
         return {
             label: <span>
@@ -41,9 +43,14 @@ const ResultsTabs = ({ results }) => (
                 <div>
                     <div style={{ display: "flex", gap: 16 }}>
                         {npResults.map((r, j) => {
-                            const newTaxa = (i < results.length - 1)
-                                ? Array.from(difference(r.coveredTaxa, results[i + 1].results[0].coveredTaxa))
-                                : null;
+                            const nextTabPrimerSets = nextTabResults?.results ?? null;
+
+                            const newTaxaSets = nextTabPrimerSets
+                                ? nextTabPrimerSets.map((ntps) =>
+                                    Array.from(difference(r.coveredTaxa, ntps.coveredTaxa)).sort())
+                                : [];
+
+                            const nAddedTaxa = Array.from(new Set(newTaxaSets.map((nts) => nts.length)));
 
                             return (
                                 <Card
@@ -59,18 +66,25 @@ const ResultsTabs = ({ results }) => (
                                         </div>
                                         <div>
                                             <strong>Taxa:</strong> {r.coveredTaxa.size}
-                                            {newTaxa
-                                                ? <details open={newTaxa.length < 8}>
+                                            {newTaxaSets.length
+                                                ? <details open={newTaxaSets[0].length < 8}>
                                                     <summary style={{ cursor: "pointer" }}>
-                                                        Adds {newTaxa.length} new {" "}
-                                                        {pluralize("taxon", newTaxa.length)}{" "}
-                                                        vs. with {results[i + 1].nPrimers}{" "}
-                                                        {pluralize("primer", results[i + 1].nPrimers)}
+                                                        Adds {nAddedTaxa.join(" or ")} new {" "}
+                                                        {pluralize("taxon", Math.max(...nAddedTaxa))}{" "}
+                                                        vs. with {nextTabResults.nPrimers}{" "}
+                                                        {pluralize("primer", nextTabResults.nPrimers)}
                                                     </summary>
                                                     <>
-                                                        {newTaxa.map((t, ti) => <>
-                                                            {formatTaxon(t)}
-                                                            {ti < newTaxa.length - 1 ? ", " : ""}
+                                                        {newTaxaSets.map((nts, ntsIndex) => <>
+                                                            {nts.map((t, ti) => <>
+                                                                {formatTaxon(t)}
+                                                                {ti < newTaxaSets[0].length - 1 ? ", " : ""}
+                                                            </>)}
+                                                            {ntsIndex < newTaxaSets.length - 1 ? (
+                                                                <div style={{ textAlign: "center" }}>
+                                                                    <strong>— OR —</strong>
+                                                                </div>
+                                                            ) : null}
                                                         </>)}
                                                     </>
                                                 </details>
