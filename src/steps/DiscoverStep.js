@@ -1,5 +1,19 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Alert, Button, Card, Col, Divider, Form, InputNumber, Modal, Row, Space, Tree, Typography } from "antd";
+import {
+    Alert,
+    Button,
+    Card,
+    Col,
+    Divider,
+    Form,
+    InputNumber,
+    Modal,
+    Progress,
+    Row,
+    Space,
+    Tree,
+    Typography
+} from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
 
 const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
@@ -10,10 +24,11 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
 
     const [expandedKeys, setExpandedKeys] = useState([]);
     const [checkedKeys, setCheckedKeys] = useState([]);
-
     const [nPrimers, setNPrimers] = useState(dataset?.primers?.length ?? 1);
 
     const [hasSearched, setHasSearched] = useState(false);
+    const [progress, setProgress] = useState(0);
+    const [results, setResults] = useState(null);
 
     useEffect(() => {
         // On first load, set up the worker
@@ -23,7 +38,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
             // if we receive error/result, and we're not searching, it means it's from a previous dataset/selection, so
             // just ignore the result I guess.
 
-            console.log("main received", message);
+            console.debug("main received", message, "searching", searching.current);
 
             const { type, data } = message;
 
@@ -33,9 +48,10 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
             } else if (type === "result" && searching.current) {
                 // TODO
                 searching.current = false;
+                console.debug("received results", data);
+                setResults(data);
             } else if (type === "progress" && searching.current) {
-                // TODO
-                console.log("from worker", data);
+                setProgress(data.percent);
             }
         };
     }, []);
@@ -69,6 +85,11 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
 
     const checkedLeaves = useMemo(() => checkedKeys.filter((k) => k.endsWith("leaf")), [checkedKeys]);
 
+    const selectAll = useCallback(() => {
+        setCheckedKeys(dataset.records.map((rec) => rec.key));
+    }, [dataset]);
+    const deselectAll = useCallback(() => setCheckedKeys([]), []);
+
     /** @type React.ReactNode */
     const selectedNode = useMemo(
         () => <span>{checkedLeaves.length} entries selected</span>,
@@ -98,6 +119,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
         if (!checkedLeaves.length) return;
         const checkedRecords = checkedLeaves.map((key) => dataset.recordsByKey[key]);
 
+        setProgress(0);
         worker.current.postMessage({
             type: "search",
             data: {
@@ -134,17 +156,31 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                                 min={1}
                                 max={dataset.primers.length}
                                 value={nPrimers}
-                                onChange={(v) => setNPrimers(v)}
+                                onChange={(v) => {
+                                    setProgress(0);
+                                    setNPrimers(v);
+                                }}
                             />
                         </Form.Item>
                         <Form.Item style={{ marginBottom: 0 }}>
-                            <Button
-                                type="primary"
-                                icon={<SearchOutlined />}
-                                disabled={!checkedLeaves.length || searching.current}
-                                loading={searching.current}
-                                onClick={onSearch}
-                            >Search</Button>
+                            <div style={{ display: "flex", gap: 12, width: "100%", alignItems: "baseline" }}>
+                                <Button
+                                    type="primary"
+                                    icon={<SearchOutlined />}
+                                    disabled={!checkedLeaves.length || searching.current}
+                                    loading={searching.current}
+                                    onClick={onSearch}
+                                >Search</Button>
+                                <div style={{ flex: 1 }}>
+                                    {hasSearched && (
+                                        <Progress
+                                            percent={progress}
+                                            showInfo={true}
+                                            format={(percent) => `${percent.toFixed(0)}%`}
+                                        />
+                                    )}
+                                </div>
+                            </div>
                         </Form.Item>
                     </Form>
                 </Card>
@@ -174,7 +210,11 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
             footer={[<Button key="done" type="primary" onClick={hideModal}>Done</Button>]}
         >
             <Space direction="vertical">
-                {selectedNode}
+                <Space direction="horizontal">
+                    {selectedNode}
+                    <Button size="small" onClick={selectAll}>Select All</Button>
+                    <Button size="small" onClick={deselectAll}>Deselect All</Button>
+                </Space>
                 <Tree
                     checkable={true}
                     showLine={true}
