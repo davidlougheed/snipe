@@ -14,7 +14,9 @@ import {
     Progress,
     Row,
     Space,
-    Tabs, Tag,
+    Spin,
+    Tabs,
+    Tag,
     Tree,
     Typography
 } from "antd";
@@ -125,6 +127,8 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
         const checkedRecords = checkedLeaves.map((key) => dataset.recordsByKey[key]);
 
         setProgress(0);
+        setResults(null);
+
         worker.current.postMessage({
             type: "search",
             data: {
@@ -202,6 +206,9 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                         type="info"
                         showIcon={true}
                     />
+                )}
+                {searching.current && (
+                    <Spin size="large" spinning={true} />
                 )}
                 {!!results && (
                     <Tabs items={results.map((res, i) => {
