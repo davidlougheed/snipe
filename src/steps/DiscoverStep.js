@@ -162,10 +162,11 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
         setCheckedKeys([]);
     }, [dataset]);
 
-    const onCheck = useCallback((keys) => {
-        setCheckedKeys(keys);
+    const onCheck = useCallback((keys) => setCheckedKeys(keys), []);
+
+    useEffect(() => {
         setProgress(0);
-    }, []);
+    }, [checkedKeys]);
 
     const onExpand = useCallback((keys, e) => {
         const newExpandedKeys = new Set(keys);
