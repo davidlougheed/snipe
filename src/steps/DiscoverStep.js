@@ -52,6 +52,10 @@ const ResultsTabs = ({ results }) => (
 
                             const nAddedTaxa = Array.from(new Set(newTaxaSets.map((nts) => nts.length)));
 
+                            const newPrimerSets = nextTabPrimerSets
+                                ? nextTabPrimerSets.map((ntps) => difference(r.primers, ntps.primers))
+                                : [];
+
                             return (
                                 <Card
                                     key={`primers-${nPrimers}-primer-set-${j + 1}`}
@@ -62,7 +66,16 @@ const ResultsTabs = ({ results }) => (
                                     <Space direction="vertical">
                                         <div>
                                             <strong>Primers:</strong><br/>
-                                            {Array.from(r.primers).map((p) => <Primer key={p} name={p}/>)}
+                                            {Array.from(r.primers).map((p) =>
+                                                <Primer
+                                                    key={p}
+                                                    name={p}
+                                                    added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
+                                                    sometimes={!(newPrimerSets.reduce(
+                                                        (acc, x) => acc && x.has(p), true))}
+                                                    primerSetCount={nPrimers}
+                                                />
+                                            )}
                                         </div>
                                         <div>
                                             <strong>Taxa:</strong> {r.coveredTaxa.size}
