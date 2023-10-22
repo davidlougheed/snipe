@@ -4,6 +4,8 @@
 
 A web tool for optimally choosing eDNA primer pairs to identify a set of taxa.
 
+See SNIPE in action at [https://snipe.dlougheed.com/](https://snipe.dlougheed.com/)!
+
 ## Copyright and License Notice
 
 Note that the terms of the license DO NOT apply to anything under the [./datasets](./datasets) folder; for those files,
