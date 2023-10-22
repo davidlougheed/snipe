@@ -51,19 +51,29 @@ const taxaRecGroup = (arr, groupings, pathStr) => {
     });
 };
 
+const buildRecordsWithPrimerArrays = (records) => {
+    return Object.entries(groupBy(records, "Final_ID")).map(([_, recs]) => {
+        const recPrimers = recs.map((rec) => rec["Primer_name"]);
+        return {
+            ...Object.fromEntries(Object.entries(recs[0]).filter((e) => e[0] !== "Primer_name")),
+            primers: recPrimers,
+        };
+    });
+};
+
 const buildLeafKey = (rec) => `root-${PRIMER_GROUPINGS.map((g) => rec[g]).join("-")}-leaf`;
 
 export const createDataset = (records) => {
     const tree = taxaRecGroup(records, PRIMER_GROUPINGS, "root");
     const primers = new Set(records.map((rec) => rec["Primer_name"]));
-    const recordsWithKey = records.map((rec) => ({ ...rec, key: buildLeafKey(rec) }));
-    const recordsByKey = Object.fromEntries(recordsWithKey.map((rec) => [rec.key, rec]));
+    const processedRecords = buildRecordsWithPrimerArrays(records.map((rec) => ({ ...rec, key: buildLeafKey(rec) })));
+    const recordsByKey = Object.fromEntries(processedRecords.map((rec) => [rec.key, rec]));
 
     return {
         tree,
         primers: Array.from(primers),
-        records: recordsWithKey,
+        records: processedRecords,
         recordsByKey,
-        recordsByFinalID: Object.fromEntries(recordsWithKey.map((rec) => [rec["FinalID"], rec])),
+        recordsByFinalID: Object.fromEntries(processedRecords.map((rec) => [rec["Final_ID"], rec])),
     };
 };

@@ -15,7 +15,7 @@ const findBestPrimerSets = (records, maxPrimers) => {
     const allTaxa = new Set(records.map((rec) => rec["Final_ID"]));
 
     // Subset of primers which can be used to identify
-    const primerSubset = Array.from(new Set(records.map((rec) => rec["Primer_name"])));
+    const primerSubset = Array.from(new Set(records.flatMap((rec) => rec.primers)));
     // - This is the largest possible set of primers we'll need, but fewer may be sufficient.
     const maxPrimersNeeded = Math.min(maxPrimers, primerSubset.length);
 
@@ -54,7 +54,11 @@ const findBestPrimerSets = (records, maxPrimers) => {
                 if (coveredTaxa.has(finalID)) {
                     return;
                 }
-                if (pc.has(rec["Primer_name"])) {
+
+                const intersect = rec.primers.filter((p) => pc.has(p));
+                // TODO: keep track of each primer's coverage
+
+                if (intersect.length) {
                     coveredTaxa.add(finalID);
                 }
             });
