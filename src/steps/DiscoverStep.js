@@ -11,6 +11,7 @@ import {
     Form,
     InputNumber,
     Modal,
+    Popover,
     Progress,
     Row,
     Space,
@@ -22,10 +23,21 @@ import {
 import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
 
 import Primer from "../bits/Primer";
+
+import { PRIMER_GROUPINGS } from "../lib/datasets";
 import { formatTaxon, pluralize } from "../lib/utils";
 
 
-const ResultsTabs = ({ results }) => (
+const formatRecordPath = (rec) => (
+    <>
+        <strong>{rec["Taxa_group"]}:</strong>{" "}
+        {PRIMER_GROUPINGS.slice(1, -1).map((pg) => rec[pg]).join(" › ")} ›{" "}
+        {formatTaxon(rec["Final_ID"])}
+    </>
+);
+
+
+const ResultsTabs = ({ dataset, results }) => (
     <Tabs items={results.map((res, i) => {
         const { nPrimers, results: npResults } = res;
 
@@ -40,74 +52,90 @@ const ResultsTabs = ({ results }) => (
             </span>,
             key: `tab-${nPrimers}-primers`,
             children: (
-                <div>
-                    <div style={{ display: "flex", gap: 16 }}>
-                        {npResults.map((r, j) => {
-                            const nextTabPrimerSets = nextTabResults?.results ?? null;
+                <div style={{ display: "flex", gap: 16 }}>
+                    {npResults.map((r, j) => {
+                        const nextTabPrimerSets = nextTabResults?.results ?? null;
 
-                            const newTaxaSets = nextTabPrimerSets
-                                ? nextTabPrimerSets.map((ntps) =>
-                                    Array.from(difference(r.coveredTaxa, ntps.coveredTaxa)).sort())
-                                : [];
+                        const newTaxaSets = nextTabPrimerSets
+                            ? nextTabPrimerSets.map((ntps) =>
+                                Array.from(difference(r.coveredTaxa, ntps.coveredTaxa)).sort())
+                            : [];
 
-                            const nAddedTaxa = Array.from(new Set(newTaxaSets.map((nts) => nts.length)));
+                        const nAddedTaxa = Array.from(new Set(newTaxaSets.map((nts) => nts.length)));
 
-                            const newPrimerSets = nextTabPrimerSets
-                                ? nextTabPrimerSets.map((ntps) => difference(r.primers, ntps.primers))
-                                : [];
+                        const newPrimerSets = nextTabPrimerSets
+                            ? nextTabPrimerSets.map((ntps) => difference(r.primers, ntps.primers))
+                            : [];
 
-                            return (
-                                <Card
-                                    key={`primers-${nPrimers}-primer-set-${j + 1}`}
-                                    title={`Primer set ${nPrimers}-${j + 1}`}
-                                    size="small"
-                                    style={{ width: "calc(50% - 8px)" }}
-                                >
-                                    <Space direction="vertical">
-                                        <div>
-                                            <strong>Primers:</strong><br/>
-                                            {Array.from(r.primers).map((p) =>
-                                                <Primer
-                                                    key={p}
-                                                    name={p}
-                                                    added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
-                                                    sometimes={!(newPrimerSets.reduce(
-                                                        (acc, x) => acc && x.has(p), true))}
-                                                    primerSetCount={nPrimers}
-                                                />
-                                            )}
-                                        </div>
-                                        <div>
-                                            <strong>Taxa:</strong> {r.coveredTaxa.size}
-                                            {newTaxaSets.length
-                                                ? <details open={newTaxaSets[0].length < 8}>
-                                                    <summary style={{ cursor: "pointer" }}>
-                                                        Adds {nAddedTaxa.join(" or ")} new {" "}
-                                                        {pluralize("taxon", Math.max(...nAddedTaxa))}{" "}
-                                                        vs. with {nextTabResults.nPrimers}{" "}
-                                                        {pluralize("primer", nextTabResults.nPrimers)}
-                                                    </summary>
-                                                    <>
-                                                        {newTaxaSets.map((nts, ntsIndex) => <>
-                                                            {nts.map((t, ti) => <>
-                                                                {formatTaxon(t)}
-                                                                {ti < newTaxaSets[0].length - 1 ? ", " : ""}
-                                                            </>)}
+                        return (
+                            <Card
+                                key={`primers-${nPrimers}-primer-set-${j + 1}`}
+                                title={`Primer set ${nPrimers}-${j + 1}`}
+                                size="small"
+                                style={{ width: npResults.length === 1 ? "100%" : "calc(50% - 8px)" }}
+                            >
+                                <Space direction="vertical">
+                                    <div>
+                                        <strong>Primers:</strong><br/>
+                                        {Array.from(r.primers).map((p) =>
+                                            <Primer
+                                                key={p}
+                                                name={p}
+                                                added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
+                                                sometimes={!(newPrimerSets.reduce(
+                                                    (acc, x) => acc && x.has(p), true))}
+                                                primerSetCount={nPrimers}
+                                            />
+                                        )}
+                                    </div>
+                                    <div>
+                                        <strong>Taxa:</strong> {r.coveredTaxa.size}{" "}
+                                        <Button size="small">See all</Button>
+                                        {newTaxaSets.length
+                                            ? <details open={newTaxaSets[0].length < 8}>
+                                                <summary style={{ cursor: "pointer" }}>
+                                                    Adds {nAddedTaxa.join(" or ")} new {" "}
+                                                    {pluralize("taxon", Math.max(...nAddedTaxa))}{" "}
+                                                    vs. with {nextTabResults.nPrimers}{" "}
+                                                    {pluralize("primer", nextTabResults.nPrimers)}
+                                                </summary>
+                                                <>
+                                                    {newTaxaSets.map((nts, ntsIndex) => (
+                                                        <Fragment key={`taxa-set-${ntsIndex}`}>
+                                                            {nts.map((t, ti) => {
+                                                                const taxonRecord = dataset.recordsByFinalID[t];
+                                                                return <Fragment key={t}>
+                                                                    <Popover
+                                                                        trigger="click"
+                                                                        content={formatRecordPath(taxonRecord)}
+                                                                    >
+                                                                        <span style={{
+                                                                            textDecoration: "underline",
+                                                                            cursor: "pointer",
+                                                                        }}>
+                                                                            {formatTaxon(t)}
+                                                                        </span>&nbsp;({taxonRecord["Taxa_group"]})
+                                                                    </Popover>
+                                                                    {ti < newTaxaSets[0].length - 1 ? ", " : ""}
+                                                                </Fragment>;
+                                                            })}
                                                             {ntsIndex < newTaxaSets.length - 1 ? (
-                                                                <div style={{ textAlign: "center" }}>
-                                                                    <strong>— OR —</strong>
-                                                                </div>
+                                                                <div><strong>— OR —</strong></div>
                                                             ) : null}
-                                                        </>)}
-                                                    </>
-                                                </details>
-                                                : null}
-                                        </div>
-                                    </Space>
-                                </Card>
-                            );
-                        })}
-                    </div>
+                                                        </Fragment>
+                                                    ))}
+                                                </>
+                                            </details>
+                                            : null}
+                                    </div>
+                                    <div>
+                                        <strong>Euler diagram:</strong>
+                                        TODO
+                                    </div>
+                                </Space>
+                            </Card>
+                        );
+                    })}
                 </div>
             ),
         };
@@ -305,7 +333,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                 {searching.current && (
                     <Spin size="large" spinning={true}/>
                 )}
-                {!!results && <ResultsTabs results={results} />}
+                {!!results && <ResultsTabs dataset={dataset} results={results} />}
             </Col>
         </Row>
 
