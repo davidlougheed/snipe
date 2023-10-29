@@ -24,6 +24,8 @@
   "homepage": "https://github.com/davidlougheed/edna_primer_selector#readme",
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
+    "@upsetjs/react": "^1.11.0",
+    "@upsetjs/venn.js": "^1.4.2",
     "antd": "^5.10.2",
     "csv-parse": "^5.5.2",
     "lodash": "^4.17.21",

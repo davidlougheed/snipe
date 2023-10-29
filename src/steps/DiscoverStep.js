@@ -9,6 +9,7 @@ import {
     Col,
     Divider,
     Form,
+    Input,
     InputNumber,
     Modal,
     Popover,
@@ -22,10 +23,15 @@ import {
 } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
 
+import { asSets, createVennJSAdapter, UpSetJS, VennDiagram } from "@upsetjs/react";
+import { layout } from "@upsetjs/venn.js";
+
 import Primer from "../bits/Primer";
 
 import { PRIMER_GROUPINGS } from "../lib/datasets";
 import { formatTaxon, pluralize } from "../lib/utils";
+
+const vennJSAdapter = createVennJSAdapter(layout);
 
 
 const formatRecordPath = (rec) => (
@@ -37,110 +43,181 @@ const formatRecordPath = (rec) => (
 );
 
 
-const ResultsTabs = ({ dataset, results }) => (
-    <Tabs items={results.map((res, i) => {
-        const { nPrimers, results: npResults } = res;
+const NewTaxaSets = ({ dataset, newTaxaSets, nextNPrimers }) => {
+    const nAddedTaxa = Array.from(new Set(newTaxaSets.map((nts) => nts.length)));
 
-        const nRes = npResults.length;
-        const isNotLastTab = i < results.length - 1;
-        const nextTabResults = isNotLastTab ? results[i + 1] : null;
+    return (
+        <details open={newTaxaSets[0].length < 8}>
+            <summary style={{ cursor: "pointer" }}>
+                Adds {nAddedTaxa.join(" or ")} new {" "}
+                {pluralize("taxon", Math.max(...nAddedTaxa))}{" "}
+                vs. with {nextNPrimers}{" "}
+                {pluralize("primer", nextNPrimers)}
+            </summary>
+            <>
+                {newTaxaSets.map((nts, ntsIndex) => (
+                    <Fragment key={`taxa-set-${ntsIndex}`}>
+                        {nts.map((t, ti) => {
+                            const taxonRecord = dataset.recordsByFinalID[t];
+                            return <Fragment key={t}>
+                                <Popover trigger="click" content={formatRecordPath(taxonRecord)}>
+                                    <span style={{ textDecoration: "underline", cursor: "pointer" }}>
+                                        {formatTaxon(t)}
+                                    </span>&nbsp;({taxonRecord["Taxa_group"]})
+                                </Popover>
+                                {ti < newTaxaSets[0].length - 1 ? ", " : ""}
+                            </Fragment>;
+                        })}
+                        {ntsIndex < newTaxaSets.length - 1 ? (
+                            <div><strong>— OR —</strong></div>
+                        ) : null}
+                    </Fragment>
+                ))}
+            </>
+        </details>
+    );
+};
 
-        return {
-            label: <span>
-                {nPrimers} {pluralize("Primer", nPrimers)}: {(res.coverage * 100).toFixed(1)}%
-                {nRes > 1 ? <>{" "}({nRes} sets)</> : null}
-            </span>,
-            key: `tab-${nPrimers}-primers`,
-            children: (
-                <div style={{ display: "flex", gap: 16 }}>
-                    {npResults.map((r, j) => {
-                        const nextTabPrimerSets = nextTabResults?.results ?? null;
+const ResultsTabs = ({ dataset, results }) => {
+    const [selectedPrimerSetTitle, setSelectedPrimerSetTitle] = useState("");
 
-                        const newTaxaSets = nextTabPrimerSets
-                            ? nextTabPrimerSets.map((ntps) =>
-                                Array.from(difference(r.coveredTaxa, ntps.coveredTaxa)).sort())
-                            : [];
+    const [shownTaxa, setShownTaxa] = useState([]);
+    const [filteredTaxa, setFilteredTaxa] = useState([]);  // shownTaxa + filtering
+    const [taxaModalSearchValue, setTaxaModalSearchValue] = useState("");
+    const [taxaModalVisible, setTaxaModalVisible] = useState(false);
 
-                        const nAddedTaxa = Array.from(new Set(newTaxaSets.map((nts) => nts.length)));
+    const [diagramSets, setDiagramSets] = useState(null);
+    const [diagramModalVisible, setDiagramModalVisible] = useState(false);
 
-                        const newPrimerSets = nextTabPrimerSets
-                            ? nextTabPrimerSets.map((ntps) => difference(r.primers, ntps.primers))
-                            : [];
+    useEffect(() => {
+        const sv = taxaModalSearchValue.toLowerCase();
+        if (sv === "") {
+            setFilteredTaxa(shownTaxa);
+            return;
+        }
+        setFilteredTaxa(shownTaxa.filter((t) => t.replace("_", " ").toLowerCase().includes(sv)));
+    }, [shownTaxa, taxaModalSearchValue]);
 
-                        return (
-                            <Card
-                                key={`primers-${nPrimers}-primer-set-${j + 1}`}
-                                title={`Primer set ${nPrimers}-${j + 1}`}
-                                size="small"
-                                style={{ width: npResults.length === 1 ? "100%" : "calc(50% - 8px)" }}
-                            >
-                                <Space direction="vertical">
-                                    <div>
-                                        <strong>Primers:</strong><br/>
-                                        {Array.from(r.primers).map((p) =>
-                                            <Primer
-                                                key={p}
-                                                name={p}
-                                                added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
-                                                sometimes={!(newPrimerSets.reduce(
-                                                    (acc, x) => acc && x.has(p), true))}
-                                                primerSetCount={nPrimers}
-                                            />
-                                        )}
-                                    </div>
-                                    <div>
-                                        <strong>Taxa:</strong> {r.coveredTaxa.size}{" "}
-                                        <Button size="small">See all</Button>
-                                        {newTaxaSets.length
-                                            ? <details open={newTaxaSets[0].length < 8}>
-                                                <summary style={{ cursor: "pointer" }}>
-                                                    Adds {nAddedTaxa.join(" or ")} new {" "}
-                                                    {pluralize("taxon", Math.max(...nAddedTaxa))}{" "}
-                                                    vs. with {nextTabResults.nPrimers}{" "}
-                                                    {pluralize("primer", nextTabResults.nPrimers)}
-                                                </summary>
-                                                <>
-                                                    {newTaxaSets.map((nts, ntsIndex) => (
-                                                        <Fragment key={`taxa-set-${ntsIndex}`}>
-                                                            {nts.map((t, ti) => {
-                                                                const taxonRecord = dataset.recordsByFinalID[t];
-                                                                return <Fragment key={t}>
-                                                                    <Popover
-                                                                        trigger="click"
-                                                                        content={formatRecordPath(taxonRecord)}
-                                                                    >
-                                                                        <span style={{
-                                                                            textDecoration: "underline",
-                                                                            cursor: "pointer",
-                                                                        }}>
-                                                                            {formatTaxon(t)}
-                                                                        </span>&nbsp;({taxonRecord["Taxa_group"]})
-                                                                    </Popover>
-                                                                    {ti < newTaxaSets[0].length - 1 ? ", " : ""}
-                                                                </Fragment>;
-                                                            })}
-                                                            {ntsIndex < newTaxaSets.length - 1 ? (
-                                                                <div><strong>— OR —</strong></div>
-                                                            ) : null}
-                                                        </Fragment>
-                                                    ))}
-                                                </>
-                                            </details>
-                                            : null}
-                                    </div>
-                                    <div>
-                                        <strong>Euler diagram:</strong>
-                                        TODO
-                                    </div>
-                                </Space>
-                            </Card>
-                        );
-                    })}
-                </div>
-            ),
-        };
-    })}/>
-);
+    return (
+        <>
+            <Modal
+                open={taxaModalVisible}
+                title={`${selectedPrimerSetTitle} - Taxa`}
+                footer={null}
+                onCancel={() => setTaxaModalVisible(false)}
+            >
+                <Space direction="vertical" style={{ width: "100%" }}>
+                    <Input
+                        placeholder="Search"
+                        value={taxaModalSearchValue}
+                        onChange={(e) => setTaxaModalSearchValue(e.target.value)}
+                        allowClear={true}
+                    />
+                    <ul style={{ margin: 0, paddingLeft: "1em" }}>
+                        {filteredTaxa.map((t) => <li key={t}>{formatTaxon(t, taxaModalSearchValue)}</li>)}
+                    </ul>
+                </Space>
+            </Modal>
+            <Modal
+                open={diagramModalVisible}
+                title={`${selectedPrimerSetTitle} - Euler diagram`}
+                footer={null}
+                destroyOnClose={true}
+                width={890}
+                onCancel={() => setDiagramModalVisible(false)}
+            >
+                {diagramSets && <VennDiagram
+                    layout={vennJSAdapter}
+                    sets={diagramSets}
+                    width={840}
+                    height={640}
+                    theme="light"
+                    style={{ maxWidth: "100%", height: "auto" }}
+                />}
+            </Modal>
+            <Tabs items={results.map((res, i) => {
+                const { nPrimers, results: npResults } = res;
+
+                const nRes = npResults.length;
+                const isNotLastTab = i < results.length - 1;
+                const nextTabResults = isNotLastTab ? results[i + 1] : null;
+
+                return {
+                    label: <span>
+                        {nPrimers} {pluralize("Primer", nPrimers)}: {(res.coverage * 100).toFixed(1)}%
+                        {nRes > 1 ? <>{" "}({nRes} sets)</> : null}
+                    </span>,
+                    key: `tab-${nPrimers}-primers`,
+                    children: (
+                        <div style={{ display: "flex", gap: 16 }}>
+                            {npResults.map((r, j) => {
+                                const nextTabPrimerSets = nextTabResults?.results ?? null;
+
+                                const newTaxaSets = nextTabPrimerSets
+                                    ? nextTabPrimerSets.map((ntps) =>
+                                        Array.from(difference(r.coveredTaxa, ntps.coveredTaxa)).sort())
+                                    : [];
+
+                                const newPrimerSets = nextTabPrimerSets
+                                    ? nextTabPrimerSets.map((ntps) => difference(r.primers, ntps.primers))
+                                    : [];
+
+                                const primerSetTitle = `Primer set ${nPrimers}-${j + 1}`;
+
+                                return (
+                                    <Card
+                                        key={`primers-${nPrimers}-primer-set-${j + 1}`}
+                                        title={primerSetTitle}
+                                        size="small"
+                                        style={{ width: npResults.length === 1 ? "100%" : "calc(50% - 8px)" }}
+                                    >
+                                        <Space direction="vertical" size={16}>
+                                            <div>
+                                                <strong>Primers:</strong><br/>
+                                                {Array.from(r.primers).map((p) =>
+                                                    <Primer
+                                                        key={p}
+                                                        name={p}
+                                                        added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
+                                                        sometimes={!(newPrimerSets.reduce(
+                                                            (acc, x) => acc && x.has(p), true))}
+                                                        primerSetCount={nPrimers}
+                                                    />
+                                                )}
+                                            </div>
+                                            <div>
+                                                <strong>Taxa:</strong> {r.coveredTaxa.size}{" "}
+                                                <Button size="small" onClick={() => {
+                                                    setSelectedPrimerSetTitle(primerSetTitle);
+                                                    setShownTaxa(Array.from(r.coveredTaxa).sort())
+                                                    setTaxaModalVisible(true);
+                                                }}>See all</Button>
+                                                {newTaxaSets.length
+                                                    ? <NewTaxaSets
+                                                        dataset={dataset}
+                                                        newTaxaSets={newTaxaSets}
+                                                        nextNPrimers={nextTabResults.nPrimers}
+                                                    />
+                                                    : null}
+                                            </div>
+                                            <div>
+                                                <Button onClick={() => {
+                                                    setSelectedPrimerSetTitle(primerSetTitle);
+                                                    setDiagramSets(r.coveredTaxaByPrimerUpset);
+                                                    setDiagramModalVisible(true);
+                                                }}>Show set diagram</Button>
+                                            </div>
+                                        </Space>
+                                    </Card>
+                                );
+                            })}
+                        </div>
+                    ),
+                };
+            })}/>
+        </>
+    );
+}
 
 const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
     const worker = useRef(null);

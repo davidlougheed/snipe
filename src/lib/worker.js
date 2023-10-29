@@ -1,3 +1,5 @@
+import { asSets } from "@upsetjs/react";
+
 // Helpers -------------------------------------------------------------------------------------------------------------
 
 // Inspired by https://stackoverflow.com/a/64414875
@@ -5,7 +7,7 @@ const chooseRec = (arr, k, prefix) =>
     k === 0
         ? [prefix]  // Base case: return existing combination
         : arr.flatMap((v, i) => chooseRec(arr.slice(i + 1), k - 1, [...prefix, v]));
-export const choose = (arr, k) => chooseRec(arr, k, []).map((c) => new Set(c));
+const choose = (arr, k) => chooseRec(arr, k, []).map((c) => new Set(c));
 
 
 // Processing ----------------------------------------------------------------------------------------------------------
@@ -47,6 +49,7 @@ const findBestPrimerSets = (records, maxPrimers) => {
 
         primerCombinations.forEach((pc) => {
             const coveredTaxa = new Set();
+            const coveredTaxaByPrimer = {};
 
             records.forEach((rec) => {
                 const finalID = rec["Final_ID"];
@@ -56,7 +59,14 @@ const findBestPrimerSets = (records, maxPrimers) => {
                 }
 
                 const intersect = rec.primers.filter((p) => pc.has(p));
-                // TODO: keep track of each primer's coverage
+
+                intersect.forEach((p) => {
+                    if (!(p in coveredTaxaByPrimer)) {
+                        coveredTaxaByPrimer[p] = [finalID];
+                    } else {
+                        coveredTaxaByPrimer[p].push(finalID);
+                    }
+                });
 
                 if (intersect.length) {
                     coveredTaxa.add(finalID);
@@ -65,11 +75,23 @@ const findBestPrimerSets = (records, maxPrimers) => {
 
             const coverage = coveredTaxa.size / allTaxa.size;
 
+            const res = {
+                primers: pc,
+                coveredTaxa,
+                coveredTaxaByPrimer,
+                coveredTaxaByPrimerUpset: asSets(
+                    Object.entries(coveredTaxaByPrimer).map(([p, pTaxa]) => ({
+                        name: p,
+                        elems: pTaxa,
+                    }))
+                ),
+            };
+
             if (coverage > bestCoverage) {
                 bestCoverage = coverage;
-                bestResultsForPrimerCount = [{ primers: pc, coveredTaxa }];
+                bestResultsForPrimerCount = [res];
             } else if (coverage === bestCoverage) {
-                bestResultsForPrimerCount.push({ primers: pc, coveredTaxa });
+                bestResultsForPrimerCount.push(res);
             }
             // Otherwise, discard
 
