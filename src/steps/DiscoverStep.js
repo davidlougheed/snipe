@@ -36,9 +36,12 @@ const vennJSAdapter = createVennJSAdapter(layout);
 
 const formatRecordPath = (rec) => (
     <>
-        <strong>{rec["Taxa_group"]}:</strong>{" "}
-        {PRIMER_GROUPINGS.slice(1, -1).map((pg) => rec[pg]).join(" › ")} ›{" "}
-        {formatTaxon(rec["Final_ID"])}
+        {PRIMER_GROUPINGS
+            .slice(1, -1)
+            .map((pg) => (rec[pg] ?? "").trim())
+            .filter((val) => val !== "")
+            .join(" › ")} ›{" "}
+        {formatTaxon(rec["Final_ID"])} ({rec["Taxa_group"]})
     </>
 );
 
