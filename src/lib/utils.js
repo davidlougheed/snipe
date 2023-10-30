@@ -20,13 +20,13 @@ export const highlightTerm = (str, highlight) => {
     return <>
         {searchParts.map((part, i) => {
             if (i === searchParts.length - 1) {
-                return <>{part}</>;
+                return <Fragment key={`search-part-${i}`}>{part}</Fragment>;
             }
 
             // side effect: increase acc by len(part) + len(highlighted part)
 
             acc += part.length;
-            const res = <Fragment key={i}>
+            const res = <Fragment key={`search-part-${i}`}>
                 {part}
                 <strong>{str.slice(acc, acc + highlight.length)}</strong>
             </Fragment>;
