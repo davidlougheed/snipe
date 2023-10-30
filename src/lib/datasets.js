@@ -57,6 +57,7 @@ const buildRecordsWithPrimerArrays = (records) => {
         return {
             ...Object.fromEntries(Object.entries(recs[0]).filter((e) => e[0] !== "Primer_name")),
             primers: recPrimers,
+            primersLower: recPrimers.map((p) => p.toLowerCase()),
         };
     });
 };

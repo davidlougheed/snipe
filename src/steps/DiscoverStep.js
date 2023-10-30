@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import difference from "set.prototype.difference";
 
@@ -46,6 +46,14 @@ const formatRecordPath = (rec) => (
 );
 
 
+const TaxonWithGroupAndPathPopover = memo(({ record, searchHighlight }) => (
+    <Popover trigger="click" content={formatRecordPath(record)}>
+        <span style={{ textDecoration: "underline", cursor: "pointer" }}>
+            {formatTaxon(record["Final_ID"], searchHighlight)}
+        </span>&nbsp;({record["Taxa_group"]})
+    </Popover>
+));
+
 const NewTaxaSets = ({ dataset, newTaxaSets, nextNPrimers }) => {
     const nAddedTaxa = Array.from(new Set(newTaxaSets.map((nts) => nts.length)));
 
@@ -63,11 +71,7 @@ const NewTaxaSets = ({ dataset, newTaxaSets, nextNPrimers }) => {
                         {nts.map((t, ti) => {
                             const taxonRecord = dataset.recordsByFinalID[t];
                             return <Fragment key={t}>
-                                <Popover trigger="click" content={formatRecordPath(taxonRecord)}>
-                                    <span style={{ textDecoration: "underline", cursor: "pointer" }}>
-                                        {formatTaxon(t)}
-                                    </span>&nbsp;({taxonRecord["Taxa_group"]})
-                                </Popover>
+                                <TaxonWithGroupAndPathPopover record={taxonRecord} />
                                 {ti < newTaxaSets[0].length - 1 ? ", " : ""}
                             </Fragment>;
                         })}
@@ -99,7 +103,10 @@ const ResultsTabs = ({ dataset, results }) => {
             setFilteredTaxa(shownTaxa);
             return;
         }
-        setFilteredTaxa(shownTaxa.filter((t) => t.replace("_", " ").toLowerCase().includes(sv)));
+        setFilteredTaxa(shownTaxa.filter(
+            (t) => t.replace("_", " ").toLowerCase().includes(sv)
+                || dataset.recordsByFinalID[t].primersLower.reduce((acc, p) => acc || p.includes(sv), false)
+        ));
     }, [shownTaxa, taxaModalSearchValue]);
 
     return (
@@ -120,7 +127,12 @@ const ResultsTabs = ({ dataset, results }) => {
                     />
                     <ul style={{ margin: 0, paddingLeft: "1em" }}>
                         {filteredTaxa.map((t) => <li key={t}>
-                            <span style={{ marginRight: "1em" }}>{formatTaxon(t, taxaModalSearchValue)}</span>
+                            <span style={{ marginRight: "1em" }}>
+                                <TaxonWithGroupAndPathPopover
+                                    record={dataset.recordsByFinalID[t]}
+                                    searchHighlight={taxaModalSearchValue}
+                                />
+                            </span>
                             {dataset.recordsByFinalID[t].primers
                                 .filter((p) => selectedPrimers.has(p))
                                 .map((p) => <Primer key={p} name={p} />)}
