@@ -23,7 +23,7 @@ import {
 } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
 
-import { asSets, createVennJSAdapter, UpSetJS, VennDiagram } from "@upsetjs/react";
+import { createVennJSAdapter, VennDiagram } from "@upsetjs/react";
 import { layout } from "@upsetjs/venn.js";
 
 import Primer from "../bits/Primer";
@@ -83,6 +83,7 @@ const NewTaxaSets = ({ dataset, newTaxaSets, nextNPrimers }) => {
 
 const ResultsTabs = ({ dataset, results }) => {
     const [selectedPrimerSetTitle, setSelectedPrimerSetTitle] = useState("");
+    const [selectedPrimers, setSelectedPrimers] = useState(new Set());
 
     const [shownTaxa, setShownTaxa] = useState([]);
     const [filteredTaxa, setFilteredTaxa] = useState([]);  // shownTaxa + filtering
@@ -105,8 +106,9 @@ const ResultsTabs = ({ dataset, results }) => {
         <>
             <Modal
                 open={taxaModalVisible}
-                title={`${selectedPrimerSetTitle} - Taxa`}
+                title={`${selectedPrimerSetTitle}: ${shownTaxa.length} taxa (${filteredTaxa.length} shown)`}
                 footer={null}
+                width={890}
                 onCancel={() => setTaxaModalVisible(false)}
             >
                 <Space direction="vertical" style={{ width: "100%" }}>
@@ -117,13 +119,18 @@ const ResultsTabs = ({ dataset, results }) => {
                         allowClear={true}
                     />
                     <ul style={{ margin: 0, paddingLeft: "1em" }}>
-                        {filteredTaxa.map((t) => <li key={t}>{formatTaxon(t, taxaModalSearchValue)}</li>)}
+                        {filteredTaxa.map((t) => <li key={t}>
+                            <span style={{ marginRight: "1em" }}>{formatTaxon(t, taxaModalSearchValue)}</span>
+                            {dataset.recordsByFinalID[t].primers
+                                .filter((p) => selectedPrimers.has(p))
+                                .map((p) => <Primer key={p} name={p} />)}
+                        </li>)}
                     </ul>
                 </Space>
             </Modal>
             <Modal
                 open={diagramModalVisible}
-                title={`${selectedPrimerSetTitle} - Euler diagram`}
+                title={`${selectedPrimerSetTitle}: Euler diagram`}
                 footer={null}
                 destroyOnClose={true}
                 width={890}
@@ -192,6 +199,7 @@ const ResultsTabs = ({ dataset, results }) => {
                                                 <strong>Taxa:</strong> {r.coveredTaxa.size}{" "}
                                                 <Button size="small" onClick={() => {
                                                     setSelectedPrimerSetTitle(primerSetTitle);
+                                                    setSelectedPrimers(r.primers);
                                                     setShownTaxa(Array.from(r.coveredTaxa).sort())
                                                     setTaxaModalVisible(true);
                                                 }}>See all</Button>
@@ -204,11 +212,17 @@ const ResultsTabs = ({ dataset, results }) => {
                                                     : null}
                                             </div>
                                             <div>
-                                                <Button onClick={() => {
-                                                    setSelectedPrimerSetTitle(primerSetTitle);
-                                                    setDiagramSets(r.coveredTaxaByPrimerUpset);
-                                                    setDiagramModalVisible(true);
-                                                }}>Show set diagram</Button>
+                                                <Button
+                                                    onClick={() => {
+                                                        setSelectedPrimerSetTitle(primerSetTitle);
+                                                        setDiagramSets(r.coveredTaxaByPrimerUpset);
+                                                        setDiagramModalVisible(true);
+                                                    }}
+                                                    disabled={r.primers.size > 6}
+                                                >
+                                                    Show set diagram
+                                                    {r.primers.size > 6 ? <em> (Not available for >6 primers)</em> : ""}
+                                                </Button>
                                             </div>
                                         </Space>
                                     </Card>
