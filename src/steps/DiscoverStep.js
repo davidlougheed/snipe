@@ -124,7 +124,7 @@ const PrimerSet = ({
                     )}
                 </div>
                 <div>
-                    <strong>Taxa:</strong> {r.coveredTaxa.size}{" "}
+                    <strong>Taxa:</strong> {result.coveredTaxa.size}{" "}
                     <Button size="small" onClick={onShowTaxa}>See all</Button>
                     {newTaxaSets.length
                         ? <NewTaxaSets
