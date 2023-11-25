@@ -244,6 +244,7 @@ const ResultsTabs = ({ dataset, results }) => {
                                         title={primerSetTitle}
                                         dataset={dataset}
                                         result={r}
+                                        nPrimers={nPrimers}
                                         nextTabResults={nextTabResults}
                                         style={{ width: npResults.length === 1 ? "100%" : "calc(50% - 8px)" }}
                                         onShowTaxa={() => {
