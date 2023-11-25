@@ -85,6 +85,66 @@ const NewTaxaSets = ({ dataset, newTaxaSets, nextNPrimers }) => {
     );
 };
 
+const PrimerSet = ({
+    title,
+    dataset,
+    nPrimers,
+    result,
+    nextTabResults,
+    style,
+    onShowTaxa,
+    onShowSetDiagram,
+}) => {
+    const nextTabPrimerSets = nextTabResults?.results ?? null;
+    const nextTabNPrimers = nextTabResults?.nPrimers;
+
+    const newTaxaSets = nextTabPrimerSets
+        ? nextTabPrimerSets.map((ntps) =>
+            Array.from(difference(result.coveredTaxa, ntps.coveredTaxa)).sort())
+        : [];
+
+    const newPrimerSets = nextTabPrimerSets
+        ? nextTabPrimerSets.map((ntps) => difference(result.primers, ntps.primers))
+        : [];
+
+    return (
+        <Card title={title} size="small" style={style}>
+            <Space direction="vertical" size={16}>
+                <div>
+                    <strong>Primers:</strong><br/>
+                    {Array.from(result.primers).map((p) =>
+                        <Primer
+                            key={p}
+                            name={p}
+                            added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
+                            sometimes={!(newPrimerSets.reduce(
+                                (acc, x) => acc && x.has(p), true))}
+                            primerSetCount={nPrimers}
+                        />
+                    )}
+                </div>
+                <div>
+                    <strong>Taxa:</strong> {r.coveredTaxa.size}{" "}
+                    <Button size="small" onClick={onShowTaxa}>See all</Button>
+                    {newTaxaSets.length
+                        ? <NewTaxaSets
+                            dataset={dataset}
+                            newTaxaSets={newTaxaSets}
+                            nextNPrimers={nextTabNPrimers}
+                        />
+                        : null}
+                </div>
+                <div>
+                    <Button onClick={onShowSetDiagram} disabled={result.primers.size > 6}>
+                        Show set diagram
+                        {result.primers.size > 6 ? <em> (Not available for >6 primers)</em> : ""}
+                    </Button>
+                </div>
+            </Space>
+        </Card>
+    );
+};
+
 const ResultsTabs = ({ dataset, results }) => {
     const [selectedPrimerSetTitle, setSelectedPrimerSetTitle] = useState("");
     const [selectedPrimers, setSelectedPrimers] = useState(new Set());
@@ -145,17 +205,19 @@ const ResultsTabs = ({ dataset, results }) => {
                 title={`${selectedPrimerSetTitle}: Euler diagram`}
                 footer={null}
                 destroyOnClose={true}
-                width={890}
+                width={1040}
+                style={{ top: 30 }}
                 onCancel={() => setDiagramModalVisible(false)}
             >
-                {diagramSets && <VennDiagram
+                {diagramSets ? <VennDiagram
                     layout={vennJSAdapter}
                     sets={diagramSets}
-                    width={840}
-                    height={640}
+                    width={990}
+                    height={720}
                     theme="light"
+                    padding={75}
                     style={{ maxWidth: "100%", height: "auto" }}
-                />}
+                /> : null}
             </Modal>
             <Tabs items={results.map((res, i) => {
                 const { nPrimers, results: npResults } = res;
@@ -173,71 +235,29 @@ const ResultsTabs = ({ dataset, results }) => {
                     children: (
                         <div style={{ display: "flex", gap: 16 }}>
                             {npResults.map((r, j) => {
-                                const nextTabPrimerSets = nextTabResults?.results ?? null;
-
-                                const newTaxaSets = nextTabPrimerSets
-                                    ? nextTabPrimerSets.map((ntps) =>
-                                        Array.from(difference(r.coveredTaxa, ntps.coveredTaxa)).sort())
-                                    : [];
-
-                                const newPrimerSets = nextTabPrimerSets
-                                    ? nextTabPrimerSets.map((ntps) => difference(r.primers, ntps.primers))
-                                    : [];
-
+                                // TODO: refactor into some type of primer set object so we can useCallback these
+                                //  handlers and have a generally better structure
                                 const primerSetTitle = `Primer set ${nPrimers}-${j + 1}`;
-
                                 return (
-                                    <Card
+                                    <PrimerSet
                                         key={`primers-${nPrimers}-primer-set-${j + 1}`}
                                         title={primerSetTitle}
-                                        size="small"
+                                        dataset={dataset}
+                                        result={r}
+                                        nextTabResults={nextTabResults}
                                         style={{ width: npResults.length === 1 ? "100%" : "calc(50% - 8px)" }}
-                                    >
-                                        <Space direction="vertical" size={16}>
-                                            <div>
-                                                <strong>Primers:</strong><br/>
-                                                {Array.from(r.primers).map((p) =>
-                                                    <Primer
-                                                        key={p}
-                                                        name={p}
-                                                        added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
-                                                        sometimes={!(newPrimerSets.reduce(
-                                                            (acc, x) => acc && x.has(p), true))}
-                                                        primerSetCount={nPrimers}
-                                                    />
-                                                )}
-                                            </div>
-                                            <div>
-                                                <strong>Taxa:</strong> {r.coveredTaxa.size}{" "}
-                                                <Button size="small" onClick={() => {
-                                                    setSelectedPrimerSetTitle(primerSetTitle);
-                                                    setSelectedPrimers(r.primers);
-                                                    setShownTaxa(Array.from(r.coveredTaxa).sort())
-                                                    setTaxaModalVisible(true);
-                                                }}>See all</Button>
-                                                {newTaxaSets.length
-                                                    ? <NewTaxaSets
-                                                        dataset={dataset}
-                                                        newTaxaSets={newTaxaSets}
-                                                        nextNPrimers={nextTabResults.nPrimers}
-                                                    />
-                                                    : null}
-                                            </div>
-                                            <div>
-                                                <Button
-                                                    onClick={() => {
-                                                        setSelectedPrimerSetTitle(primerSetTitle);
-                                                        setDiagramSets(r.coveredTaxaByPrimerUpset);
-                                                        setDiagramModalVisible(true);
-                                                    }}
-                                                    disabled={r.primers.size > 6}
-                                                >
-                                                    Show set diagram
-                                                    {r.primers.size > 6 ? <em> (Not available for >6 primers)</em> : ""}
-                                                </Button>
-                                            </div>
-                                        </Space>
-                                    </Card>
+                                        onShowTaxa={() => {
+                                            setSelectedPrimerSetTitle(primerSetTitle);
+                                            setSelectedPrimers(r.primers);
+                                            setShownTaxa(Array.from(r.coveredTaxa).sort())
+                                            setTaxaModalVisible(true);
+                                        }}
+                                        onShowSetDiagram={() => {
+                                            setSelectedPrimerSetTitle(primerSetTitle);
+                                            setDiagramSets(r.coveredTaxaByPrimerUpset);
+                                            setDiagramModalVisible(true);
+                                        }}
+                                    />
                                 );
                             })}
                         </div>
