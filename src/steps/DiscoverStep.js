@@ -376,15 +376,6 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
 
     const nCheckedLeaves = checkedLeaves.length;
 
-    useEffect(() => {
-        if (!dataset) return;
-
-        const checkedRecords = checkedLeaves.map((key) => dataset.recordsByKey[key]);
-        const primerSubset = new Set(checkedRecords.map((rec) => rec["Primer_name"]));
-
-        console.log(checkedRecords);
-        console.log(primerSubset);
-    }, [dataset, checkedLeaves]);
 
     const showModal = useCallback(() => setModalVisible(true), []);
     const hideModal = useCallback(() => setModalVisible(false), []);
