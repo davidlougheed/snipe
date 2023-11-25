@@ -1,8 +1,23 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
 import { parse } from "csv-parse/browser/esm";
-import { Button, Col, Divider, message, Modal, Radio, Row, Space, Spin, Statistic, Typography, Upload } from "antd";
+import {
+    Button,
+    Col,
+    Divider,
+    message,
+    Modal,
+    Popover,
+    Radio,
+    Row,
+    Space,
+    Spin,
+    Statistic,
+    Typography,
+    Upload
+} from "antd";
 import { ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined } from "@ant-design/icons";
 import { createDataset } from "../lib/datasets";
+import Primer from "../bits/Primer";
 
 const { Paragraph, Text } = Typography;
 
@@ -10,29 +25,41 @@ const EM_DASH = "—";
 
 const beforeUploadNothing = () => false;
 
+const parseDataset = async (csvGetter, onParseFinish=undefined) => {
+    const csvContents = await csvGetter();
+
+    return new Promise((resolve, reject) => {
+        parse(csvContents, { columns: true }, (err, data) => {
+            if (err) {
+                reject(err);
+                return;
+            }
+
+            if (onParseFinish) onParseFinish();
+
+            const dataset = createDataset(data);
+            console.debug("dataset:", dataset);
+            resolve(dataset);
+        });
+    });
+};
+
 const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
     const [messageApi, contextHolder] = message.useMessage();
 
     const [option, setOption] = useState(0);
     const [parsing, setParsing] = useState(false);
+    const [fileObj, setFileObj] = useState(null);
+
     const [fetchingDefault, setFetchingDefault] = useState(false);
     const [fetchingDefaultFailed, setFetchingDefaultFailed] = useState(false);
+    const [defaultDataset, setDefaultDataset] = useState(null);
 
-    const parseDataset = useCallback((csvGetter, onParseFinish=undefined) => {
+    const parseDatasetInner = useCallback((csvGetter, onParseFinish=undefined) => {
         setParsing(true);
         return (async () => {
             try {
-                const csvContents = await csvGetter();
-
-                parse(csvContents, { columns: true }, (err, data) => {
-                    if (err) throw err;
-
-                    if (onParseFinish) onParseFinish();
-
-                    const dataset = createDataset(data);
-                    console.debug("dataset:", dataset);
-                    setDataset(dataset);
-                });
+                setDataset(await parseDataset(csvGetter, onParseFinish));
             } finally {
                 setParsing(false);
             }
@@ -47,7 +74,8 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                 const res = await fetch(
                     "/datasets/Tournayre_et_al_2023.csv",
                     { headers: { "Content-Type": "text/csv" } });
-                await parseDataset(() => res.text());
+                const dd = await parseDataset(() => res.text());
+                setDefaultDataset(dd);
             } catch (e) {
                 const errStr = `Error fetching default dataset: ${e}`;
                 console.error(errStr);
@@ -69,10 +97,24 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
     const hideFormatModal = useCallback(() => setShowFormatModal(false), []);
 
     const onUpload = useCallback((info) => {
-        const fileObj = info.fileList[0]?.originFileObj;
-        if (!fileObj) return;
-        parseDataset(() => fileObj.text(), () => setOption(1)).catch(console.error);
-    }, [parseDataset]);
+        setFileObj(info.fileList[0]?.originFileObj ?? null);
+    }, []);
+
+    useEffect(() => {
+        if (fileObj) {
+            parseDatasetInner(() => fileObj.text(), () => setOption(1)).catch(console.error);
+        }
+    }, [fileObj, parseDatasetInner]);
+
+    useEffect(() => {
+        if (option === 0 && defaultDataset) {
+            setDataset(defaultDataset);
+        } else if (!fileObj && option === 1) {
+            setDataset(null);  // no dataset selected yet; need to upload
+        }
+    }, [defaultDataset, fileObj, option]);
+
+    const primers = dataset?.primers ?? [];
 
     if (!visible) return <Fragment />;
     return <>
@@ -101,18 +143,34 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
             <Col flex={1}>
                 <Row gutter={24}>
                     <Col>
-                        <Statistic
-                            title="Primers"
-                            value={dataset?.primers?.length ?? EM_DASH}
-                            loading={parsing}
-                            prefix={<ExperimentOutlined />}
-                        />
+                        {primers.length ? (
+                            <Popover content={
+                                <div style={{ maxWidth: 480 }}>
+                                    {primers.map((p) => <Primer key={p} name={p} />)}
+                                </div>
+                            }>
+                                <Statistic
+                                    title="Primers"
+                                    value={primers.length ?? EM_DASH}
+                                    loading={fetchingDefault || parsing}
+                                    prefix={<ExperimentOutlined />}
+                                    style={{ cursor: "pointer" }}
+                                />
+                            </Popover>
+                        ) : (
+                            <Statistic
+                                title="Primers"
+                                value={EM_DASH}
+                                loading={fetchingDefault || parsing}
+                                prefix={<ExperimentOutlined />}
+                            />
+                        )}
                     </Col>
                     <Col>
                         <Statistic
                             title="Taxa"
                             value={dataset?.records?.length ?? "—"}
-                            loading={parsing}
+                            loading={fetchingDefault || parsing}
                             prefix={<ApartmentOutlined />}
                         />
                     </Col>
