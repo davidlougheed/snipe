@@ -1,29 +1,17 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
 import { Popover, Tag } from "antd";
 import { PlusCircleFilled, PlusCircleOutlined } from "@ant-design/icons";
 
-const colors = [
-    "magenta",
-    "red",
-    "volcano",
-    "orange",
-    "gold",
-    "lime",
-    "green",
-    "cyan",
-    "blue",
-    "geekblue",
-    "purple",
-];
+import { PrimerPaletteContext } from "../colors";
 
 const Primer = memo(({ name, added, sometimes, primerSetCount }) => {
-    const colorIndex = Array.from(new TextEncoder().encode(name)).reduce((acc, x) => acc + x, 0) % colors.length;
+    const palette = useContext(PrimerPaletteContext);
 
     /** @type React.ReactNode */
     const tag = (
         <Tag
             icon={added ? (sometimes ? <PlusCircleOutlined /> : <PlusCircleFilled />) : null}
-            color={colors[colorIndex]}
+            color={palette?.[name]}
             style={{ margin: "0.2em 0.5em 0.2em 0" }}
         >{name}</Tag>
     );

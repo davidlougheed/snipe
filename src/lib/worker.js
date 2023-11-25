@@ -1,4 +1,5 @@
 import { asSets } from "@upsetjs/react";
+import { hsl, rgb } from "d3-color";
 
 // Helpers -------------------------------------------------------------------------------------------------------------
 
@@ -12,7 +13,7 @@ const choose = (arr, k) => chooseRec(arr, k, []).map((c) => new Set(c));
 
 // Processing ----------------------------------------------------------------------------------------------------------
 
-const findBestPrimerSets = (records, maxPrimers) => {
+const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
     // All taxon IDs, deduplicated
     const allTaxa = new Set(records.map((rec) => rec["Final_ID"]));
 
@@ -80,10 +81,15 @@ const findBestPrimerSets = (records, maxPrimers) => {
                 coveredTaxa,
                 coveredTaxaByPrimer,
                 coveredTaxaByPrimerUpset: asSets(
-                    Object.entries(coveredTaxaByPrimer).map(([p, pTaxa]) => ({
-                        name: p,
-                        elems: pTaxa,
-                    }))
+                    Object.entries(coveredTaxaByPrimer).map(([p, pTaxa]) => {
+                        const color = rgb(primerPalette[p]);
+                        color.opacity = 0.45;
+                        return {
+                            name: p,
+                            elems: pTaxa,
+                            color: color.formatRgb(),
+                        };
+                    })
                 ),
             };
 
@@ -137,8 +143,8 @@ const findBestPrimerSets = (records, maxPrimers) => {
 
 onmessage = ({ data: { type, data } }) => {
     if (type === "search") {
-        const { records, maxPrimers } = data;
+        const { records, maxPrimers, primerPalette } = data;
         console.info("starting worker job with", data);
-        findBestPrimerSets(records, maxPrimers);
+        findBestPrimerSets(records, maxPrimers, primerPalette);
     }
 };

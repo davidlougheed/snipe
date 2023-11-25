@@ -2,6 +2,7 @@ import groupBy from "lodash/groupBy";
 import { Popover } from "antd";
 import Primer from "../bits/Primer";
 import { formatTaxon } from "./utils";
+import { paletteForPrimers } from "../colors";
 
 export const PRIMER_GROUPINGS = ["Taxa_group", "Phylum", "Order", "Family", "Genus", "Final_ID"];
 
@@ -70,9 +71,11 @@ export const createDataset = (records) => {
     const processedRecords = buildRecordsWithPrimerArrays(records.map((rec) => ({ ...rec, key: buildLeafKey(rec) })));
     const recordsByKey = Object.fromEntries(processedRecords.map((rec) => [rec.key, rec]));
 
+    const primersArray = Array.from(primers);
     return {
         tree,
-        primers: Array.from(primers),
+        primers: primersArray,
+        primerPalette: paletteForPrimers(primersArray),
         records: processedRecords,
         recordsByKey,
         recordsByFinalID: Object.fromEntries(processedRecords.map((rec) => [rec["Final_ID"], rec])),

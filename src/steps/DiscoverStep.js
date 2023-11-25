@@ -1,4 +1,4 @@
-import { Fragment, memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Fragment, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 
 import difference from "set.prototype.difference";
 
@@ -25,11 +25,13 @@ import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-desi
 
 import { createVennJSAdapter, VennDiagram } from "@upsetjs/react";
 import { layout } from "@upsetjs/venn.js";
+import { lab } from "d3-color";
 
 import Primer from "../bits/Primer";
 
 import { PRIMER_GROUPINGS } from "../lib/datasets";
 import { formatTaxon, pluralize } from "../lib/utils";
+import { PrimerPaletteContext } from "../colors";
 
 const vennJSAdapter = createVennJSAdapter(layout);
 
@@ -83,6 +85,30 @@ const NewTaxaSets = ({ dataset, newTaxaSets, nextNPrimers }) => {
             </>
         </details>
     );
+};
+
+const eulerMergeColors = (colors) => {
+    // inspired by https://upset.js.org/docs/examples/vennColored
+    switch (colors.length) {
+        case 0:
+            return undefined;
+        case 1:
+            return colors[0];
+        default: {
+            const ca = colors.reduce((acc, d) => {
+                const c = lab(d || "transparent");
+                return { l: acc.l + c.l, a: acc.a + c.a, b: acc.b + c.b };
+            }, { l: 0, a: 0, b: 0 });
+
+            const res = lab(
+                ca.l / colors.length,
+                ca.a / colors.length,
+                ca.b / colors.length,
+                0.45,
+            );
+            return res.formatRgb();
+        }
+    }
 };
 
 const PrimerSet = ({
@@ -216,6 +242,7 @@ const ResultsTabs = ({ dataset, results }) => {
                     height={720}
                     theme="light"
                     padding={75}
+                    combinations={{ mergeColors: eulerMergeColors }}
                     style={{ maxWidth: "100%", height: "auto" }}
                 /> : null}
             </Modal>
@@ -282,6 +309,8 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
     const [hasSearched, setHasSearched] = useState(false);
     const [progress, setProgress] = useState(0);
     const [results, setResults] = useState(null);
+
+    const primerPalette = useContext(PrimerPaletteContext);
 
     useEffect(() => {
         // On first load, set up the worker
@@ -378,11 +407,12 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
             data: {
                 records: checkedRecords,
                 maxPrimers: nPrimers,
+                primerPalette,
             },
         });
         setHasSearched(true);
         searching.current = true;
-    }, [dataset, worker, checkedLeaves, nPrimers]);
+    }, [dataset, worker, checkedLeaves, nPrimers, primerPalette]);
 
     if (!visible) return <Fragment/>;
     // noinspection JSCheckFunctionSignatures

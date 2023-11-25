@@ -1,5 +1,7 @@
 import { Card, Divider, Layout, Modal, Steps, Typography } from "antd";
 import { useCallback, useMemo, useState } from "react";
+
+import { PrimerPaletteContext } from "./colors";
 import DatasetStep from "./steps/DatasetStep";
 import DiscoverStep from "./steps/DiscoverStep";
 import DownloadStep from "./steps/DownloadStep";
@@ -70,7 +72,9 @@ const App = () => {
                     </div>
                     <Steps size="small" items={stepItems} current={currentStep} />
                     <Divider />
-                    {stepNode}
+                    <PrimerPaletteContext.Provider value={dataset?.primerPalette}>
+                        {stepNode}
+                    </PrimerPaletteContext.Provider>
                 </Card>
                 <div style={styles.footer}>
                     <Paragraph style={styles.footerParagraph}>
