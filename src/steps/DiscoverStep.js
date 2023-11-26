@@ -389,9 +389,11 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
         if (e.expanded) {  // Check we're expanding and not contracting this node
             // We can have a lot of paths of 1 option over and over - auto-expand these to make navigation nicer
             let node = e.node;
+            newExpandedKeys.add(node.key);
+            console.log(node);
             while (node.children?.length === 1) {
-                newExpandedKeys.add(node.key);
                 node = node.children?.[0];
+                newExpandedKeys.add(node.key);
             }
         }
 
