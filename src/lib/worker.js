@@ -1,5 +1,6 @@
 import { asSets } from "@upsetjs/react";
-import { hsl, rgb } from "d3-color";
+import { rgb } from "d3-color";
+import { OVERVIEW_GROUPINGS, taxaGroup } from "./datasets";
 
 // Helpers -------------------------------------------------------------------------------------------------------------
 
@@ -13,9 +14,14 @@ const choose = (arr, k) => chooseRec(arr, k, []).map((c) => new Set(c));
 
 // Processing ----------------------------------------------------------------------------------------------------------
 
+const PROGRESS_EVERY_N = 500;
+
+const calculateGroupCoverage = (tree) =>
+    Object.fromEntries(tree.map((g) => [g.title, g.children.length]));
+
 const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
-    // All taxon IDs, deduplicated
-    const allTaxa = new Set(records.map((rec) => rec["Final_ID"]));
+    // Make records index-able by final ID - this way we can find, e.g., groups from final IDs
+    const nTaxa = records.length;
 
     // Subset of primers which can be used to identify
     const primerSubset = Array.from(new Set(records.flatMap((rec) => rec.primers)));
@@ -51,11 +57,15 @@ const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
         primerCombinations.forEach((pc) => {
             const coveredTaxa = new Set();
             const coveredTaxaByPrimer = {};
+            const coveredRecords = [];
 
             records.forEach((rec) => {
                 const finalID = rec["Final_ID"];
 
                 if (coveredTaxa.has(finalID)) {
+                    // TODO: I think this was an artifact from when we had accidentally duplicate records, this should
+                    //  never happen in practice.
+                    coveredRecords.push(rec);
                     return;
                 }
 
@@ -71,10 +81,11 @@ const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
 
                 if (intersect.length) {
                     coveredTaxa.add(finalID);
+                    coveredRecords.push(rec);
                 }
             });
 
-            const coverage = coveredTaxa.size / allTaxa.size;
+            const coverage = coveredTaxa.size;
 
             const res = {
                 primers: pc,
@@ -91,6 +102,8 @@ const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
                         };
                     })
                 ),
+                coverageByGroup: calculateGroupCoverage(
+                    taxaGroup(coveredRecords, OVERVIEW_GROUPINGS, false)),
             };
 
             if (coverage > bestCoverage) {
@@ -103,19 +116,35 @@ const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
 
             nTriedPrimerCombinations += 1;
 
-            if (nTriedPrimerCombinations % 1000 === 0) {
+            if (nTriedPrimerCombinations % PROGRESS_EVERY_N === 0) {
                 sendProgress(nPrimers);
             }
         });
 
+        const bestCoverageFraction = bestCoverage / nTaxa;
+
+        const baseCoverageByGroup = Object.fromEntries(records.map((rec) => [rec["Taxa_group"], 0]));
+        const avgCoverageByGroup = Object.fromEntries(
+            Object.entries(
+                bestResultsForPrimerCount.reduce((acc, res) => {
+                    Object.entries(res.coverageByGroup).forEach(([g, v]) => { acc[g] += v });
+                    return acc;
+                }, baseCoverageByGroup)
+            ).map(([g, v]) => [g, v / bestResultsForPrimerCount.length])
+        );
+
+        console.info(`calculated average coverage by group:`, avgCoverageByGroup);
+
         bestPrimerCombinations.push({
             nPrimers,
             coverage: bestCoverage,
+            coverageFraction: bestCoverageFraction,
             results: bestResultsForPrimerCount,
+            avgCoverageByGroup,
         });
 
-        console.log(
-            `best primer combinations: coverage=${(bestCoverage * 100).toFixed(1)}`,
+        console.info(
+            `best primer combinations: coverage=${(bestCoverageFraction * 100).toFixed(1)}`,
             bestResultsForPrimerCount);
 
         sendProgress(nPrimers);
@@ -123,7 +152,7 @@ const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
         console.info(
             `processed ${primerCombinations.length} combinations for ${nPrimers}/${maxPrimersNeeded} primers`);
 
-        if (bestCoverage === 1) {
+        if (bestCoverage === nTaxa) {
             console.info("achieved 100% coverage");
             if (nPrimers < maxPrimersNeeded) {
                 console.info(`  => terminating early at ${nPrimers} primers`);

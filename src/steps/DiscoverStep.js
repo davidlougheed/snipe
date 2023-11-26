@@ -14,6 +14,7 @@ import {
     Modal,
     Popover,
     Progress,
+    Radio,
     Row,
     Space,
     Spin,
@@ -23,11 +24,13 @@ import {
 } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
 
-import { Bar, BarChart, Label, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Label, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
 import { createVennJSAdapter, VennDiagram } from "@upsetjs/react";
 import { layout } from "@upsetjs/venn.js";
-import { lab } from "d3-color";
+
+import { hsl, lab } from "d3-color";
+import { schemeTableau10 } from "d3-scale-chromatic";
 
 import Primer from "../bits/Primer";
 
@@ -173,7 +176,6 @@ const PrimerSet = ({
     );
 };
 
-const PrimerCountPhrase = ({ nPrimers }) => <span>{nPrimers} {pluralize("Primer", nPrimers)}</span>;
 const primerCountPhrase = (nPrimers) => `${nPrimers} ${pluralize("Primer", nPrimers)}`;
 
 const ResultsTabs = ({ dataset, results }) => {
@@ -259,10 +261,12 @@ const ResultsTabs = ({ dataset, results }) => {
                 const nextTabResults = isNotLastTab ? results[i + 1] : null;
 
                 return {
-                    label: <span>
-                        {primerCountPhrase(nPrimers)}: {(res.coverage * 100).toFixed(1)}%
-                        {nRes > 1 ? <>{" "}({nRes} sets)</> : null}
-                    </span>,
+                    label: (
+                        <span>
+                            {primerCountPhrase(nPrimers)}: {(res.coverageFraction * 100).toFixed(1)}%
+                            {nRes > 1 ? <>{" "}({nRes} sets)</> : null}
+                        </span>
+                    ),
                     key: `tab-${nPrimers}-primers`,
                     children: (
                         <div style={{ display: "flex", gap: 16 }}>
@@ -301,29 +305,67 @@ const ResultsTabs = ({ dataset, results }) => {
     );
 };
 
-const percentFormatter = (d) => `${(d * 100).toFixed(1)}%`;
+// const percentFormatter = (d) => `${(d * 100).toFixed(1)}%`;
 
-const CumulativePrimerSetCoverageChart = ({ results }) => {
+const CumulativePrimerSetCoverageChart = ({ dataset, results }) => {
+    const [barType, setBarType] = useState("group");
+
     const data = useMemo(() => {
         if (!results) return [];
-        return results.map(({ coverage, nPrimers }) => ({
+        return results.map(({ coverageFraction, avgCoverageByGroup, nPrimers }) => ({
             name: nPrimers.toString(),
-            // TODO: coverage breakdown by group!
-            coverage,
+            coverageFraction,
+            ...Object.fromEntries(
+                Object.entries(dataset?.supergroupGroups ?? {})
+                    .map(([sg, gs]) => [`supergroup_${sg}`, gs.reduce((acc, g) => acc + avgCoverageByGroup[g], 0)])
+                    .filter(([_, v]) => !!v)),
+            ...Object.fromEntries(
+                Object.entries(avgCoverageByGroup)
+                    .map(([g, v]) => [`group_${g}`, v])
+                    .filter(([_, v]) => !!v)),
         })).reverse();
-    }, [results]);
+    }, [dataset, results]);
 
-    return <BarChart width={752} height={500} data={data} margin={{ top: 8, bottom: 24, left: 16 }}>
-        <XAxis dataKey="name">
-            <Label value="# primers" position="bottom" />
-        </XAxis>
-        <YAxis tickFormatter={percentFormatter}>
-            <Label value="% coverage" angle={-90} position="left" style={{ textAnchor: "middle" }} />
-        </YAxis>
-        <Tooltip formatter={(value) => percentFormatter(value)} />
-        {/*<Legend />*/}
-        <Bar dataKey="coverage" name="Coverage" stackId="a" />
-    </BarChart>
+    return <>
+        <Radio.Group size="small" onChange={(e) => setBarType(e.target.value)} value={barType}>
+            <Radio.Button value="supergroup">Supergroup</Radio.Button>
+            <Radio.Button value="group">Group</Radio.Button>
+        </Radio.Group>
+        <Divider />
+        <ResponsiveContainer width="100%" height={550}>
+            <BarChart data={data} margin={{ top: 8, bottom: 32, left: 16 }}>
+                <CartesianGrid vertical={false} stroke="#EEEEEE" />
+                <XAxis dataKey="name">
+                    <Label value="# primers" position="bottom" />
+                </XAxis>
+                <YAxis tickCount={8}>
+                    <Label value="coverage (# taxa)" angle={-90} position="left" style={{ textAnchor: "middle" }} />
+                </YAxis>
+                {/*<Tooltip formatter={(value) => percentFormatter(value)} />*/}
+                <Legend verticalAlign="bottom" wrapperStyle={{ minHeight: 88, bottom: 0 }} />
+                {barType === "group" ? (
+                    Object.entries(dataset?.supergroupGroups ?? {}).flatMap(([sg, gs]) =>
+                        gs.filter((g) => data.find((d) => `${barType}_${g}` in d))
+                            .map((g) => {
+                                const color = hsl(schemeTableau10[dataset.supergroups.indexOf(sg)]);
+                                color.l = 0.25 + ((gs.indexOf(g) + 1) / (gs.length + 1)) * 0.6;
+                                const k = `${barType}_${g}`;
+                                return <Bar key={k} dataKey={k} name={g} stackId="a" fill={color.toString()} />;
+                            })
+                    )
+                ) : (
+                    Object.keys(dataset?.supergroupGroups ?? {})
+                        .filter((sg) => data.find((d) => `${barType}_${sg}` in d))
+                        .map((sg) => {
+                            const color = hsl(schemeTableau10[dataset.supergroups.indexOf(sg)]);
+                            color.l = 0.55;  // normalize luminosity to be in the middle of where it is for group bars
+                            const k = `${barType}_${sg}`;
+                            return <Bar key={k} dataKey={k} name={sg} stackId="supergroup" fill={color.toString()} />;
+                        })
+                )}
+            </BarChart>
+        </ResponsiveContainer>
+    </>;
 };
 
 const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
@@ -576,7 +618,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
             footer={null}
             onCancel={hidePrimerSetCoverageModal}
         >
-            <CumulativePrimerSetCoverageChart results={results} />
+            <CumulativePrimerSetCoverageChart dataset={dataset} results={results} />
         </Modal>
     </>;
 };

@@ -4,27 +4,27 @@ import Primer from "../bits/Primer";
 import { formatTaxon } from "./utils";
 import { paletteForPrimers } from "../colors";
 
-export const PRIMER_GROUPINGS = ["Taxa_group", "Phylum", "Order", "Family", "Genus", "Final_ID"];
+export const OVERVIEW_GROUPINGS = ["Taxa_group", "Final_ID"];
+export const PRIMER_GROUPINGS = ["Supergroup", "Taxa_group", "Phylum", "Order", "Family", "Genus", "Final_ID"];
 
 const preventDefault = (e) => {
     e.preventDefault();
 };
 
-const taxaRecGroup = (arr, groupings, pathStr) => {
+const taxaRecGroup = (arr, groupings, pathStr, reactMode) => {
     const res = groupBy(arr, groupings[0]);
 
-    const remainingGroupings = groupings.slice(1);
-    const isSpeciesLevel = remainingGroupings.length === 0;
+    const isLeaf = groupings.length === 1;
     return Object.entries(res).map(([k, v]) => {
-        const fullKey = `${pathStr}-${k}`;
+        const fullKey = `${pathStr}-${k}${isLeaf ? "-leaf" : ""}`;  // Special suffix to make leaves easy to ID
 
-        if (k === "") {
+        if (k === "" && !isLeaf) {
             // If this key is blank, it'll be blank from hereon out until the final (thus only one child) - skip it.
-            return taxaRecGroup(v, remainingGroupings, fullKey)[0];
+            return taxaRecGroup(v, groupings.slice(1), fullKey, reactMode)[0];
         }
 
-        const baseRecord = {
-            title: isSpeciesLevel ? <span>
+        const record = {
+            title: (isLeaf && reactMode) ? <span>
                 {formatTaxon(k)}{" "}
                 <Popover title="Primers" content={
                     v.map(p => <Primer key={`${k}-${p["Primer_name"]}`} name={p["Primer_name"]} />)
@@ -37,20 +37,15 @@ const taxaRecGroup = (arr, groupings, pathStr) => {
             key: fullKey,
         };
 
-        if (isSpeciesLevel) {  // No children, return as-is
-            return { ...baseRecord, key: `${fullKey}-leaf` };
+        if (!isLeaf) {
+            record.children = taxaRecGroup(v, groupings.slice(1), fullKey, reactMode);
         }
 
-        const children = taxaRecGroup(v, remainingGroupings, fullKey);
-
-        return {
-            ...baseRecord,
-            // If it's Chordata, it's because we've divided the phylum into multiple 'taxa groups'
-            //  -> so we just skip Chordata
-            children: children[0]?.title === "Chordata" ? children[0]?.children : children,
-        };
+        return record;
     });
 };
+
+export const taxaGroup = (records, groupings, reactMode) => taxaRecGroup(records, groupings, "root", reactMode);
 
 const buildRecordsWithPrimerArrays = (records) => {
     return Object.entries(groupBy(records, "Final_ID")).map(([_, recs]) => {
@@ -68,9 +63,14 @@ const buildLeafKey = (rec) => `root-${PRIMER_GROUPINGS.map((g) => rec[g]).join("
 export const createDataset = (rawRecords) => {
     const records = rawRecords.map((rec) => ({...rec, Final_ID: rec["Final_ID"].trim().replace(" ", "_")}));
 
-    const tree = taxaRecGroup(records, PRIMER_GROUPINGS, "root");
+    const tree = taxaGroup(records, PRIMER_GROUPINGS, true);
     const primers = new Set(records.map((rec) => rec["Primer_name"]));
     const processedRecords = buildRecordsWithPrimerArrays(records.map((rec) => ({ ...rec, key: buildLeafKey(rec) })));
+
+    const supergroups = [...new Set(records.map((rec) => rec["Supergroup"]))].sort();
+    const supergroupGroups = Object.fromEntries(
+        Object.entries(groupBy(records, "Supergroup"))
+            .map(([sg, recs]) => [sg, [...new Set(recs.map((rec) => rec["Taxa_group"]))].sort()]));
 
     const primersArray = Array.from(primers);
     return {
@@ -80,5 +80,8 @@ export const createDataset = (rawRecords) => {
         records: processedRecords,
         recordsByKey: Object.fromEntries(processedRecords.map((rec) => [rec.key, rec])),
         recordsByFinalID: Object.fromEntries(processedRecords.map((rec) => [rec["Final_ID"], rec])),
+        // summary collections:
+        supergroups,
+        supergroupGroups,
     };
 };

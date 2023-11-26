@@ -200,8 +200,14 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
             </Paragraph>
             <ul>
                 <li>
+                    <Text code={true}>Supergroup</Text>:
+                    A top-level grouping (which may be sub-phylum or super-phylum), e.g., "Invertebrate". Used for
+                    taxa tree and plot generation.
+                </li>
+                <li>
                     <Text code={true}>Taxa_group</Text>:
-                    A top-level grouping (which may be sub-phylum or super-phylum), e.g., "Invertebrates" or "Mammals".
+                    A sub-<Text code={true}>Supergroup</Text> grouping, possibly derived from the "class" taxonomic
+                    rank, e.g., "Mammal", "Insecta". Primarily used for taxa tree and plot generation.
                 </li>
                 <li><Text code={true}>Phylum</Text></li>
                 <li><Text code={true}>Family</Text></li>
@@ -209,8 +215,8 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                 <li><Text code={true}>Species</Text></li>
                 <li>
                     <Text code={true}>Final_ID</Text>:
-                    The final ID of the taxon for this row, e.g., <em>Castor canadensis</em>,{" "}
-                    <em>Castor sp.</em>, or "Castoridae".
+                    The final ID of the taxon for this row, e.g., <em>Castor_canadensis</em>,{" "}
+                    <em>Castor_sp</em>, or Castoridae. This is usually (but not necessarily) species or genus-level.
                 </li>
                 <li>
                     <Text code={true}>Primer_name</Text>:

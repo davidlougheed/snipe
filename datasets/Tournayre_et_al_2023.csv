@@ -1,757 +1,786 @@
-﻿Taxa_group,Phylum,Order,Family,Genus,Species,Final_ID,Primer_name
-Invertebrate,Annelida,Lumbriculida,Sparganophilidae,Sparganophilus,tamesis,Sparganophilus_tamesis,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Bothrioneurum,vejdovskyanum,Bothrioneurum_vejdovskyanum,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Chaetogaster,diaphanus,Chaetogaster_diaphanus,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Chaetogaster,diastrophus,Chaetogaster_diastrophus,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Dero,digitata,Dero_digitata,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Dero,vaga,Dero_vaga,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Ilyodrilus,templetoni,Ilyodrilus_templetoni,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Limnodrilus,hoffmeisteri,Limnodrilus_hoffmeisteri,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Nais,christinae,Nais_christinae,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Nais,communis,Nais_communis,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Pristina,aequiseta,Pristina_aequiseta,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Pristina,longiseta,Pristina_longiseta,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Slavina,appendiculata,Slavina_appendiculata,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Specaria,josinae,Specaria_josinae,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Stylaria,fossularis,Stylaria_fossularis,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Stylaria,lacustris,Stylaria_lacustris,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Uncinais,uncinata,Uncinais_uncinata,16SMOL
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,freyi,Bosmina_freyi,16SMOL
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,16SMOL
-Invertebrate,Arthropoda,Diplostraca,Cercopagididae,Bythotrephes,longimanus,Bythotrephes_longimanus,16SMOL
-Invertebrate,Arthropoda,Diplostraca,Chydoridae,Alonella,nana,Alonella_nana,16SMOL
-Invertebrate,Arthropoda,Diplostraca,Polyphemidae,Polyphemus,pediculus,Polyphemus_pediculus,16SMOL
-Bacteria,Bacteroidota,Flavobacteriales,Flavobacteriaceae,Flavobacterium,,Flavobacterium_sp,16SMOL
-Invertebrate,Bryozoa,Ctenostomatida,Paludicellidae,Paludicella,articulata,Paludicella_articulata,16SMOL
-Invertebrate,Bryozoa,Phylactolaemata,Cristatellidae,Cristatella,mucedo,Cristatella_mucedo,16SMOL
-Invertebrate,Bryozoa,Phylactolaemata,Fredericellidae,Fredericella,indica,Fredericella_indica,16SMOL
-Invertebrate,Bryozoa,Phylactolaemata,Plumatellidae,Plumatella,repens,Plumatella_repens,16SMOL
-Invertebrate,Bryozoa,Phylactolaemata,Plumatellidae,Plumatella,rugosa,Plumatella_rugosa,16SMOL
-Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,16SMOL
-Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,neogaeus,Chrosomus_neogaeus,16SMOL
-Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,promelas,Pimephales_promelas,16SMOL
-Fish,Chordata,Esociformes,Esocidae,Esox,lucius,Esox_lucius,16SMOL
-Fish,Chordata,Esociformes,Esocidae,Esox,masquinongy,Esox_masquinongy,16SMOL
-Fish,Chordata,Gobiiformes,Gobiidae,Neogobius,melanostomus,Neogobius_melanostomus,16SMOL
-Fish,Chordata,Gobiiformes,Gobiidae,Proterorhinus,semilunaris,Proterorhinus_semilunaris,16SMOL
-Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,16SMOL
-Fish,Chordata,Perciformes,Centrarchidae,Lepomis,,Lepomis_sp,16SMOL
-Mammal,Chordata,Rodentia,Castoridae,Castor,canadensis,Castor_canadensis,16SMOL
-Fish,Chordata,Scorpaeniformes,Gasterosteidae,Culaea,inconstans,Culaea_inconstans,16SMOL
-Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,natalis,Ameiurus_natalis,16SMOL
-Invertebrate,Mollusca,_Neotaenioglossa,Hydrobiidae,Marstonia,hershleri,Marstonia_hershleri,16SMOL
-Invertebrate,Annelida,Tubificida,Naididae,Chaetogaster,diaphanus,Chaetogaster_diaphanus,16SMOL2
-Invertebrate,Annelida,Tubificida,Naididae,Limnodrilus,hoffmeisteri,Limnodrilus_hoffmeisteri,16SMOL2
-Invertebrate,Annelida,Tubificida,Naididae,Nais,christinae,Nais_christinae,16SMOL2
-Invertebrate,Annelida,Tubificida,Naididae,Slavina,appendiculata,Slavina_appendiculata,16SMOL2
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,freyi,Bosmina_freyi,16SMOL2
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,16SMOL2
-Invertebrate,Arthropoda,Diplostraca,Chydoridae,Alonella,nana,Alonella_nana,16SMOL2
-Invertebrate,Arthropoda,Diplostraca,Polyphemidae,Polyphemus,pediculus,Polyphemus_pediculus,16SMOL2
-Bacteria,Bacteroidota,Flavobacteriales,Flavobacteriaceae,Flavobacterium,,Flavobacterium_sp,16SMOL2
-Invertebrate,Bryozoa,Ctenostomatida,Paludicellidae,Paludicella,articulata,Paludicella_articulata,16SMOL2
-Invertebrate,Bryozoa,Phylactolaemata,Fredericellidae,Fredericella,indica,Fredericella_indica,16SMOL2
-Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,neogaeus,Chrosomus_neogaeus,16SMOL2
-Fish,Chordata,Scorpaeniformes,Gasterosteidae,Culaea,inconstans,Culaea_inconstans,16SMOL2
-Invertebrate,Mollusca,Unionida,Unionidae,Utterbackia,imbecilis,Utterbackia_imbecilis,16SMOL2
-Invertebrate,Annelida,Hirudinida,Hirudinidae,Macrobdella,decora,Macrobdella_decora,B2
-Invertebrate,Arthropoda,Calanoida,Temoridae,Eurytemora,affinis,Eurytemora_affinis,B2
-Invertebrate,Arthropoda,Cyclopoida,Cyclopidae,Acanthocyclops,brevispinosus,Acanthocyclops_brevispinosus,B2
-Invertebrate,Arthropoda,Cyclopoida,Cyclopidae,Cyclops,,Cyclops_sp,B2
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,B2
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,longirostris,Bosmina_longirostris,B2
-Invertebrate,Arthropoda,Diplostraca,Chydoridae,Chydorus,brevilabris,Chydorus_brevilabris,B2
-Invertebrate,Arthropoda,Diptera,Chironomidae,Dicrotendipes,,Dicrotendipes_sp,B2
-Invertebrate,Arthropoda,Diptera,Chironomidae,Paratanytarsus,grimmii,Paratanytarsus_grimmii,B2
-Invertebrate,Arthropoda,Lepidoptera,Crambidae,Acentria,ephemerella,Acentria_ephemerella,B2
-Fish,Chordata,Cypriniformes,Catostomidae,Catostomus,commersonii,Catostomus_commersonii,B2
-Fish,Chordata,Lepisosteiformes,Lepisosteidae,Lepisosteus,osseus,Lepisosteus_osseus,B2
-Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,B2
-Fish,Chordata,Petromyzontiformes,Petromyzontidae,Petromyzon,marinus,Petromyzon_marinus,B2
-Invertebrate,Cnidaria,Anthoathecata,Hydridae,Hydra,circumcincta,Hydra_circumcincta,B2
-Invertebrate,Cnidaria,Anthoathecata,Hydridae,Hydra,hymanae,Hydra_hymanae,B2
-Invertebrate,Mollusca,Unionida,Unionidae,Elliptio,complanata,Elliptio_complanata,B2
-Algae,Ochrophyta,Stephanodiscales,Stephanodiscaceae,Pantocsekiella,ocellata,Cyclotella_ocellata,B2
-Invertebrate,Porifera,Spongillida,Spongillidae,Eunapius,fragilis,Eunapius_fragilis,B2
-Invertebrate,Porifera,Spongillida,Spongillidae,Spongilla,lacustris,Spongilla_lacustris,B2
-Rotifer,Rotifera,Ploima,Brachionidae,Keratella,cochlearis,Keratella_cochlearis,B2
-Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,dolichoptera,Polyarthra_dolichoptera,B2
-Fish,Chordata,Acipenseriformes,Acipenseridae,Acipenser,fulvescens,Acipenser_fulvescens,COIFish
-Fish,Chordata,Anguiliformes,Anguillidae,Anguilla,rostrata,Anguilla_rostrata,COIFish
-Bird,Chordata,Anseriformes,Anatidae,Anas,platyrhynchos,Anas_platyrhynchos,COIFish
-Mammal,Chordata,Carnivora,Procyonidae,Procyon,lotor,Procyon_lotor,COIFish
-Fish,Chordata,Cypriniformes,Catostomidae,Catostomus,commersonii,Catostomus_commersonii,COIFish
-Fish,Chordata,Cypriniformes,Catostomidae,Moxostoma,anisurum,Moxostoma_anisurum,COIFish
-Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,COIFish
-Fish,Chordata,Cypriniformes,Leuciscidae,Hybognathus,regius,Hybognathus_regius,COIFish
-Fish,Chordata,Cypriniformes,Leuciscidae,Notemigonus,crysoleucas,Notemigonus_crysoleucas,COIFish
-Fish,Chordata,Cypriniformes,Leuciscidae,Notropis,heterodon,Notropis_heterodon,COIFish
-Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,promelas,Pimephales_promelas,COIFish
-Fish,Chordata,Cypriniformes,Leuciscidae,Semotilus,atromaculatus,Semotilus_atromaculatus,COIFish
-Fish,Chordata,Cyprinodontiformes,Fundulidae,Fundulus,diaphanus,Fundulus_diaphanus,COIFish
-Fish,Chordata,Esociformes,Esocidae,Esox,lucius,Esox_lucius,COIFish
-Fish,Chordata,Esociformes,Umbridae,Umbra,limi,Umbra_limi,COIFish
-Fish,Chordata,Gobiiformes,Gobiidae,Neogobius,melanostomus,Neogobius_melanostomus,COIFish
-Fish,Chordata,Osmeriformes,Osmeridae,Osmerus,mordax,Osmerus_mordax,COIFish
-Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,COIFish
-Fish,Chordata,Perciformes,Centrarchidae,Lepomis,gibbosus,Lepomis_gibbosus,COIFish
-Fish,Chordata,Perciformes,Centrarchidae,Micropterus,dolomieu,Micropterus_dolomieu,COIFish
-Fish,Chordata,Perciformes,Centrarchidae,Micropterus,salmoides,Micropterus_salmoides,COIFish
-Fish,Chordata,Perciformes,Centrarchidae,Pomoxis,nigromaculatus,Pomoxis_nigromaculatus,COIFish
-Fish,Chordata,Perciformes,Moronidae,Morone,chrysops,Morone_chrysops,COIFish
-Fish,Chordata,Perciformes,Percidae,Perca,flavescens,Perca_flavescens,COIFish
-Fish,Chordata,Perciformes,Percidae,Sander,vitreus,Sander_vitreus,COIFish
-Mammal,Chordata,Rodentia,Castoridae,Castor,canadensis,Castor_canadensis,COIFish
-Fish,Chordata,Scorpaeniformes,Gasterosteidae,Culaea,inconstans,Culaea_inconstans,COIFish
-Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,natalis,Ameiurus_natalis,COIFish
-Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,nebulosus,Ameiurus_nebulosus,COIFish
-Fish,Chordata,Siluriformes,Ictaluridae,Noturus,gyrinus,Noturus_gyrinus,COIFish
-Turtle,Chordata,Testudines,Kinosternidae,Sternotherus,odoratus,Sternotherus_odoratus,COIFish
-Fish,Chordata,Acanthuriformes,Sciaenidae,Aplodinotus,grunniens,Aplodinotus_grunniens,COIFishdegen
-Fish,Chordata,Acipenseriformes,Acipenseridae,Acipenser,fulvescens,Acipenser_fulvescens,COIFishdegen
-Fish,Chordata,Amiiformes,Amiidae,Amia,calva,Amia_calva,COIFishdegen
-Fish,Chordata,Anguiliformes,Anguillidae,Anguilla,rostrata,Anguilla_rostrata,COIFishdegen
-Bird,Chordata,Anseriformes,Anatidae,Anas,,Anas_sp,COIFishdegen
-Mammal,Chordata,Artiodactyla,Suidae,Sus,scrofa,Sus_scrofa,COIFishdegen
-Fish,Chordata,Cypriniformes,Catostomidae,Catostomus,commersonii,Catostomus_commersonii,COIFishdegen
-Fish,Chordata,Cypriniformes,Catostomidae,Moxostoma,anisurum,Moxostoma_anisurum,COIFishdegen
-Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,COIFishdegen
-Fish,Chordata,Cypriniformes,Leuciscidae,Notemigonus,crysoleucas,Notemigonus_crysoleucas,COIFishdegen
-Fish,Chordata,Cypriniformes,Leuciscidae,Notropis,heterodon,Notropis_heterodon,COIFishdegen
-Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,notatus,Pimephales_notatus,COIFishdegen
-Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,promelas,Pimephales_promelas,COIFishdegen
-Fish,Chordata,Cypriniformes,Leuciscidae,Semotilus,atromaculatus,Semotilus_atromaculatus,COIFishdegen
-Fish,Chordata,Cyprinodontiformes,Fundulidae,Fundulus,diaphanus,Fundulus_diaphanus,COIFishdegen
-Fish,Chordata,Esociformes,Esocidae,Esox,lucius,Esox_lucius,COIFishdegen
-Fish,Chordata,Esociformes,Umbridae,Umbra,limi,Umbra_limi,COIFishdegen
-Bird,Chordata,Galliformes,Phasianidae,Gallus,gallus,Gallus_gallus,COIFishdegen
-Fish,Chordata,Gobiiformes,Gobiidae,Neogobius,melanostomus,Neogobius_melanostomus,COIFishdegen
-Fish,Chordata,Gobiiformes,Gobiidae,Proterorhinus,semilunaris,Proterorhinus_semilunaris,COIFishdegen
-Bird,Chordata,Gruiformes,Rallidae,Rallus,limicola,Rallus_limicola,COIFishdegen
-Fish,Chordata,Lepisosteiformes,Lepisosteidae,Lepisosteus,osseus,Lepisosteus_osseus,COIFishdegen
-Fish,Chordata,Osmeriformes,Osmeridae,Osmerus,mordax,Osmerus_mordax,COIFishdegen
-Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,COIFishdegen
-Fish,Chordata,Perciformes,Centrarchidae,Lepomis,gibbosus,Lepomis_gibbosus,COIFishdegen
-Fish,Chordata,Perciformes,Centrarchidae,Micropterus,dolomieu,Micropterus_dolomieu,COIFishdegen
-Fish,Chordata,Perciformes,Centrarchidae,Micropterus,salmoides,Micropterus_salmoides,COIFishdegen
-Fish,Chordata,Perciformes,Moronidae,Morone,chrysops,Morone_chrysops,COIFishdegen
-Fish,Chordata,Perciformes,Percidae,Etheostoma,olmstedi,Etheostoma_olmstedi,COIFishdegen
-Fish,Chordata,Perciformes,Percidae,Perca,flavescens,Perca_flavescens,COIFishdegen
-Fish,Chordata,Perciformes,Percidae,Sander,vitreus,Sander_vitreus,COIFishdegen
-Fish,Chordata,Petromyzontiformes,Petromyzontidae,Petromyzon,marinus,Petromyzon_marinus,COIFishdegen
-Mammal,Chordata,Rodentia,Castoridae,Castor,canadensis,Castor_canadensis,COIFishdegen
-Mammal,Chordata,Rodentia,Cricetidae,Ondatra,zibethicus,Ondatra_zibethicus,COIFishdegen
-Fish,Chordata,Salmoniformes,Salmonidae,Coregonus,clupeaformis,Coregonus_clupeaformis,COIFishdegen
-Fish,Chordata,Scorpaeniformes,Gasterosteidae,Culaea,inconstans,Culaea_inconstans,COIFishdegen
-Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,natalis,Ameiurus_natalis,COIFishdegen
-Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,nebulosus,Ameiurus_nebulosus,COIFishdegen
-Turtle,Chordata,Testudines,Chelydridae,Chelydra,serpentina,Chelydra_serpentina,COIFishdegen
-Turtle,Chordata,Testudines,Kinosternidae,Sternotherus,odoratus,Sternotherus_odoratus,COIFishdegen
-Invertebrate,Annelida,Crassiclitellata,Lumbricidae,Octolasion,tyrtaeum,Octolasion_tyrtaeum,fwhEPTD
-Invertebrate,Annelida,Hirudinida,Hirudinidae,Macrobdella,decora,Macrobdella_decora,fwhEPTD
-Invertebrate,Annelida,Tubificida,Naididae,Arcteonais,lomondi,Arcteonais_lomondi,fwhEPTD
-Invertebrate,Annelida,Tubificida,Naididae,Chaetogaster,diaphanus,Chaetogaster_diaphanus,fwhEPTD
-Invertebrate,Annelida,Tubificida,Naididae,Chaetogaster,diastrophus,Chaetogaster_diastrophus,fwhEPTD
-Invertebrate,Annelida,Tubificida,Naididae,Ilyodrilus,templetoni,Ilyodrilus_templetoni,fwhEPTD
-Invertebrate,Annelida,Tubificida,Naididae,Nais,communis,Nais_communis,fwhEPTD
-Invertebrate,Annelida,Tubificida,Naididae,Slavina,appendiculata,Slavina_appendiculata,fwhEPTD
-Invertebrate,Annelida,Tubificida,Naididae,Specaria,josinae,Specaria_josinae,fwhEPTD
-Invertebrate,Annelida,Tubificida,Naididae,Stylaria,lacustris,Stylaria_lacustris,fwhEPTD
-Invertebrate,Arthropoda,Amphipoda,Hyalellidae,Hyalella,azteca,Hyalella_azteca,fwhEPTD
-Invertebrate,Arthropoda,Calanoida,Pontellidae,,,Pontellidae,fwhEPTD
-Invertebrate,Arthropoda,Calanoida,Temoridae,Eurytemora,affinis,Eurytemora_affinis,fwhEPTD
-Invertebrate,Arthropoda,Cyclopoida,Cyclopidae,Acanthocyclops,,Acanthocyclops_sp,fwhEPTD
-Invertebrate,Arthropoda,Cyclopoida,Cyclopidae,Cyclops,,Cyclops_sp,fwhEPTD
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,fwhEPTD
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,longirostris,Bosmina_longirostris,fwhEPTD
-Invertebrate,Arthropoda,Diplostraca,Chydoridae,Chydorus,brevilabris,Chydorus_brevilabris,fwhEPTD
-Invertebrate,Arthropoda,Diplostraca,Eurycercidae,Eurycercus,longirostris,Eurycercus_longirostris,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chaoboridae,Chaoborus,punctipennis,Chaoborus_punctipennis,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Ablabesmyia,americana,Ablabesmyia_americana,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Chironomus,dilutus,Chironomus_dilutus,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Cladotanytarsus,nigrovittatus,Cladotanytarsus_nigrovittatus,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Corynoneura,,Corynoneura_sp,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Cricotopus,bicinctus,Cricotopus_bicinctus,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Cricotopus,triannulatus,Cricotopus_triannulatus,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Cryptochironomus,,Cryptochironomus_sp,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Dicrotendipes,modestus,Dicrotendipes_modestus,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Dicrotendipes,tritomus,Dicrotendipes_tritomus,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Einfeldia,,Einfeldia_sp,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Microtendipes,,Microtendipes_sp,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Orthocladius,oliveri,Orthocladius_oliveri,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Parachironomus,tenuicaudatus,Parachironomus_tenuicaudatus,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Paratanytarsus,,Paratanytarsus_sp,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Polypedilum,,Polypedilum_sp,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Procladius,denticulatus,Procladius_denticulatus,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Rheotanytarsus,exiguus,Rheotanytarsus_exiguus,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Tanytarsus,glabrescens,Tanytarsus_glabrescens,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Tanytarsus,mendax,Tanytarsus_mendax,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Chironomidae,Thienemanniella,xena,Thienemanniella_xena,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Drosophilidae,Drosophila,suzukii,Drosophila_suzukii,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Limoniidae,Molophilus,hirtipennis,Molophilus_hirtipennis,fwhEPTD
-Invertebrate,Arthropoda,Diptera,Stratiomyidae,Odontomyia,cincta,Odontomyia_cincta,fwhEPTD
-Invertebrate,Arthropoda,Ephemeroptera,Caenidae,Caenis,diminuta,Caenis_diminuta,fwhEPTD
-Invertebrate,Arthropoda,Ephemeroptera,Caenidae,Caenis,latipennis,Caenis_latipennis,fwhEPTD
-Invertebrate,Arthropoda,Ephemeroptera,Ephemerellidae,Eurylophella,lutulenta,Eurylophella_lutulenta,fwhEPTD
-Invertebrate,Arthropoda,Ephemeroptera,Ephemeridae,Hexagenia,limbata,Hexagenia_limbata,fwhEPTD
-Invertebrate,Arthropoda,Hemiptera,Belostomatidae,Lethocerus,,Lethocerus_sp,fwhEPTD
-Invertebrate,Arthropoda,Hemiptera,Corixidae,Sigara,compressoidea,Sigara_compressoidea,fwhEPTD
-Invertebrate,Arthropoda,Hemiptera,Nepidae,Ranatra,fusca,Ranatra_fusca,fwhEPTD
-Invertebrate,Arthropoda,Lepidoptera,Crambidae,Acentria,ephemerella,Acentria_ephemerella,fwhEPTD
-Invertebrate,Arthropoda,Lepidoptera,Erebidae,Lymantria,dispar,Lymantria_dispar,fwhEPTD
-Invertebrate,Arthropoda,Podocopida,Cyprididae,Cypridopsis,vidua,Cypridopsis_vidua,fwhEPTD
-Invertebrate,Arthropoda,Podocopida,Darwinulidae,Darwinula,stevensoni,Darwinula_stevensoni,fwhEPTD
-Invertebrate,Mollusca,Basommatophora,Physidae,Physella,acuta,Physella_acuta,fwhEPTD
-Invertebrate,Mollusca,Heterostropha,Valvatidae,Valvata,tricarinata,Valvata_tricarinata,fwhEPTD
-Invertebrate,Mollusca,Unionida,Unionidae,Elliptio,complanata,Elliptio_complanata,fwhEPTD
-Invertebrate,Porifera,Spongillida,Spongillidae,Eunapius,fragilis,Eunapius_fragilis,fwhEPTD
-Invertebrate,Porifera,Spongillida,Spongillidae,Heteromeyenia,,Heteromeyenia_sp,fwhEPTD
-Invertebrate,Porifera,Spongillida,Spongillidae,Spongilla,lacustris,Spongilla_lacustris,fwhEPTD
-Rotifer,Rotifera,Ploima,Brachionidae,Keratella,cochlearis,Keratella_cochlearis,fwhEPTD
-Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,dolichoptera,Polyarthra_dolichoptera,fwhEPTD
-Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,vulgaris,Polyarthra_vulgaris,fwhEPTD
-Amoebozoa,Tubulinea,Arcellinida,Arcellidae,Arcella,conica,Arcella_conica,fwhEPTD
-Invertebrate,Annelida,Hirudinida,Hirudinidae,Macrobdella,decora,Macrobdella_decora,Leray
-Invertebrate,Annelida,Tubificida,Naididae,Arcteonais,lomondi,Arcteonais_lomondi,Leray
-Invertebrate,Annelida,Tubificida,Naididae,Chaetogaster,diaphanus,Chaetogaster_diaphanus,Leray
-Invertebrate,Annelida,Tubificida,Naididae,Chaetogaster,diastrophus,Chaetogaster_diastrophus,Leray
-Invertebrate,Annelida,Tubificida,Naididae,Dero,obtusa,Dero_obtusa,Leray
-Invertebrate,Annelida,Tubificida,Naididae,Slavina,appendiculata,Slavina_appendiculata,Leray
-Invertebrate,Annelida,Tubificida,Naididae,Stylaria,lacustris,Stylaria_lacustris,Leray
-Invertebrate,Arthropoda,Amphipoda,Hyalellidae,Hyalella,azteca,Hyalella_azteca,Leray
-Invertebrate,Arthropoda,Calanoida,Temoridae,Eurytemora,affinis,Eurytemora_affinis,Leray
-Invertebrate,Arthropoda,Cyclopoida,Cyclopidae,Acanthocyclops,brevispinosus,Acanthocyclops_brevispinosus,Leray
-Invertebrate,Arthropoda,Cyclopoida,Cyclopidae,Cyclops,,Cyclops_sp,Leray
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,Leray
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,longirostris,Bosmina_longirostris,Leray
-Invertebrate,Arthropoda,Diplostraca,Chydoridae,Chydorus,brevilabris,Chydorus_brevilabris,Leray
-Invertebrate,Arthropoda,Diptera,Chaoboridae,Chaoborus,punctipennis,Chaoborus_punctipennis,Leray
-Invertebrate,Arthropoda,Diptera,Chironomidae,Dicrotendipes,,Dicrotendipes_sp,Leray
-Invertebrate,Arthropoda,Diptera,Chironomidae,Procladius,denticulatus,Procladius_denticulatus,Leray
-Invertebrate,Arthropoda,Ephemeroptera,Caenidae,Caenis,latipennis,Caenis_latipennis,Leray
-Invertebrate,Arthropoda,Hemiptera,Nepidae,Ranatra,fusca,Ranatra_fusca,Leray
-Invertebrate,Arthropoda,Podocopida,Cyprididae,Cypridopsis,vidua,Cypridopsis_vidua,Leray
-Fish,Chordata,Anguiliformes,Anguillidae,Anguilla,rostrata,Anguilla_rostrata,Leray
-Amphibian,Chordata,Anura,Ranidae,Lithobates,clamitans,Lithobates_clamitans,Leray
-Amphibian,Chordata,Anura,Ranidae,Lithobates,pipiens,Lithobates_pipiens,Leray
-Fish,Chordata,Cypriniformes,Catostomidae,Catostomus,,Catostomus_sp,Leray
-Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,Leray
-Fish,Chordata,Lepisosteiformes,Lepisosteidae,Lepisosteus,osseus,Lepisosteus_osseus,Leray
-Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,Leray
-Fish,Chordata,Petromyzontiformes,Petromyzontidae,Petromyzon,marinus,Petromyzon_marinus,Leray
-Invertebrate,Cnidaria,Anthoathecata,Hydridae,Hydra,circumcincta,Hydra_circumcincta,Leray
-Invertebrate,Cnidaria,Anthoathecata,Hydridae,Hydra,hymanae,Hydra_hymanae,Leray
-Invertebrate,Cnidaria,Anthoathecata,Hydridae,Hydra,oligactis,Hydra_oligactis,Leray
-Invertebrate,Cnidaria,Anthoathecata,Hydridae,Hydra,viridissima,Hydra_viridissima,Leray
-Invertebrate,Cnidaria,Anthoathecata,Hydridae,Hydra,vulgaris,Hydra_vulgaris,Leray
-Alveolata,Dinoflagellates,Gonyaulacales,Pyrocystaceae,Alexandrium,,Alexandrium_sp,Leray
-Alveolata,Dinoflagellates,Gymnodiniales,Gymnodiniaceae,Gymnodinium,,Gymnodinium_sp,Leray
-Invertebrate,Mollusca,Myida,Dreissenidae,Dreissena,bugensis,Dreissena_bugensis,Leray
-Invertebrate,Mollusca,Myida,Dreissenidae,Dreissena,polymorpha,Dreissena_polymorpha,Leray
-Invertebrate,Mollusca,Unionida,Unionidae,Elliptio,complanata,Elliptio_complanata,Leray
-Algae,Ochrophyta,Stephanodiscales,Stephanodiscaceae,Pantocsekiella,ocellata,Cyclotella_ocellata,Leray
-Invertebrate,Platyhelminthes,Macrostomida,Microstomidae,Microstomum,lineare,Microstomum_lineare,Leray
-Invertebrate,Porifera,Spongillida,Spongillidae,Ephydatia,,Ephydatia_sp,Leray
-Invertebrate,Porifera,Spongillida,Spongillidae,Eunapius,fragilis,Eunapius_fragilis,Leray
-Invertebrate,Porifera,Spongillida,Spongillidae,Spongilla,lacustris,Spongilla_lacustris,Leray
-Rotifer,Rotifera,Ploima,Brachionidae,Keratella,cochlearis,Keratella_cochlearis,Leray
-Rotifer,Rotifera,Ploima,Gastropidae,Ascomorpha,,Ascomorpha_sp,Leray
-Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,dolichoptera,Polyarthra_dolichoptera,Leray
-Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,vulgaris,Polyarthra_vulgaris,Leray
-Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,kitina,Synchaeta_kitina,Leray
-Invertebrate,Annelida,Hirudinida,Hirudinidae,Macrobdella,decora,Macrobdella_decora,MG2
-Invertebrate,Annelida,Tubificida,Naididae,Arcteonais,lomondi,Arcteonais_lomondi,MG2
-Invertebrate,Annelida,Tubificida,Naididae,Chaetogaster,diaphanus,Chaetogaster_diaphanus,MG2
-Invertebrate,Annelida,Tubificida,Naididae,Dero,digitata,Dero_digitata,MG2
-Invertebrate,Annelida,Tubificida,Naididae,Dero,obtusa,Dero_obtusa,MG2
-Invertebrate,Annelida,Tubificida,Naididae,Nais,,Nais_sp,MG2
-Invertebrate,Annelida,Tubificida,Naididae,Slavina,appendiculata,Slavina_appendiculata,MG2
-Invertebrate,Annelida,Tubificida,Naididae,Stylaria,lacustris,Stylaria_lacustris,MG2
-Invertebrate,Arthropoda,Amphipoda,Hyalellidae,Hyalella,azteca,Hyalella_azteca,MG2
-Invertebrate,Arthropoda,Calanoida,Diaptomidae,Skistodiaptomus,oregonensis,Skistodiaptomus_oregonensis,MG2
-Invertebrate,Arthropoda,Calanoida,Temoridae,Eurytemora,carolleeae,Eurytemora_carolleeae,MG2
-Invertebrate,Arthropoda,Cyclopoida,Cyclopidae,Cyclops,,Cyclops_sp,MG2
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,freyi,Bosmina_freyi,MG2
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,MG2
-Invertebrate,Arthropoda,Diplostraca,Bosminidae,Bosmina,longirostris,Bosmina_longirostris,MG2
-Invertebrate,Arthropoda,Diplostraca,Chydoridae,Chydorus,brevilabris,Chydorus_brevilabris,MG2
-Invertebrate,Arthropoda,Diplostraca,Eurycercidae,Eurycercus,longirostris,Eurycercus_longirostris,MG2
-Invertebrate,Arthropoda,Diplostraca,Macrotrichidae,Drepanothrix,dentata,Drepanothrix_dentata,MG2
-Invertebrate,Arthropoda,Diptera,Chaoboridae,Chaoborus,punctipennis,Chaoborus_punctipennis,MG2
-Invertebrate,Arthropoda,Diptera,Chironomidae,Cladotanytarsus,nigrovittatus,Cladotanytarsus_nigrovittatus,MG2
-Invertebrate,Arthropoda,Diptera,Chironomidae,Dicrotendipes,,Dicrotendipes_sp,MG2
-Invertebrate,Arthropoda,Diptera,Chironomidae,Procladius,denticulatus,Procladius_denticulatus,MG2
-Invertebrate,Arthropoda,Diptera,Stratiomyidae,Odontomyia,cincta,Odontomyia_cincta,MG2
-Invertebrate,Arthropoda,Ephemeroptera,Caenidae,Caenis,latipennis,Caenis_latipennis,MG2
-Invertebrate,Arthropoda,Podocopida,Cyprididae,Cypridopsis,vidua,Cypridopsis_vidua,MG2
-Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,variabilis,Chlorella_variabilis,MG2
-Fish,Chordata,Anguiliformes,Anguillidae,Anguilla,rostrata,Anguilla_rostrata,MG2
-Amphibian,Chordata,Anura,Ranidae,Lithobates,catesbeianus,Lithobates_catesbeianus,MG2
-Amphibian,Chordata,Anura,Ranidae,Lithobates,clamitans,Lithobates_clamitans,MG2
-Fish,Chordata,Cypriniformes,Catostomidae,Catostomus,commersonii,Catostomus_commersonii,MG2
-Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,MG2
-Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,neogaeus,Chrosomus_neogaeus,MG2
-Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,promelas,Pimephales_promelas,MG2
-Fish,Chordata,Cypriniformes,Leuciscidae,Semotilus,atromaculatus,Semotilus_atromaculatus,MG2
-Fish,Chordata,Gobiiformes,Gobiidae,Neogobius,melanostomus,Neogobius_melanostomus,MG2
-Fish,Chordata,Gobiiformes,Gobiidae,Proterorhinus,semilunaris,Proterorhinus_semilunaris,MG2
-Fish,Chordata,Lepisosteiformes,Lepisosteidae,Lepisosteus,osseus,Lepisosteus_osseus,MG2
-Fish,Chordata,Osmeriformes,Osmeridae,Osmerus,mordax,Osmerus_mordax,MG2
-Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,MG2
-Fish,Chordata,Perciformes,Centrarchidae,Micropterus,dolomieu,Micropterus_dolomieu,MG2
-Fish,Chordata,Perciformes,Centrarchidae,Micropterus,salmoides,Micropterus_salmoides,MG2
-Fish,Chordata,Perciformes,Moronidae,Morone,chrysops,Morone_chrysops,MG2
-Fish,Chordata,Perciformes,Percidae,Perca,flavescens,Perca_flavescens,MG2
-Fish,Chordata,Petromyzontiformes,Petromyzontidae,Petromyzon,marinus,Petromyzon_marinus,MG2
-Mammal,Chordata,Rodentia,Castoridae,Castor,canadensis,Castor_canadensis,MG2
-Mammal,Chordata,Rodentia,Cricetidae,Ondatra,zibethicus,Ondatra_zibethicus,MG2
-Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,natalis,Ameiurus_natalis,MG2
-Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,nebulosus,Ameiurus_nebulosus,MG2
-Invertebrate,Cnidaria,Anthoathecata,Cordylophoridae,Cordylophora,caspia,Cordylophora_caspia,MG2
-Invertebrate,Cnidaria,Anthoathecata,Hydridae,Hydra,hymanae,Hydra_hymanae,MG2
-Algae,Haptophyta,Prymnesiales,Chrysochromulinaceae,Chrysochromulina,,Chrysochromulina_sp,MG2
-Invertebrate,Mollusca,Unionida,Unionidae,Utterbackia,imbecilis,Utterbackia_imbecilis,MG2
-Oomycetes,Oomycota,Pythiales,Pythiaceae,Pythium,inflatum,Pythium_inflatum,MG2
-Oomycetes,Oomycota,Saprolegniales,Saprolegniaceae,Aphanomyces,laevis,Aphanomyces_laevis,MG2
-Oomycetes,Oomycota,Saprolegniales,Saprolegniaceae,Saprolegnia,,Saprolegnia_sp,MG2
-Rotifer,Rotifera,Ploima,Brachionidae,Keratella,cochlearis,Keratella_cochlearis,MG2
-Rotifer,Rotifera,Ploima,Gastropidae,Ascomorpha,,Ascomorpha_sp,MG2
-Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,dolichoptera,Polyarthra_dolichoptera,MG2
-Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,vulgaris,Polyarthra_vulgaris,MG2
-Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,kitina,Synchaeta_kitina,MG2
-Fish,Chordata,Acipenseriformes,Acipenseridae,Acipenser,fulvescens,Acipenser_fulvescens,MiFish
-Fish,Chordata,Anguiliformes,Anguillidae,Anguilla,rostrata,Anguilla_rostrata,MiFish
-Bird,Chordata,Anseriformes,Anatidae,Anas,platyrhynchos,Anas_platyrhynchos,MiFish
-Amphibian,Chordata,Anura,Ranidae,Lithobates,catesbeianus,Lithobates_catesbeianus,MiFish
-Fish,Chordata,Cypriniformes,Catostomidae,Catostomus,commersonii,Catostomus_commersonii,MiFish
-Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,MiFish
-Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,neogaeus,Chrosomus_neogaeus,MiFish
-Fish,Chordata,Cypriniformes,Leuciscidae,Notropis,heterodon,Notropis_heterodon,MiFish
-Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,promelas,Pimephales_promelas,MiFish
-Fish,Chordata,Cypriniformes,Leuciscidae,Semotilus,atromaculatus,Semotilus_atromaculatus,MiFish
-Fish,Chordata,Cyprinodontiformes,Fundulidae,Fundulus,diaphanus,Fundulus_diaphanus,MiFish
-Fish,Chordata,Gobiiformes,Gobiidae,Neogobius,melanostomus,Neogobius_melanostomus,MiFish
-Fish,Chordata,Gobiiformes,Gobiidae,Proterorhinus,semilunaris,Proterorhinus_semilunaris,MiFish
-Fish,Chordata,Osmeriformes,Osmeridae,Osmerus,mordax,Osmerus_mordax,MiFish
-Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,MiFish
-Fish,Chordata,Perciformes,Centrarchidae,Lepomis,macrochirus,Lepomis_macrochirus,MiFish
-Fish,Chordata,Perciformes,Centrarchidae,Micropterus,dolomieu,Micropterus_dolomieu,MiFish
-Fish,Chordata,Perciformes,Centrarchidae,Micropterus,salmoides,Micropterus_salmoides,MiFish
-Fish,Chordata,Perciformes,Moronidae,Morone,chrysops,Morone_chrysops,MiFish
-Fish,Chordata,Perciformes,Percidae,Sander,vitreus,Sander_vitreus,MiFish
-Fish,Chordata,Petromyzontiformes,Petromyzontidae,Petromyzon,marinus,Petromyzon_marinus,MiFish
-Mammal,Chordata,Rodentia,Castoridae,Castor,canadensis,Castor_canadensis,MiFish
-Mammal,Chordata,Rodentia,Cricetidae,Ondatra,zibethicus,Ondatra_zibethicus,MiFish
-Fish,Chordata,Scorpaeniformes,Gasterosteidae,Culaea,inconstans,Culaea_inconstans,MiFish
-Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,natalis,Ameiurus_natalis,MiFish
-Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,nebulosus,Ameiurus_nebulosus,MiFish
-Plant,Bryophyta,Polytrichales,Polytrichaceae,Polytrichum,brachymitrium,Polytrichum_brachymitrium,orbcl2
-Plant,Charophyceae,Charales,Characeae,Chara,,Chara_sp,orbcl2
-Algae,Chlorophyta,Chaetophorales,Chaetophoraceae,Coccobotrys,verrucariae,Coccobotrys_verrucariae,orbcl2
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Carteria,cerasiformis,Carteria_cerasiformis,orbcl2
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,bilatus,Chlamydomonas_bilatus,orbcl2
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,fasciata,Chlamydomonas_fasciata,orbcl2
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,pumilio,Chlamydomonas_pumilio,orbcl2
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,schloesseri,Chlamydomonas_schloesseri,orbcl2
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Lobochlamys,segnis,Lobochlamys_segnis,orbcl2
-Algae,Chlorophyta,Chlamydomonadales,Chlorochytriaceae,Chlorochytrium,lemnae,Chlorochytrium_lemnae,orbcl2
-Algae,Chlorophyta,Chlamydomonadales,Phacotaceae,Phacotus,lenticularis,Phacotus_lenticularis,orbcl2
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Colemanosphaera,angeleri,Colemanosphaera_angeleri,orbcl2
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Pandorina,unicocca,Pandorina_unicocca,orbcl2
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,,Volvox_sp,orbcl2
-Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,variabilis,Chlorella_variabilis,orbcl2
-Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,vulgaris,Chlorella_vulgaris,orbcl2
-Algae,Chlorophyta,Chlorellales,Chlorellaceae,Meyerella,planktonica,Meyerella_planktonica,orbcl2
-Algae,Chlorophyta,Sphaeropleales,Hydrodictyaceae,Stauridium,tetras,Stauridium_tetras,orbcl2
-Algae,Chlorophyta,Sphaeropleales,Mychonastaceae,Mychonastes,homosphaera,Mychonastes_homosphaera,orbcl2
-Algae,Chlorophyta,Sphaeropleales,Mychonastaceae,Pseudodictyosphaerium,jurisii,Pseudodictyosphaerium_jurisii,orbcl2
-Algae,Chlorophyta,Sphaeropleales,Neochloridaceae,Botryosphaerella,sudetica,Botryosphaerella_sudetica,orbcl2
-Algae,Chlorophyta,Sphaeropleales,Scenedesmaceae,Tetradesmus,dimorphus,Tetradesmus_dimorphus,orbcl2
-Algae,Chlorophyta,Trebouxiales,Botryococcaceae_,Botryococcus,braunii,Botryococcus_braunii,orbcl2
-Algae,Chlorophyta,Trebouxiophyceae_ordo_incertae_sedis,Coccomyxaceae_,Choricystis,,Choricystis_sp,orbcl2
-Plant,Magnoliopsida,Alismatales,Alismataceae,Sagittaria,latifolia,Sagittaria_latifolia,orbcl2
-Plant,Magnoliopsida,Alismatales,Araceae,Spirodela,polyrhiza,Spirodela_polyrhiza,orbcl2
-Plant,Magnoliopsida,Alismatales,Hydrocharitaceae,Elodea,,Elodea_sp,orbcl2
-Plant,Magnoliopsida,Alismatales,Hydrocharitaceae,Najas,flexilis,Najas_flexilis,orbcl2
-Plant,Magnoliopsida,Alismatales,Hydrocharitaceae,Vallisneria,,Vallisneria_sp,orbcl2
-Plant,Magnoliopsida,Alismatales,Potamogetonaceae,Potamogeton,,Potamogeton_sp,orbcl2
-Plant,Magnoliopsida,Alismatales,Potamogetonaceae,Stuckenia,,Stuckenia_sp,orbcl2
-Plant,Magnoliopsida,Commelinales,Pontederiaceae,Heteranthera,dubia,Heteranthera_dubia,orbcl2
-Plant,Magnoliopsida,Fagales,Betulaceae,Carpinus,caroliniana,Carpinus_caroliniana,orbcl2
-Plant,Magnoliopsida,Lamiales,Lentibulariaceae,Utricularia,,Utricularia_sp,orbcl2
-Plant,Magnoliopsida,Malpighiales,Salicaceae,Salix,,Salix_sp,orbcl2
-Plant,Magnoliopsida,Myrtales,Lythraceae,Lythrum,salicaria,Lythrum_salicaria,orbcl2
-Plant,Magnoliopsida,Nymphaeales,Cabombaceae,Brasenia,schreberi,Brasenia_schreberi,orbcl2
-Plant,Magnoliopsida,Nymphaeales,Nymphaeaceae,Nuphar,,Nuphar_sp,orbcl2
-Plant,Magnoliopsida,Nymphaeales,Nymphaeaceae,Nymphaea,,Nymphaea_sp,orbcl2
-Plant,Magnoliopsida,Poales,Cyperaceae,Schoenoplectus,,Schoenoplectus_sp,orbcl2
-Plant,Magnoliopsida,Poales,Poaceae,,,Poaceae,orbcl2
-Plant,Magnoliopsida,Sapindales,Sapindaceae,Acer,,Acer_sp,orbcl2
-Plant,Magnoliopsida,Vitales,Vitaceae,Vitis,,Vitis_sp,orbcl2
-Algae,Streptophyta,Desmidiales,Closteriaceae,Closterium,ehrenbergii,Closterium_ehrenbergii,orbcl2
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,bioculatum,Cosmarium_bioculatum,orbcl2
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,difficile,Cosmarium_difficile,orbcl2
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,regnellii,Cosmarium_regnellii,orbcl2
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,sphagnicolum,Cosmarium_sphagnicolum,orbcl2
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,subprotumidum,Cosmarium_subprotumidum,orbcl2
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,tinctum,Cosmarium_tinctum,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Cosmocladium,,Cosmocladium_sp,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Desmidium,aptogonum,Desmidium_aptogonum,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Desmidium,baileyi,Desmidium_baileyi,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Hyalotheca,dissiliens,Hyalotheca_dissiliens,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Micrasterias,,Micrasterias_sp,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Spondylosium,panduriforme,Spondylosium_panduriforme,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Spondylosium,tetragonum,Spondylosium_tetragonum,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,clepsydra,Staurastrum_clepsydra,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,crenulatum,Staurastrum_crenulatum,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,lapponicum,Staurastrum_lapponicum,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,orbiculare,Staurastrum_orbiculare,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,punctulatum,Staurastrum_punctulatum,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,quadricornutum,Staurastrum_quadricornutum,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,sebaldii,Staurastrum_sebaldii,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,tetracerum,Staurastrum_tetracerum,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,brevispinus,Staurodesmus_brevispinus,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,dejectus,Staurodesmus_dejectus,orbcl2
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Xanthidium,,Xanthidium_sp,orbcl2
-Plant,Streptophyta,Osmundales,Osmundaceae,Osmunda,regalis,Osmunda_regalis,orbcl2
-Plant,Streptophyta,Osmundales,Osmundaceae,Osmundastrum,cinnamomeum,Osmundastrum_cinnamomeum,orbcl2
-Algae,Streptophyta,Zygnematales,Zygnemataceae,Spirogyra,tenuissima,Spirogyra_tenuissima,orbcl2
-Algae,Streptophyta,Zygnematales,Zygnemataceae,Spirogyra,weberi,Spirogyra_weberi,orbcl2
-Bacteria,Actinomycetota,Micrococcales,Microbacteriaceae,Planktoluna,,Planktoluna_sp,Uni16S
-Bacteria,Actinomycetota,Nanopelagicales,Nanopelagicaceae,Planktophila,,Planktophila_sp,Uni16S
-Bacteria,Alphaproteobacteria,Caulobacterales,,,,Caulobacterales,Uni16S
-Bacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Roseomonas,,Roseomonas_sp,Uni16S
-Bacteria,Alphaproteobacteria,Rhodospirillales,Azospirillaceae,Azospirillum,,Azospirillum_sp,Uni16S
-Bacteria,Alphaproteobacteria,Rickettsiales,Rickettsiales_genera_incertae_sedis,Intestinusbacter,,Intestinusbacter_sp,Uni16S
-Bacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Novosphingobium,,Novosphingobium_sp,Uni16S
-Bacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Sphingorhabdus,,Sphingorhabdus_sp,Uni16S
-Bacteria,Alphaproteobacteria,Sphingomonadales,Sphingosinicellaceae,Sandarakinorhabdus,,Sandarakinorhabdus_sp,Uni16S
-Bacteria,Bacillota,Clostridia,Clostridiaceae,Clostridium,,Clostridium_sp,Uni16S
-Bacteria,Bacteroidota,Chitinophagales,Chitinophagaceae,Sediminibacterium,,Sediminibacterium_sp,Uni16S
-Bacteria,Bacteroidota,Cytophagales,Cyclobacteriaceae,Algoriphagus,,Algoriphagus_sp,Uni16S
-Bacteria,Bacteroidota,Cytophagales,Spirosomaceae,Arcicella,,Arcicella_sp,Uni16S
-Bacteria,Bacteroidota,Cytophagales,Spirosomaceae,Flectobacillus,,Flectobacillus_sp,Uni16S
-Bacteria,Bacteroidota,Flavobacteriales,Flavobacteriaceae,Flavobacterium,,Flavobacterium_sp,Uni16S
-Bacteria,Betaproteobacteria,Burkholderiales,Burkholderiaceae,Polynucleobacter,,Polynucleobacter_sp,Uni16S
-Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Albidiferax,,Albidiferax_sp,Uni16S
-Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Aquabacterium,,Aquabacterium_sp,Uni16S
-Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Curvibacter,,Curvibacter_sp,Uni16S
-Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Limnohabitans,,Limnohabitans_sp,Uni16S
-Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Ramlibacter,,Ramlibacter_sp,Uni16S
-Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Rhodoferax,,Rhodoferax_sp,Uni16S
-Bacteria,Betaproteobacteria,Burkholderiales,Sphaerotilaceae,Aquincola,,Aquincola_sp,Uni16S
-Bacteria,Betaproteobacteria,Burkholderiales,Sphaerotilaceae,Leptothrix,,Leptothrix_sp,Uni16S
-Bacteria,Betaproteobacteria,Neisseriales,Chromobacteriaceae,Vogesella,,Vogesella_sp,Uni16S
-Bacteria,Betaproteobacteria,Nitrosomonadales,Methylophilaceae,Methylopumilus,,Methylopumilus_sp,Uni16S
-Bacteria,Betaproteobacteria,Rhodocyclales,Zoogloeaceae,Uliginosibacterium,,Uliginosibacterium_sp,Uni16S
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,carteri,Volvox_carteri,Uni16S
-Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,variabilis,Chlorella_variabilis,Uni16S
-Algae,Chlorophyta,Chlorodendrales,Chlorodendraceae,Tetraselmis,cordiformis,Tetraselmis_cordiformis,Uni16S
-Algae,Chlorophyta,Pyrenomonadales,Chroomonadaceae,Chroomonas,coerulea,Chroomonas_coerulea,Uni16S
-Algae,Chlorophyta,Pyrenomonadales,Geminigeraceae,Teleaulax,amphioxeia,Teleaulax_amphioxeia,Uni16S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,curvata,Cryptomonas_curvata,Uni16S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,ovata,Cryptomonas_ovata,Uni16S
-Cyanobacteria,Cyanobacteriota,Chroococcales,Microcystaceae,Radiocystis,,Radiocystis_sp,Uni16S
-Cyanobacteria,Cyanobacteriota,Nostocales,Gloeotrichiaceae,Gloeotrichia,echinulata,Gloeotrichia_echinulata,Uni16S
-Cyanobacteria,Cyanobacteriota,Nostocales,Nostocaceae,Anabaena,,Anabaena_sp,Uni16S
-Cyanobacteria,Cyanobacteriota,Pseudanabaenales,Pseudanabaenaceae,Pseudanabaena,,Pseudanabaena_sp,Uni16S
-Cyanobacteria,Cyanobacteriota,Synechococcales,Prochlorococcaceae,Cyanobium,,Cyanobium_sp,Uni16S
-Bacteria,Gammaproteobacteria,Aeromonadales,Aeromonadaceae,Aeromonas,,Aeromonas_sp,Uni16S
-Bacteria,Gammaproteobacteria,Chromatiales,Chromatiaceae,Rheinheimera,,Rheinheimera_sp,Uni16S
-Bacteria,Gammaproteobacteria,Methylococcales,Methylococcaceae,Methylobacter,,Methylobacter_sp,Uni16S
-Bacteria,Gammaproteobacteria,Methylococcales,Methylococcaceae,Methylomonas,,Methylomonas_sp,Uni16S
-Bacteria,Gammaproteobacteria,Pseudomonadales,Pseudomonadaceae,Pseudomonas,,Pseudomonas_sp,Uni16S
-Algae,Haptophyta,Prymnesiales,Chrysochromulinaceae,Chrysochromulina,,Chrysochromulina_sp,Uni16S
-Algae,Ochrophyta,Chaetocerotales,Acanthocerataceae,Acanthoceras,zachariasii,Acanthoceras_zachariasii,Uni16S
-Algae,Ochrophyta,Chromulinales,Dinobryaceae,Dinobryon,,Dinobryon_sp,Uni16S
-Algae,Ochrophyta,Chromulinales,Dinobryaceae,Epipyxis,,Epipyxis_sp,Uni16S
-Algae,Ochrophyta,Cymbellales,Cymbellaceae,Cymbella,subturgidula,Cymbella_subturgidula,Uni16S
-Algae,Ochrophyta,Cymbellales,Gomphonemataceae,Didymosphenia,geminata,Didymosphenia_geminata,Uni16S
-Algae,Ochrophyta,Eustigmatales,Chlorobotryaceae,Vischeria,,Vischeria_sp,Uni16S
-Algae,Ochrophyta,Fragilariales,_Fragilariaceae,Diatoma,tenuis,Diatoma_tenuis,Uni16S
-Algae,Ochrophyta,Goniochloridales,Goniochloridaceae,Trachydiscus,minutus,Trachydiscus_minutus,Uni16S
-Algae,Ochrophyta,Licmophorales,Ulnariaceae,Ulnaria,acus,Ulnaria_acus,Uni16S
-Algae,Ochrophyta,Surirellales,Surirellaceae,Cymatopleura,solea,Cymatopleura_solea,Uni16S
-Algae,Ochrophyta,Synurales,Mallomonadaceae,Synura,petersenii,Synura_petersenii,Uni16S
-Bacteria,Spirochaetota,Spirochaetales,Spirochaetaceae,Spirochaeta,,Spirochaeta_sp,Uni16S
-Algae,Streptophyta,Mesostigmatales,Mesostigmataceae,Mesostigma,viride,Mesostigma_viride,Uni16S
-Tardigrada,Tardigrada,Parachela,Hypsibiidae,Hypsibius,dujardini,Hypsibius_dujardini,Uni16S
-Bacteria,Verrucomicrobiota,,,,,Verrucomicrobiota,Uni16S
-Invertebrate,Annelida,Tubificida,Naididae,Nais,,Nais_sp,Uni18S
-Invertebrate,Annelida,Tubificida,Naididae,Stylaria,,Stylaria_sp,Uni18S
-Invertebrate,Arthropoda,Calanoida,Diaptomidae,Onychodiaptomus,sanguineus,Onychodiaptomus_sanguineus,Uni18S
-Invertebrate,Arthropoda,Calanoida,Temoridae,Eurytemora,,Eurytemora_sp,Uni18S
-Invertebrate,Arthropoda,Cyclopoida,Cyclopidae,Eucyclops,serrulatus,Eucyclops_serrulatus,Uni18S
-Invertebrate,Arthropoda,Cyclopoida,Cyclopidae,Mesocyclops,americanus,Mesocyclops_americanus,Uni18S
-Invertebrate,Arthropoda,Harpacticoida,Ameiridae,Nitocra,hibernica,Nitocra_hibernica,Uni18S
-Invertebrate,Arthropoda,Podocopida,Cyprididae,Cypridopsis,,Cypridopsis_sp,Uni18S
-Invertebrate,Arthropoda,Podocopida,Darwinulidae,Darwinula,stevensoni,Darwinula_stevensoni,Uni18S
-Plant,Charophyceae,Charales,Characeae,Chara,,Chara_sp,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,irregularis,Chlamydomonas_irregularis,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,noctigama,Chlamydomonas_noctigama,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,proteus,Chlamydomonas_proteus,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,reinhardtii,Chlamydomonas_reinhardtii,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,tetragama,Chlamydomonas_tetragama,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Chlorochytriaceae,Chlorochytrium,lemnae,Chlorochytrium_lemnae,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Chlorococcaceae,Chlorococcum,,Chlorococcum_sp,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Dunaliellaceae,Hafniomonas,reticulata,Hafniomonas_reticulata,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Colemanosphaera,charkowiensis,Colemanosphaera_charkowiensis,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Eudorina,elegans,Eudorina_elegans,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Pandorina,morum,Pandorina_morum,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,aureus,Volvox_aureus,Uni18S
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,globator,Volvox_globator,Uni18S
-Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,,Chlorella_sp,Uni18S
-Algae,Chlorophyta,Oedogoniales,Oedogoniaceae,Oedogonium,brevicingulatum,Oedogonium_brevicingulatum,Uni18S
-Algae,Chlorophyta,Pyrenomonadales,Pyrenomonadaceae,Rhodomonas,minuta,Rhodomonas_minuta,Uni18S
-Algae,Chlorophyta,Sphaeropleales,Selenastraceae,Kirchneriella,irregularis,Kirchneriella_irregularis,Uni18S
-Algae,Chlorophyta,Trebouxiophyceae_ordo_incertae_sedis,Coccomyxaceae_,Choricystis,minor,Choricystis_minor,Uni18S
-Algae,Chlorophyta,Ulotrichales,Ulotrichaceae,Ulothrix,zonata,Ulothrix_zonata,Uni18S
-Bird,Chordata,Columbiformes,Columbidae,,,Columbidae,Uni18S
-Fish,Chordata,Gobiiformes,,,,Gobiiformes,Uni18S
-Fungi,Chytridiomycota,Chytridiales,Chytriomycetaceae,Pendulichytrium,sphaericum,Pendulichytrium_sphaericum,Uni18S
-Alveolata,Ciliophora,Choreotrichida,Strobilidiidae,Rimostrombidium,lacustris,Rimostrombidium_lacustris,Uni18S
-Alveolata,Ciliophora,Choreotrichida,Strobilidiidae,Strobilidium,caudatum,Strobilidium_caudatum,Uni18S
-Alveolata,Ciliophora,Oligotrichida,Strombidiidae,Limnostrombidium,viride,Limnostrombidium_viride,Uni18S
-Alveolata,Ciliophora,Oligotrichida,Strombidiidae,Pelagostrombidium,fallax,Pelagostrombidium_fallax,Uni18S
-Alveolata,Ciliophora,Peniculida,Stokesiidae,Stokesia,vernalis,Stokesia_vernalis,Uni18S
-Alveolata,Ciliophora,Sessilida,Epistylidae,Epistylis,foissneri,Epistylis_foissneri,Uni18S
-Alveolata,Ciliophora,Sessilida,Epistylidae,Epistylis,portoalegrensis,Epistylis_portoalegrensis,Uni18S
-Alveolata,Ciliophora,Sessilida,Epistylidae,Epistylis,riograndensis,Epistylis_riograndensis,Uni18S
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Carchesium,polypinum,Carchesium_polypinum,Uni18S
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Pseudovorticella,,Pseudovorticella_sp,Uni18S
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,citrina,Vorticella_citrina,Uni18S
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,fusca,Vorticella_fusca,Uni18S
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,microstoma,Vorticella_microstoma,Uni18S
-Alveolata,Ciliophora,Sporadotrichida,Halteriidae,Halteria,grandinella,Halteria_grandinella,Uni18S
-Alveolata,Ciliophora,Sporadotrichida,Oxytrichidae,Urosoma,emarginata,Urosoma_emarginata,Uni18S
-Alveolata,Ciliophora,Tintinnida,Tintinnidae,Tintinnidium,fluviatile,Tintinnidium_fluviatile,Uni18S
-Invertebrate,Cnidaria,Anthoathecata,Cordylophoridae,Cordylophora,caspia,Cordylophora_caspia,Uni18S
-Invertebrate,Cnidaria,Anthoathecata,Hydridae,Hydra,,Hydra_sp,Uni18S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,curvata,Cryptomonas_curvata,Uni18S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,erosa,Cryptomonas_erosa,Uni18S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,meshchyorana,Cryptomonas_meshchyorana,Uni18S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,obovoidea,Cryptomonas_obovoidea,Uni18S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,ovata,Cryptomonas_ovata,Uni18S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,phaseolus,Cryptomonas_phaseolus,Uni18S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,platyuris,Cryptomonas_platyuris,Uni18S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,pyrenoidifera,Cryptomonas_pyrenoidifera,Uni18S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,rostratiformis,Cryptomonas_rostratiformis,Uni18S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,tetrapyrenoidosa,Cryptomonas_tetrapyrenoidosa,Uni18S
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Plagioselmis,nannoplanctica,Plagioselmis_nannoplanctica,Uni18S
-Alveolata,Dinoflagellates,Gymnodiniales,Gymnodiniaceae,Gymnodinium,,Gymnodinium_sp,Uni18S
-Alveolata,Dinoflagellates,Suessiales,Suessiaceae,Asulcocephalium,miricentonis,Asulcocephalium_miricentonis,Uni18S
-Gastrotricha,Gastrotricha,Chaetonotida,Chaetonotidae,Aspidiophorus,ophiodermus,Aspidiophorus_ophiodermus,Uni18S
-Gastrotricha,Gastrotricha,Chaetonotida,Chaetonotidae,Chaetonotus,,Chaetonotus_sp,Uni18S
-Invertebrate,Mollusca,Myida,Dreissenidae,Dreissena,bugensis,Dreissena_bugensis,Uni18S
-Invertebrate,Nematoda,Chromadorida,Chromadoridae,Chromadorina,bioculata,Chromadorina_bioculata,Uni18S
-Algae,Ochrophyta,Chromulinales,Chromulinaceae,Uroglenopsis,turfosa,Uroglenopsis_turfosa,Uni18S
-Algae,Ochrophyta,Chromulinales,Dinobryaceae,Dinobryon,cylindricum,Dinobryon_cylindricum,Uni18S
-Invertebrate,Platyhelminthes,Catenulida,Catenulidae,Catenula,lemnae,Catenula_lemnae,Uni18S
-Invertebrate,Platyhelminthes,Catenulida,Stenostomidae,Stenostomum,tuberculosum,Stenostomum_tuberculosum,Uni18S
-Invertebrate,Platyhelminthes,Macrostomida,Microstomidae,Microstomum,bispiralis,Microstomum_bispiralis,Uni18S
-Invertebrate,Platyhelminthes,Plagiorchiida,,,,Plagiorchiida,Uni18S
-Invertebrate,Platyhelminthes,Rhabdocoela,Dalyelliidae,Gieysztoria,infundibuliformis,Gieysztoria_infundibuliformis,Uni18S
-Invertebrate,Platyhelminthes,Tricladida,Dugesiidae,Girardia,tigrina,Girardia_tigrina,Uni18S
-Invertebrate,Porifera,Spongillida,Spongillidae,Eunapius,fragilis,Eunapius_fragilis,Uni18S
-Invertebrate,Porifera,Spongillida,Spongillidae,Spongilla,lacustris,Spongilla_lacustris,Uni18S
-Rotifer,Rotifera,Collothecaceae,Collothecidae,Collotheca,mutabilis,Collotheca_mutabilis,Uni18S
-Rotifer,Rotifera,Flosculariaceae,Conochilidae,Conochilus,coenobasis,Conochilus_coenobasis,Uni18S
-Rotifer,Rotifera,Flosculariaceae,Conochilidae,Conochilus,hippocrepis,Conochilus_hippocrepis,Uni18S
-Rotifer,Rotifera,Ploima,Brachionidae,Brachionus,calyciflorus,Brachionus_calyciflorus,Uni18S
-Rotifer,Rotifera,Ploima,Brachionidae,Brachionus,urceolaris,Brachionus_urceolaris,Uni18S
-Rotifer,Rotifera,Ploima,Brachionidae,Euchlanis,alata,Euchlanis_alata,Uni18S
-Rotifer,Rotifera,Ploima,Brachionidae,Keratella,quadrata,Keratella_quadrata,Uni18S
-Rotifer,Rotifera,Ploima,Synchaetidae,Ploesoma,hudsoni,Ploesoma_hudsoni,Uni18S
-Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,remata,Polyarthra_remata,Uni18S
-Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,oblonga,Synchaeta_oblonga,Uni18S
-Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,pectinata,Synchaeta_pectinata,Uni18S
-Plant,Charophyceae,Charales,Characeae,Chara,,Chara_sp,Uniorbcl
-Plant,Charophyceae,Charales,Characeae,Nitellopsis,obtusa,Nitellopsis_obtusa,Uniorbcl
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,,Chlamydomonas_sp,Uniorbcl
-Algae,Chlorophyta,Chlamydomonadales,Chlorochytriaceae,Chlorochytrium,lemnae,Chlorochytrium_lemnae,Uniorbcl
-Algae,Chlorophyta,Chlamydomonadales,Pleurastraceae,Pleurastrum,insigne,Pleurastrum_insigne,Uniorbcl
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,,Volvox_sp,Uniorbcl
-Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,variabilis,Chlorella_variabilis,Uniorbcl
-Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,vulgaris,Chlorella_vulgaris,Uniorbcl
-Algae,Chlorophyta,Chlorellales,Chlorellaceae,Meyerella,planktonica,Meyerella_planktonica,Uniorbcl
-Algae,Chlorophyta,Monomastigales,Monomastigaceae,Monomastix,,Monomastix_sp,Uniorbcl
-Algae,Chlorophyta,Oedogoniales,Oedogoniaceae,Oedogonium,angustistomum,Oedogonium_angustistomum,Uniorbcl
-Algae,Chlorophyta,Oedogoniales,Oedogoniaceae,Oedogonium,cardiacum,Oedogonium_cardiacum,Uniorbcl
-Algae,Chlorophyta,Sphaeropleales,Hydrodictyaceae,Pediastrum,duplex,Pediastrum_duplex,Uniorbcl
-Algae,Chlorophyta,Sphaeropleales,Mychonastaceae,Pseudodictyosphaerium,jurisii,Pseudodictyosphaerium_jurisii,Uniorbcl
-Algae,Chlorophyta,Sphaeropleales,Selenastraceae,Ankistrodesmus,,Ankistrodesmus_sp,Uniorbcl
-Algae,Chlorophyta,Trebouxiophyceae_ordo_incertae_sedis,Coccomyxaceae_,Choricystis,,Choricystis_sp,Uniorbcl
-Plant,Magnoliopsida,Alismatales,Alismataceae,Sagittaria,,Sagittaria_sp,Uniorbcl
-Plant,Magnoliopsida,Alismatales,Araceae,Lemna,minor,Lemna_minor,Uniorbcl
-Plant,Magnoliopsida,Alismatales,Hydrocharitaceae,Elodea,,Elodea_sp,Uniorbcl
-Plant,Magnoliopsida,Alismatales,Hydrocharitaceae,Hydrilla,verticillata,Hydrilla_verticillata,Uniorbcl
-Plant,Magnoliopsida,Alismatales,Hydrocharitaceae,Najas,flexilis,Najas_flexilis,Uniorbcl
-Plant,Magnoliopsida,Alismatales,Hydrocharitaceae,Vallisneria,,Vallisneria_sp,Uniorbcl
-Plant,Magnoliopsida,Alismatales,Potamogetonaceae,Potamogeton,,Potamogeton_sp,Uniorbcl
-Plant,Magnoliopsida,Asterales,Asteraceae,,,Asteraceae,Uniorbcl
-Plant,Magnoliopsida,Commelinales,Pontederiaceae,Heteranthera,dubia,Heteranthera_dubia,Uniorbcl
-Plant,Magnoliopsida,Fagales,Betulaceae,Carpinus,caroliniana,Carpinus_caroliniana,Uniorbcl
-Plant,Magnoliopsida,Fagales,Betulaceae,Ostrya,virginiana,Ostrya_virginiana,Uniorbcl
-Plant,Magnoliopsida,Fagales,Fagaceae,Quercus,,Quercus_sp,Uniorbcl
-Plant,Magnoliopsida,Lamiales,Lentibulariaceae,Utricularia,,Utricularia_sp,Uniorbcl
-Plant,Magnoliopsida,Malpighiales,Salicaceae,Salix,,Salix_sp,Uniorbcl
-Plant,Magnoliopsida,Myrtales,Lythraceae,Lythrum,salicaria,Lythrum_salicaria,Uniorbcl
-Plant,Magnoliopsida,Nymphaeales,Cabombaceae,Brasenia,schreberi,Brasenia_schreberi,Uniorbcl
-Plant,Magnoliopsida,Nymphaeales,Nymphaeaceae,Nuphar,,Nuphar_sp,Uniorbcl
-Plant,Magnoliopsida,Nymphaeales,Nymphaeaceae,Nymphaea,,Nymphaea_sp,Uniorbcl
-Plant,Magnoliopsida,Poales,Cyperaceae,Eleocharis,,Eleocharis_sp,Uniorbcl
-Plant,Magnoliopsida,Poales,Cyperaceae,Schoenoplectus,,Schoenoplectus_sp,Uniorbcl
-Plant,Magnoliopsida,Poales,Poaceae,Calamagrostis,arundinacea,Calamagrostis_arundinacea,Uniorbcl
-Plant,Magnoliopsida,Poales,Typhaceae,Sparganium,natans,Sparganium_natans,Uniorbcl
-Plant,Magnoliopsida,Sapindales,Sapindaceae,Acer,,Acer_sp,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Closterium,ehrenbergii,Closterium_ehrenbergii,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,amoenum,Cosmarium_amoenum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,bioculatum,Cosmarium_bioculatum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,blyttii,Cosmarium_blyttii,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,difficile,Cosmarium_difficile,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,humile,Cosmarium_humile,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,laeve,Cosmarium_laeve,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,punctulatum,Cosmarium_punctulatum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,quadratulum,Cosmarium_quadratulum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,regnellii,Cosmarium_regnellii,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,sinostegos,Cosmarium_sinostegos,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,sphagnicolum,Cosmarium_sphagnicolum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,subprotumidum,Cosmarium_subprotumidum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,tinctum,Cosmarium_tinctum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Bambusina,borreri,Bambusina_borreri,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Cosmocladium,,Cosmocladium_sp,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Desmidium,aptogonum,Desmidium_aptogonum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Desmidium,baileyi,Desmidium_baileyi,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Desmidium,swartzii,Desmidium_swartzii,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Groenbladia,undulata,Groenbladia_undulata,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Heimansia,pusilla,Heimansia_pusilla,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Hyalotheca,dissiliens,Hyalotheca_dissiliens,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Micrasterias,,Micrasterias_sp,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Onychonema,laeve,Onychonema_laeve,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Spondylosium,luetkemuelleri,Spondylosium_luetkemuelleri,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Spondylosium,panduriforme,Spondylosium_panduriforme,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Spondylosium,tetragonum,Spondylosium_tetragonum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,clepsydra,Staurastrum_clepsydra,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,crenulatum,Staurastrum_crenulatum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,galeatum,Staurastrum_galeatum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,lapponicum,Staurastrum_lapponicum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,leptocladum,Staurastrum_leptocladum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,orbiculare,Staurastrum_orbiculare,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,pseudosuecicum,Staurastrum_pseudosuecicum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,punctulatum,Staurastrum_punctulatum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,quadricornutum,Staurastrum_quadricornutum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,sebaldii,Staurastrum_sebaldii,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,tetracerum,Staurastrum_tetracerum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,brevispinus,Staurodesmus_brevispinus,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,dejectus,Staurodesmus_dejectus,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,extensus,Staurodesmus_extensus,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,validus,Staurodesmus_validus,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Triplastrum,simplex,Triplastrum_simplex,Uniorbcl
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Xanthidium,antilopaeum,Xanthidium_antilopaeum,Uniorbcl
-Algae,Streptophyta,Desmidiales,Gonatozygaceae,Gonatozygon,,Gonatozygon_sp,Uniorbcl
-Plant,Streptophyta,Osmundales,Osmundaceae,Osmunda,regalis,Osmunda_regalis,Uniorbcl
-Plant,Streptophyta,Osmundales,Osmundaceae,Osmundastrum,cinnamomeum,Osmundastrum_cinnamomeum,Uniorbcl
-Algae,Streptophyta,Zygnematales,Zygnemataceae,Spirogyra,tenuissima,Spirogyra_tenuissima,Uniorbcl
-Algae,Streptophyta,Zygnematales,Zygnemataceae,Spirogyra,weberi,Spirogyra_weberi,Uniorbcl
-Invertebrate,Annelida,Tubificida,Naididae,Stylaria,,Stylaria_sp,UniPh
-Invertebrate,Arthropoda,Calanoida,Diaptomidae,Onychodiaptomus,sanguineus,Onychodiaptomus_sanguineus,UniPh
-Invertebrate,Arthropoda,Calanoida,Temoridae,Eurytemora,,Eurytemora_sp,UniPh
-Invertebrate,Arthropoda,Cyclopoida,Cyclopidae,Eucyclops,serrulatus,Eucyclops_serrulatus,UniPh
-Invertebrate,Arthropoda,Cyclopoida,Cyclopidae,Mesocyclops,americanus,Mesocyclops_americanus,UniPh
-Invertebrate,Arthropoda,Harpacticoida,Ameiridae,Nitocra,hibernica,Nitocra_hibernica,UniPh
-Invertebrate,Arthropoda,Podocopida,Cyprididae,Cypridopsis,,Cypridopsis_sp,UniPh
-Plant,Charophyceae,Charales,Characeae,Chara,,Chara_sp,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Carteria,,Carteria_sp,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,irregularis,Chlamydomonas_irregularis,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,noctigama,Chlamydomonas_noctigama,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,proteus,Chlamydomonas_proteus,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,reinhardtii,Chlamydomonas_reinhardtii,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Chlorochytriaceae,Chlorochytrium,lemnae,Chlorochytrium_lemnae,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Dunaliellaceae,Hafniomonas,reticulata,Hafniomonas_reticulata,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Phacotaceae,Phacotus,lenticularis,Phacotus_lenticularis,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Eudorina,elegans,Eudorina_elegans,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Pandorina,morum,Pandorina_morum,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,aureus,Volvox_aureus,UniPh
-Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,globator,Volvox_globator,UniPh
-Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,,Chlorella_sp,UniPh
-Algae,Chlorophyta,Cladophorales,Cladophoraceae,Cladophora,,Cladophora_sp,UniPh
-Algae,Chlorophyta,Oedogoniales,Oedogoniaceae,Oedogonium,brevicingulatum,Oedogonium_brevicingulatum,UniPh
-Algae,Chlorophyta,Protosiphonales,Protosiphonaceae,Spongiosarcinopsis,terrestris,Spongiosarcinopsis_terrestris,UniPh
-Algae,Chlorophyta,Pyrenomonadales,Pyrenomonadaceae,Rhodomonas,minuta,Rhodomonas_minuta,UniPh
-Algae,Chlorophyta,Trebouxiophyceae_ordo_incertae_sedis,Coccomyxaceae_,Choricystis,minor,Choricystis_minor,UniPh
-Algae,Chlorophyta,Ulotrichales,Ulotrichaceae,Ulothrix,zonata,Ulothrix_zonata,UniPh
-Salamander,Chordata,Urodela,Plethodontidae,Plethodon,cinereus,Plethodon_cinereus,UniPh
-Fungi,Chytridiomycota,Chytridiales,Chytriomycetaceae,Pendulichytrium,sphaericum,Pendulichytrium_sphaericum,UniPh
-Alveolata,Ciliophora,Choreotrichida,Strobilidiidae,Rimostrombidium,lacustris,Rimostrombidium_lacustris,UniPh
-Alveolata,Ciliophora,Choreotrichida,Strobilidiidae,Strobilidium,caudatum,Strobilidium_caudatum,UniPh
-Alveolata,Ciliophora,Oligotrichida,Strombidiidae,Limnostrombidium,viride,Limnostrombidium_viride,UniPh
-Alveolata,Ciliophora,Oligotrichida,Strombidiidae,Pelagostrombidium,fallax,Pelagostrombidium_fallax,UniPh
-Alveolata,Ciliophora,Peniculida,Stokesiidae,Stokesia,vernalis,Stokesia_vernalis,UniPh
-Alveolata,Ciliophora,Sessilida,Epistylidae,Epistylis,portoalegrensis,Epistylis_portoalegrensis,UniPh
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Carchesium,polypinum,Carchesium_polypinum,UniPh
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Epicarchesium,pectinatum,Epicarchesium_pectinatum,UniPh
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Pseudovorticella,,Pseudovorticella_sp,UniPh
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,aequilata,Vorticella_aequilata,UniPh
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,campanula,Vorticella_campanula,UniPh
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,fusca,Vorticella_fusca,UniPh
-Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,microstoma,Vorticella_microstoma,UniPh
-Alveolata,Ciliophora,Sporadotrichida,Halteriidae,Halteria,grandinella,Halteria_grandinella,UniPh
-Alveolata,Ciliophora,Sporadotrichida,Oxytrichidae,Urosoma,emarginata,Urosoma_emarginata,UniPh
-Alveolata,Ciliophora,Tintinnida,Tintinnidae,Tintinnidium,fluviatile,Tintinnidium_fluviatile,UniPh
-Invertebrate,Cnidaria,Anthoathecata,Cordylophoridae,Cordylophora,caspia,Cordylophora_caspia,UniPh
-Invertebrate,Cnidaria,Anthoathecata,Hydridae,Hydra,,Hydra_sp,UniPh
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,curvata,Cryptomonas_curvata,UniPh
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,erosa,Cryptomonas_erosa,UniPh
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,meshchyorana,Cryptomonas_meshchyorana,UniPh
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,obovoidea,Cryptomonas_obovoidea,UniPh
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,ovata,Cryptomonas_ovata,UniPh
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,phaseolus,Cryptomonas_phaseolus,UniPh
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,platyuris,Cryptomonas_platyuris,UniPh
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,pyrenoidifera,Cryptomonas_pyrenoidifera,UniPh
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,tetrapyrenoidosa,Cryptomonas_tetrapyrenoidosa,UniPh
-Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Plagioselmis,nannoplanctica,Plagioselmis_nannoplanctica,UniPh
-Alveolata,Dinoflagellates,Gymnodiniales,Gymnodiniaceae,Gymnodinium,,Gymnodinium_sp,UniPh
-Alveolata,Dinoflagellates,Suessiales,Suessiaceae,Asulcocephalium,miricentonis,Asulcocephalium_miricentonis,UniPh
-Gastrotricha,Gastrotricha,Chaetonotida,Chaetonotidae,Aspidiophorus,ophiodermus,Aspidiophorus_ophiodermus,UniPh
-Gastrotricha,Gastrotricha,Chaetonotida,Chaetonotidae,Chaetonotus,polyspinosus,Chaetonotus_polyspinosus,UniPh
-Invertebrate,Mollusca,Architaenioglossa,Viviparidae,Viviparus,georgianus,Viviparus_georgianus,UniPh
-Invertebrate,Mollusca,Myida,Dreissenidae,Dreissena,bugensis,Dreissena_bugensis,UniPh
-Invertebrate,Nematoda,Chromadorida,Chromadoridae,Chromadorina,bioculata,Chromadorina_bioculata,UniPh
-Algae,Ochrophyta,Chattonellales,Vacuolariaceae,Gonyostomum,semen,Gonyostomum_semen,UniPh
-Algae,Ochrophyta,Chromulinales,Chromulinaceae,Uroglenopsis,americana,Uroglenopsis_americana,UniPh
-Algae,Ochrophyta,Chromulinales,Chromulinaceae,Uroglenopsis,turfosa,Uroglenopsis_turfosa,UniPh
-Algae,Ochrophyta,Chromulinales,Chromulinaceae,Urostipulosphaera,notabilis,Urostipulosphaera_notabilis,UniPh
-Algae,Ochrophyta,Chromulinales,Dinobryaceae,Dinobryon,cylindricum,Dinobryon_cylindricum,UniPh
-Algae,Ochrophyta,Cymbellales,Cymbellaceae,Cymbella,affinis,Cymbella_affinis,UniPh
-Algae,Ochrophyta,Licmophorales,Ulnariaceae,,,Ulnariaceae,UniPh
-Algae,Ochrophyta,Naviculales,Naviculaceae,Navicula,,Navicula_sp,UniPh
-Algae,Ochrophyta,Stephanodiscales,Stephanodiscaceae,Cyclotella,costei,Cyclotella_costei,UniPh
-Algae,Ochrophyta,Stephanodiscales,Stephanodiscaceae,Cyclotella,ocellata,Cyclotella_ocellata,UniPh
-Algae,Ochrophyta,Stephanodiscales,Stephanodiscaceae,,,Stephanodiscaceae,UniPh
-Algae,Ochrophyta,Synurales,Mallomonadaceae,Mallomonas,crassisquama,Mallomonas_crassisquama,UniPh
-Algae,Ochrophyta,Synurales,Mallomonadaceae,Mallomonas,striata,Mallomonas_striata,UniPh
-Algae,Ochrophyta,Synurales,Mallomonadaceae,Mallomonas,tonsurata,Mallomonas_tonsurata,UniPh
-Algae,Ochrophyta,Thalassiosirales,Skeletonemataceae,Skeletonema,potamos,Skeletonema_potamos,UniPh
-Invertebrate,Platyhelminthes,Catenulida,Catenulidae,Catenula,lemnae,Catenula_lemnae,UniPh
-Invertebrate,Platyhelminthes,Catenulida,Stenostomidae,Stenostomum,tuberculosum,Stenostomum_tuberculosum,UniPh
-Invertebrate,Platyhelminthes,Macrostomida,Macrostomidae,Macrostomum,gieysztori,Macrostomum_gieysztori,UniPh
-Invertebrate,Platyhelminthes,Macrostomida,Microstomidae,Microstomum,bispiralis,Microstomum_bispiralis,UniPh
-Invertebrate,Platyhelminthes,Plagiorchiida,,,,Plagiorchiida,UniPh
-Invertebrate,Platyhelminthes,Rhabdocoela,Dalyelliidae,Castrella,pinguis,Castrella_pinguis,UniPh
-Invertebrate,Platyhelminthes,Rhabdocoela,Dalyelliidae,Gieysztoria,infundibuliformis,Gieysztoria_infundibuliformis,UniPh
-Invertebrate,Platyhelminthes,Tricladida,Dugesiidae,Girardia,tigrina,Girardia_tigrina,UniPh
-Invertebrate,Porifera,Spongillida,Spongillidae,Eunapius,fragilis,Eunapius_fragilis,UniPh
-Invertebrate,Porifera,Spongillida,Spongillidae,Spongilla,lacustris,Spongilla_lacustris,UniPh
-Rotifer,Rotifera,Collothecaceae,Collothecidae,Collotheca,mutabilis,Collotheca_mutabilis,UniPh
-Rotifer,Rotifera,Flosculariaceae,Conochilidae,Conochilus,coenobasis,Conochilus_coenobasis,UniPh
-Rotifer,Rotifera,Flosculariaceae,Conochilidae,Conochilus,hippocrepis,Conochilus_hippocrepis,UniPh
-Rotifer,Rotifera,Ploima,Asplanchnidae,Asplanchnopus,dahlgreni,Asplanchnopus_dahlgreni,UniPh
-Rotifer,Rotifera,Ploima,Brachionidae,Brachionus,calyciflorus,Brachionus_calyciflorus,UniPh
-Rotifer,Rotifera,Ploima,Brachionidae,Brachionus,urceolaris,Brachionus_urceolaris,UniPh
-Rotifer,Rotifera,Ploima,Brachionidae,Euchlanis,alata,Euchlanis_alata,UniPh
-Rotifer,Rotifera,Ploima,Brachionidae,Keratella,quadrata,Keratella_quadrata,UniPh
-Rotifer,Rotifera,Ploima,Synchaetidae,Ploesoma,hudsoni,Ploesoma_hudsoni,UniPh
-Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,remata,Polyarthra_remata,UniPh
-Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,oblonga,Synchaeta_oblonga,UniPh
-Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,pectinata,Synchaeta_pectinata,UniPh
-Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,,Staurastrum_sp,UniPh
+﻿Supergroup,Taxa_group,Phylum,Order,Family,Genus,Species,Final_ID,Primer_name
+Bacteria and cyanobacteria,Bacteria,Bacteroidota,Flavobacteriales,Flavobacteriaceae,Flavobacterium,,Flavobacterium_sp,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Nais,,Nais_sp,16SMOL
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Lepomis,,Lepomis_sp,16SMOL
+Vertebrate,Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,,Ameiurus_sp,16SMOL
+Invertebrate,Annelida,Annelida,Lumbriculida,Sparganophilidae,Sparganophilus,tamesis,Sparganophilus_tamesis,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Bothrioneurum,vejdovskyanum,Bothrioneurum_vejdovskyanum,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Chaetogaster,diaphanus,Chaetogaster_diaphanus,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Chaetogaster,diastrophus,Chaetogaster_diastrophus,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Dero,digitata,Dero_digitata,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Dero,vaga,Dero_vaga,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Ilyodrilus,templetoni,Ilyodrilus_templetoni,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Limnodrilus,hoffmeisteri,Limnodrilus_hoffmeisteri,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Nais,christinae,Nais_christinae,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Nais,communis,Nais_communis,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Pristina,aequiseta,Pristina_aequiseta,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Pristina,longiseta,Pristina_longiseta,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Slavina,appendiculata,Slavina_appendiculata,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Specaria,josinae,Specaria_josinae,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Stylaria,fossularis,Stylaria_fossularis,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Stylaria,lacustris,Stylaria_lacustris,16SMOL
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Uncinais,uncinata,Uncinais_uncinata,16SMOL
+Invertebrate,Bryozoa,Bryozoa,Ctenostomatida,Paludicellidae,Paludicella,articulata,Paludicella_articulata,16SMOL
+Invertebrate,Bryozoa,Bryozoa,Phylactolaemata,Cristatellidae,Cristatella,mucedo,Cristatella_mucedo,16SMOL
+Invertebrate,Bryozoa,Bryozoa,Phylactolaemata,Fredericellidae,Fredericella,indica,Fredericella_indica,16SMOL
+Invertebrate,Bryozoa,Bryozoa,Phylactolaemata,Plumatellidae,Plumatella,repens,Plumatella_repens,16SMOL
+Invertebrate,Bryozoa,Bryozoa,Phylactolaemata,Plumatellidae,Plumatella,rugosa,Plumatella_rugosa,16SMOL
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,freyi,Bosmina_freyi,16SMOL
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,16SMOL
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Cercopagididae,Bythotrephes,longimanus,Bythotrephes_longimanus,16SMOL
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Chydoridae,Alonella,nana,Alonella_nana,16SMOL
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Polyphemidae,Polyphemus,pediculus,Polyphemus_pediculus,16SMOL
+Invertebrate,Mollusca,Mollusca, Neotaenioglossa,Hydrobiidae,Marstonia,hershleri,Marstonia_hershleri,16SMOL
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,16SMOL
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,neogaeus,Chrosomus_neogaeus,16SMOL
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,promelas,Pimephales_promelas,16SMOL
+Vertebrate,Fish,Chordata,Esociformes,Esocidae,Esox,lucius,Esox_lucius,16SMOL
+Vertebrate,Fish,Chordata,Esociformes,Esocidae,Esox,masquinongy,Esox_masquinongy,16SMOL
+Vertebrate,Fish,Chordata,Gobiiformes,Gobiidae,Neogobius,melanostomus,Neogobius_melanostomus,16SMOL
+Vertebrate,Fish,Chordata,Gobiiformes,Gobiidae,Proterorhinus,semilunaris,Proterorhinus_semilunaris,16SMOL
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,16SMOL
+Vertebrate,Fish,Chordata,Scorpaeniformes,Gasterosteidae,Culaea,inconstans,Culaea_inconstans,16SMOL
+Vertebrate,Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,natalis,Ameiurus_natalis,16SMOL
+Vertebrate,Mammal,Chordata,Rodentia,Castoridae,Castor,canadensis,Castor_canadensis,16SMOL
+Bacteria and cyanobacteria,Bacteria,Bacteroidota,Flavobacteriales,Flavobacteriaceae,Flavobacterium,,Flavobacterium_sp,16SMOL2
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Chaetogaster,diaphanus,Chaetogaster_diaphanus,16SMOL2
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Limnodrilus,hoffmeisteri,Limnodrilus_hoffmeisteri,16SMOL2
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Nais,christinae,Nais_christinae,16SMOL2
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Slavina,appendiculata,Slavina_appendiculata,16SMOL2
+Invertebrate,Bryozoa,Bryozoa,Ctenostomatida,Paludicellidae,Paludicella,articulata,Paludicella_articulata,16SMOL2
+Invertebrate,Bryozoa,Bryozoa,Phylactolaemata,Fredericellidae,Fredericella,indica,Fredericella_indica,16SMOL2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,freyi,Bosmina_freyi,16SMOL2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,16SMOL2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Chydoridae,Alonella,nana,Alonella_nana,16SMOL2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Polyphemidae,Polyphemus,pediculus,Polyphemus_pediculus,16SMOL2
+Invertebrate,Mollusca,Mollusca,Unionida,Unionidae,Utterbackia,imbecilis,Utterbackia_imbecilis,16SMOL2
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,neogaeus,Chrosomus_neogaeus,16SMOL2
+Vertebrate,Fish,Chordata,Scorpaeniformes,Gasterosteidae,Culaea,inconstans,Culaea_inconstans,16SMOL2
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Acanthocyclops,,Acanthocyclops_sp,B2
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Cyclops,,Cyclops_sp,B2
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Dicrotendipes,,Dicrotendipes_sp,B2
+Invertebrate,Annelida,Annelida,Hirudinida,Hirudinidae,Macrobdella,decora,Macrobdella_decora,B2
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Hydridae,Hydra,circumcincta,Hydra_circumcincta,B2
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Hydridae,Hydra,hymanae,Hydra_hymanae,B2
+Invertebrate,Crustacea,Arthropoda,Calanoida,Temoridae,Eurytemora,affinis,Eurytemora_affinis,B2
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Acanthocyclops,brevispinosus,Acanthocyclops_brevispinosus,B2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,B2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,longirostris,Bosmina_longirostris,B2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Chydoridae,Chydorus,brevilabris,Chydorus_brevilabris,B2
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Paratanytarsus,grimmii,Paratanytarsus_grimmii,B2
+Invertebrate,Insecta,Arthropoda,Lepidoptera,Crambidae,Acentria,ephemerella,Acentria_ephemerella,B2
+Invertebrate,Mollusca,Mollusca,Unionida,Unionidae,Elliptio,complanata,Elliptio_complanata,B2
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Eunapius,fragilis,Eunapius_fragilis,B2
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Spongilla,lacustris,Spongilla_lacustris,B2
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Keratella,cochlearis,Keratella_cochlearis,B2
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,dolichoptera,Polyarthra_dolichoptera,B2
+Phytoplankton and protists,Algae,Ochrophyta,Stephanodiscales,Stephanodiscaceae,Cyclotella,ocellata,Cyclotella_ocellata,B2
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,B2
+Vertebrate,Fish,Chordata,Petromyzontiformes,Petromyzontidae,Petromyzon,marinus,Petromyzon_marinus,B2
+Vertebrate,Fish,Chordata,Cypriniformes,Catostomidae,Catostomus,,Catostomus_sp,COIFish
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Lepomis,,Lepomis_sp,COIFish
+Vertebrate,Bird,Chordata,Anseriformes,Anatidae,Anas,platyrhynchos,Anas_platyrhynchos,COIFish
+Vertebrate,Fish,Chordata,Cypriniformes,Catostomidae,Catostomus,commersonii,Catostomus_commersonii,COIFish
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,COIFish
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Hybognathus,regius,Hybognathus_regius,COIFish
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Notemigonus,crysoleucas,Notemigonus_crysoleucas,COIFish
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Notropis,heterodon,Notropis_heterodon,COIFish
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,promelas,Pimephales_promelas,COIFish
+Vertebrate,Fish,Chordata,Cyprinodontiformes,Fundulidae,Fundulus,diaphanus,Fundulus_diaphanus,COIFish
+Vertebrate,Fish,Chordata,Esociformes,Esocidae,Esox,lucius,Esox_lucius,COIFish
+Vertebrate,Fish,Chordata,Esociformes,Umbridae,Umbra,limi,Umbra_limi,COIFish
+Vertebrate,Fish,Chordata,Gobiiformes,Gobiidae,Neogobius,melanostomus,Neogobius_melanostomus,COIFish
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,COIFish
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Lepomis,gibbosus,Lepomis_gibbosus,COIFish
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Micropterus,salmoides,Micropterus_salmoides,COIFish
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Pomoxis,nigromaculatus,Pomoxis_nigromaculatus,COIFish
+Vertebrate,Fish,Chordata,Perciformes,Percidae,Perca,flavescens,Perca_flavescens,COIFish
+Vertebrate,Fish,Chordata,Scorpaeniformes,Gasterosteidae,Culaea,inconstans,Culaea_inconstans,COIFish
+Vertebrate,Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,natalis,Ameiurus_natalis,COIFish
+Vertebrate,Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,nebulosus,Ameiurus_nebulosus,COIFish
+Vertebrate,Fish,Chordata,Siluriformes,Ictaluridae,Noturus,gyrinus,Noturus_gyrinus,COIFish
+Vertebrate,Mammal,Chordata,Carnivora,Procyonidae,Procyon,lotor,Procyon_lotor,COIFish
+Vertebrate,Mammal,Chordata,Rodentia,Castoridae,Castor,canadensis,Castor_canadensis,COIFish
+Vertebrate,Bird,Chordata,Anseriformes,Anatidae,Anas,,Anas_sp,COIFishdegen
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Lepomis,,Lepomis_sp,COIFishdegen
+Vertebrate,Bird,Chordata,Galliformes,Phasianidae,Gallus,gallus,Gallus_gallus,COIFishdegen
+Vertebrate,Bird,Chordata,Gruiformes,Rallidae,Rallus,limicola,Rallus_limicola,COIFishdegen
+Vertebrate,Fish,Chordata,Amiiformes,Amiidae,Amia,calva,Amia_calva,COIFishdegen
+Vertebrate,Fish,Chordata,Cypriniformes,Catostomidae,Catostomus,commersonii,Catostomus_commersonii,COIFishdegen
+Vertebrate,Fish,Chordata,Cypriniformes,Catostomidae,Moxostoma,anisurum,Moxostoma_anisurum,COIFishdegen
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,COIFishdegen
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Notemigonus,crysoleucas,Notemigonus_crysoleucas,COIFishdegen
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Notropis,heterodon,Notropis_heterodon,COIFishdegen
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,notatus,Pimephales_notatus,COIFishdegen
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,promelas,Pimephales_promelas,COIFishdegen
+Vertebrate,Fish,Chordata,Cyprinodontiformes,Fundulidae,Fundulus,diaphanus,Fundulus_diaphanus,COIFishdegen
+Vertebrate,Fish,Chordata,Esociformes,Esocidae,Esox,lucius,Esox_lucius,COIFishdegen
+Vertebrate,Fish,Chordata,Esociformes,Umbridae,Umbra,limi,Umbra_limi,COIFishdegen
+Vertebrate,Fish,Chordata,Gobiiformes,Gobiidae,Neogobius,melanostomus,Neogobius_melanostomus,COIFishdegen
+Vertebrate,Fish,Chordata,Gobiiformes,Gobiidae,Proterorhinus,semilunaris,Proterorhinus_semilunaris,COIFishdegen
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,COIFishdegen
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Lepomis,gibbosus,Lepomis_gibbosus,COIFishdegen
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Micropterus,salmoides,Micropterus_salmoides,COIFishdegen
+Vertebrate,Fish,Chordata,Perciformes,Percidae,Etheostoma,olmstedi,Etheostoma_olmstedi,COIFishdegen
+Vertebrate,Fish,Chordata,Perciformes,Percidae,Perca,flavescens,Perca_flavescens,COIFishdegen
+Vertebrate,Fish,Chordata,Salmoniformes,Salmonidae,Coregonus,clupeaformis,Coregonus_clupeaformis,COIFishdegen
+Vertebrate,Fish,Chordata,Scorpaeniformes,Gasterosteidae,Culaea,inconstans,Culaea_inconstans,COIFishdegen
+Vertebrate,Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,natalis,Ameiurus_natalis,COIFishdegen
+Vertebrate,Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,nebulosus,Ameiurus_nebulosus,COIFishdegen
+Vertebrate,Mammal,Chordata,Artiodactyla,Suidae,Sus,scrofa,Sus_scrofa,COIFishdegen
+Vertebrate,Mammal,Chordata,Rodentia,Castoridae,Castor,canadensis,Castor_canadensis,COIFishdegen
+Vertebrate,Mammal,Chordata,Rodentia,Cricetidae,Ondatra,zibethicus,Ondatra_zibethicus,COIFishdegen
+Vertebrate,Turtle,Chordata,Testudines,Chelydridae,Chelydra,serpentina,Chelydra_serpentina,COIFishdegen
+Invertebrate,Crustacea,Arthropoda,Calanoida,Pontellidae,,,Pontellidae,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,,,Chironomidae,fwhEPTD
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Nais,,Nais_sp,fwhEPTD
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Acanthocyclops,,Acanthocyclops_sp,fwhEPTD
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Cyclops,,Cyclops_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Corynoneura,,Corynoneura_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Cricotopus,,Cricotopus_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Cryptochironomus,,Cryptochironomus_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Microtendipes,,Microtendipes_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Orthocladius,,Orthocladius_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Parachironomus,,Parachironomus_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Paratanytarsus,,Paratanytarsus_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Polypedilum,,Polypedilum_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Tanytarsus,,Tanytarsus_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Ephemeroptera,Caenidae,Caenis,,Caenis_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Hemiptera,Belostomatidae,Lethocerus,,Lethocerus_sp,fwhEPTD
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Heteromeyenia,,Heteromeyenia_sp,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Einfeldia,,Einfeldia_sp,fwhEPTD
+Invertebrate,Annelida,Annelida,Crassiclitellata,Lumbricidae,Octolasion,tyrtaeum,Octolasion_tyrtaeum,fwhEPTD
+Invertebrate,Annelida,Annelida,Hirudinida,Hirudinidae,Macrobdella,decora,Macrobdella_decora,fwhEPTD
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Arcteonais,lomondi,Arcteonais_lomondi,fwhEPTD
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Chaetogaster,diaphanus,Chaetogaster_diaphanus,fwhEPTD
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Chaetogaster,diastrophus,Chaetogaster_diastrophus,fwhEPTD
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Ilyodrilus,templetoni,Ilyodrilus_templetoni,fwhEPTD
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Nais,communis,Nais_communis,fwhEPTD
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Slavina,appendiculata,Slavina_appendiculata,fwhEPTD
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Specaria,josinae,Specaria_josinae,fwhEPTD
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Stylaria,lacustris,Stylaria_lacustris,fwhEPTD
+Invertebrate,Crustacea,Arthropoda,Amphipoda,Hyalellidae,Hyalella,azteca,Hyalella_azteca,fwhEPTD
+Invertebrate,Crustacea,Arthropoda,Calanoida,Temoridae,Eurytemora,affinis,Eurytemora_affinis,fwhEPTD
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,fwhEPTD
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,longirostris,Bosmina_longirostris,fwhEPTD
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Chydoridae,Chydorus,brevilabris,Chydorus_brevilabris,fwhEPTD
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Eurycercidae,Eurycercus,longirostris,Eurycercus_longirostris,fwhEPTD
+Invertebrate,Crustacea,Arthropoda,Podocopida,Cyprididae,Cypridopsis,vidua,Cypridopsis_vidua,fwhEPTD
+Invertebrate,Crustacea,Arthropoda,Podocopida,Darwinulidae,Darwinula,stevensoni,Darwinula_stevensoni,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chaoboridae,Chaoborus,punctipennis,Chaoborus_punctipennis,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Ablabesmyia,americana,Ablabesmyia_americana,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Chironomus,dilutus,Chironomus_dilutus,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Cladotanytarsus,nigrovittatus,Cladotanytarsus_nigrovittatus,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Cricotopus,bicinctus,Cricotopus_bicinctus,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Cricotopus,triannulatus,Cricotopus_triannulatus,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Dicrotendipes,modestus,Dicrotendipes_modestus,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Dicrotendipes,tritomus,Dicrotendipes_tritomus,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Orthocladius,oliveri,Orthocladius_oliveri,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Parachironomus,tenuicaudatus,Parachironomus_tenuicaudatus,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Procladius,denticulatus,Procladius_denticulatus,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Rheotanytarsus,exiguus,Rheotanytarsus_exiguus,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Tanytarsus,glabrescens,Tanytarsus_glabrescens,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Tanytarsus,mendax,Tanytarsus_mendax,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Thienemanniella,xena,Thienemanniella_xena,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Drosophilidae,Drosophila,suzukii,Drosophila_suzukii,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Limoniidae,Molophilus,hirtipennis,Molophilus_hirtipennis,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Diptera,Stratiomyidae,Odontomyia,cincta,Odontomyia_cincta,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Ephemeroptera,Caenidae,Caenis,diminuta,Caenis_diminuta,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Ephemeroptera,Caenidae,Caenis,latipennis,Caenis_latipennis,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Ephemeroptera,Ephemerellidae,Eurylophella,lutulenta,Eurylophella_lutulenta,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Ephemeroptera,Ephemeridae,Hexagenia,limbata,Hexagenia_limbata,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Hemiptera,Corixidae,Sigara,compressoidea,Sigara_compressoidea,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Hemiptera,Nepidae,Ranatra,fusca,Ranatra_fusca,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Lepidoptera,Crambidae,Acentria,ephemerella,Acentria_ephemerella,fwhEPTD
+Invertebrate,Insecta,Arthropoda,Lepidoptera,Erebidae,Lymantria,dispar,Lymantria_dispar,fwhEPTD
+Invertebrate,Mollusca,Mollusca,Basommatophora,Physidae,Physella,acuta,Physella_acuta,fwhEPTD
+Invertebrate,Mollusca,Mollusca,Heterostropha,Valvatidae,Valvata,tricarinata,Valvata_tricarinata,fwhEPTD
+Invertebrate,Mollusca,Mollusca,Unionida,Unionidae,Elliptio,complanata,Elliptio_complanata,fwhEPTD
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Eunapius,fragilis,Eunapius_fragilis,fwhEPTD
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Spongilla,lacustris,Spongilla_lacustris,fwhEPTD
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Keratella,cochlearis,Keratella_cochlearis,fwhEPTD
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,dolichoptera,Polyarthra_dolichoptera,fwhEPTD
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,vulgaris,Polyarthra_vulgaris,fwhEPTD
+Phytoplankton and protists,Amoebozoa,Tubulinea,Arcellinida,Arcellidae,Arcella,conica,Arcella_conica,fwhEPTD
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Acanthocyclops,,Acanthocyclops_sp,Leray
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Cyclops,,Cyclops_sp,Leray
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Dicrotendipes,,Dicrotendipes_sp,Leray
+Invertebrate,Insecta,Arthropoda,Ephemeroptera,Caenidae,Caenis,,Caenis_sp,Leray
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Ephydatia,,Ephydatia_sp,Leray
+Microscopic animals,Rotifer,Rotifera,Ploima,Gastropidae,Ascomorpha,,Ascomorpha_sp,Leray
+Phytoplankton and protists,Alveolata,Dinoflagellates,Gonyaulacales,Pyrocystaceae,Alexandrium,,Alexandrium_sp,Leray
+Phytoplankton and protists,Alveolata,Dinoflagellates,Gymnodiniales,Gymnodiniaceae,Gymnodinium,,Gymnodinium_sp,Leray
+Invertebrate,Annelida,Annelida,Hirudinida,Hirudinidae,Macrobdella,decora,Macrobdella_decora,Leray
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Arcteonais,lomondi,Arcteonais_lomondi,Leray
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Chaetogaster,diaphanus,Chaetogaster_diaphanus,Leray
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Chaetogaster,diastrophus,Chaetogaster_diastrophus,Leray
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Dero,obtusa,Dero_obtusa,Leray
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Slavina,appendiculata,Slavina_appendiculata,Leray
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Stylaria,lacustris,Stylaria_lacustris,Leray
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Hydridae,Hydra,circumcincta,Hydra_circumcincta,Leray
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Hydridae,Hydra,hymanae,Hydra_hymanae,Leray
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Hydridae,Hydra,oligactis,Hydra_oligactis,Leray
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Hydridae,Hydra,viridissima,Hydra_viridissima,Leray
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Hydridae,Hydra,vulgaris,Hydra_vulgaris,Leray
+Invertebrate,Crustacea,Arthropoda,Amphipoda,Hyalellidae,Hyalella,azteca,Hyalella_azteca,Leray
+Invertebrate,Crustacea,Arthropoda,Calanoida,Temoridae,Eurytemora,affinis,Eurytemora_affinis,Leray
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Acanthocyclops,brevispinosus,Acanthocyclops_brevispinosus,Leray
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,Leray
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,longirostris,Bosmina_longirostris,Leray
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Chydoridae,Chydorus,brevilabris,Chydorus_brevilabris,Leray
+Invertebrate,Crustacea,Arthropoda,Podocopida,Cyprididae,Cypridopsis,vidua,Cypridopsis_vidua,Leray
+Invertebrate,Insecta,Arthropoda,Diptera,Chaoboridae,Chaoborus,punctipennis,Chaoborus_punctipennis,Leray
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Procladius,denticulatus,Procladius_denticulatus,Leray
+Invertebrate,Insecta,Arthropoda,Ephemeroptera,Caenidae,Caenis,latipennis,Caenis_latipennis,Leray
+Invertebrate,Insecta,Arthropoda,Hemiptera,Nepidae,Ranatra,fusca,Ranatra_fusca,Leray
+Invertebrate,Mollusca,Mollusca,Myida,Dreissenidae,Dreissena,bugensis,Dreissena_bugensis,Leray
+Invertebrate,Mollusca,Mollusca,Myida,Dreissenidae,Dreissena,polymorpha,Dreissena_polymorpha,Leray
+Invertebrate,Mollusca,Mollusca,Unionida,Unionidae,Elliptio,complanata,Elliptio_complanata,Leray
+Invertebrate,Platyhelminthes,Platyhelminthes,Macrostomida,Microstomidae,Microstomum,lineare,Microstomum_lineare,Leray
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Eunapius,fragilis,Eunapius_fragilis,Leray
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Spongilla,lacustris,Spongilla_lacustris,Leray
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Keratella,cochlearis,Keratella_cochlearis,Leray
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,dolichoptera,Polyarthra_dolichoptera,Leray
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,vulgaris,Polyarthra_vulgaris,Leray
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,kitina,Synchaeta_kitina,Leray
+Phytoplankton and protists,Algae,Ochrophyta,Stephanodiscales,Stephanodiscaceae,Cyclotella,ocellata,Cyclotella_ocellata,Leray
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,Leray
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,Leray
+Vertebrate,Fish,Chordata,Petromyzontiformes,Petromyzontidae,Petromyzon,marinus,Petromyzon_marinus,Leray
+Invertebrate,Crustacea,Arthropoda,Calanoida,Diaptomidae,,,Diaptomidae,MG2
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Nais,,Nais_sp,MG2
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Cyclops,,Cyclops_sp,MG2
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Dicrotendipes,,Dicrotendipes_sp,MG2
+Invertebrate,Insecta,Arthropoda,Ephemeroptera,Caenidae,Caenis,,Caenis_sp,MG2
+Microscopic animals,Rotifer,Rotifera,Ploima,Gastropidae,Ascomorpha,,Ascomorpha_sp,MG2
+Phytoplankton and protists,Algae,Haptophyta,Prymnesiales,Chrysochromulinaceae,Chrysochromulina,,Chrysochromulina_sp,MG2
+Phytoplankton and protists,Oomycetes,Oomycota,Pythiales,Pythiaceae,Pythium,,Pythium_sp,MG2
+Phytoplankton and protists,Oomycetes,Oomycota,Saprolegniales,Saprolegniaceae,Saprolegnia,,Saprolegnia_sp,MG2
+Invertebrate,Annelida,Annelida,Hirudinida,Hirudinidae,Macrobdella,decora,Macrobdella_decora,MG2
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Arcteonais,lomondi,Arcteonais_lomondi,MG2
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Chaetogaster,diaphanus,Chaetogaster_diaphanus,MG2
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Dero,digitata,Dero_digitata,MG2
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Dero,obtusa,Dero_obtusa,MG2
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Slavina,appendiculata,Slavina_appendiculata,MG2
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Stylaria,lacustris,Stylaria_lacustris,MG2
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Cordylophoridae,Cordylophora,caspia,Cordylophora_caspia,MG2
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Hydridae,Hydra,hymanae,Hydra_hymanae,MG2
+Invertebrate,Crustacea,Arthropoda,Amphipoda,Hyalellidae,Hyalella,azteca,Hyalella_azteca,MG2
+Invertebrate,Crustacea,Arthropoda,Calanoida,Diaptomidae,Skistodiaptomus,oregonensis,Skistodiaptomus_oregonensis,MG2
+Invertebrate,Crustacea,Arthropoda,Calanoida,Temoridae,Eurytemora,carolleeae,Eurytemora_carolleeae,MG2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,freyi,Bosmina_freyi,MG2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,liederi,Bosmina_liederi,MG2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Bosminidae,Bosmina,longirostris,Bosmina_longirostris,MG2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Chydoridae,Chydorus,brevilabris,Chydorus_brevilabris,MG2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Eurycercidae,Eurycercus,longirostris,Eurycercus_longirostris,MG2
+Invertebrate,Crustacea,Arthropoda,Diplostraca,Macrotrichidae,Drepanothrix,dentata,Drepanothrix_dentata,MG2
+Invertebrate,Crustacea,Arthropoda,Podocopida,Cyprididae,Cypridopsis,vidua,Cypridopsis_vidua,MG2
+Invertebrate,Insecta,Arthropoda,Diptera,Chaoboridae,Chaoborus,punctipennis,Chaoborus_punctipennis,MG2
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Cladotanytarsus,nigrovittatus,Cladotanytarsus_nigrovittatus,MG2
+Invertebrate,Insecta,Arthropoda,Diptera,Chironomidae,Procladius,denticulatus,Procladius_denticulatus,MG2
+Invertebrate,Insecta,Arthropoda,Diptera,Stratiomyidae,Odontomyia,cincta,Odontomyia_cincta,MG2
+Invertebrate,Insecta,Arthropoda,Ephemeroptera,Caenidae,Caenis,latipennis,Caenis_latipennis,MG2
+Invertebrate,Mollusca,Mollusca,Unionida,Unionidae,Utterbackia,imbecilis,Utterbackia_imbecilis,MG2
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Keratella,cochlearis,Keratella_cochlearis,MG2
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,dolichoptera,Polyarthra_dolichoptera,MG2
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,vulgaris,Polyarthra_vulgaris,MG2
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,kitina,Synchaeta_kitina,MG2
+Phytoplankton and protists,Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,variabilis,Chlorella_variabilis,MG2
+Phytoplankton and protists,Oomycetes,Oomycota,Pythiales,Pythiaceae,Pythium,inflatum,Pythium_inflatum,MG2
+Phytoplankton and protists,Oomycetes,Oomycota,Saprolegniales,Saprolegniaceae,Aphanomyces,laevis,Aphanomyces_laevis,MG2
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,MG2
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,neogaeus,Chrosomus_neogaeus,MG2
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,promelas,Pimephales_promelas,MG2
+Vertebrate,Fish,Chordata,Gobiiformes,Gobiidae,Neogobius,melanostomus,Neogobius_melanostomus,MG2
+Vertebrate,Fish,Chordata,Gobiiformes,Gobiidae,Proterorhinus,semilunaris,Proterorhinus_semilunaris,MG2
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,MG2
+Vertebrate,Fish,Chordata,Perciformes,Percidae,Perca,flavescens,Perca_flavescens,MG2
+Vertebrate,Fish,Chordata,Petromyzontiformes,Petromyzontidae,Petromyzon,marinus,Petromyzon_marinus,MG2
+Vertebrate,Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,natalis,Ameiurus_natalis,MG2
+Vertebrate,Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,nebulosus,Ameiurus_nebulosus,MG2
+Vertebrate,Mammal,Chordata,Rodentia,Castoridae,Castor,canadensis,Castor_canadensis,MG2
+Vertebrate,Mammal,Chordata,Rodentia,Cricetidae,Ondatra,zibethicus,Ondatra_zibethicus,MG2
+Vertebrate,Bird,Chordata,Anseriformes,Anatidae,Anas,platyrhynchos,Anas_platyrhynchos,MiFish
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,eos,Chrosomus_eos,MiFish
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Chrosomus,neogaeus,Chrosomus_neogaeus,MiFish
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Notropis,heterodon,Notropis_heterodon,MiFish
+Vertebrate,Fish,Chordata,Cypriniformes,Leuciscidae,Pimephales,promelas,Pimephales_promelas,MiFish
+Vertebrate,Fish,Chordata,Cyprinodontiformes,Fundulidae,Fundulus,diaphanus,Fundulus_diaphanus,MiFish
+Vertebrate,Fish,Chordata,Gobiiformes,Gobiidae,Neogobius,melanostomus,Neogobius_melanostomus,MiFish
+Vertebrate,Fish,Chordata,Gobiiformes,Gobiidae,Proterorhinus,semilunaris,Proterorhinus_semilunaris,MiFish
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Ambloplites,rupestris,Ambloplites_rupestris,MiFish
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Lepomis,macrochirus,Lepomis_macrochirus,MiFish
+Vertebrate,Fish,Chordata,Perciformes,Centrarchidae,Micropterus,salmoides,Micropterus_salmoides,MiFish
+Vertebrate,Fish,Chordata,Petromyzontiformes,Petromyzontidae,Petromyzon,marinus,Petromyzon_marinus,MiFish
+Vertebrate,Fish,Chordata,Scorpaeniformes,Gasterosteidae,Culaea,inconstans,Culaea_inconstans,MiFish
+Vertebrate,Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,natalis,Ameiurus_natalis,MiFish
+Vertebrate,Fish,Chordata,Siluriformes,Ictaluridae,Ameiurus,nebulosus,Ameiurus_nebulosus,MiFish
+Vertebrate,Mammal,Chordata,Rodentia,Castoridae,Castor,canadensis,Castor_canadensis,MiFish
+Vertebrate,Mammal,Chordata,Rodentia,Cricetidae,Ondatra,zibethicus,Ondatra_zibethicus,MiFish
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,,,Desmidiaceae,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Fagales,Betulaceae,,,Betulaceae,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Malpighiales,Salicaceae,,,Salicaceae,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Nymphaeales,Nymphaeaceae,,,Nymphaeaceae,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Poales,Poaceae,,,Poaceae,orbcl2
+Phytoplankton and protists,Algae,Charophyceae,Charales,Characeae,Chara,,Chara_sp,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,,Chlamydomonas_sp,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Trebouxiophyceae ordo incertae sedis,Coccomyxaceae ,Choricystis,,Choricystis_sp,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,,Cosmarium_sp,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Cosmocladium,,Cosmocladium_sp,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Micrasterias,,Micrasterias_sp,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,,Staurastrum_sp,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Zygnematales,Zygnemataceae,Spirogyra,,Spirogyra_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Hydrocharitaceae,Elodea,,Elodea_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Hydrocharitaceae,Najas,,Najas_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Hydrocharitaceae,Vallisneria,,Vallisneria_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Potamogetonaceae,Potamogeton,,Potamogeton_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Potamogetonaceae,Stuckenia,,Stuckenia_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Lamiales,Lentibulariaceae,Utricularia,,Utricularia_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Malpighiales,Salicaceae,Salix,,Salix_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Nymphaeales,Nymphaeaceae,Nuphar,,Nuphar_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Nymphaeales,Nymphaeaceae,Nymphaea,,Nymphaea_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Poales,Cyperaceae,Schoenoplectus,,Schoenoplectus_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Vitales,Vitaceae,Vitis,,Vitis_sp,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,,Volvox_sp,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,,Staurodesmus_sp,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Xanthidium,,Xanthidium_sp,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Sapindales,Sapindaceae,Acer,,Acer_sp,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Sphaeropleales,Neochloridaceae,Botryosphaerella,sudetica,Botryosphaerella_sudetica,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Sphaeropleales,Scenedesmaceae,Tetradesmus,dimorphus,Tetradesmus_dimorphus,orbcl2
+Plant,Bryophyta,Bryophyta,Polytrichales,Polytrichaceae,Polytrichum,brachymitrium,Polytrichum_brachymitrium,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chaetophorales,Chaetophoraceae,Coccobotrys,verrucariae,Coccobotrys_verrucariae,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Carteria,cerasiformis,Carteria_cerasiformis,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,bilatus,Chlamydomonas_bilatus,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,fasciata,Chlamydomonas_fasciata,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,pumilio,Chlamydomonas_pumilio,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,schloesseri,Chlamydomonas_schloesseri,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Lobochlamys,segnis,Lobochlamys_segnis,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlorochytriaceae,Chlorochytrium,lemnae,Chlorochytrium_lemnae,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Phacotaceae,Phacotus,lenticularis,Phacotus_lenticularis,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Colemanosphaera,angeleri,Colemanosphaera_angeleri,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Pandorina,unicocca,Pandorina_unicocca,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,variabilis,Chlorella_variabilis,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,vulgaris,Chlorella_vulgaris,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Chlorellales,Chlorellaceae,Meyerella,planktonica,Meyerella_planktonica,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Sphaeropleales,Hydrodictyaceae,Stauridium,tetras,Stauridium_tetras,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Sphaeropleales,Mychonastaceae,Mychonastes,homosphaera,Mychonastes_homosphaera,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Sphaeropleales,Mychonastaceae,Pseudodictyosphaerium,jurisii,Pseudodictyosphaerium_jurisii,orbcl2
+Phytoplankton and protists,Algae,Chlorophyta,Trebouxiales,Botryococcaceae ,Botryococcus,braunii,Botryococcus_braunii,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Closterium,ehrenbergii,Closterium_ehrenbergii,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,bioculatum,Cosmarium_bioculatum,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,difficile,Cosmarium_difficile,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,regnellii,Cosmarium_regnellii,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,sphagnicolum,Cosmarium_sphagnicolum,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,subprotumidum,Cosmarium_subprotumidum,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,tinctum,Cosmarium_tinctum,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Desmidium,aptogonum,Desmidium_aptogonum,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Desmidium,baileyi,Desmidium_baileyi,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Hyalotheca,dissiliens,Hyalotheca_dissiliens,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Spondylosium,panduriforme,Spondylosium_panduriforme,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Spondylosium,tetragonum,Spondylosium_tetragonum,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,clepsydra,Staurastrum_clepsydra,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,crenulatum,Staurastrum_crenulatum,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,lapponicum,Staurastrum_lapponicum,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,orbiculare,Staurastrum_orbiculare,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,punctulatum,Staurastrum_punctulatum,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,quadricornutum,Staurastrum_quadricornutum,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,sebaldii,Staurastrum_sebaldii,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,tetracerum,Staurastrum_tetracerum,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,brevispinus,Staurodesmus_brevispinus,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,dejectus,Staurodesmus_dejectus,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Zygnematales,Zygnemataceae,Spirogyra,tenuissima,Spirogyra_tenuissima,orbcl2
+Phytoplankton and protists,Algae,Streptophyta,Zygnematales,Zygnemataceae,Spirogyra,weberi,Spirogyra_weberi,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Alismataceae,Sagittaria,latifolia,Sagittaria_latifolia,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Araceae,Spirodela,polyrhiza,Spirodela_polyrhiza,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Hydrocharitaceae,Najas,flexilis,Najas_flexilis,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Commelinales,Pontederiaceae,Heteranthera,dubia,Heteranthera_dubia,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Fagales,Betulaceae,Carpinus,caroliniana,Carpinus_caroliniana,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Myrtales,Lythraceae,Lythrum,salicaria,Lythrum_salicaria,orbcl2
+Plant,Magnoliopsida,Magnoliopsida,Nymphaeales,Cabombaceae,Brasenia,schreberi,Brasenia_schreberi,orbcl2
+Plant,Streptophyta,Streptophyta,Osmundales,Osmundaceae,Osmunda,regalis,Osmunda_regalis,orbcl2
+Plant,Streptophyta,Streptophyta,Osmundales,Osmundaceae,Osmundastrum,cinnamomeum,Osmundastrum_cinnamomeum,orbcl2
+Bacteria and cyanobacteria,Bacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,,,Sphingomonadaceae,Uni16S
+Bacteria and cyanobacteria,Bacteria,Gammaproteobacteria,Chromatiales,Chromatiaceae,,,Chromatiaceae,Uni16S
+Bacteria and cyanobacteria,Cyanobacteria,Cyanobacteriota,Nostocales,Nostocaceae,,,Nostocaceae,Uni16S
+Bacteria and cyanobacteria,Bacteria,Actinomycetota,Micrococcales,Microbacteriaceae,Planktoluna,,Planktoluna_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Actinomycetota,Nanopelagicales,Nanopelagicaceae,Planktophila,,Planktophila_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Alphaproteobacteria,Rhodospirillales,Acetobacteraceae,Roseomonas,,Roseomonas_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Alphaproteobacteria,Rhodospirillales,Azospirillaceae,Azospirillum,,Azospirillum_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Alphaproteobacteria,Rickettsiales,Rickettsiales genera incertae sedis,Intestinusbacter,,Intestinusbacter_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Novosphingobium,,Novosphingobium_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Alphaproteobacteria,Sphingomonadales,Sphingosinicellaceae,Sandarakinorhabdus,,Sandarakinorhabdus_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Bacillota,Clostridia,Clostridiaceae,Clostridium,,Clostridium_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Bacteroidota,Chitinophagales,Chitinophagaceae,Sediminibacterium,,Sediminibacterium_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Bacteroidota,Cytophagales,Cyclobacteriaceae,Algoriphagus,,Algoriphagus_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Bacteroidota,Cytophagales,Spirosomaceae,Arcicella,,Arcicella_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Bacteroidota,Flavobacteriales,Flavobacteriaceae,Flavobacterium,,Flavobacterium_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Albidiferax,,Albidiferax_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Aquabacterium,,Aquabacterium_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Curvibacter,,Curvibacter_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Limnohabitans,,Limnohabitans_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Ramlibacter,,Ramlibacter_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Burkholderiales,Comamonadaceae,Rhodoferax,,Rhodoferax_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Burkholderiales,Sphaerotilaceae,Aquincola,,Aquincola_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Burkholderiales,Sphaerotilaceae,Leptothrix,,Leptothrix_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Rhodocyclales,Zoogloeaceae,Uliginosibacterium,,Uliginosibacterium_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Gammaproteobacteria,Aeromonadales,Aeromonadaceae,Aeromonas,,Aeromonas_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Gammaproteobacteria,Chromatiales,Chromatiaceae,Rheinheimera,,Rheinheimera_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Gammaproteobacteria,Methylococcales,Methylococcaceae,Methylomonas,,Methylomonas_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Gammaproteobacteria,Pseudomonadales,Pseudomonadaceae,Pseudomonas,,Pseudomonas_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Spirochaetota,Spirochaetales,Spirochaetaceae,Spirochaeta,,Spirochaeta_sp,Uni16S
+Bacteria and cyanobacteria,Cyanobacteria,Cyanobacteriota,Chroococcales,Microcystaceae,Radiocystis,,Radiocystis_sp,Uni16S
+Bacteria and cyanobacteria,Cyanobacteria,Cyanobacteriota,Nostocales,Nostocaceae,Anabaena,,Anabaena_sp,Uni16S
+Bacteria and cyanobacteria,Cyanobacteria,Cyanobacteriota,Pseudanabaenales,Pseudanabaenaceae,Pseudanabaena,,Pseudanabaena_sp,Uni16S
+Bacteria and cyanobacteria,Cyanobacteria,Cyanobacteriota,Synechococcales,Prochlorococcaceae,Cyanobium,,Cyanobium_sp,Uni16S
+Phytoplankton and protists,Algae,Haptophyta,Prymnesiales,Chrysochromulinaceae,Chrysochromulina,,Chrysochromulina_sp,Uni16S
+Phytoplankton and protists,Algae,Ochrophyta,Chromulinales,Dinobryaceae,Dinobryon,,Dinobryon_sp,Uni16S
+Phytoplankton and protists,Algae,Ochrophyta,Chromulinales,Dinobryaceae,Epipyxis,,Epipyxis_sp,Uni16S
+Phytoplankton and protists,Algae,Ochrophyta,Eustigmatales,Chlorobotryaceae,Vischeria,,Vischeria_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Alphaproteobacteria,Sphingomonadales,Sphingomonadaceae,Sphingorhabdus,,Sphingorhabdus_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Bacteroidota,Cytophagales,Spirosomaceae,Flectobacillus,,Flectobacillus_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Burkholderiales,Burkholderiaceae,Polynucleobacter,,Polynucleobacter_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Neisseriales,Chromobacteriaceae,Vogesella,,Vogesella_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Betaproteobacteria,Nitrosomonadales,Methylophilaceae,Methylopumilus,,Methylopumilus_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Gammaproteobacteria,Methylococcales,Methylococcaceae,Methylobacter,,Methylobacter_sp,Uni16S
+Bacteria and cyanobacteria,Bacteria,Alphaproteobacteria,Caulobacterales,,,,Caulobacterales,Uni16S
+Bacteria and cyanobacteria,Bacteria,Verrucomicrobiota,,,,,Verrucomicrobiota,Uni16S
+Bacteria and cyanobacteria,Cyanobacteria,Cyanobacteriota,Nostocales,Gloeotrichiaceae,Gloeotrichia,echinulata,Gloeotrichia_echinulata,Uni16S
+Microscopic animals,Tardigrada,Tardigrada,Parachela,Hypsibiidae,Hypsibius,dujardini,Hypsibius_dujardini,Uni16S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,carteri,Volvox_carteri,Uni16S
+Phytoplankton and protists,Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,variabilis,Chlorella_variabilis,Uni16S
+Phytoplankton and protists,Algae,Chlorophyta,Chlorodendrales,Chlorodendraceae,Tetraselmis,cordiformis,Tetraselmis_cordiformis,Uni16S
+Phytoplankton and protists,Algae,Chlorophyta,Pyrenomonadales,Chroomonadaceae,Chroomonas,coerulea,Chroomonas_coerulea,Uni16S
+Phytoplankton and protists,Algae,Chlorophyta,Pyrenomonadales,Geminigeraceae,Teleaulax,amphioxeia,Teleaulax_amphioxeia,Uni16S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,curvata,Cryptomonas_curvata,Uni16S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,ovata,Cryptomonas_ovata,Uni16S
+Phytoplankton and protists,Algae,Ochrophyta,Chaetocerotales,Acanthocerataceae,Acanthoceras,zachariasii,Acanthoceras_zachariasii,Uni16S
+Phytoplankton and protists,Algae,Ochrophyta,Cymbellales,Cymbellaceae,Cymbella,subturgidula,Cymbella_subturgidula,Uni16S
+Phytoplankton and protists,Algae,Ochrophyta,Cymbellales,Gomphonemataceae,Didymosphenia,geminata,Didymosphenia_geminata,Uni16S
+Phytoplankton and protists,Algae,Ochrophyta,Fragilariales, Fragilariaceae,Diatoma,tenuis,Diatoma_tenuis,Uni16S
+Phytoplankton and protists,Algae,Ochrophyta,Goniochloridales,Goniochloridaceae,Trachydiscus,minutus,Trachydiscus_minutus,Uni16S
+Phytoplankton and protists,Algae,Ochrophyta,Licmophorales,Ulnariaceae,Ulnaria,acus,Ulnaria_acus,Uni16S
+Phytoplankton and protists,Algae,Ochrophyta,Surirellales,Surirellaceae,Cymatopleura,solea,Cymatopleura_solea,Uni16S
+Phytoplankton and protists,Algae,Ochrophyta,Synurales,Mallomonadaceae,Synura,petersenii,Synura_petersenii,Uni16S
+Phytoplankton and protists,Algae,Streptophyta,Mesostigmatales,Mesostigmataceae,Mesostigma,viride,Mesostigma_viride,Uni16S
+Phytoplankton and protists,Alveolata,,,,,,Alveolata,Uni18S
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,,,Naididae,Uni18S
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,,,Cyclopidae,Uni18S
+Invertebrate,Mollusca,Mollusca,Myida,Dreissenidae,,,Dreissenidae,Uni18S
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,,,Brachionidae,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,,,Chlamydomonadaceae,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlorellales,Chlorellaceae,,,Chlorellaceae,Uni18S
+Vertebrate,Bird,Chordata,Columbiformes,Columbidae,,,Columbidae,Uni18S
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Nais,,Nais_sp,Uni18S
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Stylaria,,Stylaria_sp,Uni18S
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Hydridae,Hydra,,Hydra_sp,Uni18S
+Invertebrate,Crustacea,Arthropoda,Calanoida,Temoridae,Eurytemora,,Eurytemora_sp,Uni18S
+Invertebrate,Crustacea,Arthropoda,Podocopida,Cyprididae,Cypridopsis,,Cypridopsis_sp,Uni18S
+Microscopic animals,Gastrotricha,Gastrotricha,Chaetonotida,Chaetonotidae,Chaetonotus,,Chaetonotus_sp,Uni18S
+Microscopic animals,Rotifer,Rotifera,Collothecidae,Collothecidae,Collotheca,,Collotheca_sp,Uni18S
+Phytoplankton and protists,Algae,Charophyceae,Charales,Characeae,Chara,,Chara_sp,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,,Chlamydomonas_sp,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlorococcaceae,Chlorococcum,,Chlorococcum_sp,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,,Chlorella_sp,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,,Vorticella_sp,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sporadotrichida,Halteriidae,Halteria,,Halteria_sp,Uni18S
+Phytoplankton and protists,Alveolata,Dinoflagellates,Gymnodiniales,Gymnodiniaceae,Gymnodinium,,Gymnodinium_sp,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Pseudovorticella,,Pseudovorticella_sp,Uni18S
+Invertebrate,Platyhelminthes,Platyhelminthes,Plagiorchiida,,,,Plagiorchiida,Uni18S
+Microscopic animals,Gastrotricha,Gastrotricha,Chaetonotida,,,,Chaetonotida,Uni18S
+Microscopic animals,Rotifer,Rotifera,Ploima,,,,Ploima,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,,,,Chlamydomonadales,Uni18S
+Vertebrate,Fish,Chordata,Gobiiformes,,,,Gobiiformes,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,,,,,Ciliophora,Uni18S
+Fungi,Fungi,Chytridiomycota,Chytridiales,Chytriomycetaceae,Pendulichytrium,sphaericum,Pendulichytrium_sphaericum,Uni18S
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Cordylophoridae,Cordylophora,caspia,Cordylophora_caspia,Uni18S
+Invertebrate,Crustacea,Arthropoda,Calanoida,Diaptomidae,Onychodiaptomus,sanguineus,Onychodiaptomus_sanguineus,Uni18S
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Eucyclops,serrulatus,Eucyclops_serrulatus,Uni18S
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Mesocyclops,americanus,Mesocyclops_americanus,Uni18S
+Invertebrate,Crustacea,Arthropoda,Harpacticoida,Ameiridae,Nitocra,hibernica,Nitocra_hibernica,Uni18S
+Invertebrate,Crustacea,Arthropoda,Podocopida,Darwinulidae,Darwinula,stevensoni,Darwinula_stevensoni,Uni18S
+Invertebrate,Mollusca,Mollusca,Myida,Dreissenidae,Dreissena,bugensis,Dreissena_bugensis,Uni18S
+Invertebrate,Nematoda,Nematoda,Chromadorida,Chromadoridae,Chromadorina,bioculata,Chromadorina_bioculata,Uni18S
+Invertebrate,Platyhelminthes,Platyhelminthes,Catenulida,Catenulidae,Catenula,lemnae,Catenula_lemnae,Uni18S
+Invertebrate,Platyhelminthes,Platyhelminthes,Catenulida,Stenostomidae,Stenostomum,tuberculosum,Stenostomum_tuberculosum,Uni18S
+Invertebrate,Platyhelminthes,Platyhelminthes,Macrostomida,Microstomidae,Microstomum,bispiralis,Microstomum_bispiralis,Uni18S
+Invertebrate,Platyhelminthes,Platyhelminthes,Rhabdocoela,Dalyelliidae,Gieysztoria,infundibuliformis,Gieysztoria_infundibuliformis,Uni18S
+Invertebrate,Platyhelminthes,Platyhelminthes,Tricladida,Dugesiidae,Girardia,tigrina,Girardia_tigrina,Uni18S
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Eunapius,fragilis,Eunapius_fragilis,Uni18S
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Spongilla,lacustris,Spongilla_lacustris,Uni18S
+Microscopic animals,Gastrotricha,Gastrotricha,Chaetonotida,Chaetonotidae,Aspidiophorus,ophiodermus,Aspidiophorus_ophiodermus,Uni18S
+Microscopic animals,Rotifer,Rotifera,Collothecidae,Collothecidae,Collotheca,mutabilis,Collotheca_mutabilis,Uni18S
+Microscopic animals,Rotifer,Rotifera,Flosculariaceae,Conochilidae,Conochilus,coenobasis,Conochilus_coenobasis,Uni18S
+Microscopic animals,Rotifer,Rotifera,Flosculariaceae,Conochilidae,Conochilus,hippocrepis,Conochilus_hippocrepis,Uni18S
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Brachionus,calyciflorus,Brachionus_calyciflorus,Uni18S
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Brachionus,urceolaris,Brachionus_urceolaris,Uni18S
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Euchlanis,alata,Euchlanis_alata,Uni18S
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Keratella,quadrata,Keratella_quadrata,Uni18S
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Ploesoma,hudsoni,Ploesoma_hudsoni,Uni18S
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,remata,Polyarthra_remata,Uni18S
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,oblonga,Synchaeta_oblonga,Uni18S
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,pectinata,Synchaeta_pectinata,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,irregularis,Chlamydomonas_irregularis,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,noctigama,Chlamydomonas_noctigama,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,proteus,Chlamydomonas_proteus,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,reinhardtii,Chlamydomonas_reinhardtii,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,tetragama,Chlamydomonas_tetragama,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlorochytriaceae,Chlorochytrium,lemnae,Chlorochytrium_lemnae,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Dunaliellaceae,Hafniomonas,reticulata,Hafniomonas_reticulata,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Colemanosphaera,charkowiensis,Colemanosphaera_charkowiensis,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Eudorina,elegans,Eudorina_elegans,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Pandorina,morum,Pandorina_morum,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,aureus,Volvox_aureus,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,globator,Volvox_globator,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Oedogoniales,Oedogoniaceae,Oedogonium,brevicingulatum,Oedogonium_brevicingulatum,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Pyrenomonadales,Pyrenomonadaceae,Rhodomonas,minuta,Rhodomonas_minuta,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Sphaeropleales,Selenastraceae,Kirchneriella,irregularis,Kirchneriella_irregularis,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,Ulotrichales,Ulotrichaceae,Ulothrix,zonata,Ulothrix_zonata,Uni18S
+Phytoplankton and protists,Algae,Chlorophyta,,,Choricystis,minor,Choricystis_minor,Uni18S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,curvata,Cryptomonas_curvata,Uni18S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,erosa,Cryptomonas_erosa,Uni18S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,meshchyorana,Cryptomonas_meshchyorana,Uni18S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,obovoidea,Cryptomonas_obovoidea,Uni18S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,ovata,Cryptomonas_ovata,Uni18S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,phaseolus,Cryptomonas_phaseolus,Uni18S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,platyuris,Cryptomonas_platyuris,Uni18S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,pyrenoidifera,Cryptomonas_pyrenoidifera,Uni18S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,rostratiformis,Cryptomonas_rostratiformis,Uni18S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,tetrapyrenoidosa,Cryptomonas_tetrapyrenoidosa,Uni18S
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Plagioselmis,nannoplanctica,Plagioselmis_nannoplanctica,Uni18S
+Phytoplankton and protists,Algae,Ochrophyta,Chromulinales,Chromulinaceae,Uroglenopsis,turfosa,Uroglenopsis_turfosa,Uni18S
+Phytoplankton and protists,Algae,Ochrophyta,Chromulinales,Dinobryaceae,Dinobryon,cylindricum,Dinobryon_cylindricum,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Choreotrichida,Strobilidiidae,Rimostrombidium,lacustris,Rimostrombidium_lacustris,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Choreotrichida,Strobilidiidae,Strobilidium,caudatum,Strobilidium_caudatum,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Oligotrichida,Strombidiidae,Limnostrombidium,viride,Limnostrombidium_viride,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Oligotrichida,Strombidiidae,Pelagostrombidium,fallax,Pelagostrombidium_fallax,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Peniculida,Stokesiidae,Stokesia,vernalis,Stokesia_vernalis,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Epistylidae,Epistylis,foissneri,Epistylis_foissneri,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Epistylidae,Epistylis,portoalegrensis,Epistylis_portoalegrensis,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Epistylidae,Epistylis,riograndensis,Epistylis_riograndensis,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Carchesium,polypinum,Carchesium_polypinum,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,citrina,Vorticella_citrina,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,fusca,Vorticella_fusca,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,microstoma,Vorticella_microstoma,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sporadotrichida,Halteriidae,Halteria,grandinella,Halteria_grandinella,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Sporadotrichida,Oxytrichidae,Urosoma,emarginata,Urosoma_emarginata,Uni18S
+Phytoplankton and protists,Alveolata,Ciliophora,Tintinnida,Tintinnidae,Tintinnidium,fluviatile,Tintinnidium_fluviatile,Uni18S
+Phytoplankton and protists,Alveolata,Dinoflagellates,Suessiales,Suessiaceae,Asulcocephalium,miricentonis,Asulcocephalium_miricentonis,Uni18S
+Plant,Magnoliopsida,Magnoliopsida,Asterales,Asteraceae,,,Asteraceae,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Fagales,Betulaceae,,,Betulaceae,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Malpighiales,Salicaceae,,,Salicaceae,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Nymphaeales,Nymphaeaceae,,,Nymphaeaceae,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Poales,Poaceae,,,Poaceae,Uniorbcl
+Phytoplankton and protists,Algae,Charophyceae,Charales,Characeae,Chara,,Chara_sp,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,,Chlamydomonas_sp,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Monomastigales,Monomastigaceae,Monomastix,,Monomastix_sp,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Oedogoniales,Oedogoniaceae,Oedogonium,,Oedogonium_sp,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Sphaeropleales,Selenastraceae,Ankistrodesmus,,Ankistrodesmus_sp,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,,,Choricystis,,Choricystis_sp,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,,Cosmarium_sp,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Cosmocladium,,Cosmocladium_sp,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Micrasterias,,Micrasterias_sp,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,,Staurastrum_sp,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Gonatozygaceae,Gonatozygon,,Gonatozygon_sp,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Zygnematales,Zygnemataceae,Spirogyra,,Spirogyra_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Alismataceae,Sagittaria,,Sagittaria_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Hydrocharitaceae,Elodea,,Elodea_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Hydrocharitaceae,Najas,,Najas_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Hydrocharitaceae,Vallisneria,,Vallisneria_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Potamogetonaceae,Potamogeton,,Potamogeton_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Fagales,Fagaceae,Quercus,,Quercus_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Lamiales,Lentibulariaceae,Utricularia,,Utricularia_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Malpighiales,Salicaceae,Salix,,Salix_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Myrtales,Lythraceae,Lythrum,,Lythrum_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Nymphaeales,Nymphaeaceae,Nuphar,,Nuphar_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Nymphaeales,Nymphaeaceae,Nymphaea,,Nymphaea_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Poales,Cyperaceae,Eleocharis,,Eleocharis_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Poales,Cyperaceae,Schoenoplectus,,Schoenoplectus_sp,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,,Volvox_sp,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,,Staurodesmus_sp,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Xanthidium,,Xanthidium_sp,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Sapindales,Sapindaceae,Acer,,Acer_sp,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,,,,Desmidiales,Uniorbcl
+Phytoplankton and protists,Algae,Charophyceae,Charales,Characeae,Nitellopsis,obtusa,Nitellopsis_obtusa,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlorochytriaceae,Chlorochytrium,lemnae,Chlorochytrium_lemnae,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Pleurastraceae,Pleurastrum,insigne,Pleurastrum_insigne,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,variabilis,Chlorella_variabilis,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,vulgaris,Chlorella_vulgaris,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Chlorellales,Chlorellaceae,Meyerella,planktonica,Meyerella_planktonica,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Oedogoniales,Oedogoniaceae,Oedogonium,angustistomum,Oedogonium_angustistomum,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Oedogoniales,Oedogoniaceae,Oedogonium,cardiacum,Oedogonium_cardiacum,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Sphaeropleales,Hydrodictyaceae,Pediastrum,duplex,Pediastrum_duplex,Uniorbcl
+Phytoplankton and protists,Algae,Chlorophyta,Sphaeropleales,Mychonastaceae,Pseudodictyosphaerium,jurisii,Pseudodictyosphaerium_jurisii,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Closterium,ehrenbergii,Closterium_ehrenbergii,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,amoenum,Cosmarium_amoenum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,bioculatum,Cosmarium_bioculatum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,blyttii,Cosmarium_blyttii,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,difficile,Cosmarium_difficile,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,humile,Cosmarium_humile,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,laeve,Cosmarium_laeve,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,punctulatum,Cosmarium_punctulatum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,quadratulum,Cosmarium_quadratulum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,regnellii,Cosmarium_regnellii,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,sinostegos,Cosmarium_sinostegos,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,sphagnicolum,Cosmarium_sphagnicolum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,subprotumidum,Cosmarium_subprotumidum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Closteriaceae,Cosmarium,tinctum,Cosmarium_tinctum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Bambusina,borreri,Bambusina_borreri,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Desmidium,aptogonum,Desmidium_aptogonum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Desmidium,baileyi,Desmidium_baileyi,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Desmidium,swartzii,Desmidium_swartzii,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Groenbladia,undulata,Groenbladia_undulata,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Heimansia,pusilla,Heimansia_pusilla,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Hyalotheca,dissiliens,Hyalotheca_dissiliens,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Onychonema,laeve,Onychonema_laeve,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Spondylosium,luetkemuelleri,Spondylosium_luetkemuelleri,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Spondylosium,panduriforme,Spondylosium_panduriforme,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Spondylosium,tetragonum,Spondylosium_tetragonum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,clepsydra,Staurastrum_clepsydra,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,crenulatum,Staurastrum_crenulatum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,galeatum,Staurastrum_galeatum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,lapponicum,Staurastrum_lapponicum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,leptocladum,Staurastrum_leptocladum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,orbiculare,Staurastrum_orbiculare,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,pseudosuecicum,Staurastrum_pseudosuecicum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,punctulatum,Staurastrum_punctulatum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,quadricornutum,Staurastrum_quadricornutum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,sebaldii,Staurastrum_sebaldii,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,tetracerum,Staurastrum_tetracerum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,brevispinus,Staurodesmus_brevispinus,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,dejectus,Staurodesmus_dejectus,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,extensus,Staurodesmus_extensus,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurodesmus,validus,Staurodesmus_validus,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Triplastrum,simplex,Triplastrum_simplex,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Xanthidium,antilopaeum,Xanthidium_antilopaeum,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Zygnematales,Zygnemataceae,Spirogyra,tenuissima,Spirogyra_tenuissima,Uniorbcl
+Phytoplankton and protists,Algae,Streptophyta,Zygnematales,Zygnemataceae,Spirogyra,weberi,Spirogyra_weberi,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Araceae,Lemna,minor,Lemna_minor,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Hydrocharitaceae,Hydrilla,verticillata,Hydrilla_verticillata,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Alismatales,Hydrocharitaceae,Najas,flexilis,Najas_flexilis,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Commelinales,Pontederiaceae,Heteranthera,dubia,Heteranthera_dubia,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Fagales,Betulaceae,Carpinus,caroliniana,Carpinus_caroliniana,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Fagales,Betulaceae,Ostrya,virginiana,Ostrya_virginiana,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Myrtales,Lythraceae,Lythrum,salicaria,Lythrum_salicaria,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Nymphaeales,Cabombaceae,Brasenia,schreberi,Brasenia_schreberi,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Poales,Poaceae,Calamagrostis,arundinacea,Calamagrostis_arundinacea,Uniorbcl
+Plant,Magnoliopsida,Magnoliopsida,Poales,Typhaceae,Sparganium,natans,Sparganium_natans,Uniorbcl
+Plant,Streptophyta,Streptophyta,Osmundales,Osmundaceae,Osmunda,regalis,Osmunda_regalis,Uniorbcl
+Plant,Streptophyta,Streptophyta,Osmundales,Osmundaceae,Osmundastrum,cinnamomeum,Osmundastrum_cinnamomeum,Uniorbcl
+Phytoplankton and protists,Alveolata,,,,,,Alveolata,UniPh
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,,,Naididae,UniPh
+Invertebrate,Crustacea,Arthropoda,Calanoida,Diaptomidae,,,Diaptomidae,UniPh
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,,,Cyclopidae,UniPh
+Invertebrate,Mollusca,Mollusca,Myida,Dreissenidae,,,Dreissenidae,UniPh
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,,,Brachionidae,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Licmophorales,Ulnariaceae,,,Ulnariaceae,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Stephanodiscales,Stephanodiscaceae,,,Stephanodiscaceae,UniPh
+Invertebrate,Annelida,Annelida,Tubificida,Naididae,Stylaria,,Stylaria_sp,UniPh
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Hydridae,Hydra,,Hydra_sp,UniPh
+Invertebrate,Crustacea,Arthropoda,Calanoida,Temoridae,Eurytemora,,Eurytemora_sp,UniPh
+Invertebrate,Crustacea,Arthropoda,Podocopida,Cyprididae,Cypridopsis,,Cypridopsis_sp,UniPh
+Invertebrate,Platyhelminthes,Platyhelminthes,Macrostomida,Microstomidae,Microstomum,,Microstomum_sp,UniPh
+Microscopic animals,Gastrotricha,Gastrotricha,Chaetonotida,Chaetonotidae,Chaetonotus,,Chaetonotus_sp,UniPh
+Microscopic animals,Rotifer,Rotifera,Collothecidae,Collothecidae,Collotheca,,Collotheca_sp,UniPh
+Phytoplankton and protists,Algae,Charophyceae,Charales,Characeae,Chara,,Chara_sp,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Carteria,,Carteria_sp,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlorococcaceae,Chlorococcum,,Chlorococcum_sp,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlorellales,Chlorellaceae,Chlorella,,Chlorella_sp,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Cladophorales,Cladophoraceae,Cladophora,,Cladophora_sp,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Naviculales,Naviculaceae,Navicula,,Navicula_sp,UniPh
+Phytoplankton and protists,Algae,Streptophyta,Desmidiales,Desmidiaceae,Staurastrum,,Staurastrum_sp,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,,Vorticella_sp,UniPh
+Phytoplankton and protists,Alveolata,Dinoflagellates,Gymnodiniales,Gymnodiniaceae,Gymnodinium,,Gymnodinium_sp,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Pseudovorticella,,Pseudovorticella_sp,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sporadotrichida,Halteriidae,Halteria,,Halteria_sp,UniPh
+Invertebrate,Platyhelminthes,Platyhelminthes,Plagiorchiida,,,,Plagiorchiida,UniPh
+Microscopic animals,Rotifer,Rotifera,Ploima,,,,Ploima,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,,,,Chlamydomonadales,UniPh
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,,,,Cryptomonadales,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,,,,,Ciliophora,UniPh
+Fungi,Fungi,Chytridiomycota,Chytridiales,Chytriomycetaceae,Pendulichytrium,sphaericum,Pendulichytrium_sphaericum,UniPh
+Invertebrate,Cnidaria,Cnidaria,Anthoathecata,Cordylophoridae,Cordylophora,caspia,Cordylophora_caspia,UniPh
+Invertebrate,Crustacea,Arthropoda,Calanoida,Diaptomidae,Onychodiaptomus,sanguineus,Onychodiaptomus_sanguineus,UniPh
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Eucyclops,serrulatus,Eucyclops_serrulatus,UniPh
+Invertebrate,Crustacea,Arthropoda,Cyclopoida,Cyclopidae,Mesocyclops,americanus,Mesocyclops_americanus,UniPh
+Invertebrate,Crustacea,Arthropoda,Harpacticoida,Ameiridae,Nitocra,hibernica,Nitocra_hibernica,UniPh
+Invertebrate,Mollusca,Mollusca,Architaenioglossa,Viviparidae,Viviparus,georgianus,Viviparus_georgianus,UniPh
+Invertebrate,Mollusca,Mollusca,Myida,Dreissenidae,Dreissena,bugensis,Dreissena_bugensis,UniPh
+Invertebrate,Nematoda,Nematoda,Chromadorida,Chromadoridae,Chromadorina,bioculata,Chromadorina_bioculata,UniPh
+Invertebrate,Platyhelminthes,Platyhelminthes,Catenulida,Catenulidae,Catenula,lemnae,Catenula_lemnae,UniPh
+Invertebrate,Platyhelminthes,Platyhelminthes,Catenulida,Stenostomidae,Stenostomum,tuberculosum,Stenostomum_tuberculosum,UniPh
+Invertebrate,Platyhelminthes,Platyhelminthes,Macrostomida,Macrostomidae,Macrostomum,gieysztori,Macrostomum_gieysztori,UniPh
+Invertebrate,Platyhelminthes,Platyhelminthes,Macrostomida,Microstomidae,Microstomum,bispiralis,Microstomum_bispiralis,UniPh
+Invertebrate,Platyhelminthes,Platyhelminthes,Rhabdocoela,Dalyelliidae,Castrella,pinguis,Castrella_pinguis,UniPh
+Invertebrate,Platyhelminthes,Platyhelminthes,Rhabdocoela,Dalyelliidae,Gieysztoria,infundibuliformis,Gieysztoria_infundibuliformis,UniPh
+Invertebrate,Platyhelminthes,Platyhelminthes,Tricladida,Dugesiidae,Girardia,tigrina,Girardia_tigrina,UniPh
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Eunapius,fragilis,Eunapius_fragilis,UniPh
+Invertebrate,Porifera,Porifera,Spongillida,Spongillidae,Spongilla,lacustris,Spongilla_lacustris,UniPh
+Microscopic animals,Gastrotricha,Gastrotricha,Chaetonotida,Chaetonotidae,Aspidiophorus,ophiodermus,Aspidiophorus_ophiodermus,UniPh
+Microscopic animals,Gastrotricha,Gastrotricha,Chaetonotida,Chaetonotidae,Chaetonotus,polyspinosus,Chaetonotus_polyspinosus,UniPh
+Microscopic animals,Rotifer,Rotifera,Collothecidae,Collothecidae,Collotheca,mutabilis,Collotheca_mutabilis,UniPh
+Microscopic animals,Rotifer,Rotifera,Flosculariaceae,Conochilidae,Conochilus,coenobasis,Conochilus_coenobasis,UniPh
+Microscopic animals,Rotifer,Rotifera,Flosculariaceae,Conochilidae,Conochilus,hippocrepis,Conochilus_hippocrepis,UniPh
+Microscopic animals,Rotifer,Rotifera,Ploima,Asplanchnidae,Asplanchnopus,dahlgreni,Asplanchnopus_dahlgreni,UniPh
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Brachionus,calyciflorus,Brachionus_calyciflorus,UniPh
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Brachionus,urceolaris,Brachionus_urceolaris,UniPh
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Euchlanis,alata,Euchlanis_alata,UniPh
+Microscopic animals,Rotifer,Rotifera,Ploima,Brachionidae,Keratella,quadrata,Keratella_quadrata,UniPh
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Ploesoma,hudsoni,Ploesoma_hudsoni,UniPh
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Polyarthra,remata,Polyarthra_remata,UniPh
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,oblonga,Synchaeta_oblonga,UniPh
+Microscopic animals,Rotifer,Rotifera,Ploima,Synchaetidae,Synchaeta,pectinata,Synchaeta_pectinata,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,irregularis,Chlamydomonas_irregularis,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,noctigama,Chlamydomonas_noctigama,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,proteus,Chlamydomonas_proteus,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlamydomonadaceae,Chlamydomonas,reinhardtii,Chlamydomonas_reinhardtii,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Chlorochytriaceae,Chlorochytrium,lemnae,Chlorochytrium_lemnae,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Dunaliellaceae,Hafniomonas,reticulata,Hafniomonas_reticulata,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Phacotaceae,Phacotus,lenticularis,Phacotus_lenticularis,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Eudorina,elegans,Eudorina_elegans,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Pandorina,morum,Pandorina_morum,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,aureus,Volvox_aureus,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Chlamydomonadales,Volvocaceae,Volvox,globator,Volvox_globator,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Oedogoniales,Oedogoniaceae,Oedogonium,brevicingulatum,Oedogonium_brevicingulatum,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Protosiphonales,Protosiphonaceae,Spongiosarcinopsis,terrestris,Spongiosarcinopsis_terrestris,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Pyrenomonadales,Pyrenomonadaceae,Rhodomonas,minuta,Rhodomonas_minuta,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Trebouxiophyceae ordo incertae sedis,Coccomyxaceae ,Choricystis,minor,Choricystis_minor,UniPh
+Phytoplankton and protists,Algae,Chlorophyta,Ulotrichales,Ulotrichaceae,Ulothrix,zonata,Ulothrix_zonata,UniPh
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,curvata,Cryptomonas_curvata,UniPh
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,erosa,Cryptomonas_erosa,UniPh
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,meshchyorana,Cryptomonas_meshchyorana,UniPh
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,obovoidea,Cryptomonas_obovoidea,UniPh
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,ovata,Cryptomonas_ovata,UniPh
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,phaseolus,Cryptomonas_phaseolus,UniPh
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,platyuris,Cryptomonas_platyuris,UniPh
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,pyrenoidifera,Cryptomonas_pyrenoidifera,UniPh
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Cryptomonas,tetrapyrenoidosa,Cryptomonas_tetrapyrenoidosa,UniPh
+Phytoplankton and protists,Algae,Cryptophyta,Cryptomonadales,Cryptomonadaceae,Plagioselmis,nannoplanctica,Plagioselmis_nannoplanctica,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Chattonellales,Vacuolariaceae,Gonyostomum,semen,Gonyostomum_semen,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Chromulinales,Chromulinaceae,Uroglenopsis,americana,Uroglenopsis_americana,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Chromulinales,Chromulinaceae,Uroglenopsis,turfosa,Uroglenopsis_turfosa,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Chromulinales,Chromulinaceae,Urostipulosphaera,notabilis,Urostipulosphaera_notabilis,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Chromulinales,Dinobryaceae,Dinobryon,cylindricum,Dinobryon_cylindricum,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Cymbellales,Cymbellaceae,Cymbella,affinis,Cymbella_affinis,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Stephanodiscales,Stephanodiscaceae,Cyclotella,costei,Cyclotella_costei,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Stephanodiscales,Stephanodiscaceae,Cyclotella,ocellata,Cyclotella_ocellata,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Synurales,Mallomonadaceae,Mallomonas,crassisquama,Mallomonas_crassisquama,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Synurales,Mallomonadaceae,Mallomonas,striata,Mallomonas_striata,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Synurales,Mallomonadaceae,Mallomonas,tonsurata,Mallomonas_tonsurata,UniPh
+Phytoplankton and protists,Algae,Ochrophyta,Thalassiosirales,Skeletonemataceae,Skeletonema,potamos,Skeletonema_potamos,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Choreotrichida,Strobilidiidae,Rimostrombidium,lacustris,Rimostrombidium_lacustris,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Choreotrichida,Strobilidiidae,Strobilidium,caudatum,Strobilidium_caudatum,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Oligotrichida,Strombidiidae,Limnostrombidium,viride,Limnostrombidium_viride,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Oligotrichida,Strombidiidae,Pelagostrombidium,fallax,Pelagostrombidium_fallax,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Peniculida,Stokesiidae,Stokesia,vernalis,Stokesia_vernalis,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Epistylidae,Epistylis,portoalegrensis,Epistylis_portoalegrensis,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Carchesium,polypinum,Carchesium_polypinum,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Epicarchesium,pectinatum,Epicarchesium_pectinatum,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,aequilata,Vorticella_aequilata,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,campanula,Vorticella_campanula,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,fusca,Vorticella_fusca,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sessilida,Vorticellidae,Vorticella,microstoma,Vorticella_microstoma,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sporadotrichida,Halteriidae,Halteria,grandinella,Halteria_grandinella,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Sporadotrichida,Oxytrichidae,Urosoma,emarginata,Urosoma_emarginata,UniPh
+Phytoplankton and protists,Alveolata,Ciliophora,Tintinnida,Tintinnidae,Tintinnidium,fluviatile,Tintinnidium_fluviatile,UniPh
+Phytoplankton and protists,Alveolata,Dinoflagellates,Suessiales,Suessiaceae,Asulcocephalium,miricentonis,Asulcocephalium_miricentonis,UniPh
+Vertebrate,Salamander,Chordata,Urodela,Plethodontidae,Plethodon,cinereus,Plethodon_cinereus,UniPh
