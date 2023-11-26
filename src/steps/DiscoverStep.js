@@ -404,6 +404,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                 // TODO
                 searching.current = false;
                 console.debug("received results", data);
+                setProgress(100);
                 setResults(data.results);
             } else if (type === "progress" && searching.current) {
                 setProgress(data.percent);
