@@ -65,11 +65,12 @@ const buildRecordsWithPrimerArrays = (records) => {
 
 const buildLeafKey = (rec) => `root-${PRIMER_GROUPINGS.map((g) => rec[g]).join("-")}-leaf`;
 
-export const createDataset = (records) => {
+export const createDataset = (rawRecords) => {
+    const records = rawRecords.map((rec) => ({...rec, Final_ID: rec["Final_ID"].trim().replace(" ", "_")}));
+
     const tree = taxaRecGroup(records, PRIMER_GROUPINGS, "root");
     const primers = new Set(records.map((rec) => rec["Primer_name"]));
     const processedRecords = buildRecordsWithPrimerArrays(records.map((rec) => ({ ...rec, key: buildLeafKey(rec) })));
-    const recordsByKey = Object.fromEntries(processedRecords.map((rec) => [rec.key, rec]));
 
     const primersArray = Array.from(primers);
     return {
@@ -77,7 +78,7 @@ export const createDataset = (records) => {
         primers: primersArray,
         primerPalette: paletteForPrimers(primersArray),
         records: processedRecords,
-        recordsByKey,
+        recordsByKey: Object.fromEntries(processedRecords.map((rec) => [rec.key, rec])),
         recordsByFinalID: Object.fromEntries(processedRecords.map((rec) => [rec["Final_ID"], rec])),
     };
 };
