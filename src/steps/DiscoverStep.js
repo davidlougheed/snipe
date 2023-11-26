@@ -269,7 +269,7 @@ const ResultsTabs = ({ dataset, results }) => {
                     ),
                     key: `tab-${nPrimers}-primers`,
                     children: (
-                        <div style={{ display: "flex", gap: 16 }}>
+                        <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
                             {npResults.map((r, j) => {
                                 // TODO: refactor into some type of primer set object so we can useCallback these
                                 //  handlers and have a generally better structure
