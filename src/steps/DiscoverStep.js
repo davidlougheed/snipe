@@ -23,6 +23,8 @@ import {
 } from "antd";
 import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
 
+import { Bar, BarChart, Label, Tooltip, XAxis, YAxis } from "recharts";
+
 import { createVennJSAdapter, VennDiagram } from "@upsetjs/react";
 import { layout } from "@upsetjs/venn.js";
 import { lab } from "d3-color";
@@ -171,6 +173,9 @@ const PrimerSet = ({
     );
 };
 
+const PrimerCountPhrase = ({ nPrimers }) => <span>{nPrimers} {pluralize("Primer", nPrimers)}</span>;
+const primerCountPhrase = (nPrimers) => `${nPrimers} ${pluralize("Primer", nPrimers)}`;
+
 const ResultsTabs = ({ dataset, results }) => {
     const [selectedPrimerSetTitle, setSelectedPrimerSetTitle] = useState("");
     const [selectedPrimers, setSelectedPrimers] = useState(new Set());
@@ -255,7 +260,7 @@ const ResultsTabs = ({ dataset, results }) => {
 
                 return {
                     label: <span>
-                        {nPrimers} {pluralize("Primer", nPrimers)}: {(res.coverage * 100).toFixed(1)}%
+                        {primerCountPhrase(nPrimers)}: {(res.coverage * 100).toFixed(1)}%
                         {nRes > 1 ? <>{" "}({nRes} sets)</> : null}
                     </span>,
                     key: `tab-${nPrimers}-primers`,
@@ -294,13 +299,39 @@ const ResultsTabs = ({ dataset, results }) => {
             })}/>
         </>
     );
-}
+};
+
+const percentFormatter = (d) => `${(d * 100).toFixed(1)}%`;
+
+const CumulativePrimerSetCoverageChart = ({ results }) => {
+    const data = useMemo(() => {
+        if (!results) return [];
+        return results.map(({ coverage, nPrimers }) => ({
+            name: nPrimers.toString(),
+            // TODO: coverage breakdown by group!
+            coverage,
+        })).reverse();
+    }, [results]);
+
+    return <BarChart width={752} height={500} data={data} margin={{ top: 8, bottom: 24, left: 16 }}>
+        <XAxis dataKey="name">
+            <Label value="# primers" position="bottom" />
+        </XAxis>
+        <YAxis tickFormatter={percentFormatter}>
+            <Label value="% coverage" angle={-90} position="left" style={{ textAnchor: "middle" }} />
+        </YAxis>
+        <Tooltip formatter={(value) => percentFormatter(value)} />
+        {/*<Legend />*/}
+        <Bar dataKey="coverage" name="Coverage" stackId="a" />
+    </BarChart>
+};
 
 const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
     const worker = useRef(null);
     const searching = useRef(false);  // ref so that the closure can get the true value
 
-    const [modalVisible, setModalVisible] = useState(false);
+    const [taxaSelectModalVisible, setTaxaSelectModalVisible] = useState(false);
+    const [primerSetCoverageModalVisible, setPrimerSetCoverageModalVisible] = useState(false);
 
     const [expandedKeys, setExpandedKeys] = useState([]);
     const [checkedKeys, setCheckedKeys] = useState([]);
@@ -341,7 +372,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
     useEffect(() => {
         // Reset state when dataset changes
         setNPrimers(dataset?.primers?.length ?? 1);
-        setModalVisible(false);
+        setTaxaSelectModalVisible(false);
         setExpandedKeys([]);
         setCheckedKeys([]);
     }, [dataset]);
@@ -376,9 +407,11 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
 
     const nCheckedLeaves = checkedLeaves.length;
 
+    const showTaxaSelectModal = useCallback(() => setTaxaSelectModalVisible(true), []);
+    const hideTaxaSelectModal = useCallback(() => setTaxaSelectModalVisible(false), []);
 
-    const showModal = useCallback(() => setModalVisible(true), []);
-    const hideModal = useCallback(() => setModalVisible(false), []);
+    const showPrimerSetCoverageModal = useCallback(() => setPrimerSetCoverageModalVisible(true), []);
+    const hidePrimerSetCoverageModal = useCallback(() => setPrimerSetCoverageModalVisible(false), []);
 
     const onSearch = useCallback(() => {
         if (!dataset) return;
@@ -419,7 +452,7 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                             </div>}
                         >
                             <Space>
-                                <Button onClick={showModal}>Select Taxa &hellip;</Button>
+                                <Button onClick={showTaxaSelectModal}>Select Taxa &hellip;</Button>
                                 <span style={{ color: nCheckedLeaves === 0 ? "#EE4433" : undefined }}>
                                     {checkedLeaves.length} entries selected
                                 </span>
@@ -466,7 +499,12 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                 </Card>
             </Col>
             <Col md={24} lg={14} xl={16}>
-                <Typography.Title level={3}>Results</Typography.Title>
+                <div style={{ display: "flex", gap: 16 }}>
+                    <Typography.Title level={3} style={{ flex: 1 }}>Results</Typography.Title>
+                    <Button disabled={!results} onClick={showPrimerSetCoverageModal}>
+                        Cumulative Primer Set Coverage
+                    </Button>
+                </div>
                 {!hasSearched && (
                     <Alert
                         message="No results yet"
@@ -485,13 +523,31 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
             </Col>
         </Row>
 
+        <Divider />
+
+        <Row>
+            <Col flex={1}>
+                <Button size="large" icon={<ArrowLeftOutlined/>} onClick={onBack}>Back</Button>
+            </Col>
+            <Col flex={1} style={{ display: "flex", justifyContent: "flex-end" }}>
+                <Button
+                    type="primary"
+                    size="large"
+                    icon={<ArrowRightOutlined/>}
+                    // disabled={!hasSearched}
+                    disabled={true}  // for now
+                    onClick={() => onFinish()}
+                >Next Step</Button>
+            </Col>
+        </Row>
+
         <Modal
             title="Select Taxa"
-            open={modalVisible}
-            onCancel={hideModal}
+            open={taxaSelectModalVisible}
+            onCancel={hideTaxaSelectModal}
             width={800}
             okText="Done"
-            footer={[<Button key="done" type="primary" onClick={hideModal}>Done</Button>]}
+            footer={[<Button key="done" type="primary" onClick={hideTaxaSelectModal}>Done</Button>]}
         >
             <Space direction="vertical">
                 <Space direction="horizontal">
@@ -510,22 +566,16 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
                 />
             </Space>
         </Modal>
-        <Divider/>
-        <Row>
-            <Col flex={1}>
-                <Button size="large" icon={<ArrowLeftOutlined/>} onClick={onBack}>Back</Button>
-            </Col>
-            <Col flex={1} style={{ display: "flex", justifyContent: "flex-end" }}>
-                <Button
-                    type="primary"
-                    size="large"
-                    icon={<ArrowRightOutlined/>}
-                    // disabled={!hasSearched}
-                    disabled={true}  // for now
-                    onClick={() => onFinish()}
-                >Next Step</Button>
-            </Col>
-        </Row>
+
+        <Modal
+            title="Cumulative Primer Set Coverage"
+            open={primerSetCoverageModalVisible}
+            width={800}
+            footer={null}
+            onCancel={hidePrimerSetCoverageModal}
+        >
+            <CumulativePrimerSetCoverageChart results={results} />
+        </Modal>
     </>;
 };
 
