@@ -317,7 +317,10 @@ const CumulativePrimerSetCoverageChart = ({ dataset, results }) => {
             coverageFraction,
             ...Object.fromEntries(
                 Object.entries(dataset?.supergroupGroups ?? {})
-                    .map(([sg, gs]) => [`supergroup_${sg}`, gs.reduce((acc, g) => acc + avgCoverageByGroup[g], 0)])
+                    .map(([sg, gs]) => [
+                        `supergroup_${sg}`,
+                        gs.reduce((acc, g) => acc + (avgCoverageByGroup[g] ?? 0), 0),
+                    ])
                     .filter(([_, v]) => !!v)),
             ...Object.fromEntries(
                 Object.entries(avgCoverageByGroup)
