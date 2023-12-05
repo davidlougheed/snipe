@@ -371,7 +371,7 @@ const CumulativePrimerSetCoverageChart = ({ dataset, results }) => {
     </>;
 };
 
-const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
+const DiscoverStep = ({ visible, dataset, onBack }) => {
     const worker = useRef(null);
     const searching = useRef(false);  // ref so that the closure can get the true value
 
@@ -576,16 +576,6 @@ const DiscoverStep = ({ visible, dataset, onBack, onFinish }) => {
         <Row>
             <Col flex={1}>
                 <Button size="large" icon={<ArrowLeftOutlined/>} onClick={onBack}>Back</Button>
-            </Col>
-            <Col flex={1} style={{ display: "flex", justifyContent: "flex-end" }}>
-                <Button
-                    type="primary"
-                    size="large"
-                    icon={<ArrowRightOutlined/>}
-                    // disabled={!hasSearched}
-                    disabled={true}  // for now
-                    onClick={() => onFinish()}
-                >Next Step</Button>
             </Col>
         </Row>
 

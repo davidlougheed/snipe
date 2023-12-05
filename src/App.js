@@ -4,7 +4,6 @@ import { useCallback, useMemo, useState } from "react";
 import { PrimerPaletteContext } from "./colors";
 import DatasetStep from "./steps/DatasetStep";
 import DiscoverStep from "./steps/DiscoverStep";
-import DownloadStep from "./steps/DownloadStep";
 
 const { Title, Paragraph } = Typography;
 
@@ -25,10 +24,6 @@ const stepItems = [
         title: <strong>Discover primer sets</strong>,
         description: "Choose taxa for presence detection and find matching primer sets.",
     },
-    {
-        title: <strong>Download results</strong>,
-        description: "Obtain a report of your selected primer sets.",
-    },
 ];
 
 const App = () => {
@@ -46,7 +41,6 @@ const App = () => {
        <>
            <DatasetStep visible={currentStep === 0} dataset={dataset} setDataset={setDataset} onFinish={onNext} />
            <DiscoverStep visible={currentStep === 1} dataset={dataset} onBack={onBack} />
-           <DownloadStep visible={currentStep === 2} />
        </>
     ), [currentStep, dataset]);
 
@@ -61,16 +55,18 @@ const App = () => {
             <div style={{maxWidth: 1400, margin: "0 auto"}}>
                 <Card>
                     <div style={styles.titleContainer}>
-                        <Title level={1} style={styles.title}>SNIPE</Title>
+                        <Title level={1} style={styles.title}>SNIPe</Title>
                         <span style={styles.subtitle}>
                             <strong>S</strong>electing{" "}
                             <strong>N</strong>ovel{" "}
                             <strong>I</strong>nformative{" "}
                             <strong>P</strong>rimer-sets for{" "}
-                            <strong>ᴇ</strong>-DNA
+                            <strong>e</strong>-DNA
                         </span>
                     </div>
-                    <Steps size="small" items={stepItems} current={currentStep} />
+                    <div style={{ maxWidth: 600, margin: "0 auto" }}>
+                        <Steps size="small" items={stepItems} current={currentStep} />
+                    </div>
                     <Divider />
                     <PrimerPaletteContext.Provider value={dataset?.primerPalette}>
                         {stepNode}
