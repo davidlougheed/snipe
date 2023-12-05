@@ -513,7 +513,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                     <Form layout="vertical">
                         <Form.Item
                             label="Taxa"
-                            help={<div style={{ height: 68 }}>
+                            help={<div style={{ marginBottom: 8 }}>
                                 The taxa available here are just those which are detectable by the dataset specified.
                             </div>}
                         >
@@ -526,7 +526,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                         </Form.Item>
                         <Form.Item
                             label="Max. Primers"
-                            help={<div style={{ height: 68 }}>
+                            help={<div style={{ marginBottom: 8 }}>
                                 If this value is higher than the number of primers needed, only the fewest needed
                                 primers will be used.
                             </div>}
