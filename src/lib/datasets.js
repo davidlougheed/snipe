@@ -61,7 +61,22 @@ const buildRecordsWithPrimerArrays = (records) => {
 const buildLeafKey = (rec) => `root-${PRIMER_GROUPINGS.map((g) => rec[g]).join("-")}-leaf`;
 
 export const createDataset = (rawRecords) => {
-    const records = rawRecords.map((rec) => ({...rec, Final_ID: rec["Final_ID"].trim().replace(" ", "_")}));
+    const records = rawRecords.map((rec) => {
+        const newRec = {...rec};
+
+        // Trim primer names
+        newRec["Primer_name"] = newRec["Primer_name"].trim();
+
+        // Make sure we trim whitespace off of each grouping field to avoid accidental duplicate entries
+        PRIMER_GROUPINGS.forEach((g) => {
+            newRec[g] = (newRec[g] || "").trim();
+        });
+
+        // Additionally normalize the Final_ID column by replacing spaces with underscores
+        newRec["Final_ID"] = newRec["Final_ID"].replace(" ", "_");
+
+        return newRec;
+    });
 
     const tree = taxaGroup(records, PRIMER_GROUPINGS, true);
     const primers = new Set(records.map((rec) => rec["Primer_name"]));
