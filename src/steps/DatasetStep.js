@@ -177,6 +177,14 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                 </Row>
             </Col>
         </Row>
+        <Row>
+            <Col flex={1}>
+                <Paragraph style={{ marginTop: "1em", marginBottom: 0 }}>
+                    <strong>Note:</strong> All processing is done on your local computer; datasets{" "}
+                    <em>are not</em> sent to a remote server.
+                </Paragraph>
+            </Col>
+        </Row>
         <Divider />
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <Button
