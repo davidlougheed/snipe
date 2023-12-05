@@ -1,4 +1,5 @@
 import { asSets } from "@upsetjs/react";
+import groupBy from "lodash/groupBy";
 import { rgb } from "d3-color";
 import { OVERVIEW_GROUPINGS, taxaGroup } from "./datasets";
 
@@ -89,6 +90,7 @@ const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
 
             const res = {
                 primers: pc,
+                coverage,
                 coveredTaxa,
                 coveredTaxaByPrimer,
                 coveredTaxaByPrimerUpset: asSets(
@@ -104,6 +106,8 @@ const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
                 ),
                 coverageByGroup: calculateGroupCoverage(
                     taxaGroup(coveredRecords, OVERVIEW_GROUPINGS, false)),
+                resolutionSummary: Object.fromEntries(
+                    Object.entries(groupBy(coveredRecords, "Resolution")).map(([k, v]) => [k, v.length])),
             };
 
             if (coverage > bestCoverage) {

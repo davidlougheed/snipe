@@ -6,6 +6,9 @@ import { paletteForPrimers } from "../colors";
 
 export const OVERVIEW_GROUPINGS = ["Taxa_group", "Final_ID"];
 export const PRIMER_GROUPINGS = ["Supergroup", "Taxa_group", "Phylum", "Order", "Family", "Genus", "Final_ID"];
+const RESOLUTION_SPECIES = "Species";
+export const RESOLUTIONS = PRIMER_GROUPINGS.slice(2, -1);
+export const RESOLUTIONS_WITH_SPECIES = [...RESOLUTIONS, RESOLUTION_SPECIES];
 
 const preventDefault = (e) => {
     e.preventDefault();
@@ -67,13 +70,21 @@ export const createDataset = (rawRecords) => {
         // Trim primer names
         newRec["Primer_name"] = newRec["Primer_name"].trim();
 
-        // Make sure we trim whitespace off of each grouping field to avoid accidental duplicate entries
+        // Make sure we trim whitespace off of each grouping field to avoid accidental duplicate entries.
         PRIMER_GROUPINGS.forEach((g) => {
             newRec[g] = (newRec[g] || "").trim();
         });
 
-        // Additionally normalize the Final_ID column by replacing spaces with underscores
+        // Additionally normalize the Final_ID column by replacing spaces with underscores.
         newRec["Final_ID"] = newRec["Final_ID"].replace(" ", "_");
+
+        // Add a new column if it isn't already provided: "Resolution", which we can use for generating a breakdown of
+        // primer resolution in results.
+        newRec["Resolution"] = (
+            newRec["Resolution"] ??
+            RESOLUTIONS.find((g) => newRec[g] === "") ??
+            RESOLUTION_SPECIES
+        );
 
         return newRec;
     });

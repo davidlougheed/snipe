@@ -17,12 +17,12 @@ import {
     Radio,
     Row,
     Space,
-    Spin,
+    Spin, Statistic,
     Tabs,
     Tree,
     Typography
 } from "antd";
-import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined, SearchOutlined } from "@ant-design/icons";
 
 import { Bar, BarChart, CartesianGrid, Label, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
@@ -34,9 +34,11 @@ import { schemeTableau10 } from "d3-scale-chromatic";
 
 import Primer from "../bits/Primer";
 
-import { PRIMER_GROUPINGS } from "../lib/datasets";
+import { PRIMER_GROUPINGS, RESOLUTIONS_WITH_SPECIES } from "../lib/datasets";
 import { formatTaxon, pluralize } from "../lib/utils";
 import { PrimerPaletteContext } from "../colors";
+
+const { Title } = Typography;
 
 const vennJSAdapter = createVennJSAdapter(layout);
 
@@ -142,7 +144,8 @@ const PrimerSet = ({
         <Card title={title} size="small" style={style}>
             <Space direction="vertical" size={16}>
                 <div>
-                    <strong>Primers:</strong><br/>
+                    <Title level={5}>Primers</Title>
+                    {/*<strong>Primers:</strong><br/>*/}
                     {Array.from(result.primers).map((p) =>
                         <Primer
                             key={p}
@@ -155,8 +158,15 @@ const PrimerSet = ({
                     )}
                 </div>
                 <div>
-                    <strong>Taxa:</strong> {result.coveredTaxa.size}{" "}
-                    <Button size="small" onClick={onShowTaxa}>See all</Button>
+                    <Title level={5}>
+                        Taxa:{" "}
+                        <span style={{ fontWeight: "normal" }}>
+                            {result.coverage}{" "}
+                            {nextTabPrimerSets ? `(+${result.coverage - nextTabPrimerSets[0].coverage})` : ""}
+                        </span>{" "}
+                        <Button size="small" onClick={onShowTaxa}>See all</Button>
+                    </Title>
+                    {/*<strong>Taxa:</strong> {result.coveredTaxa.size}{" "}*/}
                     {newTaxaSets.length
                         ? <NewTaxaSets
                             dataset={dataset}
@@ -170,6 +180,14 @@ const PrimerSet = ({
                         Show set diagram
                         {result.primers.size > 6 ? <em> (Not available for >6 primers)</em> : ""}
                     </Button>
+                </div>
+                <div>
+                    <Title level={5}>Resolution</Title>
+                    <Space direction="horizontal">
+                        {RESOLUTIONS_WITH_SPECIES.map((r) => (
+                            <Statistic key={r} title={r} value={result.resolutionSummary[r]} />
+                        ))}
+                    </Space>
                 </div>
             </Space>
         </Card>
@@ -548,7 +566,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
             </Col>
             <Col md={24} lg={14} xl={16}>
                 <div style={{ display: "flex", gap: 16 }}>
-                    <Typography.Title level={3} style={{ flex: 1 }}>Results</Typography.Title>
+                    <Title level={3} style={{ flex: 1 }}>Results</Title>
                     <Button disabled={!results} onClick={showPrimerSetCoverageModal}>
                         Cumulative Primer Set Coverage
                     </Button>
