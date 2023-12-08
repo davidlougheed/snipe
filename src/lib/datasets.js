@@ -9,6 +9,7 @@ export const PRIMER_GROUPINGS = ["Supergroup", "Taxa_group", "Phylum", "Order", 
 const RESOLUTION_SPECIES = "Species";
 export const RESOLUTIONS = PRIMER_GROUPINGS.slice(2, -1);
 export const RESOLUTIONS_WITH_SPECIES = [...RESOLUTIONS, RESOLUTION_SPECIES];
+export const CSV_HEADER = [...PRIMER_GROUPINGS, "Primer"];
 
 const preventDefault = (e) => {
     e.preventDefault();

@@ -17,12 +17,13 @@ import {
     Radio,
     Row,
     Space,
-    Spin, Statistic,
+    Spin,
+    Statistic,
     Tabs,
     Tree,
     Typography
 } from "antd";
-import { ArrowLeftOutlined, SearchOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined, BarChartOutlined, DownloadOutlined, SearchOutlined } from "@ant-design/icons";
 
 import { Bar, BarChart, CartesianGrid, Label, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
@@ -34,8 +35,8 @@ import { schemeTableau10 } from "d3-scale-chromatic";
 
 import Primer from "../bits/Primer";
 
-import { PRIMER_GROUPINGS, RESOLUTIONS_WITH_SPECIES } from "../lib/datasets";
-import { formatTaxon, pluralize } from "../lib/utils";
+import { CSV_HEADER, PRIMER_GROUPINGS, RESOLUTIONS_WITH_SPECIES } from "../lib/datasets";
+import { formatTaxon, pluralize, serializeCSVRow } from "../lib/utils";
 import { PrimerPaletteContext } from "../colors";
 
 const { Title } = Typography;
@@ -140,8 +141,38 @@ const PrimerSet = ({
         ? nextTabPrimerSets.map((ntps) => difference(result.primers, ntps.primers))
         : [];
 
+    const downloadPrimerSet = useCallback(() => {
+        const longFormRecords = Array.from(result.coveredTaxa).flatMap((id) => {
+            const compoundRecord = dataset.recordsByFinalID[id];
+            const baseRecord = {...compoundRecord};
+            delete baseRecord["primers"];
+            delete baseRecord["primersLower"];
+            delete baseRecord["key"];
+            delete baseRecord["Resolution"];
+            return compoundRecord.primers
+                .filter((p) => result.primers.has(p))
+                .map((p) => ({...baseRecord, Primer: p}));
+        });
+
+        const el = document.createElement("a");
+        el.href = URL.createObjectURL(new Blob([
+            serializeCSVRow(CSV_HEADER),
+            ...longFormRecords.map((rec) => serializeCSVRow(CSV_HEADER.map((h) => rec[h]))),
+        ], { type: "text/csv" }));
+        el.setAttribute("download", title.replace(/\s+/g, "_") + ".csv");
+        el.click();
+        el.remove();
+    }, []);
+
     return (
-        <Card title={title} size="small" style={style}>
+        <Card
+            title={title}
+            size="small"
+            style={style}
+            extra={<Button size="small" icon={<DownloadOutlined />} onClick={downloadPrimerSet}>
+                Download Filtered Data
+            </Button>}
+        >
             <Space direction="vertical" size={16}>
                 <div>
                     <Title level={5}>Primers</Title>
@@ -567,7 +598,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
             <Col md={24} lg={14} xl={16}>
                 <div style={{ display: "flex", gap: 16 }}>
                     <Title level={3} style={{ flex: 1 }}>Results</Title>
-                    <Button disabled={!results} onClick={showPrimerSetCoverageModal}>
+                    <Button disabled={!results} onClick={showPrimerSetCoverageModal} icon={<BarChartOutlined />}>
                         Cumulative Primer Set Coverage
                     </Button>
                 </div>

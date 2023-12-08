@@ -51,3 +51,5 @@ export const formatTaxon = (finalID, searchHighlight=undefined) => {
         {highlightTerm(parts.join(" ") + (parts.at(-1) === "sp" ? "." : ""), searchHighlight)}
     </em>;
 };
+
+export const serializeCSVRow = (arr) => arr.map((v) => `${v}`).join(",") + "\n";
