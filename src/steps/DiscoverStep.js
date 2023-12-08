@@ -526,7 +526,8 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
         worker.current.postMessage({
             type: "search",
             data: {
-                records: checkedRecords,
+                selectedRecords: checkedRecords,
+                allRecords: dataset.records,
                 maxPrimers: nPrimers,
                 primerPalette,
             },

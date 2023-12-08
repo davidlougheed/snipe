@@ -20,12 +20,12 @@ const PROGRESS_EVERY_N = 500;
 const calculateGroupCoverage = (tree) =>
     Object.fromEntries(tree.map((g) => [g.title, g.children.length]));
 
-const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
+const findBestPrimerSets = ({ selectedRecords, allRecords, maxPrimers, includeOffTarget, primerPalette }) => {
     // Make records index-able by final ID - this way we can find, e.g., groups from final IDs
-    const nTaxa = records.length;
+    const nTaxa = selectedRecords.length;
 
     // Subset of primers which can be used to identify
-    const primerSubset = Array.from(new Set(records.flatMap((rec) => rec.primers)));
+    const primerSubset = Array.from(new Set(selectedRecords.flatMap((rec) => rec.primers)));
     // - This is the largest possible set of primers we'll need, but fewer may be sufficient.
     const maxPrimersNeeded = Math.min(maxPrimers, primerSubset.length);
 
@@ -50,7 +50,7 @@ const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
     for (let nPrimers = 1; nPrimers <= maxPrimersNeeded; nPrimers++) {
         const primerCombinations = allPrimerCombinations[nPrimers - 1];
 
-        console.info(`trying ${nPrimers}/${maxPrimersNeeded} for ${records.length} records`);
+        console.info(`trying ${nPrimers}/${maxPrimersNeeded} for ${selectedRecords.length} records`);
 
         let bestCoverage = 0;
         let bestResultsForPrimerCount = [];
@@ -60,7 +60,7 @@ const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
             const coveredTaxaByPrimer = {};
             const coveredRecords = [];
 
-            records.forEach((rec) => {
+            selectedRecords.forEach((rec) => {
                 const finalID = rec["Final_ID"];
 
                 if (coveredTaxa.has(finalID)) {
@@ -127,7 +127,7 @@ const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
 
         const bestCoverageFraction = bestCoverage / nTaxa;
 
-        const baseCoverageByGroup = Object.fromEntries(records.map((rec) => [rec["Taxa_group"], 0]));
+        const baseCoverageByGroup = Object.fromEntries(selectedRecords.map((rec) => [rec["Taxa_group"], 0]));
         const avgCoverageByGroup = Object.fromEntries(
             Object.entries(
                 bestResultsForPrimerCount.reduce((acc, res) => {
@@ -176,8 +176,7 @@ const findBestPrimerSets = (records, maxPrimers, primerPalette) => {
 
 onmessage = ({ data: { type, data } }) => {
     if (type === "search") {
-        const { records, maxPrimers, primerPalette } = data;
         console.info("starting worker job with", data);
-        findBestPrimerSets(records, maxPrimers, primerPalette);
+        findBestPrimerSets(data);
     }
 };
