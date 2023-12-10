@@ -549,7 +549,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                             <Space>
                                 <Button onClick={showTaxaSelectModal}>Select Taxa &hellip;</Button>
                                 <span style={{ color: nCheckedLeaves === 0 ? "#EE4433" : undefined }}>
-                                    {checkedLeaves.length} entries selected
+                                    {checkedLeaves.length}/{dataset?.records?.length ?? 0} entries selected
                                 </span>
                             </Space>
                         </Form.Item>
