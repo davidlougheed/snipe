@@ -125,7 +125,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                     <Space direction="vertical">
                         <Radio value={0} disabled={fetchingDefaultFailed}>
                             <Spin spinning={fetchingDefault}>
-                                Use primer dataset from Tournayre <em>et al.</em> (2023)
+                                Use primer dataset from Tournayre <em>et al.</em>
                             </Spin>
                         </Radio>
                         <Radio value={1}>

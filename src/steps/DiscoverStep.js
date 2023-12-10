@@ -176,14 +176,12 @@ const PrimerSet = ({
             <Space direction="vertical" size={16}>
                 <div>
                     <Title level={5}>Primers</Title>
-                    {/*<strong>Primers:</strong><br/>*/}
                     {Array.from(result.primers).map((p) =>
                         <Primer
                             key={p}
                             name={p}
                             added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
-                            sometimes={!(newPrimerSets.reduce(
-                                (acc, x) => acc && x.has(p), true))}
+                            sometimes={!(newPrimerSets.reduce((acc, x) => acc && x.has(p), true))}
                             primerSetCount={nPrimers}
                         />
                     )}
@@ -197,7 +195,6 @@ const PrimerSet = ({
                         </span>{" "}
                         <Button size="small" onClick={onShowTaxa}>See all</Button>
                     </Title>
-                    {/*<strong>Taxa:</strong> {result.coveredTaxa.size}{" "}*/}
                     {newTaxaSets.length
                         ? <NewTaxaSets
                             dataset={dataset}
