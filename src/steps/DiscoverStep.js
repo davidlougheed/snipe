@@ -82,7 +82,7 @@ const NewTaxaSets = ({ dataset, newTaxaSets, nextNPrimers }) => {
                             const taxonRecord = dataset.recordsByFinalID[t];
                             return <Fragment key={t}>
                                 <TaxonWithGroupAndPathPopover record={taxonRecord} />
-                                {ti < newTaxaSets[0].length - 1 ? ", " : ""}
+                                {ti < nts.length - 1 ? ", " : ""}
                             </Fragment>;
                         })}
                         {ntsIndex < newTaxaSets.length - 1 ? (
