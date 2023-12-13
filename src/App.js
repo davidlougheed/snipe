@@ -92,6 +92,10 @@ const App = () => {
                            target="_blank"
                            rel="noreferrer">GPL v3 license</a>; see the <a href="#" onClick={showNotice}>notice</a>.
                     </Paragraph>
+                    <Paragraph style={styles.footerParagraph}>
+                        Please send any feedback or bug reports to{" "}
+                        <a href="mailto:david.lougheed@gmail.com">david.lougheed@gmail.com</a>.
+                    </Paragraph>
                 </div>
             </div>
             <Modal
