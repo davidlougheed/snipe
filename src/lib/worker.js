@@ -31,11 +31,9 @@ const findBestPrimerSets = ({ selectedRecords, allRecords, maxPrimers, includeOf
 
     const bestPrimerCombinations = [];  // array-indexed by (nPrimers - 1)
 
-    const allPrimerCombinations = [];
+    const nPrimersArray = [...new Array(maxPrimersNeeded)].map((_, i) => i + 1);  // [1, 2, ..., maxPrimersNeeded]
 
-    for (let np = 1; np <= maxPrimersNeeded; np++) {
-        allPrimerCombinations.push(choose(primerSubset, np));
-    }
+    const allPrimerCombinations = nPrimersArray.map((np) => choose(primerSubset, np));
 
     let nTriedPrimerCombinations = 0;
     const nTotalPrimerCombinations = allPrimerCombinations.flat().length;
@@ -47,7 +45,7 @@ const findBestPrimerSets = ({ selectedRecords, allRecords, maxPrimers, includeOf
         });
     };
 
-    for (let nPrimers = 1; nPrimers <= maxPrimersNeeded; nPrimers++) {
+    for (const nPrimers of nPrimersArray) {
         const primerCombinations = allPrimerCombinations[nPrimers - 1];
 
         console.info(`trying ${nPrimers}/${maxPrimersNeeded} for ${selectedRecords.length} records`);
