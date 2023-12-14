@@ -20,7 +20,81 @@ const PROGRESS_EVERY_N = 500;
 const calculateGroupCoverage = (tree) =>
     Object.fromEntries(tree.map((g) => [g.title, g.children.length]));
 
-const findBestPrimerSets = ({ selectedRecords, allRecords, maxPrimers, includeOffTarget, primerPalette }) => {
+const computePrimerSetCovered = (records, primerSet, primerPalette) => {
+    const coveredTaxa = new Set();
+    const coveredTaxaByPrimer = {};
+    const coveredRecords = [];
+
+    records.forEach((rec) => {
+        const finalID = rec["Final_ID"];
+
+        if (coveredTaxa.has(finalID)) {
+            // TODO: I think this was an artifact from when we had accidentally duplicate records, this should
+            //  never happen in practice.
+            coveredRecords.push(rec);
+            return;
+        }
+
+        const intersect = rec.primers.filter((p) => primerSet.has(p));
+
+        intersect.forEach((p) => {
+            if (!(p in coveredTaxaByPrimer)) {
+                coveredTaxaByPrimer[p] = [finalID];
+            } else {
+                coveredTaxaByPrimer[p].push(finalID);
+            }
+        });
+
+        if (intersect.length) {
+            coveredTaxa.add(finalID);
+            coveredRecords.push(rec);
+        }
+    });
+
+    return {
+        coverage: coveredTaxa.size,
+        coveredTaxa,
+        coveredTaxaByPrimer,
+        coveredTaxaByPrimerUpset: asSets(
+            Object.entries(coveredTaxaByPrimer).map(([p, pTaxa]) => {
+                const color = rgb(primerPalette[p]);
+                color.opacity = 0.45;
+                return {
+                    name: p,
+                    elems: pTaxa,
+                    color: color.formatRgb(),
+                };
+            })
+        ),
+        coveredRecords,
+        coverageByGroup: calculateGroupCoverage(taxaGroup(coveredRecords, OVERVIEW_GROUPINGS, false)),
+        resolutionSummary: Object.fromEntries(
+            Object.entries(groupBy(coveredRecords, "Resolution")).map(([k, v]) => [k, v.length])),
+    };
+};
+
+const avgCoverageByGroupForResult = (records, resCovByGroupArr) => {
+    const baseCoverageByGroup = Object.fromEntries(records.map((rec) => [rec["Taxa_group"], 0]));
+    return Object.fromEntries(
+        Object.entries(
+            resCovByGroupArr.reduce((acc, res) => {
+                Object.entries(res).forEach(([g, v]) => { acc[g] += v });
+                return acc;
+            }, baseCoverageByGroup)
+        ).map(([g, v]) => [g, v / resCovByGroupArr.length])
+    );
+};
+
+const findBestPrimerSets = (params) => {
+    const { selectedRecords, allRecords, maxPrimers, includeOffTargetTaxa, primerPalette } = params;
+
+    const selectedFinalIDs = new Set(selectedRecords.map((rec) => rec["Final_ID"]));
+
+    // Compute off-target taxa if needed
+    const offTargetRecords = includeOffTargetTaxa
+        ? allRecords.filter((rec) => !selectedFinalIDs.has(rec["Final_ID"]))
+        : null;
+
     // Make records index-able by final ID - this way we can find, e.g., groups from final IDs
     const nTaxa = selectedRecords.length;
 
@@ -54,64 +128,38 @@ const findBestPrimerSets = ({ selectedRecords, allRecords, maxPrimers, includeOf
         let bestResultsForPrimerCount = [];
 
         primerCombinations.forEach((pc) => {
-            const coveredTaxa = new Set();
-            const coveredTaxaByPrimer = {};
-            const coveredRecords = [];
+            const selectedCoveredResult = computePrimerSetCovered(selectedRecords, pc, primerPalette);
+            const { coverage } = selectedCoveredResult;
 
-            selectedRecords.forEach((rec) => {
-                const finalID = rec["Final_ID"];
+            let offTargetCoveredResult = undefined;
+            let totalCoveredResult = undefined;
 
-                if (coveredTaxa.has(finalID)) {
-                    // TODO: I think this was an artifact from when we had accidentally duplicate records, this should
-                    //  never happen in practice.
-                    coveredRecords.push(rec);
-                    return;
-                }
-
-                const intersect = rec.primers.filter((p) => pc.has(p));
-
-                intersect.forEach((p) => {
-                    if (!(p in coveredTaxaByPrimer)) {
-                        coveredTaxaByPrimer[p] = [finalID];
-                    } else {
-                        coveredTaxaByPrimer[p].push(finalID);
-                    }
-                });
-
-                if (intersect.length) {
-                    coveredTaxa.add(finalID);
-                    coveredRecords.push(rec);
-                }
-            });
-
-            const coverage = coveredTaxa.size;
-
-            const res = {
-                primers: pc,
-                coverage,
-                coveredTaxa,
-                coveredTaxaByPrimer,
-                coveredTaxaByPrimerUpset: asSets(
-                    Object.entries(coveredTaxaByPrimer).map(([p, pTaxa]) => {
-                        const color = rgb(primerPalette[p]);
-                        color.opacity = 0.45;
-                        return {
-                            name: p,
-                            elems: pTaxa,
-                            color: color.formatRgb(),
-                        };
-                    })
-                ),
-                coverageByGroup: calculateGroupCoverage(
-                    taxaGroup(coveredRecords, OVERVIEW_GROUPINGS, false)),
-                resolutionSummary: Object.fromEntries(
-                    Object.entries(groupBy(coveredRecords, "Resolution")).map(([k, v]) => [k, v.length])),
-            };
+            if (includeOffTargetTaxa) {
+                offTargetCoveredResult = computePrimerSetCovered(offTargetRecords, pc, primerPalette);
+                totalCoveredResult = selectedRecords.length === allRecords.length
+                    ? selectedCoveredResult
+                    : computePrimerSetCovered(allRecords, pc, primerPalette);
+            }
 
             if (coverage > bestCoverage) {
                 bestCoverage = coverage;
-                bestResultsForPrimerCount = [res];
-            } else if (coverage === bestCoverage) {
+                bestResultsForPrimerCount = [];
+            }
+
+            const res = {
+                id: `${pc.size}-${bestResultsForPrimerCount.length + 1}`,
+                nPrimers,
+                primers: pc,
+                // On-target coverage / summary information:
+                ...selectedCoveredResult,
+                // Off-target coverage information - nested in object:
+                offTarget: offTargetCoveredResult,
+                // Whole-dataset coverage information - nested in object:
+                total: totalCoveredResult,
+            };
+
+            if (coverage === bestCoverage) {
+                // If coverage was greater than bestCoverage, we updated bestCoverage above.
                 bestResultsForPrimerCount.push(res);
             }
             // Otherwise, discard
@@ -125,15 +173,18 @@ const findBestPrimerSets = ({ selectedRecords, allRecords, maxPrimers, includeOf
 
         const bestCoverageFraction = bestCoverage / nTaxa;
 
-        const baseCoverageByGroup = Object.fromEntries(selectedRecords.map((rec) => [rec["Taxa_group"], 0]));
-        const avgCoverageByGroup = Object.fromEntries(
-            Object.entries(
-                bestResultsForPrimerCount.reduce((acc, res) => {
-                    Object.entries(res.coverageByGroup).forEach(([g, v]) => { acc[g] += v });
-                    return acc;
-                }, baseCoverageByGroup)
-            ).map(([g, v]) => [g, v / bestResultsForPrimerCount.length])
-        );
+        const avgCoverageByGroup = avgCoverageByGroupForResult(
+            selectedRecords, bestResultsForPrimerCount.map((res) => res.coverageByGroup));
+
+        let avgCoverageByGroupOffTarget = undefined;
+        let avgCoverageByGroupTotal = undefined;
+
+        if (includeOffTargetTaxa) {
+            avgCoverageByGroupOffTarget = avgCoverageByGroupForResult(
+                offTargetRecords, bestResultsForPrimerCount.map((res) => res.offTarget.coverageByGroup));
+            avgCoverageByGroupTotal = avgCoverageByGroupForResult(
+                allRecords, bestResultsForPrimerCount.map((res) => res.total.coverageByGroup));
+        }
 
         console.info(`calculated average coverage by group:`, avgCoverageByGroup);
 
@@ -143,6 +194,8 @@ const findBestPrimerSets = ({ selectedRecords, allRecords, maxPrimers, includeOf
             coverageFraction: bestCoverageFraction,
             results: bestResultsForPrimerCount,
             avgCoverageByGroup,
+            avgCoverageByGroupOffTarget,
+            avgCoverageByGroupTotal,
         });
 
         console.info(
@@ -165,7 +218,7 @@ const findBestPrimerSets = ({ selectedRecords, allRecords, maxPrimers, includeOf
 
     postMessage({
         type: "result",
-        data: { results: bestPrimerCombinations.reverse() },
+        data: { params, results: bestPrimerCombinations.reverse() },
     });
 };
 

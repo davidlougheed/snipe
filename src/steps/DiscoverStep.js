@@ -6,6 +6,7 @@ import {
     Alert,
     Button,
     Card,
+    Checkbox,
     Col,
     Divider,
     Form,
@@ -19,11 +20,20 @@ import {
     Space,
     Spin,
     Statistic,
+    Table,
     Tabs,
+    Tag,
     Tree,
-    Typography
+    Typography,
 } from "antd";
-import { ArrowLeftOutlined, BarChartOutlined, DownloadOutlined, SearchOutlined } from "@ant-design/icons";
+import {
+    ArrowLeftOutlined,
+    BarChartOutlined,
+    DownloadOutlined,
+    MinusCircleOutlined,
+    PlusCircleOutlined,
+    SearchOutlined,
+} from "@ant-design/icons";
 
 import { Bar, BarChart, CartesianGrid, Label, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
@@ -64,28 +74,42 @@ const TaxonWithGroupAndPathPopover = memo(({ record, searchHighlight }) => (
     </Popover>
 ));
 
-const NewTaxaSets = ({ dataset, newTaxaSets, nextNPrimers }) => {
-    const nAddedTaxa = Array.from(new Set(newTaxaSets.map((nts) => nts.length)));
+const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }) => {
+    const nChangedTaxa = Array.from(new Set(changedTaxaSets.map((nts) => nts.added.length + nts.removed.length)));
+    const allAdditions = changedTaxaSets.every((nts) => nts.removed.length === 0);
 
     return (
-        <details open={newTaxaSets[0].length < 8}>
+        <details open={(changedTaxaSets[0].added.length + changedTaxaSets[0].removed.length) < 8}>
             <summary style={{ cursor: "pointer" }}>
-                Adds {nAddedTaxa.join(" or ")} new {" "}
-                {pluralize("taxon", Math.max(...nAddedTaxa))}{" "}
+                {allAdditions ? "Adds" : "Changes"} {nChangedTaxa.join(" or ")}{allAdditions ? " new " : " "}
+                {pluralize("taxon", Math.max(...nChangedTaxa))}{" "}
                 vs. with {nextNPrimers}{" "}
                 {pluralize("primer", nextNPrimers)}
             </summary>
             <>
-                {newTaxaSets.map((nts, ntsIndex) => (
+                {changedTaxaSets.map((nts, ntsIndex) => (
                     <Fragment key={`taxa-set-${ntsIndex}`}>
-                        {nts.map((t, ti) => {
+                        {nts.added.map((t, ti) => {
                             const taxonRecord = dataset.recordsByFinalID[t];
                             return <Fragment key={t}>
-                                <TaxonWithGroupAndPathPopover record={taxonRecord} />
-                                {ti < nts.length - 1 ? ", " : ""}
+                                <span style={{ whiteSpace: "nowrap" }}>
+                                    <PlusCircleOutlined style={{ color: "#7cb305" }} />{" "}
+                                    <TaxonWithGroupAndPathPopover record={taxonRecord} />
+                                    {ti < (nts.added.length + nts.removed.length) - 1 ? ", " : ""}
+                                </span>{" "}
                             </Fragment>;
                         })}
-                        {ntsIndex < newTaxaSets.length - 1 ? (
+                        {nts.removed.map((t, ti) => {
+                            const taxonRecord = dataset.recordsByFinalID[t];
+                            return <Fragment key={t}>
+                                <span style={{ whiteSpace: "nowrap" }}>
+                                    <MinusCircleOutlined style={{ color: "#d4380d" }} />{" "}
+                                    <TaxonWithGroupAndPathPopover record={taxonRecord} />
+                                    {ti < nts.removed.length - 1 ? ", " : ""}
+                                </span>
+                            </Fragment>;
+                        })}
+                        {ntsIndex < changedTaxaSets.length - 1 ? (
                             <div><strong>— OR —</strong></div>
                         ) : null}
                     </Fragment>
@@ -120,29 +144,30 @@ const eulerMergeColors = (colors) => {
 };
 
 const PrimerSet = ({
-    title,
     dataset,
-    nPrimers,
-    result,
+    primerSet,
+    resultParams,
     nextTabResults,
     style,
     onShowTaxa,
     onShowSetDiagram,
 }) => {
+    const title = `Primer set ${primerSet.id}`;
+
     const nextTabPrimerSets = nextTabResults?.results ?? null;
     const nextTabNPrimers = nextTabResults?.nPrimers;
 
-    const newTaxaSets = nextTabPrimerSets
-        ? nextTabPrimerSets.map((ntps) =>
-            Array.from(difference(result.coveredTaxa, ntps.coveredTaxa)).sort())
-        : [];
+    const changedTaxaSets = (nextTabPrimerSets || []).map((ntps) => ({
+        added: Array.from(difference(primerSet.coveredTaxa, ntps.coveredTaxa)).sort(),
+        removed: Array.from(difference(ntps.coveredTaxa, primerSet.coveredTaxa)).sort(),
+    }));
 
     const newPrimerSets = nextTabPrimerSets
-        ? nextTabPrimerSets.map((ntps) => difference(result.primers, ntps.primers))
+        ? nextTabPrimerSets.map((ntps) => difference(primerSet.primers, ntps.primers))
         : [];
 
     const downloadPrimerSet = useCallback(() => {
-        const longFormRecords = Array.from(result.coveredTaxa).flatMap((id) => {
+        const longFormRecords = Array.from(primerSet.coveredTaxa).flatMap((id) => {
             const compoundRecord = dataset.recordsByFinalID[id];
             const baseRecord = {...compoundRecord};
             delete baseRecord["primers"];
@@ -150,7 +175,7 @@ const PrimerSet = ({
             delete baseRecord["key"];
             delete baseRecord["Resolution"];
             return compoundRecord.primers
-                .filter((p) => result.primers.has(p))
+                .filter((p) => primerSet.primers.has(p))
                 .map((p) => ({...baseRecord, Primer: p}));
         });
 
@@ -169,20 +194,23 @@ const PrimerSet = ({
             title={title}
             size="small"
             style={style}
-            extra={<Button size="small" icon={<DownloadOutlined />} onClick={downloadPrimerSet}>
-                Download Filtered Data
-            </Button>}
+            extra={<Space direction="horizontal" size={12}>
+                <span>Download filtered data:</span>
+                <Button size="small" icon={<DownloadOutlined />} onClick={downloadPrimerSet}>
+                    On-target {/* TODO: options for downloading with off-target data */}
+                </Button>
+            </Space>}
         >
             <Space direction="vertical" size={16}>
                 <div>
                     <Title level={5}>Primers</Title>
-                    {Array.from(result.primers).map((p) =>
+                    {Array.from(primerSet.primers).map((p) =>
                         <Primer
                             key={p}
                             name={p}
                             added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
                             sometimes={!(newPrimerSets.reduce((acc, x) => acc && x.has(p), true))}
-                            primerSetCount={nPrimers}
+                            primerSetCount={primerSet.nPrimers}
                         />
                     )}
                 </div>
@@ -190,30 +218,37 @@ const PrimerSet = ({
                     <Title level={5}>
                         Taxa:{" "}
                         <span style={{ fontWeight: "normal" }}>
-                            {result.coverage}{" "}
-                            {nextTabPrimerSets ? `(+${result.coverage - nextTabPrimerSets[0].coverage})` : ""}
+                            {primerSet.coverage} on-target{" "}
+                            {nextTabPrimerSets ? `(+${primerSet.coverage - nextTabPrimerSets[0].coverage})` : ""}
+                            {resultParams.includeOffTargetTaxa
+                                ? <>; <em style={{ color: "#8C8C8C" }}>
+                                    {primerSet.offTarget?.coverage ?? 0} off-target</em></>
+                                : null}
                         </span>{" "}
                         <Button size="small" onClick={onShowTaxa}>See all</Button>
                     </Title>
-                    {newTaxaSets.length
-                        ? <NewTaxaSets
+                    {changedTaxaSets.length
+                        ? <ChangedTaxaSets
                             dataset={dataset}
-                            newTaxaSets={newTaxaSets}
+                            changedTaxaSets={changedTaxaSets}
                             nextNPrimers={nextTabNPrimers}
                         />
                         : null}
                 </div>
                 <div>
-                    <Button onClick={onShowSetDiagram} disabled={result.primers.size > 6}>
+                    <Button onClick={onShowSetDiagram} disabled={primerSet.primers.size > 6}>
                         Show set diagram
-                        {result.primers.size > 6 ? <em> (Not available for >6 primers)</em> : ""}
+                        {primerSet.primers.size > 6 ? <em> (Not available for >6 primers)</em> : ""}
                     </Button>
                 </div>
                 <div>
-                    <Title level={5}>Resolution</Title>
+                    <Title level={5}>
+                        Resolution{" "}
+                        <span style={{ fontWeight: "normal", fontStyle: "italic" }}>(on-target)</span>
+                    </Title>
                     <Space direction="horizontal">
                         {RESOLUTIONS_WITH_SPECIES.map((r) => (
-                            <Statistic key={r} title={r} value={result.resolutionSummary[r]} />
+                            <Statistic key={r} title={r} value={primerSet.resolutionSummary[r]} />
                         ))}
                     </Space>
                 </div>
@@ -224,73 +259,114 @@ const PrimerSet = ({
 
 const primerCountPhrase = (nPrimers) => `${nPrimers} ${pluralize("Primer", nPrimers)}`;
 
-const ResultsTabs = ({ dataset, results }) => {
-    const [selectedPrimerSetTitle, setSelectedPrimerSetTitle] = useState("");
-    const [selectedPrimers, setSelectedPrimers] = useState(new Set());
+const filterTaxaTargetFactory = (selectedPrimerSet, targetFilter) => (t) => {
+    if (targetFilter === "onTarget") return selectedPrimerSet.coveredTaxa.has(t);
+    if (targetFilter === "offTarget") return selectedPrimerSet.offTarget.coveredTaxa.has(t);
+    return selectedPrimerSet.total.coveredTaxa.has(t);  // otherwise, total
+};
 
-    const [shownTaxa, setShownTaxa] = useState([]);
+const ResultsTabs = ({ dataset, results, resultParams }) => {
+    const [selectedPrimerSet, setSelectedPrimerSet] = useState(null);
+
+    const shownTaxa = useMemo(() => {
+        if (!selectedPrimerSet) return [];
+        return Array.from(selectedPrimerSet.total.coveredTaxa).sort();
+    }, [selectedPrimerSet]);
+    const [taxaTargetFilter, setTaxaTargetFilter] = useState("onTarget");
     const [filteredTaxa, setFilteredTaxa] = useState([]);  // shownTaxa + filtering
     const [taxaModalSearchValue, setTaxaModalSearchValue] = useState("");
     const [taxaModalVisible, setTaxaModalVisible] = useState(false);
 
-    const [diagramSets, setDiagramSets] = useState(null);
     const [diagramModalVisible, setDiagramModalVisible] = useState(false);
 
     useEffect(() => {
+        if (!selectedPrimerSet) return;
+
         const sv = taxaModalSearchValue.toLowerCase();
         if (sv === "") {
-            setFilteredTaxa(shownTaxa);
+            setFilteredTaxa(shownTaxa.filter(filterTaxaTargetFactory(selectedPrimerSet, taxaTargetFilter)));
             return;
         }
-        setFilteredTaxa(shownTaxa.filter(
-            (t) => t.replace("_", " ").toLowerCase().includes(sv)
-                || dataset.recordsByFinalID[t].primersLower.reduce((acc, p) => acc || p.includes(sv), false)
+        setFilteredTaxa(
+            shownTaxa
+                .filter(filterTaxaTargetFactory(selectedPrimerSet, taxaTargetFilter))
+                .filter(
+                    (t) => t.replace("_", " ").toLowerCase().includes(sv)
+                        || dataset.recordsByFinalID[t].primersLower.reduce((acc, p) => acc || p.includes(sv), false)
         ));
-    }, [shownTaxa, taxaModalSearchValue]);
+    }, [selectedPrimerSet, taxaTargetFilter, taxaModalSearchValue]);
 
     return (
         <>
             <Modal
                 open={taxaModalVisible}
-                title={`${selectedPrimerSetTitle}: ${shownTaxa.length} taxa (${filteredTaxa.length} shown)`}
+                title={`Primer set ${selectedPrimerSet?.id}: ${shownTaxa.length} taxa (${filteredTaxa.length} shown)`}
                 footer={null}
-                width={890}
+                width={920}
                 onCancel={() => setTaxaModalVisible(false)}
             >
                 <Space direction="vertical" style={{ width: "100%" }}>
-                    <Input
-                        placeholder="Search"
-                        value={taxaModalSearchValue}
-                        onChange={(e) => setTaxaModalSearchValue(e.target.value)}
-                        allowClear={true}
+                    <Space direction="horizontal" size={16}>
+                        <Input
+                            placeholder="Search"
+                            value={taxaModalSearchValue}
+                            onChange={(e) => setTaxaModalSearchValue(e.target.value)}
+                            allowClear={true}
+                        />
+                        <TaxaFilterRadioSelector
+                            value={taxaTargetFilter}
+                            onChange={(v) => setTaxaTargetFilter(v)}
+                            includeOffTargetTaxa={resultParams.includeOffTargetTaxa}
+                        />
+                    </Space>
+                    <Table
+                        size="small"
+                        bordered={true}
+                        showHeader={false}
+                        pagination={false}
+                        columns={[
+                            {
+                                dataIndex: "taxon",
+                                render: (t) => (
+                                    <TaxonWithGroupAndPathPopover
+                                        record={dataset.recordsByFinalID[t]}
+                                        searchHighlight={taxaModalSearchValue}
+                                    />
+                                ),
+                            },
+                            {
+                                dataIndex: "primers",
+                                render: (p) => p
+                                    .filter((p) => (selectedPrimerSet?.primers ?? new Set()).has(p))
+                                    .map((p) => <Primer key={p} name={p} />),
+                            },
+                            {
+                                dataIndex: "onTarget",
+                                render: (oT) => oT
+                                    ? <Tag color="green">On-target</Tag>
+                                    : <Tag color="volcano">Off-target</Tag>,
+                            },
+                        ]}
+                        dataSource={filteredTaxa.map((t) => ({
+                            taxon: t,
+                            primers: dataset.recordsByFinalID[t].primers,
+                            onTarget: (selectedPrimerSet?.coveredTaxa ?? new Set()).has(t),
+                        }))}
                     />
-                    <ul style={{ margin: 0, paddingLeft: "1em" }}>
-                        {filteredTaxa.map((t) => <li key={t}>
-                            <span style={{ marginRight: "1em" }}>
-                                <TaxonWithGroupAndPathPopover
-                                    record={dataset.recordsByFinalID[t]}
-                                    searchHighlight={taxaModalSearchValue}
-                                />
-                            </span>
-                            {dataset.recordsByFinalID[t].primers
-                                .filter((p) => selectedPrimers.has(p))
-                                .map((p) => <Primer key={p} name={p} />)}
-                        </li>)}
-                    </ul>
                 </Space>
             </Modal>
             <Modal
                 open={diagramModalVisible}
-                title={`${selectedPrimerSetTitle}: Euler diagram`}
+                title={`Primer set ${selectedPrimerSet?.id}: Euler diagram`}
                 footer={null}
                 destroyOnClose={true}
                 width={1040}
                 style={{ top: 30 }}
                 onCancel={() => setDiagramModalVisible(false)}
             >
-                {diagramSets ? <VennDiagram
+                {selectedPrimerSet ? <VennDiagram
                     layout={vennJSAdapter}
-                    sets={diagramSets}
+                    sets={selectedPrimerSet.coveredTaxaByPrimerUpset}
                     width={990}
                     height={720}
                     theme="light"
@@ -316,28 +392,23 @@ const ResultsTabs = ({ dataset, results }) => {
                     key: `tab-${nPrimers}-primers`,
                     children: (
                         <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-                            {npResults.map((r, j) => {
+                            {npResults.map((r) => {
                                 // TODO: refactor into some type of primer set object so we can useCallback these
                                 //  handlers and have a generally better structure
-                                const primerSetTitle = `Primer set ${nPrimers}-${j + 1}`;
                                 return (
                                     <PrimerSet
-                                        key={`primers-${nPrimers}-primer-set-${j + 1}`}
-                                        title={primerSetTitle}
+                                        key={r.id}
                                         dataset={dataset}
-                                        result={r}
-                                        nPrimers={nPrimers}
+                                        resultParams={resultParams}
+                                        primerSet={r}
                                         nextTabResults={nextTabResults}
                                         style={{ width: npResults.length === 1 ? "100%" : "calc(50% - 8px)" }}
                                         onShowTaxa={() => {
-                                            setSelectedPrimerSetTitle(primerSetTitle);
-                                            setSelectedPrimers(r.primers);
-                                            setShownTaxa(Array.from(r.coveredTaxa).sort())
+                                            setSelectedPrimerSet(r);
                                             setTaxaModalVisible(true);
                                         }}
                                         onShowSetDiagram={() => {
-                                            setSelectedPrimerSetTitle(primerSetTitle);
-                                            setDiagramSets(r.coveredTaxaByPrimerUpset);
+                                            setSelectedPrimerSet(r);
                                             setDiagramModalVisible(true);
                                         }}
                                     />
@@ -353,33 +424,79 @@ const ResultsTabs = ({ dataset, results }) => {
 
 // const percentFormatter = (d) => `${(d * 100).toFixed(1)}%`;
 
-const CumulativePrimerSetCoverageChart = ({ dataset, results }) => {
+const TaxaFilterRadioSelector = ({ includeOffTargetTaxa, value, onChange }) => {
+    const [innerValue, setInnerValue] = useState(value ?? "onTarget");
+
+    useEffect(() => {
+        if (onChange) onChange(innerValue);
+    }, [innerValue]);
+
+    return (
+        <Radio.Group size="small" onChange={(e) => setInnerValue(e.target.value)} value={innerValue}>
+            <Radio.Button value="onTarget">On-Target</Radio.Button>
+            <Radio.Button disabled={!includeOffTargetTaxa} value="offTarget">Off-Target</Radio.Button>
+            <Radio.Button disabled={!includeOffTargetTaxa} value="total">Total</Radio.Button>
+        </Radio.Group>
+    );
+};
+
+const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) => {
     const [barType, setBarType] = useState("group");
+    const [resultFilter, setResultFilter] = useState("onTarget");  // onTarget | offTarget | total
 
     const data = useMemo(() => {
         if (!results) return [];
-        return results.map(({ coverageFraction, avgCoverageByGroup, nPrimers }) => ({
-            name: nPrimers.toString(),
-            coverageFraction,
-            ...Object.fromEntries(
-                Object.entries(dataset?.supergroupGroups ?? {})
-                    .map(([sg, gs]) => [
-                        `supergroup_${sg}`,
-                        gs.reduce((acc, g) => acc + (avgCoverageByGroup[g] ?? 0), 0),
-                    ])
-                    .filter(([_, v]) => !!v)),
-            ...Object.fromEntries(
-                Object.entries(avgCoverageByGroup)
-                    .map(([g, v]) => [`group_${g}`, v])
-                    .filter(([_, v]) => !!v)),
-        })).reverse();
-    }, [dataset, results]);
+        return results.map(
+            ({
+                coverageFraction,
+                avgCoverageByGroup,
+                avgCoverageByGroupOffTarget,
+                avgCoverageByGroupTotal,
+                nPrimers,
+            }) => {
+                let acByG = avgCoverageByGroup;
+                if (resultFilter === "offTarget") acByG = avgCoverageByGroupOffTarget;
+                if (resultFilter === "total") acByG = avgCoverageByGroupTotal;
+                return {
+                    name: nPrimers.toString(),
+                    coverageFraction,
+                    ...Object.fromEntries(
+                        Object.entries(dataset?.supergroupGroups ?? {})
+                            .map(([sg, gs]) => [
+                                `supergroup_${sg}`,
+                                gs.reduce((acc, g) => acc + (acByG[g] ?? 0), 0),
+                            ])
+                            .filter(([_, v]) => !!v)),
+                    ...Object.fromEntries(
+                        Object.entries(acByG)
+                            .map(([g, v]) => [`group_${g}`, v])
+                            .filter(([_, v]) => !!v)),
+                };
+            }
+        ).reverse();
+    }, [dataset, results, resultFilter]);
 
     return <>
-        <Radio.Group size="small" onChange={(e) => setBarType(e.target.value)} value={barType}>
-            <Radio.Button value="supergroup">Supergroup</Radio.Button>
-            <Radio.Button value="group">Group</Radio.Button>
-        </Radio.Group>
+        <Space direction="horizontal" size={16}>
+            <div>
+                <span>Level:</span>{" "}
+                <Radio.Group size="small" onChange={(e) => setBarType(e.target.value)} value={barType}>
+                    <Radio.Button value="supergroup">Supergroup</Radio.Button>
+                    <Radio.Button value="group">Group</Radio.Button>
+                </Radio.Group>
+            </div>
+            <div>
+                <span>Result taxa:</span>{" "}
+                <TaxaFilterRadioSelector
+                    value={resultFilter}
+                    onChange={(v) => setResultFilter(v)}
+                    includeOffTargetTaxa={resultParams.includeOffTargetTaxa}
+                />
+            </div>
+            <div>
+                <span>Summarization:</span>{" "}Average
+            </div>
+        </Space>
         <Divider />
         <ResponsiveContainer width="100%" height={550}>
             <BarChart data={data} margin={{ top: 8, bottom: 32, left: 16 }}>
@@ -430,6 +547,8 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
 
     const [hasSearched, setHasSearched] = useState(false);
     const [progress, setProgress] = useState(0);
+
+    const [resultParams, setResultParams] = useState({});
     const [results, setResults] = useState(null);
 
     const primerPalette = useContext(PrimerPaletteContext);
@@ -454,6 +573,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                 searching.current = false;
                 console.debug("received results", data);
                 setProgress(100);
+                setResultParams(data.params);
                 setResults(data.results);
             } else if (type === "progress" && searching.current) {
                 setProgress(data.percent);
@@ -469,11 +589,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
         setCheckedKeys([]);
     }, [dataset]);
 
-    const onCheck = useCallback((keys) => setCheckedKeys(keys), []);
-
-    useEffect(() => {
-        setProgress(0);
-    }, [checkedKeys]);
+    const onTaxaCheck = useCallback((keys) => setCheckedKeys(keys), []);
 
     const onExpand = useCallback((keys, e) => {
         const newExpandedKeys = new Set(keys);
@@ -504,8 +620,16 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
     const showTaxaSelectModal = useCallback(() => setTaxaSelectModalVisible(true), []);
     const hideTaxaSelectModal = useCallback(() => setTaxaSelectModalVisible(false), []);
 
+    const [includeOffTargetTaxa, setIncludeOffTargetTaxa] = useState(false);
+    const updateIncludeOffTargetTaxa = useCallback((e) => setIncludeOffTargetTaxa(e.target.checked), []);
+
     const showPrimerSetCoverageModal = useCallback(() => setPrimerSetCoverageModalVisible(true), []);
     const hidePrimerSetCoverageModal = useCallback(() => setPrimerSetCoverageModalVisible(false), []);
+
+    useEffect(() => {
+        // If the search criteria change, reset the progress
+        setProgress(0);
+    }, [checkedKeys, nPrimers, includeOffTargetTaxa]);
 
     const onSearch = useCallback(() => {
         if (!dataset) return;
@@ -526,12 +650,13 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                 selectedRecords: checkedRecords,
                 allRecords: dataset.records,
                 maxPrimers: nPrimers,
+                includeOffTargetTaxa,
                 primerPalette,
             },
         });
         setHasSearched(true);
         searching.current = true;
-    }, [dataset, worker, checkedLeaves, nPrimers, primerPalette]);
+    }, [dataset, worker, checkedLeaves, nPrimers, includeOffTargetTaxa, primerPalette]);
 
     if (!visible) return <Fragment/>;
     // noinspection JSCheckFunctionSignatures
@@ -541,7 +666,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                 <Card title="Criteria">
                     <Form layout="vertical">
                         <Form.Item
-                            label="Taxa"
+                            label="Target taxa"
                             help={<div style={{ marginBottom: 8 }}>
                                 The taxa available here are just those which are detectable by the dataset specified.
                             </div>}
@@ -554,7 +679,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                             </Space>
                         </Form.Item>
                         <Form.Item
-                            label="Max. Primers"
+                            label="Max. primers"
                             help={<div style={{ marginBottom: 8 }}>
                                 If this value is higher than the number of primers needed, only the fewest needed
                                 primers will be used.
@@ -564,11 +689,15 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                                 min={1}
                                 max={dataset.primers.length}
                                 value={nPrimers}
-                                onChange={(v) => {
-                                    setProgress(0);
-                                    setNPrimers(v);
-                                }}
+                                onChange={(v) => setNPrimers(v)}
                             />
+                        </Form.Item>
+                        <Form.Item help={<div style={{ marginBottom: 16 }}>
+                            If checked, unselected (off-target) taxa will be included in the result sets if primer(s)
+                            happen to also detect them.
+                        </div>}>
+                            <Checkbox checked={includeOffTargetTaxa} onChange={updateIncludeOffTargetTaxa}>
+                                Include off-target taxa?</Checkbox>
                         </Form.Item>
                         <Form.Item style={{ marginBottom: 0 }}>
                             <div style={{ display: "flex", gap: 12, width: "100%", alignItems: "baseline" }}>
@@ -614,7 +743,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                 {searching.current && (
                     <Spin size="large" spinning={true}/>
                 )}
-                {!!results && <ResultsTabs dataset={dataset} results={results} />}
+                {!!results && <ResultsTabs dataset={dataset} results={results} resultParams={resultParams} />}
             </Col>
         </Row>
 
@@ -647,7 +776,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                     expandedKeys={expandedKeys}
                     onExpand={onExpand}
                     checkedKeys={checkedKeys}
-                    onCheck={onCheck}
+                    onCheck={onTaxaCheck}
                 />
             </Space>
         </Modal>
@@ -659,7 +788,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
             footer={null}
             onCancel={hidePrimerSetCoverageModal}
         >
-            <CumulativePrimerSetCoverageChart dataset={dataset} results={results} />
+            <CumulativePrimerSetCoverageChart dataset={dataset} results={results} resultParams={resultParams} />
         </Modal>
     </>;
 };
