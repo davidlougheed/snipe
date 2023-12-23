@@ -125,12 +125,17 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                     <Space direction="vertical">
                         <Radio value={0} disabled={fetchingDefaultFailed}>
                             <Spin spinning={fetchingDefault}>
-                                Use primer dataset from Tournayre <em>et al.</em>
+                                Use primer dataset from{" "}
+                                <a target="_blank"
+                                   rel="noreferrer noopener"
+                                   href="https://www.biorxiv.org/content/10.1101/2023.12.13.571596v1.full">
+                                    Tournayre <em>et al.</em>
+                                </a>
                             </Spin>
                         </Radio>
                         <Radio value={1}>
                             <Upload name="file" onChange={onUpload} beforeUpload={beforeUploadNothing}>
-                                <Button icon={<UploadOutlined />}>Upload Taxa/Primer List</Button> <br />
+                            <Button icon={<UploadOutlined />}>Upload Taxa/Primer List</Button> <br />
                             </Upload>
                             <Text type="secondary">
                                 You must upload a CSV which follows the tool's{" "}
