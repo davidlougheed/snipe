@@ -6,6 +6,16 @@ A web tool for optimally choosing eDNA primer pairs to identify a set of taxa.
 
 See SNIPE in action at [https://snipe.dlougheed.com/](https://snipe.dlougheed.com/)!
 
+## Publication
+
+The work done on SNIPe is part of a preprint by Tournayre *et al.*; if you cite SNIPe right now, this is what should be
+cited:
+
+> ####  How to barcode (almost all) freshwater biodiversity
+> Orianne Tournayre, Haolun Tian, David R. Lougheed, Matthew J.S. Windle, Sheldon Lambert, Jennipher Carter, 
+> Zhengxin Sun, Jeff Ridal, Yuxiang Wang, Brian F. Cumming, Shelley E. Arnott, Stephen C. Lougheed. <br />
+> bioRxiv 2023.12.13.571596; doi: https://doi.org/10.1101/2023.12.13.571596
+
 ## Copyright and License Notice
 
 Note that the terms of the license DO NOT apply to anything under the [./datasets](./datasets) folder; for those files,
