@@ -1,5 +1,7 @@
-import { Card, Divider, Layout, Modal, Steps, Typography } from "antd";
 import { useCallback, useMemo, useState } from "react";
+import { Card, Divider, Layout, Modal, Steps, Typography } from "antd";
+
+import packageJson from "../package.json";
 
 import { PrimerPaletteContext } from "./colors";
 import DatasetStep from "./steps/DatasetStep";
@@ -93,6 +95,7 @@ const App = () => {
                            rel="noreferrer">GPL v3 license</a>; see the <a href="#" onClick={showNotice}>notice</a>.
                     </Paragraph>
                     <Paragraph style={styles.footerParagraph}>
+                        Version {packageJson.version} &#x2E31;{" "}
                         Please send any feedback or bug reports to{" "}
                         <a href="mailto:david.lougheed@gmail.com">david.lougheed@gmail.com</a>.
                     </Paragraph>
