@@ -1,10 +1,10 @@
-# SNIPE
+# SNIPe
 
-> **S**electing **N**ovel **I**nformative **P**rimer-sets for **ᴇ**-DNA
+> **S**electing **N**ovel **I**nformative **P**rimer-sets for **e**-DNA
 
 A web tool for optimally choosing eDNA primer pairs to identify a set of taxa.
 
-See SNIPE in action at [https://snipe.dlougheed.com/](https://snipe.dlougheed.com/)!
+See SNIPe in action at [https://snipe.dlougheed.com/](https://snipe.dlougheed.com/)!
 
 ## Publication
 
