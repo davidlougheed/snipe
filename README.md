@@ -21,7 +21,7 @@ cited:
 Note that the terms of the license DO NOT apply to anything under the [./datasets](./datasets) folder; for those files,
 all rights are reserved by their copyright holders.
 
-Copyright &copy; 2023 David Lougheed ([david.lougheed@gmail.com](mailto:david.lougheed@gmail.com))
+Copyright &copy; 2023-2024 David Lougheed ([david.lougheed@gmail.com](mailto:david.lougheed@gmail.com))
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
