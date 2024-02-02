@@ -114,7 +114,7 @@ const App = () => {
             >
                 <Paragraph>
                     A web tool for optimally choosing eDNA primer pairs to identify a set of taxa. <br />
-                    Copyright &copy; 2023 David Lougheed
+                    Copyright &copy; 2023-2024 David Lougheed
                     (<a href="mailto:david.lougheed@gmail.com">david.lougheed@gmail.com</a>)
                 </Paragraph>
                 <Paragraph>
