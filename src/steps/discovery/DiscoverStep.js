@@ -1,6 +1,4 @@
-import { Fragment, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-
-import difference from "set.prototype.difference";
+import { Fragment, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 
 import {
     Alert,
@@ -13,111 +11,36 @@ import {
     Input,
     InputNumber,
     Modal,
-    Popover,
     Progress,
-    Radio,
     Row,
     Space,
     Spin,
-    Statistic,
     Table,
     Tabs,
     Tag,
     Tree,
     Typography,
 } from "antd";
-import {
-    ArrowLeftOutlined,
-    BarChartOutlined,
-    DownloadOutlined,
-    MinusCircleOutlined,
-    PlusCircleOutlined,
-    SearchOutlined,
-} from "@ant-design/icons";
-
-import { Bar, BarChart, CartesianGrid, Label, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { ArrowLeftOutlined, BarChartOutlined, SearchOutlined } from "@ant-design/icons";
 
 import { createVennJSAdapter, VennDiagram } from "@upsetjs/react";
 import { layout } from "@upsetjs/venn.js";
 
-import { hsl, lab } from "d3-color";
-import { schemeTableau10 } from "d3-scale-chromatic";
+import { lab } from "d3-color";
 
+import CumulativePrimerSetCoverageChart from "./CumulativePrimerSetCoverageChart";
 import Primer from "../../bits/Primer";
+import PrimerSet from "./PrimerSet";
+import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
+import TaxonWithGroupAndPathPopover from "./TaxonWithGroupAndPathPopover";
 
-import { CSV_HEADER, PRIMER_GROUPINGS, RESOLUTIONS_WITH_SPECIES } from "../../lib/datasets";
-import { formatTaxon, pluralize, serializeCSVRow } from "../../lib/utils";
+import { pluralize } from "../../lib/utils";
 import { PrimerPaletteContext } from "../../colors";
 
 const { Title } = Typography;
 
 const vennJSAdapter = createVennJSAdapter(layout);
 
-
-const formatRecordPath = (rec) => (
-    <>
-        {PRIMER_GROUPINGS
-            .slice(1, -1)
-            .map((pg) => (rec[pg] ?? "").trim())
-            .filter((val) => val !== "")
-            .join(" › ")} ›{" "}
-        {formatTaxon(rec["Final_ID"])} ({rec["Taxa_group"]})
-    </>
-);
-
-
-const TaxonWithGroupAndPathPopover = memo(({ record, searchHighlight }) => (
-    <Popover trigger="click" content={formatRecordPath(record)}>
-        <span style={{ textDecoration: "underline", cursor: "pointer" }}>
-            {formatTaxon(record["Final_ID"], searchHighlight)}
-        </span>&nbsp;({record["Taxa_group"]})
-    </Popover>
-));
-
-const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }) => {
-    const nChangedTaxa = Array.from(new Set(changedTaxaSets.map((nts) => nts.added.length + nts.removed.length)));
-    const allAdditions = changedTaxaSets.every((nts) => nts.removed.length === 0);
-
-    return (
-        <details open={(changedTaxaSets[0].added.length + changedTaxaSets[0].removed.length) < 8}>
-            <summary style={{ cursor: "pointer" }}>
-                {allAdditions ? "Adds" : "Changes"} {nChangedTaxa.join(" or ")}{allAdditions ? " new " : " "}
-                {pluralize("taxon", Math.max(...nChangedTaxa))}{" "}
-                vs. with {nextNPrimers}{" "}
-                {pluralize("primer", nextNPrimers)}
-            </summary>
-            <>
-                {changedTaxaSets.map((nts, ntsIndex) => (
-                    <Fragment key={`taxa-set-${ntsIndex}`}>
-                        {nts.added.map((t, ti) => {
-                            const taxonRecord = dataset.recordsByFinalID[t];
-                            return <Fragment key={t}>
-                                <span style={{ whiteSpace: "nowrap" }}>
-                                    <PlusCircleOutlined style={{ color: "#7cb305" }} />{" "}
-                                    <TaxonWithGroupAndPathPopover record={taxonRecord} />
-                                    {ti < (nts.added.length + nts.removed.length) - 1 ? ", " : ""}
-                                </span>{" "}
-                            </Fragment>;
-                        })}
-                        {nts.removed.map((t, ti) => {
-                            const taxonRecord = dataset.recordsByFinalID[t];
-                            return <Fragment key={t}>
-                                <span style={{ whiteSpace: "nowrap" }}>
-                                    <MinusCircleOutlined style={{ color: "#d4380d" }} />{" "}
-                                    <TaxonWithGroupAndPathPopover record={taxonRecord} />
-                                    {ti < nts.removed.length - 1 ? ", " : ""}
-                                </span>
-                            </Fragment>;
-                        })}
-                        {ntsIndex < changedTaxaSets.length - 1 ? (
-                            <div><strong>— OR —</strong></div>
-                        ) : null}
-                    </Fragment>
-                ))}
-            </>
-        </details>
-    );
-};
 
 const eulerMergeColors = (colors) => {
     // inspired by https://upset.js.org/docs/examples/vennColored
@@ -141,120 +64,6 @@ const eulerMergeColors = (colors) => {
             return res.formatRgb();
         }
     }
-};
-
-const PrimerSet = ({
-    dataset,
-    primerSet,
-    resultParams,
-    nextTabResults,
-    style,
-    onShowTaxa,
-    onShowSetDiagram,
-}) => {
-    const title = `Primer set ${primerSet.id}`;
-
-    const nextTabPrimerSets = nextTabResults?.results ?? null;
-    const nextTabNPrimers = nextTabResults?.nPrimers;
-
-    const changedTaxaSets = (nextTabPrimerSets || []).map((ntps) => ({
-        added: Array.from(difference(primerSet.coveredTaxa, ntps.coveredTaxa)).sort(),
-        removed: Array.from(difference(ntps.coveredTaxa, primerSet.coveredTaxa)).sort(),
-    }));
-
-    const newPrimerSets = nextTabPrimerSets
-        ? nextTabPrimerSets.map((ntps) => difference(primerSet.primers, ntps.primers))
-        : [];
-
-    const downloadPrimerSet = useCallback(() => {
-        const longFormRecords = Array.from(primerSet.coveredTaxa).flatMap((id) => {
-            const compoundRecord = dataset.recordsByFinalID[id];
-            const baseRecord = {...compoundRecord};
-            delete baseRecord["primers"];
-            delete baseRecord["primersLower"];
-            delete baseRecord["key"];
-            delete baseRecord["Resolution"];
-            return compoundRecord.primers
-                .filter((p) => primerSet.primers.has(p))
-                .map((p) => ({...baseRecord, Primer: p}));
-        });
-
-        const el = document.createElement("a");
-        el.href = URL.createObjectURL(new Blob([
-            serializeCSVRow(CSV_HEADER),
-            ...longFormRecords.map((rec) => serializeCSVRow(CSV_HEADER.map((h) => rec[h]))),
-        ], { type: "text/csv" }));
-        el.setAttribute("download", title.replace(/\s+/g, "_") + ".csv");
-        el.click();
-        el.remove();
-    }, []);
-
-    return (
-        <Card
-            title={title}
-            size="small"
-            style={style}
-            extra={<Space direction="horizontal" size={12}>
-                <span>Download filtered data:</span>
-                <Button size="small" icon={<DownloadOutlined />} onClick={downloadPrimerSet}>
-                    On-target {/* TODO: options for downloading with off-target data */}
-                </Button>
-            </Space>}
-        >
-            <Space direction="vertical" size={16}>
-                <div>
-                    <Title level={5}>Primers</Title>
-                    {Array.from(primerSet.primers).map((p) =>
-                        <Primer
-                            key={p}
-                            name={p}
-                            added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
-                            sometimes={!(newPrimerSets.reduce((acc, x) => acc && x.has(p), true))}
-                            primerSetCount={primerSet.nPrimers}
-                        />
-                    )}
-                </div>
-                <div>
-                    <Title level={5}>
-                        Taxa:{" "}
-                        <span style={{ fontWeight: "normal" }}>
-                            {primerSet.coverage} on-target{" "}
-                            {nextTabPrimerSets ? `(+${primerSet.coverage - nextTabPrimerSets[0].coverage})` : ""}
-                            {resultParams.includeOffTargetTaxa
-                                ? <>; <em style={{ color: "#8C8C8C" }}>
-                                    {primerSet.offTarget?.coverage ?? 0} off-target</em></>
-                                : null}
-                        </span>{" "}
-                        <Button size="small" onClick={onShowTaxa}>See all</Button>
-                    </Title>
-                    {changedTaxaSets.length
-                        ? <ChangedTaxaSets
-                            dataset={dataset}
-                            changedTaxaSets={changedTaxaSets}
-                            nextNPrimers={nextTabNPrimers}
-                        />
-                        : null}
-                </div>
-                <div>
-                    <Button onClick={onShowSetDiagram} disabled={primerSet.primers.size > 6}>
-                        Show set diagram
-                        {primerSet.primers.size > 6 ? <em> (Not available for >6 primers)</em> : ""}
-                    </Button>
-                </div>
-                <div>
-                    <Title level={5}>
-                        Resolution{" "}
-                        <span style={{ fontWeight: "normal", fontStyle: "italic" }}>(on-target)</span>
-                    </Title>
-                    <Space direction="horizontal">
-                        {RESOLUTIONS_WITH_SPECIES.map((r) => (
-                            <Statistic key={r} title={r} value={primerSet.resolutionSummary[r]} />
-                        ))}
-                    </Space>
-                </div>
-            </Space>
-        </Card>
-    );
 };
 
 const primerCountPhrase = (nPrimers) => `${nPrimers} ${pluralize("Primer", nPrimers)}`;
@@ -425,118 +234,6 @@ const ResultsTabs = ({ dataset, results, resultParams }) => {
             })}/>
         </>
     );
-};
-
-// const percentFormatter = (d) => `${(d * 100).toFixed(1)}%`;
-
-const TaxaFilterRadioSelector = ({ includeOffTargetTaxa, value, onChange }) => {
-    const [innerValue, setInnerValue] = useState(value ?? "onTarget");
-
-    useEffect(() => {
-        if (onChange) onChange(innerValue);
-    }, [innerValue]);
-
-    return (
-        <Radio.Group size="small" onChange={(e) => setInnerValue(e.target.value)} value={innerValue}>
-            <Radio.Button value="onTarget">On-Target</Radio.Button>
-            <Radio.Button disabled={!includeOffTargetTaxa} value="offTarget">Off-Target</Radio.Button>
-            <Radio.Button disabled={!includeOffTargetTaxa} value="total">Total</Radio.Button>
-        </Radio.Group>
-    );
-};
-
-const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) => {
-    const [barType, setBarType] = useState("group");
-    const [resultFilter, setResultFilter] = useState("onTarget");  // onTarget | offTarget | total
-
-    const data = useMemo(() => {
-        if (!results) return [];
-        return results.map(
-            ({
-                coverageFraction,
-                avgCoverageByGroup,
-                avgCoverageByGroupOffTarget,
-                avgCoverageByGroupTotal,
-                nPrimers,
-            }) => {
-                let acByG = avgCoverageByGroup;
-                if (resultFilter === "offTarget") acByG = avgCoverageByGroupOffTarget;
-                if (resultFilter === "total") acByG = avgCoverageByGroupTotal;
-                return {
-                    name: nPrimers.toString(),
-                    coverageFraction,
-                    ...Object.fromEntries(
-                        Object.entries(dataset?.supergroupGroups ?? {})
-                            .map(([sg, gs]) => [
-                                `supergroup_${sg}`,
-                                gs.reduce((acc, g) => acc + (acByG[g] ?? 0), 0),
-                            ])
-                            .filter(([_, v]) => !!v)),
-                    ...Object.fromEntries(
-                        Object.entries(acByG)
-                            .map(([g, v]) => [`group_${g}`, v])
-                            .filter(([_, v]) => !!v)),
-                };
-            }
-        ).reverse();
-    }, [dataset, results, resultFilter]);
-
-    return <>
-        <Space direction="horizontal" size={16}>
-            <div>
-                <span>Level:</span>{" "}
-                <Radio.Group size="small" onChange={(e) => setBarType(e.target.value)} value={barType}>
-                    <Radio.Button value="supergroup">Supergroup</Radio.Button>
-                    <Radio.Button value="group">Group</Radio.Button>
-                </Radio.Group>
-            </div>
-            <div>
-                <span>Result taxa:</span>{" "}
-                <TaxaFilterRadioSelector
-                    value={resultFilter}
-                    onChange={(v) => setResultFilter(v)}
-                    includeOffTargetTaxa={resultParams.includeOffTargetTaxa}
-                />
-            </div>
-            <div>
-                <span>Summarization:</span>{" "}Average
-            </div>
-        </Space>
-        <Divider />
-        <ResponsiveContainer width="100%" height={550}>
-            <BarChart data={data} margin={{ top: 8, bottom: 32, left: 16 }}>
-                <CartesianGrid vertical={false} stroke="#EEEEEE" />
-                <XAxis dataKey="name">
-                    <Label value="# primers" position="bottom" />
-                </XAxis>
-                <YAxis tickCount={8}>
-                    <Label value="coverage (# taxa)" angle={-90} position="left" style={{ textAnchor: "middle" }} />
-                </YAxis>
-                {/*<Tooltip formatter={(value) => percentFormatter(value)} />*/}
-                <Legend verticalAlign="bottom" wrapperStyle={{ minHeight: 88, bottom: 0 }} />
-                {barType === "group" ? (
-                    Object.entries(dataset?.supergroupGroups ?? {}).flatMap(([sg, gs]) =>
-                        gs.filter((g) => data.find((d) => `${barType}_${g}` in d))
-                            .map((g) => {
-                                const color = hsl(schemeTableau10[dataset.supergroups.indexOf(sg)]);
-                                color.l = 0.25 + ((gs.indexOf(g) + 1) / (gs.length + 1)) * 0.6;
-                                const k = `${barType}_${g}`;
-                                return <Bar key={k} dataKey={k} name={g} stackId="a" fill={color.toString()} />;
-                            })
-                    )
-                ) : (
-                    Object.keys(dataset?.supergroupGroups ?? {})
-                        .filter((sg) => data.find((d) => `${barType}_${sg}` in d))
-                        .map((sg) => {
-                            const color = hsl(schemeTableau10[dataset.supergroups.indexOf(sg)]);
-                            color.l = 0.55;  // normalize luminosity to be in the middle of where it is for group bars
-                            const k = `${barType}_${sg}`;
-                            return <Bar key={k} dataKey={k} name={sg} stackId="supergroup" fill={color.toString()} />;
-                        })
-                )}
-            </BarChart>
-        </ResponsiveContainer>
-    </>;
 };
 
 const DiscoverStep = ({ visible, dataset, onBack }) => {
