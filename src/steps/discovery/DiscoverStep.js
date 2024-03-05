@@ -48,7 +48,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
 
     useEffect(() => {
         // On first load, set up the worker
-        const w = new Worker(new URL("../lib/worker.js", import.meta.url));
+        const w = new Worker(new URL("../../lib/worker.js", import.meta.url));
         worker.current = w;
         w.onmessage = ({ data: message }) => {
             // if we receive error/result, and we're not searching, it means it's from a previous dataset/selection, so
