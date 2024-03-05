@@ -270,7 +270,7 @@ const ResultsTabs = ({ dataset, results, resultParams }) => {
 
     const shownTaxa = useMemo(() => {
         if (!selectedPrimerSet) return [];
-        return Array.from(selectedPrimerSet.total.coveredTaxa).sort();
+        return Array.from(selectedPrimerSet.total?.coveredTaxa ?? selectedPrimerSet.coveredTaxa).sort();
     }, [selectedPrimerSet]);
     const [taxaTargetFilter, setTaxaTargetFilter] = useState("onTarget");
     const [filteredTaxa, setFilteredTaxa] = useState([]);  // shownTaxa + filtering
