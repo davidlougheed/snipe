@@ -16,8 +16,8 @@ import {
     Upload
 } from "antd";
 import { ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined } from "@ant-design/icons";
-import { createDataset } from "../lib/datasets";
-import Primer from "../bits/Primer";
+import { createDataset } from "../../lib/datasets";
+import Primer from "../../bits/Primer";
 
 const { Paragraph, Text } = Typography;
 

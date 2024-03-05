@@ -4,8 +4,8 @@ import { Card, Divider, Layout, Modal, Steps, Typography } from "antd";
 import packageJson from "../package.json";
 
 import { PrimerPaletteContext } from "./colors";
-import DatasetStep from "./steps/DatasetStep";
-import DiscoverStep from "./steps/DiscoverStep";
+import DatasetStep from "./steps/dataset/DatasetStep";
+import DiscoverStep from "./steps/discovery/DiscoverStep";
 
 const { Title, Paragraph } = Typography;
 

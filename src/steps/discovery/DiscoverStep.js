@@ -43,11 +43,11 @@ import { layout } from "@upsetjs/venn.js";
 import { hsl, lab } from "d3-color";
 import { schemeTableau10 } from "d3-scale-chromatic";
 
-import Primer from "../bits/Primer";
+import Primer from "../../bits/Primer";
 
-import { CSV_HEADER, PRIMER_GROUPINGS, RESOLUTIONS_WITH_SPECIES } from "../lib/datasets";
-import { formatTaxon, pluralize, serializeCSVRow } from "../lib/utils";
-import { PrimerPaletteContext } from "../colors";
+import { CSV_HEADER, PRIMER_GROUPINGS, RESOLUTIONS_WITH_SPECIES } from "../../lib/datasets";
+import { formatTaxon, pluralize, serializeCSVRow } from "../../lib/utils";
+import { PrimerPaletteContext } from "../../colors";
 
 const { Title } = Typography;
 
