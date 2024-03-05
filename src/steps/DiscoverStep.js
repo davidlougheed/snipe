@@ -296,6 +296,32 @@ const ResultsTabs = ({ dataset, results, resultParams }) => {
         ));
     }, [selectedPrimerSet, taxaTargetFilter, taxaModalSearchValue]);
 
+    const selectedPrimerSetPrimers = useMemo(() => selectedPrimerSet?.primers ?? new Set(), [selectedPrimerSet]);
+    const taxaModalColumns = useMemo(() => [
+        {
+            dataIndex: "taxon",
+            render: (t) => (
+                <TaxonWithGroupAndPathPopover
+                    record={dataset.recordsByFinalID[t]}
+                    searchHighlight={taxaModalSearchValue}
+                />
+            ),
+        },
+        {
+            dataIndex: "primers",
+            render: (p) => p
+                .filter((p) => selectedPrimerSetPrimers.has(p))
+                .map((p) => <Primer key={p} name={p} />),
+        },
+        {
+            dataIndex: "onTarget",
+            render: (oT) => oT
+                ? <Tag color="green">On-target</Tag>
+                : <Tag color="volcano">Off-target</Tag>,
+        },
+    ], [dataset, selectedPrimerSetPrimers, taxaModalSearchValue]);
+    const selectedPrimerSetTaxa = useMemo(() => selectedPrimerSet?.coveredTaxa ?? new Set(), [selectedPrimerSet]);
+
     return (
         <>
             <Modal
@@ -324,33 +350,12 @@ const ResultsTabs = ({ dataset, results, resultParams }) => {
                         bordered={true}
                         showHeader={false}
                         pagination={false}
-                        columns={[
-                            {
-                                dataIndex: "taxon",
-                                render: (t) => (
-                                    <TaxonWithGroupAndPathPopover
-                                        record={dataset.recordsByFinalID[t]}
-                                        searchHighlight={taxaModalSearchValue}
-                                    />
-                                ),
-                            },
-                            {
-                                dataIndex: "primers",
-                                render: (p) => p
-                                    .filter((p) => (selectedPrimerSet?.primers ?? new Set()).has(p))
-                                    .map((p) => <Primer key={p} name={p} />),
-                            },
-                            {
-                                dataIndex: "onTarget",
-                                render: (oT) => oT
-                                    ? <Tag color="green">On-target</Tag>
-                                    : <Tag color="volcano">Off-target</Tag>,
-                            },
-                        ]}
+                        rowKey="taxon"
+                        columns={taxaModalColumns}
                         dataSource={filteredTaxa.map((t) => ({
                             taxon: t,
                             primers: dataset.recordsByFinalID[t].primers,
-                            onTarget: (selectedPrimerSet?.coveredTaxa ?? new Set()).has(t),
+                            onTarget: selectedPrimerSetTaxa.has(t),
                         }))}
                     />
                 </Space>
@@ -598,7 +603,6 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
             // We can have a lot of paths of 1 option over and over - auto-expand these to make navigation nicer
             let node = e.node;
             newExpandedKeys.add(node.key);
-            console.log(node);
             while (node.children?.length === 1) {
                 node = node.children?.[0];
                 newExpandedKeys.add(node.key);
