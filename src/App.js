@@ -9,9 +9,12 @@ import Footer from "./Footer";
 const { Title } = Typography;
 
 const styles = {
+    content: { minHeight: "100vh", padding: 36 },
+    contentInner: { maxWidth: 1400, margin: "0 auto" },
     titleContainer: { display: "flex", gap: "1.5rem", justifyContent: "center" },
     title: { fontStyle: "italic", fontWeight: 300 },
     subtitle: { fontSize: 18, marginTop: 10, fontStyle: "italic", color: "#5F5F5F" },
+    stepWrapper: { maxWidth: 600, margin: "0 auto" },
 };
 
 const stepItems = [
@@ -43,8 +46,8 @@ const App = () => {
     ), [currentStep, dataset]);
 
     return <Layout>
-        <Layout.Content style={{minHeight: "100vh", padding: 36}}>
-            <div style={{maxWidth: 1400, margin: "0 auto"}}>
+        <Layout.Content style={styles.content}>
+            <div style={styles.contentInner}>
                 <Card>
                     <div style={styles.titleContainer}>
                         <Title level={1} style={styles.title}>SNIPe</Title>
@@ -56,7 +59,7 @@ const App = () => {
                             <strong>e</strong>-DNA
                         </span>
                     </div>
-                    <div style={{ maxWidth: 600, margin: "0 auto" }}>
+                    <div style={styles.stepWrapper}>
                         <Steps size="small" items={stepItems} current={currentStep} />
                     </div>
                     <Divider />
