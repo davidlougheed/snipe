@@ -29,26 +29,24 @@ const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }) => {
             <>
                 {changedTaxaSets.map((nts, ntsIndex) => (
                     <Fragment key={`taxa-set-${ntsIndex}`}>
-                        {nts.added.map((t, ti) => {
-                            const taxonRecord = dataset.recordsByFinalID[t];
-                            return <Fragment key={t}>
+                        {nts.added.map((t, ti) => (
+                            <Fragment key={t}>
                                 <span style={{ whiteSpace: "nowrap" }}>
                                     <PlusCircleOutlined style={{ color: "#7cb305" }} />{" "}
-                                    <TaxonWithGroupAndPathPopover record={taxonRecord} />
+                                    <TaxonWithGroupAndPathPopover record={dataset.recordsByFinalID[t]} />
                                     {ti < (nts.added.length + nts.removed.length) - 1 ? ", " : ""}
                                 </span>{" "}
-                            </Fragment>;
-                        })}
-                        {nts.removed.map((t, ti) => {
-                            const taxonRecord = dataset.recordsByFinalID[t];
-                            return <Fragment key={t}>
+                            </Fragment>
+                        ))}
+                        {nts.removed.map((t, ti) => (
+                            <Fragment key={t}>
                                 <span style={{ whiteSpace: "nowrap" }}>
                                     <MinusCircleOutlined style={{ color: "#d4380d" }} />{" "}
-                                    <TaxonWithGroupAndPathPopover record={taxonRecord} />
+                                    <TaxonWithGroupAndPathPopover record={dataset.recordsByFinalID[t]} />
                                     {ti < nts.removed.length - 1 ? ", " : ""}
                                 </span>
-                            </Fragment>;
-                        })}
+                            </Fragment>
+                        ))}
                         {ntsIndex < changedTaxaSets.length - 1 ? (
                             <div><strong>— OR —</strong></div>
                         ) : null}
@@ -59,14 +57,7 @@ const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }) => {
     );
 };
 
-const PrimerSet = ({
-    dataset,
-    primerSet,
-    resultParams,
-    nextTabResults,
-    style,
-    onShowSetDiagram,
-}) => {
+const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, onShowSetDiagram }) => {
     const [taxaModalVisible, setTaxaModalVisible] = useState(false);
 
     const title = `Primer set ${primerSet.id}`;
