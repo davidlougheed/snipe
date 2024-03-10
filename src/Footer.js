@@ -9,6 +9,12 @@ const styles = {
     footerParagraph: { color: "#8C8C8C" },
 };
 
+const GitHubLink = ({ children, subPath }) => (
+    <a href={`https://github.com/davidlougheed/snipe${subPath || ""}`}
+       target="_blank"
+       rel="noreferrer">{children}</a>
+);
+
 const Footer = () => {
     const [noticeVisible, setNoticeVisible] = useState(false);
 
@@ -34,19 +40,15 @@ const Footer = () => {
                 <a href="https://sclougheed.ca" target="_blank" rel="noreferrer">Lougheed Lab</a>.
                 The web application component is &copy;&nbsp;
                 <a href="https://dlougheed.com" target="_blank" rel="noreferrer">David Lougheed</a> 2023;
-                the{" "}
-                <a href="https://github.com/davidlougheed/snipe"
-                   target="_blank"
-                   rel="noreferrer">source code is available on Github</a>{" "}
-                under the terms of the{" "}
-                <a href="https://github.com/davidlougheed/snipe/blob/main/LICENSE"
-                   target="_blank"
-                   rel="noreferrer">GPL v3 license</a>; see the <a href="#" onClick={showNotice}>notice</a>.
+                the <GitHubLink>source code is available on Github</GitHubLink> under the terms of
+                the <GitHubLink subPath="/blob/main/LICENSE">GPL v3 license</GitHubLink>; see
+                the <a href="#" onClick={showNotice}>notice</a>.
             </Paragraph>
             <Paragraph style={styles.footerParagraph}>
                 Version {packageJson.version} &#x2E31;{" "}
                 Please send any feedback or bug reports to{" "}
-                <a href="mailto:david.lougheed@gmail.com">david.lougheed@gmail.com</a>.
+                <a href="mailto:david.lougheed@gmail.com">david.lougheed@gmail.com</a> or file an issue on{" "}
+                <GitHubLink subPath="/issues">GitHub</GitHubLink>.
             </Paragraph>
         </div>
 
