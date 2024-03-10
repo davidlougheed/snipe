@@ -1,4 +1,4 @@
-import { Fragment, useCallback } from "react";
+import { Fragment, useCallback, useState } from "react";
 
 import difference from "set.prototype.difference";
 
@@ -6,6 +6,7 @@ import { Button, Card, Space, Statistic, Typography } from "antd";
 import { DownloadOutlined, MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 import Primer from "../../bits/Primer";
+import TaxaModal from "./TaxaModal";
 import TaxonWithGroupAndPathPopover from "./TaxonWithGroupAndPathPopover";
 
 import { CSV_HEADER, RESOLUTIONS_WITH_SPECIES } from "../../lib/datasets";
@@ -64,9 +65,10 @@ const PrimerSet = ({
     resultParams,
     nextTabResults,
     style,
-    onShowTaxa,
     onShowSetDiagram,
 }) => {
+    const [taxaModalVisible, setTaxaModalVisible] = useState(false);
+
     const title = `Primer set ${primerSet.id}`;
 
     const nextTabPrimerSets = nextTabResults?.results ?? null;
@@ -104,7 +106,7 @@ const PrimerSet = ({
         el.remove();
     }, []);
 
-    return (
+    return <>
         <Card
             title={title}
             size="small"
@@ -140,7 +142,7 @@ const PrimerSet = ({
                                     {primerSet.offTarget?.coverage ?? 0} off-target</em></>
                                 : null}
                         </span>{" "}
-                        <Button size="small" onClick={onShowTaxa}>See all</Button>
+                        <Button size="small" onClick={() => setTaxaModalVisible(true)}>See list</Button>
                     </Title>
                     {changedTaxaSets.length
                         ? <ChangedTaxaSets
@@ -169,7 +171,15 @@ const PrimerSet = ({
                 </div>
             </Space>
         </Card>
-    );
+
+        <TaxaModal
+            dataset={dataset}
+            primerSet={primerSet}
+            resultParams={resultParams}
+            open={taxaModalVisible}
+            onCancel={() => setTaxaModalVisible(false)}
+        />
+    </>;
 };
 
 export default PrimerSet;

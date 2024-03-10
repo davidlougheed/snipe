@@ -1,14 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
-import { Input, Modal, Space, Table, Tabs, Tag } from "antd";
+import { useState } from "react";
+import { Modal, Tabs } from "antd";
 
 import { createVennJSAdapter, VennDiagram } from "@upsetjs/react";
 import { layout } from "@upsetjs/venn.js";
 import { lab } from "d3-color";
 
-import Primer from "../../bits/Primer";
 import PrimerSet from "./PrimerSet";
-import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
-import TaxonWithGroupAndPathPopover from "./TaxonWithGroupAndPathPopover";
 
 import { pluralize } from "../../lib/utils";
 
@@ -41,108 +38,13 @@ const eulerMergeColors = (colors) => {
 
 const primerCountPhrase = (nPrimers) => `${nPrimers} ${pluralize("Primer", nPrimers)}`;
 
-const filterTaxaTargetFactory = (selectedPrimerSet, targetFilter) => (t) => {
-    if (targetFilter === "onTarget") return selectedPrimerSet.coveredTaxa.has(t);
-    if (targetFilter === "offTarget") return selectedPrimerSet.offTarget.coveredTaxa.has(t);
-    return selectedPrimerSet.total.coveredTaxa.has(t);  // otherwise, total
-};
-
 
 const ResultsTabs = ({ dataset, results, resultParams }) => {
     const [selectedPrimerSet, setSelectedPrimerSet] = useState(null);
-
-    const shownTaxa = useMemo(() => {
-        if (!selectedPrimerSet) return [];
-        return Array.from(selectedPrimerSet.total?.coveredTaxa ?? selectedPrimerSet.coveredTaxa).sort();
-    }, [selectedPrimerSet]);
-    const [taxaTargetFilter, setTaxaTargetFilter] = useState("onTarget");
-    const [filteredTaxa, setFilteredTaxa] = useState([]);  // shownTaxa + filtering
-    const [taxaModalSearchValue, setTaxaModalSearchValue] = useState("");
-    const [taxaModalVisible, setTaxaModalVisible] = useState(false);
-
     const [diagramModalVisible, setDiagramModalVisible] = useState(false);
-
-    useEffect(() => {
-        if (!selectedPrimerSet) return;
-
-        const sv = taxaModalSearchValue.toLowerCase();
-        if (sv === "") {
-            setFilteredTaxa(shownTaxa.filter(filterTaxaTargetFactory(selectedPrimerSet, taxaTargetFilter)));
-            return;
-        }
-        setFilteredTaxa(
-            shownTaxa
-                .filter(filterTaxaTargetFactory(selectedPrimerSet, taxaTargetFilter))
-                .filter(
-                    (t) => t.replace("_", " ").toLowerCase().includes(sv)
-                        || dataset.recordsByFinalID[t].primersLower.reduce((acc, p) => acc || p.includes(sv), false)
-                ));
-    }, [selectedPrimerSet, taxaTargetFilter, taxaModalSearchValue]);
-
-    const selectedPrimerSetPrimers = useMemo(() => selectedPrimerSet?.primers ?? new Set(), [selectedPrimerSet]);
-    const taxaModalColumns = useMemo(() => [
-        {
-            dataIndex: "taxon",
-            render: (t) => (
-                <TaxonWithGroupAndPathPopover
-                    record={dataset.recordsByFinalID[t]}
-                    searchHighlight={taxaModalSearchValue}
-                />
-            ),
-        },
-        {
-            dataIndex: "primers",
-            render: (p) => p
-                .filter((p) => selectedPrimerSetPrimers.has(p))
-                .map((p) => <Primer key={p} name={p} />),
-        },
-        {
-            dataIndex: "onTarget",
-            render: (oT) => oT
-                ? <Tag color="green">On-target</Tag>
-                : <Tag color="volcano">Off-target</Tag>,
-        },
-    ], [dataset, selectedPrimerSetPrimers, taxaModalSearchValue]);
-    const selectedPrimerSetTaxa = useMemo(() => selectedPrimerSet?.coveredTaxa ?? new Set(), [selectedPrimerSet]);
 
     return (
         <>
-            <Modal
-                open={taxaModalVisible}
-                title={`Primer set ${selectedPrimerSet?.id}: ${shownTaxa.length} taxa (${filteredTaxa.length} shown)`}
-                footer={null}
-                width={920}
-                onCancel={() => setTaxaModalVisible(false)}
-            >
-                <Space direction="vertical" style={{ width: "100%" }}>
-                    <Space direction="horizontal" size={16}>
-                        <Input
-                            placeholder="Search"
-                            value={taxaModalSearchValue}
-                            onChange={(e) => setTaxaModalSearchValue(e.target.value)}
-                            allowClear={true}
-                        />
-                        <TaxaFilterRadioSelector
-                            value={taxaTargetFilter}
-                            onChange={(v) => setTaxaTargetFilter(v)}
-                            includeOffTargetTaxa={resultParams.includeOffTargetTaxa}
-                        />
-                    </Space>
-                    <Table
-                        size="small"
-                        bordered={true}
-                        showHeader={false}
-                        pagination={false}
-                        rowKey="taxon"
-                        columns={taxaModalColumns}
-                        dataSource={filteredTaxa.map((t) => ({
-                            taxon: t,
-                            primers: dataset.recordsByFinalID[t].primers,
-                            onTarget: selectedPrimerSetTaxa.has(t),
-                        }))}
-                    />
-                </Space>
-            </Modal>
             <Modal
                 open={diagramModalVisible}
                 title={`Primer set ${selectedPrimerSet?.id}: Euler diagram`}
@@ -191,10 +93,6 @@ const ResultsTabs = ({ dataset, results, resultParams }) => {
                                         primerSet={r}
                                         nextTabResults={nextTabResults}
                                         style={{ width: npResults.length === 1 ? "100%" : "calc(50% - 8px)" }}
-                                        onShowTaxa={() => {
-                                            setSelectedPrimerSet(r);
-                                            setTaxaModalVisible(true);
-                                        }}
                                         onShowSetDiagram={() => {
                                             setSelectedPrimerSet(r);
                                             setDiagramModalVisible(true);
