@@ -1,14 +1,30 @@
 import { useMemo, useState } from "react";
-import { Divider, Radio, Space } from "antd";
-import { Bar, BarChart, CartesianGrid, Label, Legend, ResponsiveContainer, XAxis, YAxis } from "recharts";
-import { hsl } from "d3-color";
-import { schemeTableau10 } from "d3-scale-chromatic";
+import { Card, Divider, Radio, Space } from "antd";
+import { Bar, BarChart, CartesianGrid, Label, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
+import { supergroupOrGroupColor } from "../../colors";
+
+const CustomTooltip = ({ active, payload, currentBar, coordinate }) => {
+    if (!currentBar) return null;
+
+    const data = payload.find((p) => p.dataKey === currentBar);
+
+    if (!active || !data) return null;
+    return (
+        <div style={{ position: "absolute", top: coordinate.y, left: coordinate.x }}>
+            <Card size="small" styles={{ body: { padding: "6px 12px", boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)" } }}>
+                <strong>{data.payload.name}&nbsp;primers</strong><br />
+                {data.name}:&nbsp;{data.payload[currentBar]}
+            </Card>
+        </div>
+    );
+};
 
 const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) => {
     const [barType, setBarType] = useState("group");
     const [resultFilter, setResultFilter] = useState("onTarget");  // onTarget | offTarget | total
+    const [currentBar, setCurrentBar] = useState(null);
 
     const data = useMemo(() => {
         if (!results) return [];
@@ -73,26 +89,44 @@ const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) =>
                 <YAxis tickCount={8}>
                     <Label value="coverage (# taxa)" angle={-90} position="left" style={{ textAnchor: "middle" }} />
                 </YAxis>
-                {/*<Tooltip formatter={(value) => percentFormatter(value)} />*/}
                 <Legend verticalAlign="bottom" wrapperStyle={{ minHeight: 88, bottom: 0 }} />
+                <Tooltip content={<CustomTooltip currentBar={currentBar} />} isAnimationActive={false} />
                 {barType === "group" ? (
                     Object.entries(dataset?.supergroupGroups ?? {}).flatMap(([sg, gs]) =>
                         gs.filter((g) => data.find((d) => `${barType}_${g}` in d))
                             .map((g) => {
-                                const color = hsl(schemeTableau10[dataset.supergroups.indexOf(sg)]);
-                                color.l = 0.25 + ((gs.indexOf(g) + 1) / (gs.length + 1)) * 0.6;
+                                const color = supergroupOrGroupColor(dataset, sg, g);
                                 const k = `${barType}_${g}`;
-                                return <Bar key={k} dataKey={k} name={g} stackId="a" fill={color.toString()} />;
+                                return (
+                                    <Bar
+                                        key={k}
+                                        dataKey={k}
+                                        name={g}
+                                        stackId="a"
+                                        fill={color}
+                                        onMouseOver={() => setCurrentBar(k)}
+                                        onMouseOut={() => setCurrentBar(null)}
+                                    />
+                                );
                             })
                     )
                 ) : (
                     Object.keys(dataset?.supergroupGroups ?? {})
                         .filter((sg) => data.find((d) => `${barType}_${sg}` in d))
                         .map((sg) => {
-                            const color = hsl(schemeTableau10[dataset.supergroups.indexOf(sg)]);
-                            color.l = 0.55;  // normalize luminosity to be in the middle of where it is for group bars
+                            const color = supergroupOrGroupColor(dataset, sg);
                             const k = `${barType}_${sg}`;
-                            return <Bar key={k} dataKey={k} name={sg} stackId="supergroup" fill={color.toString()} />;
+                            return (
+                                <Bar
+                                    key={k}
+                                    dataKey={k}
+                                    name={sg}
+                                    stackId="supergroup"
+                                    fill={color}
+                                    onMouseOver={() => setCurrentBar(k)}
+                                    onMouseOut={() => setCurrentBar(null)}
+                                />
+                            );
                         })
                 )}
             </BarChart>
