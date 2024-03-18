@@ -2,11 +2,12 @@ import { Fragment, useCallback, useState } from "react";
 
 import difference from "set.prototype.difference";
 
-import { Button, Card, Space, Statistic, Typography } from "antd";
+import { Button, Card, Modal, Space, Statistic, Typography } from "antd";
 import { DownloadOutlined, MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 import Primer from "../../bits/Primer";
 import TaxaModal from "./TaxaModal";
+import TaxaByPrimerModal from "./TaxaByPrimerModal";
 import TaxonWithGroupAndPathPopover from "./TaxonWithGroupAndPathPopover";
 
 import { CSV_HEADER, RESOLUTIONS_WITH_SPECIES } from "../../lib/datasets";
@@ -59,6 +60,7 @@ const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }) => {
 
 const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, onShowSetDiagram }) => {
     const [taxaModalVisible, setTaxaModalVisible] = useState(false);
+    const [taxaByPrimerModalVisible, setTaxaByPrimerModalVisible] = useState(false);
 
     const title = `Primer set ${primerSet.id}`;
 
@@ -134,6 +136,8 @@ const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, on
                                 : null}
                         </span>{" "}
                         <Button size="small" onClick={() => setTaxaModalVisible(true)}>See list</Button>
+                        {" "}
+                        <Button size="small" onClick={() => setTaxaByPrimerModalVisible(true)}>Plot</Button>
                     </Title>
                     {changedTaxaSets.length
                         ? <ChangedTaxaSets
@@ -169,6 +173,14 @@ const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, on
             resultParams={resultParams}
             open={taxaModalVisible}
             onCancel={() => setTaxaModalVisible(false)}
+        />
+
+        <TaxaByPrimerModal
+            dataset={dataset}
+            primerSet={primerSet}
+            resultParams={resultParams}
+            open={taxaByPrimerModalVisible}
+            onCancel={() => setTaxaByPrimerModalVisible(false)}
         />
     </>;
 };
