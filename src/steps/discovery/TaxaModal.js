@@ -73,6 +73,7 @@ const TaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }) => {
             title={`Primer set ${id}: ${shownTaxa.length} taxa (${filteredTaxa.length} shown)`}
             footer={null}
             width={920}
+            style={{ top: 24 }}
             onCancel={onCancel}
         >
             <Space direction="vertical" style={{ width: "100%" }}>
