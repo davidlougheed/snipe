@@ -39,7 +39,7 @@ const Footer = () => {
                 of the{" "}
                 <a href="https://sclougheed.ca" target="_blank" rel="noreferrer">Lougheed Lab</a>.
                 The web application component is &copy;&nbsp;
-                <a href="https://dlougheed.com" target="_blank" rel="noreferrer">David Lougheed</a> 2023;
+                <a href="https://dlougheed.com" target="_blank" rel="noreferrer">David Lougheed</a> 2023-2024;
                 the <GitHubLink>source code is available on Github</GitHubLink> under the terms of
                 the <GitHubLink subPath="/blob/main/LICENSE">GPL v3 license</GitHubLink>; see
                 the <a href="#" onClick={showNotice}>notice</a>.
