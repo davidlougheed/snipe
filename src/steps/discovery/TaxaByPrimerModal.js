@@ -13,7 +13,7 @@ const TaxaByPrimerModal = ({ dataset, primerSet, resultParams, open, onCancel })
         if (taxaTargetFilter === "onTarget") return primerSet.coveredRecords;
         if (taxaTargetFilter === "offTarget") return primerSet.offTarget.coveredRecords;
         return primerSet.total.coveredRecords;
-    }, [primerSet]);
+    }, [primerSet, taxaTargetFilter]);
 
     const supergroups = useMemo(() => [...new Set(records.map((r) => r["Supergroup"]))].sort(), [records]);
     const data = useMemo(() => (
