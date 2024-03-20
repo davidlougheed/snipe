@@ -1,6 +1,6 @@
 {
   "name": "@davidlougheed/snipe",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A web tool for optimally choosing eDNA primer pairs to identify a set of taxa. ",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/davidlougheed/edna_primer_selector.git"
+    "url": "git+ssh://git@github.com/davidlougheed/snipe.git"
   },
   "keywords": [
     "edna"
@@ -19,9 +19,9 @@
   "author": "David Lougheed <david.lougheed@gmail.com>",
   "license": "GPL-3.0-only",
   "bugs": {
-    "url": "https://github.com/davidlougheed/edna_primer_selector/issues"
+    "url": "https://github.com/davidlougheed/snipe/issues"
   },
-  "homepage": "https://github.com/davidlougheed/edna_primer_selector#readme",
+  "homepage": "https://github.com/davidlougheed/snipe#readme",
   "dependencies": {
     "@ant-design/icons": "^5.3.1",
     "@upsetjs/react": "^1.11.0",
