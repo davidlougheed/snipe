@@ -70,7 +70,7 @@ const TaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }) => {
     return (
         <Modal
             open={open}
-            title={`Primer set ${id}: ${shownTaxa.length} taxa (${filteredTaxa.length} shown)`}
+            title={`Primer pair set ${id}: ${shownTaxa.length} taxa (${filteredTaxa.length} shown)`}
             footer={null}
             width={920}
             style={{ top: 24 }}

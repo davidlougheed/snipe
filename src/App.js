@@ -18,14 +18,8 @@ const styles = {
 };
 
 const stepItems = [
-    {
-        title: <strong>Choose or upload a dataset</strong>,
-        // description: "Use the default primer dataset or upload your own.",
-    },
-    {
-        title: <strong>Discover primer sets</strong>,
-        // description: "Choose taxa for presence detection and find matching primer sets.",
-    },
+    { title: <strong>Choose or upload a dataset</strong> },
+    { title: <strong>Discover primer pair sets</strong> },
 ];
 
 const App = () => {

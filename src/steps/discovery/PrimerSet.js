@@ -2,7 +2,7 @@ import { Fragment, useCallback, useState } from "react";
 
 import difference from "set.prototype.difference";
 
-import { Button, Card, Modal, Space, Statistic, Typography } from "antd";
+import { Button, Card, Space, Statistic, Typography } from "antd";
 import { DownloadOutlined, MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 import Primer from "../../bits/Primer";
@@ -62,7 +62,7 @@ const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, on
     const [taxaModalVisible, setTaxaModalVisible] = useState(false);
     const [taxaByPrimerModalVisible, setTaxaByPrimerModalVisible] = useState(false);
 
-    const title = `Primer set ${primerSet.id}`;
+    const title = `Primer pair set ${primerSet.id}`;
 
     const nextTabPrimerSets = nextTabResults?.results ?? null;
     const nextTabNPrimers = nextTabResults?.nPrimers;

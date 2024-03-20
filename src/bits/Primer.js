@@ -20,8 +20,8 @@ const Primer = memo(({ name, added, sometimes, primerSetCount }) => {
         <Popover
             title="Added"
             content={sometimes
-                ? `Versus some of the ${primerSetCount-1}-primer sets, this primer is new.`
-                : `Versus the ${primerSetCount-1}-primer set(s), this primer is new.`}>{tag}</Popover>
+                ? `Versus some of the ${primerSetCount-1}-primer pair sets, this primer is new.`
+                : `Versus the ${primerSetCount-1}-primer pair set(s), this primer is new.`}>{tag}</Popover>
     ) : tag;
 });
 

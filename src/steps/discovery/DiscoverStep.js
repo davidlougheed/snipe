@@ -229,7 +229,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                 <div style={{ display: "flex", gap: 16 }}>
                     <Title level={3} style={{ flex: 1 }}>Results</Title>
                     <Button disabled={!results} onClick={showPrimerSetCoverageModal} icon={<BarChartOutlined />}>
-                        Cumulative Primer Set Coverage
+                        Cumulative Primer Pair Set Coverage
                     </Button>
                 </div>
                 {!hasSearched && (
@@ -237,7 +237,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                         message="No results yet"
                         description={<span>
                             Select taxa, choose your desired maximum number of primers, and press "Search" in order to
-                            see corresponding primer sets. Searching may take a few seconds.
+                            see corresponding primer pair sets. Searching may take a few seconds.
                         </span>}
                         type="info"
                         showIcon={true}
@@ -285,7 +285,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
         </Modal>
 
         <Modal
-            title="Cumulative Primer Set Coverage"
+            title="Cumulative Primer Pair Set Coverage"
             open={primerSetCoverageModalVisible}
             width={800}
             footer={null}

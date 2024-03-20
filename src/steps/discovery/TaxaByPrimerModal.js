@@ -37,7 +37,7 @@ const TaxaByPrimerModal = ({ dataset, primerSet, resultParams, open, onCancel })
     return (
         <Modal
             open={open}
-            title={`Primer set ${primerSet.id}: Taxa by primers`}
+            title={`Primer pair set ${primerSet.id}: Taxa by primers`}
             footer={null}
             width={920}
             style={{ top: 24 }}
