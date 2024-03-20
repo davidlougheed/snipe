@@ -107,6 +107,12 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
     }, [dataset]);
     const deselectAll = useCallback(() => setCheckedKeys([]), []);
 
+    const selectAllLink = useCallback((e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        selectAll();
+    }, [selectAll]);
+
     const nCheckedLeaves = checkedLeaves.length;
 
     const showTaxaSelectModal = useCallback(() => setTaxaSelectModalVisible(true), []);
@@ -158,7 +164,12 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                 <Card title="Criteria">
                     <Form layout="vertical">
                         <Form.Item
-                            label="Target taxa"
+                            label={(
+                                <Space size={16}>
+                                    <span>Target taxa</span>
+                                    <a href="#" onClick={selectAllLink}>Select all</a>
+                                </Space>
+                            )}
                             help={<div style={{ marginBottom: 8 }}>
                                 The taxa available here are just those which are detectable by the dataset specified.
                             </div>}
