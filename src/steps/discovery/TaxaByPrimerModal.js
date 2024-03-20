@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react";
-import { Col, Modal, Row, Space } from "antd";
+import { Col, Empty, Modal, Row, Space } from "antd";
 import groupBy from "lodash/groupBy";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
@@ -53,6 +53,7 @@ const TaxaByPrimerModal = ({ dataset, primerSet, resultParams, open, onCancel })
                 </Space>
                 <div style={{ height: 8 }} />
                 <Row gutter={[16, 8]}>
+                    {!supergroups.length && <Empty />}
                     {supergroups.map((sg) => {
                         const groups = dataset.supergroupGroups[sg];
                         return (
