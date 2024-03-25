@@ -1,9 +1,12 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+
 import { Card, Divider, Radio, Space } from "antd";
+
 import { Bar, BarChart, CartesianGrid, Label, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
 import { supergroupOrGroupColor } from "../../colors";
+import ChartDownloadButtons from "./ChartDownloadButtons";
+import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
 
 const CustomTooltip = ({ active, payload, currentBar, coordinate }) => {
     if (!currentBar) return null;
@@ -22,6 +25,8 @@ const CustomTooltip = ({ active, payload, currentBar, coordinate }) => {
 };
 
 const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) => {
+    const chartRef = useRef(null);
+
     const [barType, setBarType] = useState("group");
     const [resultFilter, setResultFilter] = useState("onTarget");  // onTarget | offTarget | total
     const [currentBar, setCurrentBar] = useState(null);
@@ -78,10 +83,20 @@ const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) =>
             <div>
                 <span>Summarization:</span>{" "}Average
             </div>
+            <ChartDownloadButtons
+                chartRef={chartRef}
+                fileNameBase="cumulative_primer_set_coverage"
+                getter={(cc) => cc.container}
+            />
         </Space>
         <Divider />
         <ResponsiveContainer width="100%" height={550}>
-            <BarChart data={data} margin={{ top: 8, bottom: 32, left: 16 }}>
+            <BarChart
+                data={data}
+                margin={{ top: 8, bottom: 32, left: 16 }}
+                style={{ backgroundColor: "white" }}
+                ref={chartRef}
+            >
                 <CartesianGrid vertical={false} stroke="#EEEEEE" />
                 <XAxis dataKey="name">
                     <Label value="# primers" position="bottom" />
