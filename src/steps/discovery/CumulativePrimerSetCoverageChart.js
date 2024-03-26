@@ -64,7 +64,7 @@ const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) =>
     }, [dataset, results, resultFilter]);
 
     return <>
-        <Space direction="horizontal" size={16}>
+        <Space direction="horizontal" size={24}>
             <div>
                 <span>Level:</span>{" "}
                 <Radio.Group size="small" onChange={(e) => setBarType(e.target.value)} value={barType}>

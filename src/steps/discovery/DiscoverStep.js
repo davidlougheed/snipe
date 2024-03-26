@@ -287,7 +287,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
         <Modal
             title="Cumulative Primer Pair Set Coverage"
             open={primerSetCoverageModalVisible}
-            width={940}
+            width={900}
             footer={null}
             onCancel={hidePrimerSetCoverageModal}
         >

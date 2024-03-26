@@ -9,12 +9,13 @@ const ChartDownloadButtons = ({ chartRef, fileNameBase, getter }) => (
             const cc = chartRef.current;
             if (cc) downloadChart(getter(cc), `${fileNameBase}.png`, "png");
         }}>PNG</Button>{" "}
-        <Button size="small" icon={<DownloadOutlined/>} onClick={() => {
-            const cc = chartRef.current;
-            if (cc) downloadChart(getter(cc), `${fileNameBase}.svg`, "svg");
-        }}>SVG</Button>
+        {/*<Button size="small" icon={<DownloadOutlined/>} onClick={() => {*/}
+        {/*    const cc = chartRef.current;*/}
+        {/*    if (cc) downloadChart(getter(cc), `${fileNameBase}.svg`, "svg");*/}
+        {/*}}>SVG</Button>*/}
     </div>
 );
+// noinspection JSUnusedGlobalSymbols
 ChartDownloadButtons.defaultProps = {
     getter: (c) => c,
 };
