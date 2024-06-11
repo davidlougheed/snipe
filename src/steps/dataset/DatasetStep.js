@@ -184,9 +184,23 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
         </Row>
         <Row>
             <Col flex={1}>
-                <Paragraph style={{ marginTop: "1em", marginBottom: 0 }}>
+                <Paragraph style={{ marginTop: "1em" }}>
                     <strong>Note:</strong> All processing is done on your local computer; datasets{" "}
                     <em>are not</em> sent to a remote server.
+                </Paragraph>
+                <Divider />
+                <Paragraph>If you use SNIPe in your work, please cite:</Paragraph>
+                <Paragraph style={{ marginBottom: 0 }}>
+                    <blockquote style={{ maxWidth: 800 }}>
+                        <strong>How to barcode (almost all) freshwater biodiversity</strong><br />
+                        Orianne&nbsp;Tournayre, Haolun&nbsp;Tian, David&nbsp;R.&nbsp;Lougheed,
+                        Matthew&nbsp;J.S.&nbsp;Windle, Sheldon&nbsp;Lambert, Jennipher&nbsp;Carter, Zhengxin&nbsp;Sun,
+                        Jeff&nbsp;Ridal, Yuxiang Wang, Brian&nbsp;F.&nbsp;Cumming, Shelley&nbsp;E.&nbsp;Arnott,
+                        Stephen&nbsp;C.&nbsp;Lougheed. <br />
+                        bioRxiv 2023.12.13.571596; doi:&nbsp;
+                        <a href="https://doi.org/10.1101/2023.12.13.571596" target="_blank" rel="noreferrer">
+                            https://doi.org/10.1101/2023.12.13.571596</a>
+                    </blockquote>
                 </Paragraph>
             </Col>
         </Row>
