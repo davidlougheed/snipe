@@ -1,6 +1,6 @@
 {
   "name": "@davidlougheed/snipe",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "A web tool for optimally choosing eDNA primer pairs to identify a set of taxa. ",
   "main": "index.js",
   "scripts": {
