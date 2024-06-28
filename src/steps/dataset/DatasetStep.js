@@ -134,8 +134,8 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                             </Spin>
                         </Radio>
                         <Radio value={1}>
-                            <Upload name="file" onChange={onUpload} beforeUpload={beforeUploadNothing}>
-                            <Button icon={<UploadOutlined />}>Upload Taxa/Primer List</Button> <br />
+                            <Upload name="file" onChange={onUpload} beforeUpload={beforeUploadNothing} maxCount={1}>
+                                <Button icon={<UploadOutlined />}>Upload Taxa/Primer List</Button> <br />
                             </Upload>
                             <Text type="secondary">
                                 You must upload a CSV which follows the tool's{" "}
