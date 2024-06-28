@@ -71,6 +71,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
             } catch (e) {
                 console.error("Encountered error while parsing dataset:", e);
                 setParseError(e);
+                setDataset(null);
             } finally {
                 setParsing(false);
             }
@@ -120,12 +121,12 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
     useEffect(() => {
         if (option === 0 && defaultDataset) {
             setDataset(defaultDataset);
-        } else if (!fileObj && option === 1) {
-            setDataset(null);  // no dataset selected yet; need to upload
+        } else if ((!fileObj || parseError) && option === 1) {
+            setDataset(null);  // either: no dataset selected yet, need to upload; or: invalid dataset
         }
     }, [defaultDataset, fileObj, option]);
 
-    const primers = parseError ? [] : (dataset?.primers ?? []);
+    const primers = dataset?.primers ?? [];
 
     if (!visible) return <Fragment />;
     return <>
@@ -196,7 +197,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                     <Col>
                         <Statistic
                             title="Taxa"
-                            value={parseError ? "—" : (dataset?.records?.length ?? "—")}
+                            value={dataset?.records?.length ?? "—"}
                             loading={fetchingDefault || parsing}
                             prefix={<ApartmentOutlined />}
                         />
