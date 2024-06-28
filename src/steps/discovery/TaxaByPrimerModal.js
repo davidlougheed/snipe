@@ -5,6 +5,8 @@ import groupBy from "lodash/groupBy";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 import { supergroupOrGroupColor } from "../../colors";
+import { COL_SUPERGROUP, COL_TAXA_GROUP } from "../../lib/datasets";
+
 import ChartDownloadButtons from "./ChartDownloadButtons";
 import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
 
@@ -20,7 +22,7 @@ const TaxaByPrimerModal = ({ dataset, primerSet, resultParams, open, onCancel })
         return primerSet.total.coveredRecords;
     }, [primerSet, taxaTargetFilter]);
 
-    const supergroups = useMemo(() => [...new Set(records.map((r) => r["Supergroup"]))].sort(), [records]);
+    const supergroups = useMemo(() => [...new Set(records.map((r) => r[COL_SUPERGROUP]))].sort(), [records]);
     const data = useMemo(() => (
         Object.fromEntries(supergroups.map((sg) => [
             sg,
@@ -31,8 +33,8 @@ const TaxaByPrimerModal = ({ dataset, primerSet, resultParams, open, onCancel })
                     ...Object.fromEntries(
                         Object
                             .entries(groupBy(
-                                records.filter((r) => r["Supergroup"] === sg && r["primers"].includes(p)),
-                                "Taxa_group"))
+                                records.filter((r) => r[COL_SUPERGROUP] === sg && r["primers"].includes(p)),
+                                COL_TAXA_GROUP))
                             .map(([k, v]) => [k, v.length])
                     ),
                 })),

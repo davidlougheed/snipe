@@ -1,6 +1,7 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
 import { parse } from "csv-parse/browser/esm";
 import {
+    Alert,
     Button,
     Col,
     Divider,
@@ -37,9 +38,14 @@ const parseDataset = async (csvGetter, onParseFinish=undefined) => {
 
             if (onParseFinish) onParseFinish();
 
-            const dataset = createDataset(data);
-            console.debug("dataset:", dataset);
-            resolve(dataset);
+            try {
+                const dataset = createDataset(data);
+                console.debug("dataset:", dataset);
+                resolve(dataset);
+            } catch (e) {
+                // Error in createDataset
+                reject(e);
+            }
         });
     });
 };
@@ -49,6 +55,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
 
     const [option, setOption] = useState(0);
     const [parsing, setParsing] = useState(false);
+    const [parseError, setParseError] = useState(null);
     const [fileObj, setFileObj] = useState(null);
 
     const [fetchingDefault, setFetchingDefault] = useState(false);
@@ -56,10 +63,14 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
     const [defaultDataset, setDefaultDataset] = useState(null);
 
     const parseDatasetInner = useCallback((csvGetter, onParseFinish=undefined) => {
+        setParseError(null);
         setParsing(true);
         return (async () => {
             try {
                 setDataset(await parseDataset(csvGetter, onParseFinish));
+            } catch (e) {
+                console.error("Encountered error while parsing dataset:", e);
+                setParseError(e);
             } finally {
                 setParsing(false);
             }
@@ -114,11 +125,22 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
         }
     }, [defaultDataset, fileObj, option]);
 
-    const primers = dataset?.primers ?? [];
+    const primers = parseError ? [] : (dataset?.primers ?? []);
 
     if (!visible) return <Fragment />;
     return <>
         {contextHolder}
+        {parseError && (
+            <Row style={{ marginBottom: 24 }}>
+                <Col flex={1}>
+                    <Alert
+                        type="error"
+                        message="An error occurred while parsing the dataset."
+                        description={parseError.toString()}
+                    />
+                </Col>
+            </Row>
+        )}
         <Row>
             <Col flex={1}>
                 <Radio.Group value={option} onChange={(e) => setOption(e.target.value)} disabled={fetchingDefault}>
@@ -174,7 +196,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                     <Col>
                         <Statistic
                             title="Taxa"
-                            value={dataset?.records?.length ?? "—"}
+                            value={parseError ? "—" : (dataset?.records?.length ?? "—")}
                             loading={fetchingDefault || parsing}
                             prefix={<ApartmentOutlined />}
                         />

@@ -1,7 +1,7 @@
 import { asSets } from "@upsetjs/react";
 import groupBy from "lodash/groupBy";
 import { rgb } from "d3-color";
-import { OVERVIEW_GROUPINGS, taxaGroup } from "./datasets";
+import { COL_FINAL_ID, COL_RESOLUTION, COL_TAXA_GROUP, OVERVIEW_GROUPINGS, taxaGroup } from "./datasets";
 
 // Helpers -------------------------------------------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ const computePrimerSetCovered = (records, primerSet, primerPalette) => {
     const coveredRecords = [];
 
     records.forEach((rec) => {
-        const finalID = rec["Final_ID"];
+        const finalID = rec[COL_FINAL_ID];
 
         if (coveredTaxa.has(finalID)) {
             // TODO: I think this was an artifact from when we had accidentally duplicate records, this should
@@ -69,12 +69,12 @@ const computePrimerSetCovered = (records, primerSet, primerPalette) => {
         coveredRecords,
         coverageByGroup: calculateGroupCoverage(taxaGroup(coveredRecords, OVERVIEW_GROUPINGS, false)),
         resolutionSummary: Object.fromEntries(
-            Object.entries(groupBy(coveredRecords, "Resolution")).map(([k, v]) => [k, v.length])),
+            Object.entries(groupBy(coveredRecords, COL_RESOLUTION)).map(([k, v]) => [k, v.length])),
     };
 };
 
 const avgCoverageByGroupForResult = (records, resCovByGroupArr) => {
-    const baseCoverageByGroup = Object.fromEntries(records.map((rec) => [rec["Taxa_group"], 0]));
+    const baseCoverageByGroup = Object.fromEntries(records.map((rec) => [rec[COL_TAXA_GROUP], 0]));
     return Object.fromEntries(
         Object.entries(
             resCovByGroupArr.reduce((acc, res) => {
@@ -88,11 +88,11 @@ const avgCoverageByGroupForResult = (records, resCovByGroupArr) => {
 const findBestPrimerSets = (params) => {
     const { selectedRecords, allRecords, maxPrimers, includeOffTargetTaxa, primerPalette } = params;
 
-    const selectedFinalIDs = new Set(selectedRecords.map((rec) => rec["Final_ID"]));
+    const selectedFinalIDs = new Set(selectedRecords.map((rec) => rec[COL_FINAL_ID]));
 
     // Compute off-target taxa if needed
     const offTargetRecords = includeOffTargetTaxa
-        ? allRecords.filter((rec) => !selectedFinalIDs.has(rec["Final_ID"]))
+        ? allRecords.filter((rec) => !selectedFinalIDs.has(rec[COL_FINAL_ID]))
         : null;
 
     // Make records index-able by final ID - this way we can find, e.g., groups from final IDs
