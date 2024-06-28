@@ -85,11 +85,10 @@ const validateRecord = (rec) => {
         if (!(rc in rec)) {
             console.log(rec);
             missingColumns.push(rc);
-            throw new Error(`"${rc}" must be a column in the dataset CSV`);
         }
     });
     if (missingColumns.length) {
-        throw new Error(`Missing columns in the dataset CSV: ${missingColumns.join(", ")}`);
+        throw new Error(`Missing columns in the dataset CSV: '${missingColumns.join("', '")}'`);
     }
 };
 
