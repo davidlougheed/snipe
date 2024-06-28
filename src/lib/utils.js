@@ -26,10 +26,12 @@ export const highlightTerm = (str, highlight) => {
             // side effect: increase acc by len(part) + len(highlighted part)
 
             acc += part.length;
-            const res = <Fragment key={`search-part-${i}`}>
-                {part}
-                <strong>{str.slice(acc, acc + highlight.length)}</strong>
-            </Fragment>;
+            const res = (
+                <Fragment key={`search-part-${i}`}>
+                    {part}
+                    <strong>{str.slice(acc, acc + highlight.length)}</strong>
+                </Fragment>
+            );
             acc += highlight.length;
 
             return res;
