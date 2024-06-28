@@ -26,11 +26,26 @@ const EM_DASH = "—";
 
 const beforeUploadNothing = () => false;
 
+const getDelimiterFromHeaderLine = (rawHeader) => {
+    const nComma = (rawHeader.match(/,/g) || []).length;
+    const nSemi = (rawHeader.match(/;/g) || []).length;
+    const nTab = (rawHeader.match(/\t/g) || []).length;
+    if (nSemi > nComma && nSemi) {
+        return ";";
+    } else if (nTab > nComma && nTab) {
+        return "\t";
+    } else {
+        return ",";
+    }
+};
+
 const parseDataset = async (csvGetter, onParseFinish=undefined) => {
     const csvContents = await csvGetter();
 
+    const delimiter = getDelimiterFromHeaderLine(csvContents.split("\n")[0]);
+
     return new Promise((resolve, reject) => {
-        parse(csvContents, { columns: true }, (err, data) => {
+        parse(csvContents, { columns: true, delimiter }, (err, data) => {
             if (err) {
                 reject(err);
                 return;
