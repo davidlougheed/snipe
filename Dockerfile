@@ -22,7 +22,7 @@ RUN npm ci
 RUN npm run build
 
 
-FROM nginx:1.25-bookworm
+FROM nginx:1.26-bookworm
 
 WORKDIR /
 
