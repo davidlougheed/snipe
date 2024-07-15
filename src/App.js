@@ -6,14 +6,17 @@ import DatasetStep from "./steps/dataset/DatasetStep";
 import DiscoverStep from "./steps/discovery/DiscoverStep";
 import Footer from "./Footer";
 
+import logo from "./logo_square.svg";
+
 const { Title } = Typography;
 
 const styles = {
     content: { minHeight: "100vh", padding: 36 },
     contentInner: { maxWidth: 1400, margin: "0 auto" },
-    titleContainer: { display: "flex", gap: "1.5rem", justifyContent: "center" },
-    title: { fontStyle: "italic", fontWeight: 300 },
-    subtitle: { fontSize: 18, marginTop: 10, fontStyle: "italic", color: "#5F5F5F" },
+    titleContainer: { display: "flex", justifyContent: "center", alignItems: "center", marginBottom: 16 },
+    logoContainer: { paddingTop: 6, marginRight: "0.3rem" },
+    title: { fontStyle: "italic", fontWeight: 300, marginBottom: 0, marginRight: "1.5rem" },
+    subtitle: { fontSize: 18, fontStyle: "italic", color: "#5F5F5F" },
     stepWrapper: { maxWidth: 600, margin: "0 auto" },
 };
 
@@ -44,6 +47,9 @@ const App = () => {
             <div style={styles.contentInner}>
                 <Card>
                     <div style={styles.titleContainer}>
+                        <div style={styles.logoContainer}>
+                            <img src={logo} alt="" height={64} width={64} />
+                        </div>
                         <Title level={1} style={styles.title}>SNIPe</Title>
                         <span style={styles.subtitle}>
                             <strong>S</strong>electing{" "}

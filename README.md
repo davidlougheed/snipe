@@ -21,7 +21,10 @@ cited:
 Note that the terms of the license DO NOT apply to anything under the [./datasets](./datasets) folder; for those files,
 all rights are reserved by their copyright holders.
 
-Copyright &copy; 2023-2024 David Lougheed ([david.lougheed@gmail.com](mailto:david.lougheed@gmail.com))
+The terms of the license also DO NOT apply to the [SNIPe logo](./src/logo_square.svg). The SNIPe logo is © Evelyn 
+Lougheed 2024, all rights reserved, and used with permission in this application.
+
+SNIPe (the program) is copyright &copy; 2023-2024 David Lougheed ([david.lougheed@gmail.com](mailto:david.lougheed@gmail.com))
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
