@@ -166,7 +166,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                                 Use primer dataset from{" "}
                                 <a target="_blank"
                                    rel="noreferrer noopener"
-                                   href="https://www.biorxiv.org/content/10.1101/2023.12.13.571596v1.full">
+                                   href="https://onlinelibrary.wiley.com/doi/10.1002/edn3.590">
                                     Tournayre <em>et al.</em>
                                 </a>
                             </Spin>
@@ -230,14 +230,17 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                 <Paragraph>If you use SNIPe in your work, please cite:</Paragraph>
                 <Paragraph style={{ marginBottom: 0 }}>
                     <blockquote style={{ maxWidth: 800 }}>
-                        <strong>How to barcode (almost all) freshwater biodiversity</strong><br />
+                        <strong>
+                            Enhancing metabarcoding of freshwater biotic communities: a new online tool for primer
+                            selection and exploring data from 14 primer pairs
+                        </strong><br />
                         Orianne&nbsp;Tournayre, Haolun&nbsp;Tian, David&nbsp;R.&nbsp;Lougheed,
                         Matthew&nbsp;J.S.&nbsp;Windle, Sheldon&nbsp;Lambert, Jennipher&nbsp;Carter, Zhengxin&nbsp;Sun,
                         Jeff&nbsp;Ridal, Yuxiang Wang, Brian&nbsp;F.&nbsp;Cumming, Shelley&nbsp;E.&nbsp;Arnott,
-                        Stephen&nbsp;C.&nbsp;Lougheed. <br />
-                        bioRxiv 2023.12.13.571596; doi:&nbsp;
-                        <a href="https://doi.org/10.1101/2023.12.13.571596" target="_blank" rel="noreferrer">
-                            https://doi.org/10.1101/2023.12.13.571596</a>
+                        Stephen&nbsp;C.&nbsp;Lougheed. (2024).<br />
+                        <em>Environmental DNA</em> 6, e590; DOI:&nbsp;
+                        <a href="https://doi.org/10.1002/edn3.590" target="_blank" rel="noreferrer">
+                            10.1002/edn3.590</a>
                     </blockquote>
                 </Paragraph>
             </Col>
