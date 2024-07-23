@@ -8,13 +8,15 @@ See SNIPe in action at [https://snipe.dlougheed.com/](https://snipe.dlougheed.co
 
 ## Publication
 
-The work done on SNIPe is part of a preprint by Tournayre *et al.*; if you cite SNIPe right now, this is what should be
-cited:
+The work done on SNIPe is part of a [paper by Tournayre *et al.*](https://doi.org/10.1002/edn3.590); if you cite SNIPe 
+right now, this is what should be cited:
 
-> ####  How to barcode (almost all) freshwater biodiversity
+> #### [Enhancing metabarcoding of freshwater biotic communities: A new online tool for primer selection and exploring data from 14 primer pairs.](https://onlinelibrary.wiley.com/doi/10.1002/edn3.590)
 > Orianne Tournayre, Haolun Tian, David R. Lougheed, Matthew J.S. Windle, Sheldon Lambert, Jennipher Carter, 
-> Zhengxin Sun, Jeff Ridal, Yuxiang Wang, Brian F. Cumming, Shelley E. Arnott, Stephen C. Lougheed. <br />
-> bioRxiv 2023.12.13.571596; doi: https://doi.org/10.1101/2023.12.13.571596
+> Zhengxin Sun, Jeff Ridal, Yuxiang Wang, Brian F. Cumming, Shelley E. Arnott, Stephen C. Lougheed. (2024).<br />
+> *Environmental DNA*, 6, e590. DOI: [10.1002/edn3.590]
+
+[10.1002/edn3.590]: https://doi.org/10.1002/edn3.590
 
 ## Copyright and License Notice
 
