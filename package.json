@@ -1,6 +1,6 @@
 {
   "name": "@davidlougheed/snipe",
-  "version": "0.13.0",
+  "version": "1.0.0",
   "description": "A web tool for optimally choosing eDNA primer pairs to identify a set of taxa. ",
   "main": "index.js",
   "scripts": {
@@ -23,10 +23,10 @@
   },
   "homepage": "https://github.com/davidlougheed/snipe#readme",
   "dependencies": {
-    "@ant-design/icons": "^5.3.5",
+    "@ant-design/icons": "^5.4.0",
     "@upsetjs/react": "^1.11.0",
     "@upsetjs/venn.js": "^1.4.2",
-    "antd": "^5.19.1",
+    "antd": "^5.19.3",
     "csv-parse": "^5.5.5",
     "d3-color": "^3.1.0",
     "d3-scale-chromatic": "^3.0.0",
