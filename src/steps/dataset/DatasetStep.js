@@ -227,6 +227,12 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                     <em>are not</em> sent to a remote server.
                 </Paragraph>
                 <Divider />
+                <Paragraph>
+                    SNIPe is a primer pair selection tool for environmental DNA / metabarcoding studies, and an
+                    exploration tool for Tournayre <em>et al.</em>'s freshwater diversity metabarcoding dataset, which
+                    can be used to find informative subsets of validated primer pairs that maximize detection of taxa of
+                    interest.
+                </Paragraph>
                 <Paragraph>If you use SNIPe in your work, please cite:</Paragraph>
                 <Paragraph style={{ marginBottom: 0 }}>
                     <blockquote style={{ maxWidth: 800 }}>
