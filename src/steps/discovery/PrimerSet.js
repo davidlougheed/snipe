@@ -6,7 +6,7 @@ import { Button, Card, Space, Statistic, Typography } from "antd";
 import { DownloadOutlined, MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 import Primer from "../../bits/Primer";
-import TaxaModal from "./TaxaModal";
+import PrimerSetTaxaModal from "./PrimerSetTaxaModal";
 import TaxaByPrimerModal from "./TaxaByPrimerModal";
 import TaxonWithGroupAndPathPopover from "./TaxonWithGroupAndPathPopover";
 
@@ -167,7 +167,7 @@ const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, on
             </Space>
         </Card>
 
-        <TaxaModal
+        <PrimerSetTaxaModal
             dataset={dataset}
             primerSet={primerSet}
             resultParams={resultParams}

@@ -11,7 +11,7 @@ const filterTaxaTargetFactory = ({ coveredTaxa, offTarget, total }, targetFilter
     return total.coveredTaxa.has(t);  // otherwise, total
 };
 
-const TaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }) => {
+const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }) => {
     const shownTaxa = useMemo(() => (
         Array.from(primerSet.total?.coveredTaxa ?? primerSet.coveredTaxa).sort()
     ), [primerSet]);
@@ -104,4 +104,4 @@ const TaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }) => {
     );
 };
 
-export default TaxaModal;
+export default PrimerSetTaxaModal;
