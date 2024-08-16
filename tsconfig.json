@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "target": "es2015",
+
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx",
+    "baseUrl": "./",
+    "noEmit": false,
+  },
+  "include": ["./src"]
+}

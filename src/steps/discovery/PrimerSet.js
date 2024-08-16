@@ -150,7 +150,7 @@ const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, on
                 <div>
                     <Button onClick={onShowSetDiagram} disabled={primerSet.primers.size > 6}>
                         Show set diagram
-                        {primerSet.primers.size > 6 ? <em> (Not available for >6 primers)</em> : ""}
+                        {primerSet.primers.size > 6 ? <em> (Not available for &gt;6 primers)</em> : ""}
                     </Button>
                 </div>
                 <div>

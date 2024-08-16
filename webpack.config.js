@@ -2,13 +2,15 @@
 
 const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 
 const isProduction = process.env.NODE_ENV === "production";
 
 
 const config = {
-    entry: './src/index.js',
+    entry: "./src/index.js",
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].[chunkhash:8].js",
@@ -28,6 +30,11 @@ const config = {
                 { from: "datasets/*", to: "[path][name][ext]" },
             ],
         }),
+        new ForkTsCheckerWebpackPlugin(),
+        new webpack.ProgressPlugin({
+            activeModules: true,
+            // showActiveModules: true // display the current module
+        }),
     ],
     module: {
         rules: [
@@ -37,8 +44,8 @@ const config = {
                 use: ["source-map-loader"],
             },
             {
-                test: /\.(js|jsx)$/i,
-                loader: 'babel-loader',
+                test: /\.(ts|tsx|js|jsx)$/i,
+                loader: 'ts-loader',
             },
             {
                 test: /\.css$/i,
@@ -54,7 +61,10 @@ const config = {
         ],
     },
     resolve: {
-        extensions: ["*", ".js", ".jsx"]
+        extensions: ["*", ".ts", ".tsx", ".js", ".jsx"]
+    },
+    watchOptions: {
+        ignored: /node_modules/,
     },
 };
 

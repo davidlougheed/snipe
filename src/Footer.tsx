@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { ReactNode, useCallback, useState } from "react";
 import { Modal, Typography } from "antd";
 import packageJson from "../package.json";
 
@@ -9,10 +9,15 @@ const styles = {
     footerParagraph: { color: "#8C8C8C" },
 };
 
-const GitHubLink = ({ children, subPath }) => (
-    <a href={`https://github.com/davidlougheed/snipe${subPath || ""}`}
-       target="_blank"
-       rel="noreferrer">{children}</a>
+type GithubLinkProps = {
+    children: ReactNode;
+    subPath?: string;
+};
+
+const GitHubLink = ({ children, subPath }: GithubLinkProps) => (
+    <a href={`https://github.com/davidlougheed/snipe${subPath || ""}`} target="_blank" rel="noreferrer">
+        {children}
+    </a>
 );
 
 const Footer = () => {
