@@ -1,7 +1,7 @@
-import { Fragment } from "react";
-import { escapeRegExp } from "lodash/string";
+import { Fragment, type ReactNode } from "react";
+import { escapeRegExp } from "lodash";
 
-export const pluralize = (word, count) => {
+export const pluralize = (word: string, count: number) => {
     if (word === "taxon") {
         if (count !== 1) return "taxa";
         return "taxon";
@@ -11,7 +11,7 @@ export const pluralize = (word, count) => {
     return word;
 };
 
-export const highlightTerm = (str, highlight) => {
+export const highlightTerm = (str: string, highlight?: string): ReactNode => {
     if (!highlight) return str;
 
     const searchParts = str.split(new RegExp(escapeRegExp(highlight), "i"));
@@ -39,7 +39,7 @@ export const highlightTerm = (str, highlight) => {
     </>;
 };
 
-export const formatTaxon = (finalID, searchHighlight=undefined) => {
+export const formatTaxon = (finalID: string, searchHighlight: string | undefined = undefined) => {
     searchHighlight = searchHighlight || undefined;  // Turn "" -> undefined
 
     const parts = finalID.split("_");
@@ -54,4 +54,4 @@ export const formatTaxon = (finalID, searchHighlight=undefined) => {
     </em>;
 };
 
-export const serializeCSVRow = (arr) => arr.map((v) => `${v}`).join(",") + "\n";
+export const serializeCSVRow = <T extends string | number>(arr: T[]) => arr.map((v) => `${v}`).join(",") + "\n";

@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from "react";
+import { type ReactNode, useCallback, useState } from "react";
 import { Modal, Typography } from "antd";
 import packageJson from "../package.json";
 

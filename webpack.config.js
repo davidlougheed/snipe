@@ -10,7 +10,7 @@ const isProduction = process.env.NODE_ENV === "production";
 
 
 const config = {
-    entry: "./src/index.js",
+    entry: "./src/index.tsx",
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].[chunkhash:8].js",
