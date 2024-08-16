@@ -13,11 +13,17 @@ export const COL_FAMILY = "Family";
 export const COL_GENUS = "Genus";
 export const COL_FINAL_ID = "Final_ID";
 
-export const COL_RESOLUTION = "Resolution";  // Optional column; computed otherwise
+export const COL_RESOLUTION = "Resolution"; // Optional column; computed otherwise
 
 export const OVERVIEW_GROUPINGS = [COL_TAXA_GROUP, COL_FINAL_ID];
 export const PRIMER_GROUPINGS = [
-    COL_SUPERGROUP, COL_TAXA_GROUP, COL_PHYLUM, COL_ORDER, COL_FAMILY, COL_GENUS, COL_FINAL_ID
+    COL_SUPERGROUP,
+    COL_TAXA_GROUP,
+    COL_PHYLUM,
+    COL_ORDER,
+    COL_FAMILY,
+    COL_GENUS,
+    COL_FINAL_ID,
 ];
 const RESOLUTION_SPECIES = "Species";
 export const RESOLUTIONS = PRIMER_GROUPINGS.slice(2, -1);
@@ -35,7 +41,7 @@ const taxaRecGroup = (arr, groupings, pathStr, reactMode) => {
 
     const isLeaf = groupings.length === 1;
     return Object.entries(res).map(([k, v]) => {
-        const fullKey = `${pathStr}-${k}${isLeaf ? "-leaf" : ""}`;  // Special suffix to make leaves easy to ID
+        const fullKey = `${pathStr}-${k}${isLeaf ? "-leaf" : ""}`; // Special suffix to make leaves easy to ID
 
         if (k === "" && !isLeaf) {
             // If this key is blank, it'll be blank from hereon out until the final (thus only one child) - skip it.
@@ -43,16 +49,26 @@ const taxaRecGroup = (arr, groupings, pathStr, reactMode) => {
         }
 
         const record = {
-            title: (isLeaf && reactMode) ? <span>
-                {formatTaxon(k)}{" "}
-                <Popover title="Primers" content={
-                    v.map(p => <Primer key={`${k}-${p[COL_PRIMER_NAME]}`} name={p[COL_PRIMER_NAME]} />)
-                }>
-                    (<a href="#" onClick={preventDefault}>
-                        {v.length} available {v.length === 1 ? "primer" : "primers"}
-                    </a>)
-                </Popover>
-            </span> : k,
+            title:
+                isLeaf && reactMode ? (
+                    <span>
+                        {formatTaxon(k)}{" "}
+                        <Popover
+                            title="Primers"
+                            content={v.map((p) => (
+                                <Primer key={`${k}-${p[COL_PRIMER_NAME]}`} name={p[COL_PRIMER_NAME]} />
+                            ))}
+                        >
+                            (
+                            <a href="#" onClick={preventDefault}>
+                                {v.length} available {v.length === 1 ? "primer" : "primers"}
+                            </a>
+                            )
+                        </Popover>
+                    </span>
+                ) : (
+                    k
+                ),
             key: fullKey,
         };
 
@@ -94,7 +110,7 @@ const validateRecord = (rec) => {
 
 export const createDataset = (rawRecords) => {
     const records = rawRecords.map((rec) => {
-        const newRec = {...rec};
+        const newRec = { ...rec };
 
         // Validate input entry
         validateRecord(newRec);
@@ -112,23 +128,25 @@ export const createDataset = (rawRecords) => {
 
         // Add a new column if it isn't already provided: "Resolution", which we can use for generating a breakdown of
         // primer resolution in results.
-        newRec[COL_RESOLUTION] = (
-            newRec[COL_RESOLUTION] ??
-            RESOLUTIONS.find((g) => newRec[g] === "") ??
-            RESOLUTION_SPECIES
-        );
+        newRec[COL_RESOLUTION] =
+            newRec[COL_RESOLUTION] ?? RESOLUTIONS.find((g) => newRec[g] === "") ?? RESOLUTION_SPECIES;
 
         return newRec;
     });
 
     const tree = taxaGroup(records, PRIMER_GROUPINGS, true);
     const primers = new Set(records.map((rec) => rec[COL_PRIMER_NAME]));
-    const processedRecords = buildRecordsWithPrimerArrays(records.map((rec) => ({ ...rec, key: buildLeafKey(rec) })));
+    const processedRecords = buildRecordsWithPrimerArrays(
+        records.map((rec) => ({ ...rec, key: buildLeafKey(rec) })),
+    );
 
     const supergroups = [...new Set(records.map((rec) => rec[COL_SUPERGROUP]))].sort();
     const supergroupGroups = Object.fromEntries(
-        Object.entries(groupBy(records, COL_SUPERGROUP))
-            .map(([sg, recs]) => [sg, [...new Set(recs.map((rec) => rec[COL_TAXA_GROUP]))].sort()]));
+        Object.entries(groupBy(records, COL_SUPERGROUP)).map(([sg, recs]) => [
+            sg,
+            [...new Set(recs.map((rec) => rec[COL_TAXA_GROUP]))].sort(),
+        ]),
+    );
 
     const primersArray = Array.from(primers);
     return {

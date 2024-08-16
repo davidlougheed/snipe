@@ -26,10 +26,9 @@ import { PrimerPaletteContext } from "../../colors";
 
 const { Title } = Typography;
 
-
 const DiscoverStep = ({ visible, dataset, onBack }) => {
     const worker = useRef(null);
-    const searching = useRef(false);  // ref so that the closure can get the true value
+    const searching = useRef(false); // ref so that the closure can get the true value
 
     const [taxaSelectModalVisible, setTaxaSelectModalVisible] = useState(false);
     const [primerSetCoverageModalVisible, setPrimerSetCoverageModalVisible] = useState(false);
@@ -87,7 +86,8 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
     const onExpand = useCallback((keys, e) => {
         const newExpandedKeys = new Set(keys);
 
-        if (e.expanded) {  // Check we're expanding and not contracting this node
+        if (e.expanded) {
+            // Check we're expanding and not contracting this node
             // We can have a lot of paths of 1 option over and over - auto-expand these to make navigation nicer
             let node = e.node;
             newExpandedKeys.add(node.key);
@@ -107,11 +107,14 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
     }, [dataset]);
     const deselectAll = useCallback(() => setCheckedKeys([]), []);
 
-    const selectAllLink = useCallback((e) => {
-        e.stopPropagation();
-        e.preventDefault();
-        selectAll();
-    }, [selectAll]);
+    const selectAllLink = useCallback(
+        (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            selectAll();
+        },
+        [selectAll],
+    );
 
     const nCheckedLeaves = checkedLeaves.length;
 
@@ -156,144 +159,177 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
         searching.current = true;
     }, [dataset, worker, checkedLeaves, nPrimers, includeOffTargetTaxa, primerPalette]);
 
-    if (!visible) return <Fragment/>;
+    if (!visible) return <Fragment />;
     // noinspection JSCheckFunctionSignatures
-    return <>
-        <Row gutter={[24, 24]}>
-            <Col md={24} lg={10} xl={8}>
-                <Card title="Criteria">
-                    <Form layout="vertical">
-                        <Form.Item
-                            label={(
-                                <Space size={16}>
-                                    <span>Target taxa</span>
-                                    <a href="#" onClick={selectAllLink}>Select all</a>
+    return (
+        <>
+            <Row gutter={[24, 24]}>
+                <Col md={24} lg={10} xl={8}>
+                    <Card title="Criteria">
+                        <Form layout="vertical">
+                            <Form.Item
+                                label={
+                                    <Space size={16}>
+                                        <span>Target taxa</span>
+                                        <a href="#" onClick={selectAllLink}>
+                                            Select all
+                                        </a>
+                                    </Space>
+                                }
+                                help={
+                                    <div style={{ marginBottom: 8 }}>
+                                        The taxa available here are just those which are detectable by the dataset
+                                        specified.
+                                    </div>
+                                }
+                            >
+                                <Space>
+                                    <Button onClick={showTaxaSelectModal}>Select Taxa &hellip;</Button>
+                                    <span style={{ color: nCheckedLeaves === 0 ? "#EE4433" : undefined }}>
+                                        {checkedLeaves.length}/{dataset?.records?.length ?? 0} entries selected
+                                    </span>
                                 </Space>
-                            )}
-                            help={<div style={{ marginBottom: 8 }}>
-                                The taxa available here are just those which are detectable by the dataset specified.
-                            </div>}
-                        >
-                            <Space>
-                                <Button onClick={showTaxaSelectModal}>Select Taxa &hellip;</Button>
-                                <span style={{ color: nCheckedLeaves === 0 ? "#EE4433" : undefined }}>
-                                    {checkedLeaves.length}/{dataset?.records?.length ?? 0} entries selected
-                                </span>
-                            </Space>
-                        </Form.Item>
-                        <Form.Item
-                            label="Max. primers"
-                            help={<div style={{ marginBottom: 8 }}>
-                                If this value is higher than the number of primers needed, only the fewest needed
-                                primers will be used.
-                            </div>}
-                        >
-                            <InputNumber
-                                min={1}
-                                max={dataset.primers.length}
-                                value={nPrimers}
-                                onChange={(v) => setNPrimers(v)}
-                            />
-                        </Form.Item>
-                        <Form.Item help={<div style={{ marginBottom: 16 }}>
-                            If checked, unselected (off-target) taxa will be included in the result sets if primer(s)
-                            happen to also detect them.
-                        </div>}>
-                            <Checkbox checked={includeOffTargetTaxa} onChange={updateIncludeOffTargetTaxa}>
-                                Include off-target taxa?</Checkbox>
-                        </Form.Item>
-                        <Form.Item style={{ marginBottom: 0 }}>
-                            <div style={{ display: "flex", gap: 12, width: "100%", alignItems: "baseline" }}>
-                                <Button
-                                    type="primary"
-                                    icon={<SearchOutlined/>}
-                                    disabled={!nCheckedLeaves || searching.current}
-                                    loading={searching.current}
-                                    onClick={onSearch}
-                                >Search</Button>
-                                <div style={{ flex: 1 }}>
-                                    {hasSearched && (
-                                        <Progress
-                                            percent={progress}
-                                            showInfo={true}
-                                            format={(percent) => `${percent.toFixed(0)}%`}
-                                        />
-                                    )}
+                            </Form.Item>
+                            <Form.Item
+                                label="Max. primers"
+                                help={
+                                    <div style={{ marginBottom: 8 }}>
+                                        If this value is higher than the number of primers needed, only the fewest
+                                        needed primers will be used.
+                                    </div>
+                                }
+                            >
+                                <InputNumber
+                                    min={1}
+                                    max={dataset.primers.length}
+                                    value={nPrimers}
+                                    onChange={(v) => setNPrimers(v)}
+                                />
+                            </Form.Item>
+                            <Form.Item
+                                help={
+                                    <div style={{ marginBottom: 16 }}>
+                                        If checked, unselected (off-target) taxa will be included in the result sets
+                                        if primer(s) happen to also detect them.
+                                    </div>
+                                }
+                            >
+                                <Checkbox checked={includeOffTargetTaxa} onChange={updateIncludeOffTargetTaxa}>
+                                    Include off-target taxa?
+                                </Checkbox>
+                            </Form.Item>
+                            <Form.Item style={{ marginBottom: 0 }}>
+                                <div style={{ display: "flex", gap: 12, width: "100%", alignItems: "baseline" }}>
+                                    <Button
+                                        type="primary"
+                                        icon={<SearchOutlined />}
+                                        disabled={!nCheckedLeaves || searching.current}
+                                        loading={searching.current}
+                                        onClick={onSearch}
+                                    >
+                                        Search
+                                    </Button>
+                                    <div style={{ flex: 1 }}>
+                                        {hasSearched && (
+                                            <Progress
+                                                percent={progress}
+                                                showInfo={true}
+                                                format={(percent) => `${percent.toFixed(0)}%`}
+                                            />
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        </Form.Item>
-                    </Form>
-                </Card>
-            </Col>
-            <Col md={24} lg={14} xl={16}>
-                <div style={{ display: "flex", gap: 16 }}>
-                    <Title level={3} style={{ flex: 1 }}>Results</Title>
-                    <Button disabled={!results} onClick={showPrimerSetCoverageModal} icon={<BarChartOutlined />}>
-                        Cumulative Primer Pair Set Coverage
+                            </Form.Item>
+                        </Form>
+                    </Card>
+                </Col>
+                <Col md={24} lg={14} xl={16}>
+                    <div style={{ display: "flex", gap: 16 }}>
+                        <Title level={3} style={{ flex: 1 }}>
+                            Results
+                        </Title>
+                        <Button
+                            disabled={!results}
+                            onClick={showPrimerSetCoverageModal}
+                            icon={<BarChartOutlined />}
+                        >
+                            Cumulative Primer Pair Set Coverage
+                        </Button>
+                    </div>
+                    {!hasSearched && (
+                        <Alert
+                            message="No results yet"
+                            description={
+                                <span>
+                                    Select taxa, choose your desired maximum number of primers, and press "Search"
+                                    in order to see corresponding primer pair sets. Searching may take a few
+                                    seconds.
+                                </span>
+                            }
+                            type="info"
+                            showIcon={true}
+                        />
+                    )}
+                    {searching.current && <Spin size="large" spinning={true} />}
+                    {!!results && <ResultsTabs dataset={dataset} results={results} resultParams={resultParams} />}
+                </Col>
+            </Row>
+
+            <Divider />
+
+            <Row>
+                <Col flex={1}>
+                    <Button size="large" icon={<ArrowLeftOutlined />} onClick={onBack}>
+                        Back
                     </Button>
-                </div>
-                {!hasSearched && (
-                    <Alert
-                        message="No results yet"
-                        description={<span>
-                            Select taxa, choose your desired maximum number of primers, and press "Search" in order to
-                            see corresponding primer pair sets. Searching may take a few seconds.
-                        </span>}
-                        type="info"
-                        showIcon={true}
+                </Col>
+            </Row>
+
+            <Modal
+                title="Select Taxa"
+                open={taxaSelectModalVisible}
+                onCancel={hideTaxaSelectModal}
+                width={800}
+                okText="Done"
+                footer={[
+                    <Button key="done" type="primary" onClick={hideTaxaSelectModal}>
+                        Done
+                    </Button>,
+                ]}
+            >
+                <Space direction="vertical">
+                    <Space direction="horizontal">
+                        {nCheckedLeaves} entries selected
+                        <Button size="small" onClick={selectAll}>
+                            Select All
+                        </Button>
+                        <Button size="small" onClick={deselectAll}>
+                            Deselect All
+                        </Button>
+                    </Space>
+                    <Tree
+                        checkable={true}
+                        showLine={true}
+                        treeData={dataset.tree}
+                        expandedKeys={expandedKeys}
+                        onExpand={onExpand}
+                        checkedKeys={checkedKeys}
+                        onCheck={onTaxaCheck}
                     />
-                )}
-                {searching.current && (
-                    <Spin size="large" spinning={true}/>
-                )}
-                {!!results && <ResultsTabs dataset={dataset} results={results} resultParams={resultParams} />}
-            </Col>
-        </Row>
-
-        <Divider />
-
-        <Row>
-            <Col flex={1}>
-                <Button size="large" icon={<ArrowLeftOutlined/>} onClick={onBack}>Back</Button>
-            </Col>
-        </Row>
-
-        <Modal
-            title="Select Taxa"
-            open={taxaSelectModalVisible}
-            onCancel={hideTaxaSelectModal}
-            width={800}
-            okText="Done"
-            footer={[<Button key="done" type="primary" onClick={hideTaxaSelectModal}>Done</Button>]}
-        >
-            <Space direction="vertical">
-                <Space direction="horizontal">
-                    {nCheckedLeaves} entries selected
-                    <Button size="small" onClick={selectAll}>Select All</Button>
-                    <Button size="small" onClick={deselectAll}>Deselect All</Button>
                 </Space>
-                <Tree
-                    checkable={true}
-                    showLine={true}
-                    treeData={dataset.tree}
-                    expandedKeys={expandedKeys}
-                    onExpand={onExpand}
-                    checkedKeys={checkedKeys}
-                    onCheck={onTaxaCheck}
-                />
-            </Space>
-        </Modal>
+            </Modal>
 
-        <Modal
-            title="Cumulative Primer Pair Set Coverage"
-            open={primerSetCoverageModalVisible}
-            width={900}
-            footer={null}
-            onCancel={hidePrimerSetCoverageModal}
-        >
-            <CumulativePrimerSetCoverageChart dataset={dataset} results={results} resultParams={resultParams} />
-        </Modal>
-    </>;
+            <Modal
+                title="Cumulative Primer Pair Set Coverage"
+                open={primerSetCoverageModalVisible}
+                width={900}
+                footer={null}
+                onCancel={hidePrimerSetCoverageModal}
+            >
+                <CumulativePrimerSetCoverageChart dataset={dataset} results={results} resultParams={resultParams} />
+            </Modal>
+        </>
+    );
 };
 
 export default DiscoverStep;

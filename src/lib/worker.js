@@ -8,17 +8,15 @@ import { COL_FINAL_ID, COL_RESOLUTION, COL_TAXA_GROUP, OVERVIEW_GROUPINGS, taxaG
 // Inspired by https://stackoverflow.com/a/64414875
 const chooseRec = (arr, k, prefix) =>
     k === 0
-        ? [prefix]  // Base case: return existing combination
+        ? [prefix] // Base case: return existing combination
         : arr.flatMap((v, i) => chooseRec(arr.slice(i + 1), k - 1, [...prefix, v]));
 const choose = (arr, k) => chooseRec(arr, k, []).map((c) => new Set(c));
-
 
 // Processing ----------------------------------------------------------------------------------------------------------
 
 const PROGRESS_EVERY_N = 500;
 
-const calculateGroupCoverage = (tree) =>
-    Object.fromEntries(tree.map((g) => [g.title, g.children.length]));
+const calculateGroupCoverage = (tree) => Object.fromEntries(tree.map((g) => [g.title, g.children.length]));
 
 const computePrimerSetCovered = (records, primerSet, primerPalette) => {
     const coveredTaxa = new Set();
@@ -64,12 +62,13 @@ const computePrimerSetCovered = (records, primerSet, primerPalette) => {
                     elems: pTaxa,
                     color: color.formatRgb(),
                 };
-            })
+            }),
         ),
         coveredRecords,
         coverageByGroup: calculateGroupCoverage(taxaGroup(coveredRecords, OVERVIEW_GROUPINGS, false)),
         resolutionSummary: Object.fromEntries(
-            Object.entries(groupBy(coveredRecords, COL_RESOLUTION)).map(([k, v]) => [k, v.length])),
+            Object.entries(groupBy(coveredRecords, COL_RESOLUTION)).map(([k, v]) => [k, v.length]),
+        ),
     };
 };
 
@@ -78,10 +77,12 @@ const avgCoverageByGroupForResult = (records, resCovByGroupArr) => {
     return Object.fromEntries(
         Object.entries(
             resCovByGroupArr.reduce((acc, res) => {
-                Object.entries(res).forEach(([g, v]) => { acc[g] += v });
+                Object.entries(res).forEach(([g, v]) => {
+                    acc[g] += v;
+                });
                 return acc;
-            }, baseCoverageByGroup)
-        ).map(([g, v]) => [g, v / resCovByGroupArr.length])
+            }, baseCoverageByGroup),
+        ).map(([g, v]) => [g, v / resCovByGroupArr.length]),
     );
 };
 
@@ -103,9 +104,9 @@ const findBestPrimerSets = (params) => {
     // - This is the largest possible set of primers we'll need, but fewer may be sufficient.
     const maxPrimersNeeded = Math.min(maxPrimers, primerSubset.length);
 
-    const bestPrimerCombinations = [];  // array-indexed by (nPrimers - 1)
+    const bestPrimerCombinations = []; // array-indexed by (nPrimers - 1)
 
-    const nPrimersArray = [...new Array(maxPrimersNeeded)].map((_, i) => i + 1);  // [1, 2, ..., maxPrimersNeeded]
+    const nPrimersArray = [...new Array(maxPrimersNeeded)].map((_, i) => i + 1); // [1, 2, ..., maxPrimersNeeded]
 
     const allPrimerCombinations = nPrimersArray.map((np) => choose(primerSubset, np));
 
@@ -136,9 +137,10 @@ const findBestPrimerSets = (params) => {
 
             if (includeOffTargetTaxa) {
                 offTargetCoveredResult = computePrimerSetCovered(offTargetRecords, pc, primerPalette);
-                totalCoveredResult = selectedRecords.length === allRecords.length
-                    ? selectedCoveredResult
-                    : computePrimerSetCovered(allRecords, pc, primerPalette);
+                totalCoveredResult =
+                    selectedRecords.length === allRecords.length
+                        ? selectedCoveredResult
+                        : computePrimerSetCovered(allRecords, pc, primerPalette);
             }
 
             if (coverage > bestCoverage) {
@@ -174,16 +176,22 @@ const findBestPrimerSets = (params) => {
         const bestCoverageFraction = bestCoverage / nTaxa;
 
         const avgCoverageByGroup = avgCoverageByGroupForResult(
-            selectedRecords, bestResultsForPrimerCount.map((res) => res.coverageByGroup));
+            selectedRecords,
+            bestResultsForPrimerCount.map((res) => res.coverageByGroup),
+        );
 
         let avgCoverageByGroupOffTarget = undefined;
         let avgCoverageByGroupTotal = undefined;
 
         if (includeOffTargetTaxa) {
             avgCoverageByGroupOffTarget = avgCoverageByGroupForResult(
-                offTargetRecords, bestResultsForPrimerCount.map((res) => res.offTarget.coverageByGroup));
+                offTargetRecords,
+                bestResultsForPrimerCount.map((res) => res.offTarget.coverageByGroup),
+            );
             avgCoverageByGroupTotal = avgCoverageByGroupForResult(
-                allRecords, bestResultsForPrimerCount.map((res) => res.total.coverageByGroup));
+                allRecords,
+                bestResultsForPrimerCount.map((res) => res.total.coverageByGroup),
+            );
         }
 
         console.info(`calculated average coverage by group:`, avgCoverageByGroup);
@@ -200,12 +208,14 @@ const findBestPrimerSets = (params) => {
 
         console.info(
             `best primer combinations: coverage=${(bestCoverageFraction * 100).toFixed(1)}`,
-            bestResultsForPrimerCount);
+            bestResultsForPrimerCount,
+        );
 
         sendProgress(nPrimers);
 
         console.info(
-            `processed ${primerCombinations.length} combinations for ${nPrimers}/${maxPrimersNeeded} primers`);
+            `processed ${primerCombinations.length} combinations for ${nPrimers}/${maxPrimersNeeded} primers`,
+        );
 
         if (bestCoverage === nTaxa) {
             console.info("achieved 100% coverage");
@@ -221,7 +231,6 @@ const findBestPrimerSets = (params) => {
         data: { params, results: bestPrimerCombinations.reverse() },
     });
 };
-
 
 // Worker communication ------------------------------------------------------------------------------------------------
 

@@ -10,19 +10,28 @@ const Primer = memo(({ name, added, sometimes, primerSetCount }) => {
     /** @type React.ReactNode */
     const tag = (
         <Tag
-            icon={added ? (sometimes ? <PlusCircleOutlined /> : <PlusCircleFilled />) : null}
+            icon={added ? sometimes ? <PlusCircleOutlined /> : <PlusCircleFilled /> : null}
             color={palette?.[name]}
             style={{ margin: "0.2em 0.5em 0.2em 0" }}
-        >{name}</Tag>
+        >
+            {name}
+        </Tag>
     );
 
     return added ? (
         <Popover
             title="Added"
-            content={sometimes
-                ? `Versus some of the ${primerSetCount-1}-primer pair sets, this primer is new.`
-                : `Versus the ${primerSetCount-1}-primer pair set(s), this primer is new.`}>{tag}</Popover>
-    ) : tag;
+            content={
+                sometimes
+                    ? `Versus some of the ${primerSetCount - 1}-primer pair sets, this primer is new.`
+                    : `Versus the ${primerSetCount - 1}-primer pair set(s), this primer is new.`
+            }
+        >
+            {tag}
+        </Popover>
+    ) : (
+        tag
+    );
 });
 
 export default Primer;

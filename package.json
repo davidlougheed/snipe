@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx webpack-dev-server",
     "build-dev": "npx webpack --mode development",
-    "build": "npx webpack --mode production"
+    "build": "npx webpack --mode production",
+    "format": "npx prettier ./src --write"
   },
   "repository": {
     "type": "git",
@@ -49,6 +50,7 @@
     "css-loader": "^7.1.1",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "html-webpack-plugin": "^5.5.3",
+    "prettier": "^3.3.3",
     "source-map-loader": "^5.0.0",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.1",

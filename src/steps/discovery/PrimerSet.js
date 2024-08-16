@@ -20,11 +20,11 @@ const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }) => {
     const allAdditions = changedTaxaSets.every((nts) => nts.removed.length === 0);
 
     return (
-        <details open={(changedTaxaSets[0].added.length + changedTaxaSets[0].removed.length) < 8}>
+        <details open={changedTaxaSets[0].added.length + changedTaxaSets[0].removed.length < 8}>
             <summary style={{ cursor: "pointer" }}>
-                {allAdditions ? "Adds" : "Changes"} {nChangedTaxa.join(" or ")}{allAdditions ? " new " : " "}
-                {pluralize("taxon", Math.max(...nChangedTaxa))}{" "}
-                vs. with {nextNPrimers}{" "}
+                {allAdditions ? "Adds" : "Changes"} {nChangedTaxa.join(" or ")}
+                {allAdditions ? " new " : " "}
+                {pluralize("taxon", Math.max(...nChangedTaxa))} vs. with {nextNPrimers}{" "}
                 {pluralize("primer", nextNPrimers)}
             </summary>
             <>
@@ -35,7 +35,7 @@ const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }) => {
                                 <span style={{ whiteSpace: "nowrap" }}>
                                     <PlusCircleOutlined style={{ color: "#7cb305" }} />{" "}
                                     <TaxonWithGroupAndPathPopover record={dataset.recordsByFinalID[t]} />
-                                    {ti < (nts.added.length + nts.removed.length) - 1 ? ", " : ""}
+                                    {ti < nts.added.length + nts.removed.length - 1 ? ", " : ""}
                                 </span>{" "}
                             </Fragment>
                         ))}
@@ -49,7 +49,9 @@ const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }) => {
                             </Fragment>
                         ))}
                         {ntsIndex < changedTaxaSets.length - 1 ? (
-                            <div><strong>— OR —</strong></div>
+                            <div>
+                                <strong>— OR —</strong>
+                            </div>
                         ) : null}
                     </Fragment>
                 ))}
@@ -79,110 +81,128 @@ const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, on
     const downloadPrimerSet = useCallback(() => {
         const longFormRecords = Array.from(primerSet.coveredTaxa).flatMap((id) => {
             const compoundRecord = dataset.recordsByFinalID[id];
-            const baseRecord = {...compoundRecord};
+            const baseRecord = { ...compoundRecord };
             delete baseRecord["primers"];
             delete baseRecord["primersLower"];
             delete baseRecord["key"];
             delete baseRecord["Resolution"];
             return compoundRecord.primers
                 .filter((p) => primerSet.primers.has(p))
-                .map((p) => ({...baseRecord, Primer: p}));
+                .map((p) => ({ ...baseRecord, Primer: p }));
         });
 
         const el = document.createElement("a");
-        el.href = URL.createObjectURL(new Blob([
-            serializeCSVRow(CSV_HEADER),
-            ...longFormRecords.map((rec) => serializeCSVRow(CSV_HEADER.map((h) => rec[h]))),
-        ], { type: "text/csv" }));
+        el.href = URL.createObjectURL(
+            new Blob(
+                [
+                    serializeCSVRow(CSV_HEADER),
+                    ...longFormRecords.map((rec) => serializeCSVRow(CSV_HEADER.map((h) => rec[h]))),
+                ],
+                { type: "text/csv" },
+            ),
+        );
         el.setAttribute("download", title.replace(/\s+/g, "_") + ".csv");
         el.click();
         el.remove();
     }, []);
 
-    return <>
-        <Card
-            title={title}
-            size="small"
-            style={style}
-            extra={<Space direction="horizontal" size={12}>
-                <span>Download filtered data:</span>
-                <Button size="small" icon={<DownloadOutlined />} onClick={downloadPrimerSet}>
-                    On-target {/* TODO: options for downloading with off-target data */}
-                </Button>
-            </Space>}
-        >
-            <Space direction="vertical" size={16}>
-                <div>
-                    <Title level={5}>Primers</Title>
-                    {Array.from(primerSet.primers).map((p) =>
-                        <Primer
-                            key={p}
-                            name={p}
-                            added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
-                            sometimes={!(newPrimerSets.reduce((acc, x) => acc && x.has(p), true))}
-                            primerSetCount={primerSet.nPrimers}
-                        />
-                    )}
-                </div>
-                <div>
-                    <Title level={5}>
-                        Taxa:{" "}
-                        <span style={{ fontWeight: "normal" }}>
-                            {primerSet.coverage} on-target{" "}
-                            {nextTabPrimerSets ? `(+${primerSet.coverage - nextTabPrimerSets[0].coverage})` : ""}
-                            {resultParams.includeOffTargetTaxa
-                                ? <>; <em style={{ color: "#8C8C8C" }}>
-                                    {primerSet.offTarget?.coverage ?? 0} off-target</em></>
-                                : null}
-                        </span>{" "}
-                        <Button size="small" onClick={() => setTaxaModalVisible(true)}>See list</Button>
-                        {" "}
-                        <Button size="small" onClick={() => setTaxaByPrimerModalVisible(true)}>Plot</Button>
-                    </Title>
-                    {changedTaxaSets.length
-                        ? <ChangedTaxaSets
-                            dataset={dataset}
-                            changedTaxaSets={changedTaxaSets}
-                            nextNPrimers={nextTabNPrimers}
-                        />
-                        : null}
-                </div>
-                <div>
-                    <Button onClick={onShowSetDiagram} disabled={primerSet.primers.size > 6}>
-                        Show set diagram
-                        {primerSet.primers.size > 6 ? <em> (Not available for &gt;6 primers)</em> : ""}
-                    </Button>
-                </div>
-                <div>
-                    <Title level={5}>
-                        Resolution{" "}
-                        <span style={{ fontWeight: "normal", fontStyle: "italic" }}>(on-target)</span>
-                    </Title>
-                    <Space direction="horizontal">
-                        {RESOLUTIONS_WITH_SPECIES.map((r) => (
-                            <Statistic key={r} title={r} value={primerSet.resolutionSummary[r]} />
-                        ))}
+    return (
+        <>
+            <Card
+                title={title}
+                size="small"
+                style={style}
+                extra={
+                    <Space direction="horizontal" size={12}>
+                        <span>Download filtered data:</span>
+                        <Button size="small" icon={<DownloadOutlined />} onClick={downloadPrimerSet}>
+                            On-target {/* TODO: options for downloading with off-target data */}
+                        </Button>
                     </Space>
-                </div>
-            </Space>
-        </Card>
+                }
+            >
+                <Space direction="vertical" size={16}>
+                    <div>
+                        <Title level={5}>Primers</Title>
+                        {Array.from(primerSet.primers).map((p) => (
+                            <Primer
+                                key={p}
+                                name={p}
+                                added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
+                                sometimes={!newPrimerSets.reduce((acc, x) => acc && x.has(p), true)}
+                                primerSetCount={primerSet.nPrimers}
+                            />
+                        ))}
+                    </div>
+                    <div>
+                        <Title level={5}>
+                            Taxa:{" "}
+                            <span style={{ fontWeight: "normal" }}>
+                                {primerSet.coverage} on-target{" "}
+                                {nextTabPrimerSets
+                                    ? `(+${primerSet.coverage - nextTabPrimerSets[0].coverage})`
+                                    : ""}
+                                {resultParams.includeOffTargetTaxa ? (
+                                    <>
+                                        ;{" "}
+                                        <em style={{ color: "#8C8C8C" }}>
+                                            {primerSet.offTarget?.coverage ?? 0} off-target
+                                        </em>
+                                    </>
+                                ) : null}
+                            </span>{" "}
+                            <Button size="small" onClick={() => setTaxaModalVisible(true)}>
+                                See list
+                            </Button>{" "}
+                            <Button size="small" onClick={() => setTaxaByPrimerModalVisible(true)}>
+                                Plot
+                            </Button>
+                        </Title>
+                        {changedTaxaSets.length ? (
+                            <ChangedTaxaSets
+                                dataset={dataset}
+                                changedTaxaSets={changedTaxaSets}
+                                nextNPrimers={nextTabNPrimers}
+                            />
+                        ) : null}
+                    </div>
+                    <div>
+                        <Button onClick={onShowSetDiagram} disabled={primerSet.primers.size > 6}>
+                            Show set diagram
+                            {primerSet.primers.size > 6 ? <em> (Not available for &gt;6 primers)</em> : ""}
+                        </Button>
+                    </div>
+                    <div>
+                        <Title level={5}>
+                            Resolution{" "}
+                            <span style={{ fontWeight: "normal", fontStyle: "italic" }}>(on-target)</span>
+                        </Title>
+                        <Space direction="horizontal">
+                            {RESOLUTIONS_WITH_SPECIES.map((r) => (
+                                <Statistic key={r} title={r} value={primerSet.resolutionSummary[r]} />
+                            ))}
+                        </Space>
+                    </div>
+                </Space>
+            </Card>
 
-        <PrimerSetTaxaModal
-            dataset={dataset}
-            primerSet={primerSet}
-            resultParams={resultParams}
-            open={taxaModalVisible}
-            onCancel={() => setTaxaModalVisible(false)}
-        />
+            <PrimerSetTaxaModal
+                dataset={dataset}
+                primerSet={primerSet}
+                resultParams={resultParams}
+                open={taxaModalVisible}
+                onCancel={() => setTaxaModalVisible(false)}
+            />
 
-        <TaxaByPrimerModal
-            dataset={dataset}
-            primerSet={primerSet}
-            resultParams={resultParams}
-            open={taxaByPrimerModalVisible}
-            onCancel={() => setTaxaByPrimerModalVisible(false)}
-        />
-    </>;
+            <TaxaByPrimerModal
+                dataset={dataset}
+                primerSet={primerSet}
+                resultParams={resultParams}
+                open={taxaByPrimerModalVisible}
+                onCancel={() => setTaxaByPrimerModalVisible(false)}
+            />
+        </>
+    );
 };
 
 export default PrimerSet;

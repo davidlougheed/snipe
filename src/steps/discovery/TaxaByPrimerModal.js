@@ -23,23 +23,28 @@ const TaxaByPrimerModal = ({ dataset, primerSet, resultParams, open, onCancel })
     }, [primerSet, taxaTargetFilter]);
 
     const supergroups = useMemo(() => [...new Set(records.map((r) => r[COL_SUPERGROUP]))].sort(), [records]);
-    const data = useMemo(() => (
-        Object.fromEntries(supergroups.map((sg) => [
-            sg,
-            Array.from(primerSet.primers)
-                .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
-                .map((p) => ({
-                    "primer": p,
-                    ...Object.fromEntries(
-                        Object
-                            .entries(groupBy(
-                                records.filter((r) => r[COL_SUPERGROUP] === sg && r["primers"].includes(p)),
-                                COL_TAXA_GROUP))
-                            .map(([k, v]) => [k, v.length])
-                    ),
-                })),
-        ]))
-    ), [records, supergroups]);
+    const data = useMemo(
+        () =>
+            Object.fromEntries(
+                supergroups.map((sg) => [
+                    sg,
+                    Array.from(primerSet.primers)
+                        .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+                        .map((p) => ({
+                            primer: p,
+                            ...Object.fromEntries(
+                                Object.entries(
+                                    groupBy(
+                                        records.filter((r) => r[COL_SUPERGROUP] === sg && r["primers"].includes(p)),
+                                        COL_TAXA_GROUP,
+                                    ),
+                                ).map(([k, v]) => [k, v.length]),
+                            ),
+                        })),
+                ]),
+            ),
+        [records, supergroups],
+    );
 
     return (
         <Modal
@@ -85,7 +90,7 @@ const TaxaByPrimerModal = ({ dataset, primerSet, resultParams, open, onCancel })
                                                     name={g}
                                                     stackId="a"
                                                     fill={supergroupOrGroupColor(dataset, sg, g)}
-                                                    onMouseOver={() => currentBar.current = g}
+                                                    onMouseOver={() => (currentBar.current = g)}
                                                     onMouseOut={() => {
                                                         if (currentBar.current === g) {
                                                             currentBar.current = null;

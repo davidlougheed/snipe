@@ -12,17 +12,15 @@ const mergeColors = (colors) => {
         case 1:
             return colors[0];
         default: {
-            const ca = colors.reduce((acc, d) => {
-                const c = lab(d || "transparent");
-                return { l: acc.l + c.l, a: acc.a + c.a, b: acc.b + c.b };
-            }, { l: 0, a: 0, b: 0 });
-
-            const res = lab(
-                ca.l / colors.length,
-                ca.a / colors.length,
-                ca.b / colors.length,
-                0.45,
+            const ca = colors.reduce(
+                (acc, d) => {
+                    const c = lab(d || "transparent");
+                    return { l: acc.l + c.l, a: acc.a + c.a, b: acc.b + c.b };
+                },
+                { l: 0, a: 0, b: 0 },
             );
+
+            const res = lab(ca.l / colors.length, ca.a / colors.length, ca.b / colors.length, 0.45);
             return res.formatRgb();
         }
     }
@@ -33,16 +31,18 @@ const combinations = { mergeColors };
 const style = { maxWidth: "100%", height: "auto" };
 
 const PrimerSetEulerDiagram = ({ primerSet }) => {
-    return <VennDiagram
-        layout={vennJSAdapter}
-        sets={primerSet.coveredTaxaByPrimerUpset}
-        width={990}
-        height={720}
-        theme="light"
-        padding={75}
-        combinations={combinations}
-        style={style}
-    />;
+    return (
+        <VennDiagram
+            layout={vennJSAdapter}
+            sets={primerSet.coveredTaxaByPrimerUpset}
+            width={990}
+            height={720}
+            theme="light"
+            padding={75}
+            combinations={combinations}
+            style={style}
+        />
+    );
 };
 
 export default PrimerSetEulerDiagram;
