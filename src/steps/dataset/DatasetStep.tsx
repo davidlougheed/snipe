@@ -301,7 +301,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }: DatasetStepProp
                     size="large"
                     icon={<ArrowRightOutlined />}
                     loading={parsing}
-                    disabled={parsing || (option === 1 && dataset === null)}
+                    disabled={parsing || (option === 1 && !dataset)}
                     onClick={onFinish}
                 >
                     Next Step
