@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useState } from "react";
+import { type CSSProperties, Fragment, useCallback, useState } from "react";
 
 import difference from "set.prototype.difference";
 
@@ -10,12 +10,30 @@ import PrimerSetTaxaModal from "./PrimerSetTaxaModal";
 import TaxaByPrimerModal from "./TaxaByPrimerModal";
 import TaxonWithGroupAndPathPopover from "./TaxonWithGroupAndPathPopover";
 
-import { CSV_HEADER, RESOLUTIONS_WITH_SPECIES } from "../../lib/datasets";
+import {
+    BasePrimerGroupingRecord,
+    CSV_HEADER,
+    IntermediateLongFormDatasetRecord,
+    RESOLUTIONS_WITH_SPECIES,
+    type SNIPeDataset,
+} from "../../lib/datasets";
+import type { SNIPePrimerCombinationResult, SNIPePrimerSet, SNIPeSearchParams } from "../../lib/types";
 import { pluralize, serializeCSVRow } from "../../lib/utils";
 
 const { Title } = Typography;
 
-const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }) => {
+type ChangedTaxaSet = {
+    added: string[];
+    removed: string[];
+};
+
+type ChangedTaxaSetsProps = {
+    dataset: SNIPeDataset;
+    changedTaxaSets: ChangedTaxaSet[];
+    nextNPrimers: number;
+};
+
+const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }: ChangedTaxaSetsProps) => {
     const nChangedTaxa = Array.from(new Set(changedTaxaSets.map((nts) => nts.added.length + nts.removed.length)));
     const allAdditions = changedTaxaSets.every((nts) => nts.removed.length === 0);
 
@@ -60,7 +78,23 @@ const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }) => {
     );
 };
 
-const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, onShowSetDiagram }) => {
+type PrimerSetProps = {
+    dataset: SNIPeDataset;
+    primerSet: SNIPePrimerSet;
+    resultParams: SNIPeSearchParams;
+    nextTabResults?: SNIPePrimerCombinationResult;
+    style?: CSSProperties;
+    onShowSetDiagram: () => void;
+};
+
+const PrimerSet = ({
+    dataset,
+    primerSet,
+    resultParams,
+    nextTabResults,
+    style,
+    onShowSetDiagram,
+}: PrimerSetProps) => {
     const [taxaModalVisible, setTaxaModalVisible] = useState(false);
     const [taxaByPrimerModalVisible, setTaxaByPrimerModalVisible] = useState(false);
 
@@ -69,9 +103,11 @@ const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, on
     const nextTabPrimerSets = nextTabResults?.results ?? null;
     const nextTabNPrimers = nextTabResults?.nPrimers;
 
-    const changedTaxaSets = (nextTabPrimerSets || []).map((ntps) => ({
-        added: Array.from(difference(primerSet.coveredTaxa, ntps.coveredTaxa)).sort(),
-        removed: Array.from(difference(ntps.coveredTaxa, primerSet.coveredTaxa)).sort(),
+    const { coverage, coveredTaxa } = primerSet.onTarget;
+
+    const changedTaxaSets: ChangedTaxaSet[] = (nextTabPrimerSets || []).map((ntps) => ({
+        added: Array.from(difference(coveredTaxa, ntps.onTarget.coveredTaxa) as Set<string>).sort(),
+        removed: Array.from(difference(ntps.onTarget.coveredTaxa, coveredTaxa) as Set<string>).sort(),
     }));
 
     const newPrimerSets = nextTabPrimerSets
@@ -79,16 +115,25 @@ const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, on
         : [];
 
     const downloadPrimerSet = useCallback(() => {
-        const longFormRecords = Array.from(primerSet.coveredTaxa).flatMap((id) => {
+        const longFormRecords = Array.from(coveredTaxa).flatMap((id) => {
             const compoundRecord = dataset.recordsByFinalID[id];
-            const baseRecord = { ...compoundRecord };
+
+            // TODO: nicer type conversion
+            const baseRecord = { ...compoundRecord } as Record<string, string | string[] | undefined>;
             delete baseRecord["primers"];
             delete baseRecord["primersLower"];
             delete baseRecord["key"];
             delete baseRecord["Resolution"];
+
             return compoundRecord.primers
                 .filter((p) => primerSet.primers.has(p))
-                .map((p) => ({ ...baseRecord, Primer: p }));
+                .map(
+                    (p) =>
+                        ({
+                            ...(baseRecord as BasePrimerGroupingRecord),
+                            Primer_name: p,
+                        }) as IntermediateLongFormDatasetRecord,
+                );
         });
 
         const el = document.createElement("a");
@@ -123,25 +168,28 @@ const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, on
             >
                 <Space direction="vertical" size={16}>
                     <div>
-                        <Title level={5}>Primers</Title>
+                        <Title level={5} style={{ marginTop: 0 }}>Primers</Title>
                         {Array.from(primerSet.primers).map((p) => (
                             <Primer
                                 key={p}
                                 name={p}
-                                added={newPrimerSets.reduce((acc, x) => acc || x.has(p), false)}
-                                sometimes={!newPrimerSets.reduce((acc, x) => acc && x.has(p), true)}
-                                primerSetCount={primerSet.nPrimers}
+                                added={
+                                    newPrimerSets.reduce((acc, x) => acc || x.has(p), false)
+                                        ? {
+                                              sometimes: !newPrimerSets.reduce((acc, x) => acc && x.has(p), true),
+                                              primerSetCount: primerSet.nPrimers,
+                                          }
+                                        : undefined
+                                }
                             />
                         ))}
                     </div>
                     <div>
-                        <Title level={5}>
+                        <Title level={5} style={{ marginTop: 0 }}>
                             Taxa:{" "}
                             <span style={{ fontWeight: "normal" }}>
-                                {primerSet.coverage} on-target{" "}
-                                {nextTabPrimerSets
-                                    ? `(+${primerSet.coverage - nextTabPrimerSets[0].coverage})`
-                                    : ""}
+                                {coverage} on-target{" "}
+                                {nextTabPrimerSets ? `(+${coverage - nextTabPrimerSets[0].onTarget.coverage})` : ""}
                                 {resultParams.includeOffTargetTaxa ? (
                                     <>
                                         ;{" "}
@@ -158,7 +206,7 @@ const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, on
                                 Plot
                             </Button>
                         </Title>
-                        {changedTaxaSets.length ? (
+                        {nextTabNPrimers !== undefined && changedTaxaSets.length ? (
                             <ChangedTaxaSets
                                 dataset={dataset}
                                 changedTaxaSets={changedTaxaSets}
@@ -173,13 +221,13 @@ const PrimerSet = ({ dataset, primerSet, resultParams, nextTabResults, style, on
                         </Button>
                     </div>
                     <div>
-                        <Title level={5}>
+                        <Title level={5} style={{ marginTop: 0 }}>
                             Resolution{" "}
                             <span style={{ fontWeight: "normal", fontStyle: "italic" }}>(on-target)</span>
                         </Title>
                         <Space direction="horizontal">
                             {RESOLUTIONS_WITH_SPECIES.map((r) => (
-                                <Statistic key={r} title={r} value={primerSet.resolutionSummary[r]} />
+                                <Statistic key={r} title={r} value={primerSet.onTarget.resolutionSummary[r]} />
                             ))}
                         </Space>
                     </div>

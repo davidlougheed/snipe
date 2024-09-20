@@ -58,4 +58,5 @@ export const formatTaxon = (finalID: string, searchHighlight: string | undefined
     );
 };
 
-export const serializeCSVRow = <T extends string | number>(arr: T[]) => arr.map((v) => `${v}`).join(",") + "\n";
+export const serializeCSVRow = <T extends string | number>(arr: readonly T[]) =>
+    arr.map((v) => `${v}`).join(",") + "\n";

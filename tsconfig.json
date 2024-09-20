@@ -15,5 +15,5 @@
     "baseUrl": "./",
     "noEmit": false,
   },
-  "include": ["./src"]
+  "include": ["./src", "./src/custom.d.ts"]
 }

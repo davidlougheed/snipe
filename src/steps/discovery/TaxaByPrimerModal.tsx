@@ -4,22 +4,31 @@ import { Col, Empty, Modal, Row, Space } from "antd";
 import groupBy from "lodash/groupBy";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-import { supergroupOrGroupColor } from "../../colors";
-import { COL_SUPERGROUP, COL_TAXA_GROUP } from "../../lib/datasets";
+import { supergroupOrGroupColor } from "../../lib/colors";
+import { COL_SUPERGROUP, COL_TAXA_GROUP, type DatasetRecord, type SNIPeDataset } from "../../lib/datasets";
+import type { SNIPePrimerSet, SNIPeSearchParams, SNIPeTargetMode } from "../../lib/types";
 
 import ChartDownloadButtons from "./ChartDownloadButtons";
 import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
 
-const TaxaByPrimerModal = ({ dataset, primerSet, resultParams, open, onCancel }) => {
-    const [taxaTargetFilter, setTaxaTargetFilter] = useState("onTarget");
+type TaxaByPrimerModalProps = {
+    dataset: SNIPeDataset;
+    primerSet: SNIPePrimerSet;
+    resultParams: SNIPeSearchParams;
+    open: boolean;
+    onCancel: () => void;
+};
 
-    const chartRef = useRef(null);
-    const currentBar = useRef(null);
+const TaxaByPrimerModal = ({ dataset, primerSet, resultParams, open, onCancel }: TaxaByPrimerModalProps) => {
+    const [taxaTargetFilter, setTaxaTargetFilter] = useState<SNIPeTargetMode>("onTarget");
 
-    const records = useMemo(() => {
-        if (taxaTargetFilter === "onTarget") return primerSet.coveredRecords;
-        if (taxaTargetFilter === "offTarget") return primerSet.offTarget.coveredRecords;
-        return primerSet.total.coveredRecords;
+    const chartRef = useRef<HTMLDivElement>(null);
+    const currentBar = useRef<string | null>(null);
+
+    const records = useMemo<DatasetRecord[]>(() => {
+        if (taxaTargetFilter === "onTarget") return primerSet.onTarget.coveredRecords;
+        if (taxaTargetFilter === "offTarget") return primerSet.offTarget?.coveredRecords ?? [];
+        return primerSet.total?.coveredRecords ?? [];
     }, [primerSet, taxaTargetFilter]);
 
     const supergroups = useMemo(() => [...new Set(records.map((r) => r[COL_SUPERGROUP]))].sort(), [records]);
@@ -62,7 +71,11 @@ const TaxaByPrimerModal = ({ dataset, primerSet, resultParams, open, onCancel })
                         onChange={(v) => setTaxaTargetFilter(v)}
                         includeOffTargetTaxa={resultParams.includeOffTargetTaxa}
                     />
-                    <ChartDownloadButtons chartRef={chartRef} fileNameBase="taxa_by_primers" />
+                    <ChartDownloadButtons<HTMLDivElement>
+                        chartRef={chartRef}
+                        fileNameBase="taxa_by_primers"
+                        getter={(x) => x}
+                    />
                 </Space>
                 <div ref={chartRef} style={{ backgroundColor: "white", marginTop: 8 }}>
                     <Row gutter={[16, 8]}>

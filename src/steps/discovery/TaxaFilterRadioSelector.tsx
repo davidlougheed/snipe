@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import { Radio } from "antd";
+import type { SNIPeTargetMode } from "../../lib/types";
 
-const TaxaFilterRadioSelector = ({ includeOffTargetTaxa, value, onChange }) => {
-    const [innerValue, setInnerValue] = useState(value ?? "onTarget");
+type TaxaFilterRadioSelectorProps = {
+    includeOffTargetTaxa: boolean;
+    value: SNIPeTargetMode;
+    onChange: (v: SNIPeTargetMode) => void;
+};
+
+const TaxaFilterRadioSelector = ({ includeOffTargetTaxa, value, onChange }: TaxaFilterRadioSelectorProps) => {
+    const [innerValue, setInnerValue] = useState<SNIPeTargetMode>(value ?? "onTarget");
 
     useEffect(() => {
         if (onChange) onChange(innerValue);

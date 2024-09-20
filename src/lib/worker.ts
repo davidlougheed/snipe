@@ -1,27 +1,53 @@
 import { asSets } from "@upsetjs/react";
 import groupBy from "lodash/groupBy";
 import { rgb } from "d3-color";
-import { COL_FINAL_ID, COL_RESOLUTION, COL_TAXA_GROUP, OVERVIEW_GROUPINGS, taxaGroup } from "./datasets";
+import {
+    COL_FINAL_ID,
+    COL_RESOLUTION,
+    COL_TAXA_GROUP,
+    type DatasetRecord,
+    OVERVIEW_GROUPINGS,
+    taxaGroup,
+    TaxaTreeNode,
+} from "./datasets";
+import type { PrimerPalette, SNIPeCoverageResult, SNIPePrimerSet, SNIPeResults, SNIPeSearchParams } from "./types";
+
+// Types ---------------------------------------------------------------------------------------------------------------
+
+export type ProgressMessage = {
+    type: "progress";
+    data: { nPrimers: number; percent: number };
+};
+
+export type ResultsMessage = {
+    type: "result";
+    data: { params: SNIPeSearchParams; results: SNIPeResults };
+};
 
 // Helpers -------------------------------------------------------------------------------------------------------------
 
 // Inspired by https://stackoverflow.com/a/64414875
-const chooseRec = (arr, k, prefix) =>
+const chooseRec = <T>(arr: T[], k: number, prefix: T[]): T[][] =>
     k === 0
         ? [prefix] // Base case: return existing combination
         : arr.flatMap((v, i) => chooseRec(arr.slice(i + 1), k - 1, [...prefix, v]));
-const choose = (arr, k) => chooseRec(arr, k, []).map((c) => new Set(c));
+const choose = <T>(arr: T[], k: number): Set<T>[] => chooseRec(arr, k, []).map((c) => new Set(c));
 
 // Processing ----------------------------------------------------------------------------------------------------------
 
 const PROGRESS_EVERY_N = 500;
 
-const calculateGroupCoverage = (tree) => Object.fromEntries(tree.map((g) => [g.title, g.children.length]));
+const calculateGroupCoverage = (tree: TaxaTreeNode[]): Record<string, number> =>
+    Object.fromEntries(tree.map((g) => [g.title, g.children?.length ?? 0]));
 
-const computePrimerSetCovered = (records, primerSet, primerPalette) => {
-    const coveredTaxa = new Set();
-    const coveredTaxaByPrimer = {};
-    const coveredRecords = [];
+const computePrimerSetCovered = (
+    records: DatasetRecord[],
+    primerSet: Set<string>,
+    primerPalette: PrimerPalette,
+): SNIPeCoverageResult => {
+    const coveredTaxa: Set<string> = new Set();
+    const coveredTaxaByPrimer: Record<string, string[]> = {};
+    const coveredRecords: DatasetRecord[] = [];
 
     records.forEach((rec) => {
         const finalID = rec[COL_FINAL_ID];
@@ -65,14 +91,14 @@ const computePrimerSetCovered = (records, primerSet, primerPalette) => {
             }),
         ),
         coveredRecords,
-        coverageByGroup: calculateGroupCoverage(taxaGroup(coveredRecords, OVERVIEW_GROUPINGS, false)),
+        coverageByGroup: calculateGroupCoverage(taxaGroup(coveredRecords, OVERVIEW_GROUPINGS)),
         resolutionSummary: Object.fromEntries(
             Object.entries(groupBy(coveredRecords, COL_RESOLUTION)).map(([k, v]) => [k, v.length]),
         ),
     };
 };
 
-const avgCoverageByGroupForResult = (records, resCovByGroupArr) => {
+const avgCoverageByGroupForResult = (records: DatasetRecord[], resCovByGroupArr: Record<string, number>[]) => {
     const baseCoverageByGroup = Object.fromEntries(records.map((rec) => [rec[COL_TAXA_GROUP], 0]));
     return Object.fromEntries(
         Object.entries(
@@ -86,21 +112,21 @@ const avgCoverageByGroupForResult = (records, resCovByGroupArr) => {
     );
 };
 
-const findBestPrimerSets = (params) => {
+const findBestPrimerSets = (params: SNIPeSearchParams) => {
     const { selectedRecords, allRecords, maxPrimers, includeOffTargetTaxa, primerPalette } = params;
 
     const selectedFinalIDs = new Set(selectedRecords.map((rec) => rec[COL_FINAL_ID]));
 
     // Compute off-target taxa if needed
-    const offTargetRecords = includeOffTargetTaxa
+    const offTargetRecords: DatasetRecord[] = includeOffTargetTaxa
         ? allRecords.filter((rec) => !selectedFinalIDs.has(rec[COL_FINAL_ID]))
-        : null;
+        : [];
 
     // Make records index-able by final ID - this way we can find, e.g., groups from final IDs
     const nTaxa = selectedRecords.length;
 
     // Subset of primers which can be used to identify
-    const primerSubset = Array.from(new Set(selectedRecords.flatMap((rec) => rec.primers)));
+    const primerSubset: string[] = Array.from(new Set(selectedRecords.flatMap((rec) => rec.primers)));
     // - This is the largest possible set of primers we'll need, but fewer may be sufficient.
     const maxPrimersNeeded = Math.min(maxPrimers, primerSubset.length);
 
@@ -108,16 +134,16 @@ const findBestPrimerSets = (params) => {
 
     const nPrimersArray = [...new Array(maxPrimersNeeded)].map((_, i) => i + 1); // [1, 2, ..., maxPrimersNeeded]
 
-    const allPrimerCombinations = nPrimersArray.map((np) => choose(primerSubset, np));
+    const allPrimerCombinations: Set<string>[][] = nPrimersArray.map((np) => choose(primerSubset, np));
 
     let nTriedPrimerCombinations = 0;
     const nTotalPrimerCombinations = allPrimerCombinations.flat().length;
 
-    const sendProgress = (nPrimers) => {
+    const sendProgress = (nPrimers: number) => {
         postMessage({
             type: "progress",
             data: { nPrimers, percent: (nTriedPrimerCombinations / nTotalPrimerCombinations) * 100 },
-        });
+        } as ProgressMessage);
     };
 
     for (const nPrimers of nPrimersArray) {
@@ -126,7 +152,7 @@ const findBestPrimerSets = (params) => {
         console.info(`trying ${nPrimers}/${maxPrimersNeeded} for ${selectedRecords.length} records`);
 
         let bestCoverage = 0;
-        let bestResultsForPrimerCount = [];
+        let bestResultsForPrimerCount: SNIPePrimerSet[] = [];
 
         primerCombinations.forEach((pc) => {
             const selectedCoveredResult = computePrimerSetCovered(selectedRecords, pc, primerPalette);
@@ -135,7 +161,7 @@ const findBestPrimerSets = (params) => {
             let offTargetCoveredResult = undefined;
             let totalCoveredResult = undefined;
 
-            if (includeOffTargetTaxa) {
+            if (offTargetRecords) {
                 offTargetCoveredResult = computePrimerSetCovered(offTargetRecords, pc, primerPalette);
                 totalCoveredResult =
                     selectedRecords.length === allRecords.length
@@ -148,12 +174,12 @@ const findBestPrimerSets = (params) => {
                 bestResultsForPrimerCount = [];
             }
 
-            const res = {
+            const res: SNIPePrimerSet = {
                 id: `${pc.size}-${bestResultsForPrimerCount.length + 1}`,
                 nPrimers,
                 primers: pc,
                 // On-target coverage / summary information:
-                ...selectedCoveredResult,
+                onTarget: selectedCoveredResult,
                 // Off-target coverage information - nested in object:
                 offTarget: offTargetCoveredResult,
                 // Whole-dataset coverage information - nested in object:
@@ -177,7 +203,7 @@ const findBestPrimerSets = (params) => {
 
         const avgCoverageByGroup = avgCoverageByGroupForResult(
             selectedRecords,
-            bestResultsForPrimerCount.map((res) => res.coverageByGroup),
+            bestResultsForPrimerCount.map((res) => res.onTarget.coverageByGroup),
         );
 
         let avgCoverageByGroupOffTarget = undefined;
@@ -186,11 +212,11 @@ const findBestPrimerSets = (params) => {
         if (includeOffTargetTaxa) {
             avgCoverageByGroupOffTarget = avgCoverageByGroupForResult(
                 offTargetRecords,
-                bestResultsForPrimerCount.map((res) => res.offTarget.coverageByGroup),
+                bestResultsForPrimerCount.map((res) => res.offTarget!.coverageByGroup),
             );
             avgCoverageByGroupTotal = avgCoverageByGroupForResult(
                 allRecords,
-                bestResultsForPrimerCount.map((res) => res.total.coverageByGroup),
+                bestResultsForPrimerCount.map((res) => res.total!.coverageByGroup),
             );
         }
 
@@ -229,7 +255,7 @@ const findBestPrimerSets = (params) => {
     postMessage({
         type: "result",
         data: { params, results: bestPrimerCombinations.reverse() },
-    });
+    } as ResultsMessage);
 };
 
 // Worker communication ------------------------------------------------------------------------------------------------

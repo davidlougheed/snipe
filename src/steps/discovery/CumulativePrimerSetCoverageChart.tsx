@@ -2,18 +2,36 @@ import { useMemo, useRef, useState } from "react";
 
 import { Card, Divider, Radio, Space } from "antd";
 
-import { Bar, BarChart, CartesianGrid, Label, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+    Bar,
+    BarChart,
+    CartesianGrid,
+    Label,
+    Legend,
+    ResponsiveContainer,
+    Tooltip,
+    type TooltipProps,
+    XAxis,
+    YAxis
+} from "recharts";
+import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 
-import { supergroupOrGroupColor } from "../../colors";
+import { supergroupOrGroupColor } from "../../lib/colors";
 import ChartDownloadButtons from "./ChartDownloadButtons";
 import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
+import { SNIPeDataset } from "../../lib/datasets";
+import { SNIPeResults, SNIPeSearchParams } from "../../lib/types";
 
-const CustomTooltip = ({ active, payload, currentBar, coordinate }) => {
+type CustomTooltipProps = TooltipProps<ValueType, NameType> & {
+    currentBar?: string;
+};
+
+const CustomTooltip = ({ active, payload, currentBar, coordinate }: CustomTooltipProps) => {
     if (!currentBar) return null;
 
-    const data = payload.find((p) => p.dataKey === currentBar);
+    const data = (payload ?? []).find((p) => p.dataKey === currentBar);
 
-    if (!active || !data) return null;
+    if (!active || !data || !coordinate) return null;
     return (
         <div style={{ position: "absolute", top: coordinate.y, left: coordinate.x }}>
             <Card
@@ -28,12 +46,22 @@ const CustomTooltip = ({ active, payload, currentBar, coordinate }) => {
     );
 };
 
-const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) => {
+type CumulativePrimerSetCoverageChartProps = {
+    dataset: SNIPeDataset;
+    results: SNIPeResults;
+    resultParams: SNIPeSearchParams;
+};
+
+const CumulativePrimerSetCoverageChart = ({
+    dataset,
+    results,
+    resultParams,
+}: CumulativePrimerSetCoverageChartProps) => {
     const chartRef = useRef(null);
 
-    const [barType, setBarType] = useState("group");
-    const [resultFilter, setResultFilter] = useState("onTarget"); // onTarget | offTarget | total
-    const [currentBar, setCurrentBar] = useState(null);
+    const [barType, setBarType] = useState<"supergroup" | "group">("group");
+    const [resultFilter, setResultFilter] = useState<"onTarget" | "offTarget" | "total">("onTarget");
+    const [currentBar, setCurrentBar] = useState<string | undefined>(undefined);
 
     const data = useMemo(() => {
         if (!results) return [];
@@ -47,8 +75,8 @@ const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) =>
                     nPrimers,
                 }) => {
                     let acByG = avgCoverageByGroup;
-                    if (resultFilter === "offTarget") acByG = avgCoverageByGroupOffTarget;
-                    if (resultFilter === "total") acByG = avgCoverageByGroupTotal;
+                    if (resultFilter === "offTarget") acByG = avgCoverageByGroupOffTarget!;
+                    if (resultFilter === "total") acByG = avgCoverageByGroupTotal!;
                     return {
                         name: nPrimers.toString(),
                         coverageFraction,
@@ -95,7 +123,7 @@ const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) =>
                 <ChartDownloadButtons
                     chartRef={chartRef}
                     fileNameBase="cumulative_primer_set_coverage"
-                    getter={(cc) => cc.container}
+                    getter={(cc) => (cc as unknown as { container: HTMLElement }).container}
                 />
             </Space>
             <Divider />
@@ -135,7 +163,7 @@ const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) =>
                                               stackId="a"
                                               fill={color}
                                               onMouseOver={() => setCurrentBar(k)}
-                                              onMouseOut={() => setCurrentBar(null)}
+                                              onMouseOut={() => setCurrentBar(undefined)}
                                           />
                                       );
                                   }),
@@ -153,7 +181,7 @@ const CumulativePrimerSetCoverageChart = ({ dataset, results, resultParams }) =>
                                           stackId="supergroup"
                                           fill={color}
                                           onMouseOver={() => setCurrentBar(k)}
-                                          onMouseOut={() => setCurrentBar(null)}
+                                          onMouseOut={() => setCurrentBar(undefined)}
                                       />
                                   );
                               })}

@@ -16,8 +16,9 @@ import {
     Typography,
     Upload,
 } from "antd";
+import type { RcFile, UploadChangeParam } from "antd/es/upload/interface";
 import { ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined } from "@ant-design/icons";
-import { createDataset } from "../../lib/datasets";
+import { createDataset, type SNIPeDataset } from "../../lib/datasets";
 import Primer from "../../bits/Primer";
 
 const { Paragraph, Text } = Typography;
@@ -26,7 +27,9 @@ const EM_DASH = "—";
 
 const beforeUploadNothing = () => false;
 
-const getDelimiterFromHeaderLine = (rawHeader) => {
+type Delimiter = ";" | "\t" | ",";
+
+const getDelimiterFromHeaderLine = (rawHeader: string): Delimiter => {
     const nComma = (rawHeader.match(/,/g) || []).length;
     const nSemi = (rawHeader.match(/;/g) || []).length;
     const nTab = (rawHeader.match(/\t/g) || []).length;
@@ -39,7 +42,10 @@ const getDelimiterFromHeaderLine = (rawHeader) => {
     }
 };
 
-const parseDataset = async (csvGetter, onParseFinish = undefined) => {
+const parseDataset = async (
+    csvGetter: () => Promise<string>,
+    onParseFinish: (() => void) | undefined = undefined,
+): Promise<SNIPeDataset> => {
     const csvContents = await csvGetter();
 
     const delimiter = getDelimiterFromHeaderLine(csvContents.split("\n")[0]);
@@ -65,17 +71,24 @@ const parseDataset = async (csvGetter, onParseFinish = undefined) => {
     });
 };
 
-const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
+type DatasetStepProps = {
+    visible: boolean;
+    dataset?: SNIPeDataset;
+    setDataset: (dataset: SNIPeDataset | undefined) => void;
+    onFinish: () => void;
+};
+
+const DatasetStep = ({ visible, dataset, setDataset, onFinish }: DatasetStepProps) => {
     const [messageApi, contextHolder] = message.useMessage();
 
     const [option, setOption] = useState(0);
     const [parsing, setParsing] = useState(false);
-    const [parseError, setParseError] = useState(null);
-    const [fileObj, setFileObj] = useState(null);
+    const [parseError, setParseError] = useState<Error | null>(null);
+    const [fileObj, setFileObj] = useState<RcFile | null>(null);
 
     const [fetchingDefault, setFetchingDefault] = useState(false);
     const [fetchingDefaultFailed, setFetchingDefaultFailed] = useState(false);
-    const [defaultDataset, setDefaultDataset] = useState(null);
+    const [defaultDataset, setDefaultDataset] = useState<SNIPeDataset | null>(null);
 
     const parseDatasetInner = useCallback((csvGetter, onParseFinish = undefined) => {
         setParseError(null);
@@ -85,8 +98,8 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
                 setDataset(await parseDataset(csvGetter, onParseFinish));
             } catch (e) {
                 console.error("Encountered error while parsing dataset:", e);
-                setParseError(e);
-                setDataset(null);
+                setParseError(e as Error);
+                setDataset(undefined);
             } finally {
                 setParsing(false);
             }
@@ -123,7 +136,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
     }, []);
     const hideFormatModal = useCallback(() => setShowFormatModal(false), []);
 
-    const onUpload = useCallback((info) => {
+    const onUpload = useCallback((info: UploadChangeParam) => {
         setFileObj(info.fileList[0]?.originFileObj ?? null);
     }, []);
 
@@ -140,7 +153,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }) => {
         if (option === 0 && defaultDataset) {
             setDataset(defaultDataset);
         } else if ((!fileObj || parseError) && option === 1) {
-            setDataset(null); // either: no dataset selected yet, need to upload; or: invalid dataset
+            setDataset(undefined); // either: no dataset selected yet, need to upload; or: invalid dataset
         }
     }, [defaultDataset, fileObj, option]);
 

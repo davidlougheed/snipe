@@ -1,10 +1,12 @@
+import type { CSSProperties } from "react";
 import { createVennJSAdapter, VennDiagram } from "@upsetjs/react";
 import { layout } from "@upsetjs/venn.js";
 import { lab } from "d3-color";
+import type { SNIPePrimerSet } from "../../lib/types";
 
 const vennJSAdapter = createVennJSAdapter(layout);
 
-const mergeColors = (colors) => {
+const mergeColors = (colors: readonly (string | undefined)[]): string | undefined => {
     // inspired by https://upset.js.org/docs/examples/vennColored
     switch (colors.length) {
         case 0:
@@ -28,13 +30,17 @@ const mergeColors = (colors) => {
 
 // Param values
 const combinations = { mergeColors };
-const style = { maxWidth: "100%", height: "auto" };
+const style: CSSProperties = { maxWidth: "100%", height: "auto" };
 
-const PrimerSetEulerDiagram = ({ primerSet }) => {
+type PrimerSetEulerDiagramProps = {
+    primerSet: SNIPePrimerSet;
+};
+
+const PrimerSetEulerDiagram = ({ primerSet }: PrimerSetEulerDiagramProps) => {
     return (
         <VennDiagram
             layout={vennJSAdapter}
-            sets={primerSet.coveredTaxaByPrimerUpset}
+            sets={primerSet.onTarget.coveredTaxaByPrimerUpset}
             width={990}
             height={720}
             theme="light"

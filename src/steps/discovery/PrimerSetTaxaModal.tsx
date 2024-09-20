@@ -1,28 +1,51 @@
 import { useEffect, useMemo, useState } from "react";
-import { Input, Modal, Space, Table, Tag } from "antd";
+import { Input, Modal, Space, Table, type TableColumnsType, Tag } from "antd";
+
+import Primer from "../../bits/Primer";
+import type { SNIPeDataset } from "../../lib/datasets";
+import type { SNIPePrimerSet, SNIPeSearchParams } from "../../lib/types";
 
 import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
 import TaxonWithGroupAndPathPopover from "./TaxonWithGroupAndPathPopover";
-import Primer from "../../bits/Primer";
+
+type TargetFilter = "onTarget" | "offTarget" | "total";
 
 const filterTaxaTargetFactory =
-    ({ coveredTaxa, offTarget, total }, targetFilter) =>
-    (t) => {
-        if (targetFilter === "onTarget") return coveredTaxa.has(t);
-        if (targetFilter === "offTarget") return offTarget.coveredTaxa.has(t);
-        return total.coveredTaxa.has(t); // otherwise, total
+    ({ onTarget, offTarget, total }: SNIPePrimerSet, targetFilter: TargetFilter) =>
+    (t: string): boolean => {
+        if (targetFilter === "onTarget") return onTarget.coveredTaxa.has(t);
+        if (targetFilter === "offTarget") return offTarget?.coveredTaxa.has(t) ?? false;
+        return total?.coveredTaxa.has(t) ?? false; // otherwise, total
     };
 
-const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }) => {
+export type PrimerSetTaxaModalProps = {
+    dataset: SNIPeDataset;
+    primerSet: SNIPePrimerSet;
+    resultParams: SNIPeSearchParams;
+    open: boolean;
+    onCancel: () => void;
+};
+
+type TaxonTableItem = {
+    taxon: string;
+    primers: string[];
+    onTarget: boolean;
+};
+
+const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }: PrimerSetTaxaModalProps) => {
     const shownTaxa = useMemo(
-        () => Array.from(primerSet.total?.coveredTaxa ?? primerSet.coveredTaxa).sort(),
+        () => Array.from(primerSet.total?.coveredTaxa ?? primerSet.onTarget.coveredTaxa).sort(),
         [primerSet],
     );
 
-    const { id, primers, coveredTaxa } = primerSet;
+    const {
+        id,
+        primers,
+        onTarget: { coveredTaxa },
+    } = primerSet;
 
-    const [taxaTargetFilter, setTaxaTargetFilter] = useState("onTarget");
-    const [filteredTaxa, setFilteredTaxa] = useState([]); // shownTaxa + filtering
+    const [taxaTargetFilter, setTaxaTargetFilter] = useState<TargetFilter>("onTarget");
+    const [filteredTaxa, setFilteredTaxa] = useState<string[]>([]); // shownTaxa + filtering
     const [searchValue, setSearchValue] = useState("");
 
     useEffect(() => {
@@ -42,7 +65,7 @@ const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }
         );
     }, [primerSet, taxaTargetFilter, searchValue]);
 
-    const columns = useMemo(
+    const columns = useMemo<TableColumnsType<TaxonTableItem>>(
         () => [
             {
                 dataIndex: "taxon",
@@ -55,7 +78,8 @@ const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }
             },
             {
                 dataIndex: "primers",
-                render: (p) => p.filter((p) => primers.has(p)).map((p) => <Primer key={p} name={p} />),
+                render: (p: string[]) =>
+                    p.filter((pp) => primers.has(pp)).map((pp) => <Primer key={pp} name={pp} />),
             },
             {
                 dataIndex: "onTarget",
@@ -98,7 +122,7 @@ const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }
                         includeOffTargetTaxa={resultParams.includeOffTargetTaxa}
                     />
                 </Space>
-                <Table
+                <Table<TaxonTableItem>
                     size="small"
                     bordered={true}
                     showHeader={false}

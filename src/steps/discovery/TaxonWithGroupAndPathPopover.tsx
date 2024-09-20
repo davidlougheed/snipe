@@ -1,9 +1,9 @@
 import { memo } from "react";
 import { Popover } from "antd";
-import { COL_FINAL_ID, COL_TAXA_GROUP, PRIMER_GROUPINGS } from "../../lib/datasets";
+import { COL_FINAL_ID, COL_TAXA_GROUP, type DatasetRecord, PRIMER_GROUPINGS } from "../../lib/datasets";
 import { formatTaxon } from "../../lib/utils";
 
-const formatRecordPath = (rec) => (
+const formatRecordPath = (rec: DatasetRecord) => (
     <>
         {PRIMER_GROUPINGS.slice(1, -1)
             .map((pg) => (rec[pg] ?? "").trim())
@@ -13,7 +13,12 @@ const formatRecordPath = (rec) => (
     </>
 );
 
-const TaxonWithGroupAndPathPopover = memo(({ record, searchHighlight }) => (
+export type TaxonWithGroupAndPathPopoverProps = {
+    record: DatasetRecord;
+    searchHighlight?: string;
+};
+
+const TaxonWithGroupAndPathPopover = memo(({ record, searchHighlight }: TaxonWithGroupAndPathPopoverProps) => (
     <Popover trigger="click" content={formatRecordPath(record)}>
         <span style={{ textDecoration: "underline", cursor: "pointer" }}>
             {formatTaxon(record[COL_FINAL_ID], searchHighlight)}

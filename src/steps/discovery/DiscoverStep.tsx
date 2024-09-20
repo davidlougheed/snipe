@@ -15,6 +15,8 @@ import {
     Space,
     Spin,
     Tree,
+    type TreeProps,
+    type TreeDataNode,
     Typography,
 } from "antd";
 import { ArrowLeftOutlined, BarChartOutlined, SearchOutlined } from "@ant-design/icons";
@@ -22,32 +24,42 @@ import { ArrowLeftOutlined, BarChartOutlined, SearchOutlined } from "@ant-design
 import CumulativePrimerSetCoverageChart from "./CumulativePrimerSetCoverageChart";
 import ResultsTabs from "./ResultsTabs";
 
-import { PrimerPaletteContext } from "../../colors";
+import { PrimerPaletteContext } from "../../lib/colors";
+import type { SNIPeDataset } from "../../lib/datasets";
+import { SNIPeSearchParams } from "../../lib/types";
 
 const { Title } = Typography;
 
-const DiscoverStep = ({ visible, dataset, onBack }) => {
-    const worker = useRef(null);
+type DiscoverStepProps = {
+    visible: boolean;
+    dataset: SNIPeDataset;
+    onBack: () => void;
+};
+
+const DiscoverStep = ({ visible, dataset, onBack }: DiscoverStepProps) => {
+    const worker = useRef<Worker | null>(null);
     const searching = useRef(false); // ref so that the closure can get the true value
 
     const [taxaSelectModalVisible, setTaxaSelectModalVisible] = useState(false);
     const [primerSetCoverageModalVisible, setPrimerSetCoverageModalVisible] = useState(false);
 
-    const [expandedKeys, setExpandedKeys] = useState([]);
-    const [checkedKeys, setCheckedKeys] = useState([]);
-    const [nPrimers, setNPrimers] = useState(dataset?.primers?.length ?? 1);
+    const [expandedKeys, setExpandedKeys] = useState<string[]>([]);
+    const [checkedKeys, setCheckedKeys] = useState<string[]>([]);
+
+    const maxNPrimers = dataset?.primers?.length ?? 1;
+    const [nPrimers, setNPrimers] = useState(maxNPrimers);
 
     const [hasSearched, setHasSearched] = useState(false);
     const [progress, setProgress] = useState(0);
 
-    const [resultParams, setResultParams] = useState({});
+    const [resultParams, setResultParams] = useState<SNIPeSearchParams | null>(null);
     const [results, setResults] = useState(null);
 
     const primerPalette = useContext(PrimerPaletteContext);
 
     useEffect(() => {
         // On first load, set up the worker
-        const w = new Worker(new URL("../../lib/worker.js", import.meta.url));
+        const w = new Worker(new URL("../../lib/worker.ts", import.meta.url));
         worker.current = w;
         w.onmessage = ({ data: message }) => {
             // if we receive error/result, and we're not searching, it means it's from a previous dataset/selection, so
@@ -83,13 +95,13 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
 
     const onTaxaCheck = useCallback((keys) => setCheckedKeys(keys), []);
 
-    const onExpand = useCallback((keys, e) => {
+    const onExpand = useCallback<Exclude<TreeProps["onExpand"], undefined>>((keys, e) => {
         const newExpandedKeys = new Set(keys);
 
         if (e.expanded) {
             // Check we're expanding and not contracting this node
             // We can have a lot of paths of 1 option over and over - auto-expand these to make navigation nicer
-            let node = e.node;
+            let node: TreeDataNode = e.node;
             newExpandedKeys.add(node.key);
             while (node.children?.length === 1) {
                 node = node.children?.[0];
@@ -97,7 +109,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
             }
         }
 
-        setExpandedKeys(Array.from(newExpandedKeys));
+        setExpandedKeys(Array.from(newExpandedKeys) as string[]);
     }, []);
 
     const checkedLeaves = useMemo(() => checkedKeys.filter((k) => k.endsWith("leaf")), [checkedKeys]);
@@ -203,7 +215,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                                     min={1}
                                     max={dataset.primers.length}
                                     value={nPrimers}
-                                    onChange={(v) => setNPrimers(v)}
+                                    onChange={(v) => setNPrimers(v ?? maxNPrimers)}
                                 />
                             </Form.Item>
                             <Form.Item
@@ -234,7 +246,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                                             <Progress
                                                 percent={progress}
                                                 showInfo={true}
-                                                format={(percent) => `${percent.toFixed(0)}%`}
+                                                format={(percent) => `${(percent ?? 0).toFixed(0)}%`}
                                             />
                                         )}
                                     </div>
@@ -245,7 +257,7 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                 </Col>
                 <Col md={24} lg={14} xl={16}>
                     <div style={{ display: "flex", gap: 16 }}>
-                        <Title level={3} style={{ flex: 1 }}>
+                        <Title level={3} style={{ flex: 1, marginTop: 0 }}>
                             Results
                         </Title>
                         <Button
@@ -271,7 +283,9 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                         />
                     )}
                     {searching.current && <Spin size="large" spinning={true} />}
-                    {!!results && <ResultsTabs dataset={dataset} results={results} resultParams={resultParams} />}
+                    {!!results && resultParams && (
+                        <ResultsTabs dataset={dataset} results={results} resultParams={resultParams} />
+                    )}
                 </Col>
             </Row>
 
@@ -319,15 +333,21 @@ const DiscoverStep = ({ visible, dataset, onBack }) => {
                 </Space>
             </Modal>
 
-            <Modal
-                title="Cumulative Primer Pair Set Coverage"
-                open={primerSetCoverageModalVisible}
-                width={900}
-                footer={null}
-                onCancel={hidePrimerSetCoverageModal}
-            >
-                <CumulativePrimerSetCoverageChart dataset={dataset} results={results} resultParams={resultParams} />
-            </Modal>
+            {results && resultParams && (
+                <Modal
+                    title="Cumulative Primer Pair Set Coverage"
+                    open={primerSetCoverageModalVisible}
+                    width={900}
+                    footer={null}
+                    onCancel={hidePrimerSetCoverageModal}
+                >
+                    <CumulativePrimerSetCoverageChart
+                        dataset={dataset}
+                        results={results}
+                        resultParams={resultParams}
+                    />
+                </Modal>
+            )}
         </>
     );
 };

@@ -1,8 +1,15 @@
+import type { MutableRefObject } from "react";
 import { Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 import { downloadChart } from "../../download";
 
-const ChartDownloadButtons = ({ chartRef, fileNameBase, getter }) => (
+type ChartDownloadButtonsProps<T> = {
+    chartRef: MutableRefObject<T | null>;
+    fileNameBase: string;
+    getter: (c: T) => HTMLElement;
+}
+
+const ChartDownloadButtons = <T,>({ chartRef, fileNameBase, getter }: ChartDownloadButtonsProps<T>) => (
     <div>
         Download:{" "}
         <Button
@@ -21,9 +28,5 @@ const ChartDownloadButtons = ({ chartRef, fileNameBase, getter }) => (
         {/*}}>SVG</Button>*/}
     </div>
 );
-// noinspection JSUnusedGlobalSymbols
-ChartDownloadButtons.defaultProps = {
-    getter: (c) => c,
-};
 
 export default ChartDownloadButtons;
