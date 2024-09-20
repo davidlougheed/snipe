@@ -78,7 +78,7 @@ const richFormatter = (key: string, recs: IntermediateLongFormDatasetRecord[]) =
     </span>
 );
 
-const taxaRecGroup = <T, L>(
+const taxaRecGroup = <T, L extends ReactNode>(
     arr: T[],
     groupings: readonly string[],
     pathStr: string,

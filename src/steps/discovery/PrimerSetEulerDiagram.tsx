@@ -38,6 +38,7 @@ type PrimerSetEulerDiagramProps = {
 
 const PrimerSetEulerDiagram = ({ primerSet }: PrimerSetEulerDiagramProps) => {
     return (
+        // @ts-ignore
         <VennDiagram
             layout={vennJSAdapter}
             sets={primerSet.onTarget.coveredTaxaByPrimerUpset}

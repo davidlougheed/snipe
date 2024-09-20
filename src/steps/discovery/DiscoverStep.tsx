@@ -1,4 +1,14 @@
-import { Fragment, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import {
+    Fragment,
+    type Key,
+    type MouseEventHandler,
+    useCallback,
+    useContext,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from "react";
 
 import {
     Alert,
@@ -19,6 +29,7 @@ import {
     type TreeDataNode,
     Typography,
 } from "antd";
+import type { CheckboxChangeEvent } from "antd/es/checkbox";
 import { ArrowLeftOutlined, BarChartOutlined, SearchOutlined } from "@ant-design/icons";
 
 import CumulativePrimerSetCoverageChart from "./CumulativePrimerSetCoverageChart";
@@ -93,7 +104,9 @@ const DiscoverStep = ({ visible, dataset, onBack }: DiscoverStepProps) => {
         setCheckedKeys([]);
     }, [dataset]);
 
-    const onTaxaCheck = useCallback((keys) => setCheckedKeys(keys), []);
+    const onTaxaCheck = useCallback((keys: Key[] | { checked: Key[]; halfChecked: Key[] }) => {
+        setCheckedKeys("checked" in keys ? (keys.checked as string[]) : (keys as string[]));
+    }, []);
 
     const onExpand = useCallback<Exclude<TreeProps["onExpand"], undefined>>((keys, e) => {
         const newExpandedKeys = new Set(keys);
@@ -119,7 +132,7 @@ const DiscoverStep = ({ visible, dataset, onBack }: DiscoverStepProps) => {
     }, [dataset]);
     const deselectAll = useCallback(() => setCheckedKeys([]), []);
 
-    const selectAllLink = useCallback(
+    const selectAllLink = useCallback<MouseEventHandler<HTMLAnchorElement>>(
         (e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -134,7 +147,10 @@ const DiscoverStep = ({ visible, dataset, onBack }: DiscoverStepProps) => {
     const hideTaxaSelectModal = useCallback(() => setTaxaSelectModalVisible(false), []);
 
     const [includeOffTargetTaxa, setIncludeOffTargetTaxa] = useState(false);
-    const updateIncludeOffTargetTaxa = useCallback((e) => setIncludeOffTargetTaxa(e.target.checked), []);
+    const updateIncludeOffTargetTaxa = useCallback(
+        (e: CheckboxChangeEvent) => setIncludeOffTargetTaxa(e.target.checked),
+        [],
+    );
 
     const showPrimerSetCoverageModal = useCallback(() => setPrimerSetCoverageModalVisible(true), []);
     const hidePrimerSetCoverageModal = useCallback(() => setPrimerSetCoverageModalVisible(false), []);

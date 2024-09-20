@@ -1,4 +1,4 @@
-import { type ReactNode, useCallback, useState } from "react";
+import { type MouseEventHandler, type ReactNode, useCallback, useState } from "react";
 import { Modal, Typography } from "antd";
 import packageJson from "../package.json";
 
@@ -23,7 +23,7 @@ const GitHubLink = ({ children, subPath }: GithubLinkProps) => (
 const Footer = () => {
     const [noticeVisible, setNoticeVisible] = useState(false);
 
-    const showNotice = useCallback((e) => {
+    const showNotice = useCallback<MouseEventHandler<HTMLAnchorElement>>((e) => {
         e.preventDefault();
         setNoticeVisible(true);
     }, []);
