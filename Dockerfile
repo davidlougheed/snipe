@@ -7,6 +7,7 @@ COPY .babelrc.js .
 COPY webpack.config.js .
 COPY package.json .
 COPY package-lock.json .
+COPY tsconfig.json .
 
 # files: source
 COPY index.html .
