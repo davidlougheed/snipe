@@ -1,5 +1,7 @@
 # SNIPe
 
+<img src="./src/logo_square.svg" alt="SNIPe logo" width="120" height="120" align="right" />
+
 > **S**electing **N**ovel **I**nformative **P**rimer-sets for **e**-DNA
 
 A web tool for optimally choosing eDNA primer pairs to identify a set of taxa.
