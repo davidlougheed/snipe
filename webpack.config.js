@@ -16,6 +16,7 @@ const config = {
         filename: "[name].[chunkhash:8].js",
         sourceMapFilename: "[name].[chunkhash:8].map",
         chunkFilename: "[name].[chunkhash:8].js",
+        clean: true,
     },
     devServer: {
         open: true,
