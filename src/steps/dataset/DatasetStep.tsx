@@ -20,6 +20,7 @@ import type { RcFile, UploadChangeParam } from "antd/es/upload/interface";
 import { ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined } from "@ant-design/icons";
 import { createDataset, type SNIPeDataset } from "../../lib/datasets";
 import Primer from "../../bits/Primer";
+import TaxaModal from "../discovery/TaxaModal";
 
 const { Paragraph, Text } = Typography;
 
@@ -85,6 +86,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }: DatasetStepProp
     const [parsing, setParsing] = useState(false);
     const [parseError, setParseError] = useState<Error | null>(null);
     const [fileObj, setFileObj] = useState<RcFile | null>(null);
+    const [taxaModalOpen, setTaxaModalOpen] = useState(false);
 
     const [fetchingDefault, setFetchingDefault] = useState(false);
     const [fetchingDefaultFailed, setFetchingDefaultFailed] = useState(false);
@@ -161,6 +163,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }: DatasetStepProp
     }, [defaultDataset, fileObj, option]);
 
     const primers = dataset?.primers ?? [];
+    const haveTaxaRecords = !!dataset?.records.length;
 
     if (!visible) return <Fragment />;
     return (
@@ -176,6 +179,9 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }: DatasetStepProp
                         />
                     </Col>
                 </Row>
+            )}
+            {haveTaxaRecords && (
+                <TaxaModal dataset={dataset} open={taxaModalOpen} onCancel={() => setTaxaModalOpen(false)} />
             )}
             <Row gutter={[0, 12]}>
                 <Col flex={1}>
@@ -249,8 +255,13 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }: DatasetStepProp
                                 />
                             )}
                         </Col>
-                        <Col>
+                        <Col
+                            onClick={() => {
+                                if (haveTaxaRecords) setTaxaModalOpen(true);
+                            }}
+                        >
                             <Statistic
+                                className={haveTaxaRecords ? "clickable" : undefined}
                                 title="Taxa"
                                 value={dataset?.records?.length ?? "—"}
                                 loading={fetchingDefault || parsing}

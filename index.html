@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress CssUnusedSymbol -->
 <html lang="en">
     <head>
         <title>SNIPe - eDNA primer pair set selection tool</title>
@@ -14,6 +15,18 @@
             name="keywords"
             content="environmental DNA,eDNA,metabarcoding,primers,primer pairs,primer selection,primer pair selection,choosing eDNA primers"
         />
+
+        <style>
+            .ant-statistic.clickable {
+                cursor: pointer;
+            }
+            .ant-statistic.clickable:hover .ant-statistic-content-value {
+                text-decoration: underline;
+            }
+            .ant-statistic.clickable:active .ant-statistic-content {
+                opacity: 0.6;
+            }
+        </style>
     </head>
     <body style="margin: 0">
         <div id="root"></div>

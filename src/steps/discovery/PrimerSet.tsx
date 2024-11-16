@@ -6,7 +6,7 @@ import { Button, Card, Space, Statistic, Typography } from "antd";
 import { DownloadOutlined, MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
 import Primer from "../../bits/Primer";
-import PrimerSetTaxaModal from "./PrimerSetTaxaModal";
+import TaxaModal from "./TaxaModal";
 import TaxaByPrimerModal from "./TaxaByPrimerModal";
 import TaxonWithGroupAndPathPopover from "./TaxonWithGroupAndPathPopover";
 
@@ -234,10 +234,9 @@ const PrimerSet = ({
                 </Space>
             </Card>
 
-            <PrimerSetTaxaModal
+            <TaxaModal
                 dataset={dataset}
-                primerSet={primerSet}
-                resultParams={resultParams}
+                result={{ primerSet, resultParams }}
                 open={taxaModalVisible}
                 onCancel={() => setTaxaModalVisible(false)}
             />

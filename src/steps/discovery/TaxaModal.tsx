@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
+
 import { Input, Modal, Space, Table, type TableColumnsType, Tag } from "antd";
+import { ColumnsType } from "antd/es/table";
 
 import Primer from "../../bits/Primer";
 import type { SNIPeDataset } from "../../lib/datasets";
 import type { SNIPePrimerSet, SNIPeSearchParams } from "../../lib/types";
 
-import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
 import TaxonWithGroupAndPathPopover from "./TaxonWithGroupAndPathPopover";
+import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
 
 type TargetFilter = "onTarget" | "offTarget" | "total";
 
@@ -18,10 +20,12 @@ const filterTaxaTargetFactory =
         return total?.coveredTaxa.has(t) ?? false; // otherwise, total
     };
 
-export type PrimerSetTaxaModalProps = {
+type TaxaModalProps = {
     dataset: SNIPeDataset;
-    primerSet: SNIPePrimerSet;
-    resultParams: SNIPeSearchParams;
+    result?: {
+        primerSet: SNIPePrimerSet;
+        resultParams: SNIPeSearchParams;
+    };
     open: boolean;
     onCancel: () => void;
 };
@@ -32,17 +36,18 @@ type TaxonTableItem = {
     onTarget: boolean;
 };
 
-const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }: PrimerSetTaxaModalProps) => {
+const TaxaModal = ({ dataset, result, open, onCancel }: TaxaModalProps) => {
+    const primerSet = result?.primerSet;
+
     const shownTaxa = useMemo(
-        () => Array.from(primerSet.total?.coveredTaxa ?? primerSet.onTarget.coveredTaxa).sort(),
+        () =>
+            primerSet
+                ? Array.from(primerSet.total?.coveredTaxa ?? primerSet.onTarget.coveredTaxa).sort()
+                : Object.keys(dataset.recordsByFinalID),
         [primerSet],
     );
 
-    const {
-        id,
-        primers,
-        onTarget: { coveredTaxa },
-    } = primerSet;
+    const primers = primerSet ? primerSet.primers : new Set(dataset.primers);
 
     const [taxaTargetFilter, setTaxaTargetFilter] = useState<TargetFilter>("onTarget");
     const [filteredTaxa, setFilteredTaxa] = useState<string[]>([]); // shownTaxa + filtering
@@ -51,17 +56,22 @@ const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }
     useEffect(() => {
         const sv = searchValue.toLowerCase();
         if (sv === "") {
-            setFilteredTaxa(shownTaxa.filter(filterTaxaTargetFactory(primerSet, taxaTargetFilter)));
+            setFilteredTaxa(
+                primerSet ? shownTaxa.filter(filterTaxaTargetFactory(primerSet, taxaTargetFilter)) : shownTaxa,
+            );
             return;
         }
+
+        let newFilteredTaxa: string[] = shownTaxa;
+        if (primerSet) {
+            newFilteredTaxa = newFilteredTaxa.filter(filterTaxaTargetFactory(primerSet, taxaTargetFilter));
+        }
         setFilteredTaxa(
-            shownTaxa
-                .filter(filterTaxaTargetFactory(primerSet, taxaTargetFilter))
-                .filter(
-                    (t) =>
-                        t.replace("_", " ").toLowerCase().includes(sv) ||
-                        dataset.recordsByFinalID[t].primersLower.reduce((acc, p) => acc || p.includes(sv), false),
-                ),
+            newFilteredTaxa.filter(
+                (t) =>
+                    t.replace("_", " ").toLowerCase().includes(sv) ||
+                    dataset.recordsByFinalID[t].primersLower.reduce((acc, p) => acc || p.includes(sv), false),
+            ),
         );
     }, [primerSet, taxaTargetFilter, searchValue]);
 
@@ -81,10 +91,15 @@ const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }
                 render: (p: string[]) =>
                     p.filter((pp) => primers.has(pp)).map((pp) => <Primer key={pp} name={pp} />),
             },
-            {
-                dataIndex: "onTarget",
-                render: (oT) => (oT ? <Tag color="green">On-target</Tag> : <Tag color="volcano">Off-target</Tag>),
-            },
+            ...(primerSet
+                ? ([
+                      {
+                          dataIndex: "onTarget",
+                          render: (oT: boolean) =>
+                              oT ? <Tag color="green">On-target</Tag> : <Tag color="volcano">Off-target</Tag>,
+                      },
+                  ] as ColumnsType<TaxonTableItem>)
+                : []),
         ],
         [dataset, primers, searchValue],
     );
@@ -94,15 +109,17 @@ const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }
             filteredTaxa.map((t) => ({
                 taxon: t,
                 primers: dataset.recordsByFinalID[t].primers,
-                onTarget: coveredTaxa.has(t),
+                onTarget: primerSet ? primerSet.onTarget.coveredTaxa.has(t) : true,
             })),
-        [dataset, filteredTaxa, coveredTaxa],
+        [dataset, filteredTaxa, primerSet],
     );
+
+    const shownTitle = `${shownTaxa.length} taxa (${filteredTaxa.length} shown)`;
 
     return (
         <Modal
             open={open}
-            title={`Primer pair set ${id}: ${shownTaxa.length} taxa (${filteredTaxa.length} shown)`}
+            title={result ? `Primer pair set ${result.primerSet.id}: ${shownTitle}` : shownTitle}
             footer={null}
             width={920}
             style={{ top: 24 }}
@@ -116,11 +133,13 @@ const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }
                         onChange={(e) => setSearchValue(e.target.value)}
                         allowClear={true}
                     />
-                    <TaxaFilterRadioSelector
-                        value={taxaTargetFilter}
-                        onChange={(v) => setTaxaTargetFilter(v)}
-                        includeOffTargetTaxa={resultParams.includeOffTargetTaxa}
-                    />
+                    {!!result && (
+                        <TaxaFilterRadioSelector
+                            value={taxaTargetFilter}
+                            onChange={(v) => setTaxaTargetFilter(v)}
+                            includeOffTargetTaxa={result.resultParams.includeOffTargetTaxa}
+                        />
+                    )}
                 </Space>
                 <Table<TaxonTableItem>
                     size="small"
@@ -136,4 +155,4 @@ const PrimerSetTaxaModal = ({ dataset, primerSet, resultParams, open, onCancel }
     );
 };
 
-export default PrimerSetTaxaModal;
+export default TaxaModal;
