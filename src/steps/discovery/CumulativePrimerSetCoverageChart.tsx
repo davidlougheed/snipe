@@ -12,7 +12,7 @@ import {
     Tooltip,
     type TooltipProps,
     XAxis,
-    YAxis
+    YAxis,
 } from "recharts";
 import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 

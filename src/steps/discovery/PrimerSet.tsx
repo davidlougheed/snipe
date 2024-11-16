@@ -168,7 +168,9 @@ const PrimerSet = ({
             >
                 <Space direction="vertical" size={16}>
                     <div>
-                        <Title level={5} style={{ marginTop: 0 }}>Primers</Title>
+                        <Title level={5} style={{ marginTop: 0 }}>
+                            Primers
+                        </Title>
                         {Array.from(primerSet.primers).map((p) => (
                             <Primer
                                 key={p}

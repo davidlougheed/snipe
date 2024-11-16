@@ -7,7 +7,7 @@ type ChartDownloadButtonsProps<T> = {
     chartRef: MutableRefObject<T | null>;
     fileNameBase: string;
     getter: (c: T) => HTMLElement;
-}
+};
 
 const ChartDownloadButtons = <T,>({ chartRef, fileNameBase, getter }: ChartDownloadButtonsProps<T>) => (
     <div>
