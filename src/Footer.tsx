@@ -20,6 +20,8 @@ const GitHubLink = ({ children, subPath }: GithubLinkProps) => (
     </a>
 );
 
+const COPYRIGHT_END = "2025";
+
 const Footer = () => {
     const [noticeVisible, setNoticeVisible] = useState(false);
 
@@ -53,8 +55,8 @@ const Footer = () => {
                     <a href="https://dlougheed.com" target="_blank" rel="noreferrer">
                         David Lougheed
                     </a>{" "}
-                    2023-2024; the <GitHubLink>source code is available on Github</GitHubLink> under the terms of
-                    the <GitHubLink subPath="/blob/main/LICENSE">GPL v3 license</GitHubLink>; see the{" "}
+                    2023-{COPYRIGHT_END}; the <GitHubLink>source code is available on Github</GitHubLink> under the
+                    terms of the <GitHubLink subPath="/blob/main/LICENSE">GPL v3 license</GitHubLink>; see the{" "}
                     <a href="#" onClick={showNotice}>
                         notice
                     </a>
@@ -76,7 +78,7 @@ const Footer = () => {
             >
                 <Paragraph>
                     A web tool for optimally choosing eDNA primer pairs to identify a set of taxa. <br />
-                    Copyright &copy; 2023-2024 David Lougheed (
+                    Copyright &copy; 2023-{COPYRIGHT_END} David Lougheed (
                     <a href="mailto:david.lougheed@gmail.com">david.lougheed@gmail.com</a>)
                 </Paragraph>
                 <Paragraph>
