@@ -2,7 +2,7 @@ import { memo, useContext } from "react";
 import { Popover, Tag } from "antd";
 import { PlusCircleFilled, PlusCircleOutlined } from "@ant-design/icons";
 
-import { PrimerPaletteContext } from "../lib/colors";
+import { PrimerPaletteContext } from "@lib/colors";
 
 export type PrimerAddedConfig = {
     sometimes: boolean;

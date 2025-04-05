@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Radio } from "antd";
-import type { SNIPeTargetMode } from "../lib/types";
+import type { SNIPeTargetMode } from "@lib/types";
 
 type TaxaFilterRadioSelectorProps = {
     includeOffTargetTaxa: boolean;

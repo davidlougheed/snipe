@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { createVennJSAdapter, VennDiagram } from "@upsetjs/react";
 import { layout } from "@upsetjs/venn.js";
 import { lab } from "d3-color";
-import type { SNIPePrimerSet } from "../../lib/types";
+import type { SNIPePrimerSet } from "@lib/types";
 
 const vennJSAdapter = createVennJSAdapter(layout);
 

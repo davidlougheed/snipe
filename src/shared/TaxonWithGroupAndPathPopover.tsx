@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Popover } from "antd";
-import { COL_FINAL_ID, COL_TAXA_GROUP, type DatasetRecord, PRIMER_GROUPINGS } from "../lib/datasets";
-import { formatTaxon } from "../lib/utils";
+import { COL_FINAL_ID, COL_TAXA_GROUP, type DatasetRecord, PRIMER_GROUPINGS } from "@lib/datasets";
+import { formatTaxon } from "@lib/utils";
 
 const formatRecordPath = (rec: DatasetRecord) => (
     <>

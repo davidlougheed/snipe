@@ -4,12 +4,12 @@ import { Col, Empty, Modal, Row, Space } from "antd";
 import groupBy from "lodash/groupBy";
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-import { supergroupOrGroupColor } from "../../lib/colors";
-import { COL_SUPERGROUP, COL_TAXA_GROUP, type DatasetRecord, type SNIPeDataset } from "../../lib/datasets";
-import type { SNIPePrimerSet, SNIPeSearchParams, SNIPeTargetMode } from "../../lib/types";
+import { supergroupOrGroupColor } from "@lib/colors";
+import { COL_SUPERGROUP, COL_TAXA_GROUP, type DatasetRecord, type SNIPeDataset } from "@lib/datasets";
+import type { SNIPePrimerSet, SNIPeSearchParams, SNIPeTargetMode } from "@lib/types";
 
 import ChartDownloadButtons from "./ChartDownloadButtons";
-import TaxaFilterRadioSelector from "../../shared/TaxaFilterRadioSelector";
+import TaxaFilterRadioSelector from "@shared/TaxaFilterRadioSelector";
 
 type TaxaByPrimerModalProps = {
     dataset: SNIPeDataset;

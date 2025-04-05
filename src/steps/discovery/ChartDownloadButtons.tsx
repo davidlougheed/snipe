@@ -1,7 +1,7 @@
 import type { MutableRefObject } from "react";
 import { Button } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
-import { downloadChart } from "../../download";
+import { downloadChart } from "@/download";
 
 type ChartDownloadButtonsProps<T> = {
     chartRef: MutableRefObject<T | null>;

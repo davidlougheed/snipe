@@ -4,6 +4,12 @@
     "moduleResolution": "bundler",
     "target": "es2015",
 
+    "paths": {
+      "@/*": ["src/*"],
+      "@lib/*": ["src/lib/*"],
+      "@shared/*": ["src/shared/*"],
+    },
+
     "outDir": "./dist/",
     "sourceMap": true,
     "allowJs": true,

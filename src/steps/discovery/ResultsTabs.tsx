@@ -4,9 +4,9 @@ import { Modal, Tabs } from "antd";
 import PrimerSet from "./PrimerSet";
 import PrimerSetEulerDiagram from "./PrimerSetEulerDiagram";
 
-import type { SNIPeDataset } from "../../lib/datasets";
-import type { SNIPePrimerSet, SNIPeResults, SNIPeSearchParams } from "../../lib/types";
-import { pluralize } from "../../lib/utils";
+import type { SNIPeDataset } from "@lib/datasets";
+import type { SNIPePrimerSet, SNIPeResults, SNIPeSearchParams } from "@lib/types";
+import { pluralize } from "@lib/utils";
 
 const primerCountPhrase = (nPrimers: number) => `${nPrimers} ${pluralize("Primer", nPrimers)}`;
 

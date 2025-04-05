@@ -1,13 +1,13 @@
 import { type CSSProperties, useCallback, useMemo, useState } from "react";
 import { Card, Divider, Layout, Steps, Typography } from "antd";
 
-import { PrimerPaletteContext } from "./lib/colors";
+import { PrimerPaletteContext } from "@lib/colors";
+import type { SNIPeDataset } from "@lib/datasets";
 import DatasetStep from "./steps/dataset/DatasetStep";
 import DiscoverStep from "./steps/discovery/DiscoverStep";
 import Footer from "./Footer";
 
 import logo from "./logo_square.svg";
-import { SNIPeDataset } from "./lib/datasets";
 
 const { Title } = Typography;
 

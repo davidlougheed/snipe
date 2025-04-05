@@ -18,9 +18,9 @@ import {
 } from "antd";
 import type { RcFile, UploadChangeParam } from "antd/es/upload/interface";
 import { ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined } from "@ant-design/icons";
-import { createDataset, type SNIPeDataset } from "../../lib/datasets";
-import Primer from "../../shared/Primer";
-import TaxaModal from "../../shared/TaxaModal";
+import { createDataset, type SNIPeDataset } from "@lib/datasets";
+import Primer from "@shared/Primer";
+import TaxaModal from "@shared/TaxaModal";
 
 const { Paragraph, Text } = Typography;
 

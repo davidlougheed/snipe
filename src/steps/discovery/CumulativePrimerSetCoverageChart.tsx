@@ -16,11 +16,11 @@ import {
 } from "recharts";
 import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 
-import { supergroupOrGroupColor } from "../../lib/colors";
+import { supergroupOrGroupColor } from "@lib/colors";
 import ChartDownloadButtons from "./ChartDownloadButtons";
-import TaxaFilterRadioSelector from "../../shared/TaxaFilterRadioSelector";
-import { SNIPeDataset } from "../../lib/datasets";
-import { SNIPeResults, SNIPeSearchParams } from "../../lib/types";
+import TaxaFilterRadioSelector from "@shared/TaxaFilterRadioSelector";
+import { SNIPeDataset } from "@lib/datasets";
+import { SNIPeResults, SNIPeSearchParams } from "@lib/types";
 
 type CustomTooltipProps = TooltipProps<ValueType, NameType> & {
     currentBar?: string;

@@ -62,6 +62,11 @@ const config = {
         ],
     },
     resolve: {
+        alias: {
+            "@": path.resolve(__dirname, "src"),
+            "@lib": path.resolve(__dirname, "src/lib"),
+            "@shared": path.resolve(__dirname, "src/shared"),
+        },
         extensions: ["*", ".ts", ".tsx", ".js", ".jsx"]
     },
     watchOptions: {

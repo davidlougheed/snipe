@@ -1,24 +1,24 @@
-import { type CSSProperties, Fragment, useCallback, useState } from "react";
+import { type CSSProperties, Fragment, useCallback, useMemo, useState } from "react";
 
 import difference from "set.prototype.difference";
 
 import { Button, Card, Space, Statistic, Typography } from "antd";
 import { DownloadOutlined, MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
-import Primer from "../../shared/Primer";
-import TaxaModal from "../../shared/TaxaModal";
+import Primer from "@shared/Primer";
+import TaxaModal from "@shared/TaxaModal";
 import TaxaByPrimerModal from "./TaxaByPrimerModal";
 import TaxonWithGroupAndPathPopover from "../../shared/TaxonWithGroupAndPathPopover";
 
 import {
-    BasePrimerGroupingRecord,
+    type BasePrimerGroupingRecord,
     CSV_HEADER,
-    IntermediateLongFormDatasetRecord,
+    type IntermediateLongFormDatasetRecord,
     RESOLUTIONS_WITH_SPECIES,
     type SNIPeDataset,
-} from "../../lib/datasets";
-import type { SNIPePrimerCombinationResult, SNIPePrimerSet, SNIPeSearchParams } from "../../lib/types";
-import { pluralize, serializeCSVRow } from "../../lib/utils";
+} from "@lib/datasets";
+import type { SNIPePrimerCombinationResult, SNIPePrimerSet, SNIPeSearchParams } from "@lib/types";
+import { pluralize, serializeCSVRow } from "@lib/utils";
 
 const { Title } = Typography;
 
@@ -33,12 +33,19 @@ type ChangedTaxaSetsProps = {
     nextNPrimers: number;
 };
 
+const nChanged = (ct: ChangedTaxaSet) => ct.added.length + ct.removed.length;
+
 const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }: ChangedTaxaSetsProps) => {
-    const nChangedTaxa = Array.from(new Set(changedTaxaSets.map((nts) => nts.added.length + nts.removed.length)));
-    const allAdditions = changedTaxaSets.every((nts) => nts.removed.length === 0);
+    const sortedChangedTaxaSets = useMemo(
+        () => [...changedTaxaSets].sort((a, b) => nChanged(a) - nChanged(b)),
+        [changedTaxaSets],
+    );
+
+    const nChangedTaxa = Array.from(new Set(sortedChangedTaxaSets.map(nChanged)));
+    const allAdditions = sortedChangedTaxaSets.every((nts) => nts.removed.length === 0);
 
     return (
-        <details open={changedTaxaSets[0].added.length + changedTaxaSets[0].removed.length < 8}>
+        <details open={sortedChangedTaxaSets[0].added.length + sortedChangedTaxaSets[0].removed.length < 8}>
             <summary style={{ cursor: "pointer" }}>
                 {allAdditions ? "Adds" : "Changes"} {nChangedTaxa.join(" or ")}
                 {allAdditions ? " new " : " "}
@@ -46,7 +53,7 @@ const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }: ChangedTaxa
                 {pluralize("primer", nextNPrimers)}
             </summary>
             <>
-                {changedTaxaSets.map((nts, ntsIndex) => (
+                {sortedChangedTaxaSets.map((nts, ntsIndex) => (
                     <Fragment key={`taxa-set-${ntsIndex}`}>
                         {nts.added.map((t, ti) => (
                             <Fragment key={t}>
@@ -66,7 +73,7 @@ const ChangedTaxaSets = ({ dataset, changedTaxaSets, nextNPrimers }: ChangedTaxa
                                 </span>
                             </Fragment>
                         ))}
-                        {ntsIndex < changedTaxaSets.length - 1 ? (
+                        {ntsIndex < sortedChangedTaxaSets.length - 1 ? (
                             <div>
                                 <strong>— OR —</strong>
                             </div>

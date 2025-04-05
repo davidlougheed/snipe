@@ -35,9 +35,9 @@ import { ArrowLeftOutlined, BarChartOutlined, SearchOutlined } from "@ant-design
 import CumulativePrimerSetCoverageChart from "./CumulativePrimerSetCoverageChart";
 import ResultsTabs from "./ResultsTabs";
 
-import { PrimerPaletteContext } from "../../lib/colors";
-import type { SNIPeDataset } from "../../lib/datasets";
-import { SNIPeSearchParams } from "../../lib/types";
+import { PrimerPaletteContext } from "@lib/colors";
+import type { SNIPeDataset } from "@lib/datasets";
+import type { SNIPeSearchParams } from "@lib/types";
 
 const { Title } = Typography;
 
