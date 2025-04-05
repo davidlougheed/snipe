@@ -18,7 +18,7 @@ import type { NameType, ValueType } from "recharts/types/component/DefaultToolti
 
 import { supergroupOrGroupColor } from "../../lib/colors";
 import ChartDownloadButtons from "./ChartDownloadButtons";
-import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
+import TaxaFilterRadioSelector from "../../shared/TaxaFilterRadioSelector";
 import { SNIPeDataset } from "../../lib/datasets";
 import { SNIPeResults, SNIPeSearchParams } from "../../lib/types";
 

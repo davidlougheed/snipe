@@ -9,7 +9,7 @@ import { COL_SUPERGROUP, COL_TAXA_GROUP, type DatasetRecord, type SNIPeDataset }
 import type { SNIPePrimerSet, SNIPeSearchParams, SNIPeTargetMode } from "../../lib/types";
 
 import ChartDownloadButtons from "./ChartDownloadButtons";
-import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
+import TaxaFilterRadioSelector from "../../shared/TaxaFilterRadioSelector";
 
 type TaxaByPrimerModalProps = {
     dataset: SNIPeDataset;

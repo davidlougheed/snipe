@@ -5,10 +5,10 @@ import difference from "set.prototype.difference";
 import { Button, Card, Space, Statistic, Typography } from "antd";
 import { DownloadOutlined, MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
 
-import Primer from "../../bits/Primer";
-import TaxaModal from "./TaxaModal";
+import Primer from "../../shared/Primer";
+import TaxaModal from "../../shared/TaxaModal";
 import TaxaByPrimerModal from "./TaxaByPrimerModal";
-import TaxonWithGroupAndPathPopover from "./TaxonWithGroupAndPathPopover";
+import TaxonWithGroupAndPathPopover from "../../shared/TaxonWithGroupAndPathPopover";
 
 import {
     BasePrimerGroupingRecord,

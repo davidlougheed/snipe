@@ -1,7 +1,7 @@
 import type { MouseEventHandler, ReactNode } from "react";
 import groupBy from "lodash/groupBy";
 import { Popover } from "antd";
-import Primer from "../bits/Primer";
+import Primer from "../shared/Primer";
 import { formatTaxon } from "./utils";
 import { paletteForPrimers } from "./colors";
 import type { PrimerPalette } from "./types";

@@ -3,9 +3,9 @@ import { useEffect, useMemo, useState } from "react";
 import { Input, Modal, Space, Table, type TableColumnsType, Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
 
-import Primer from "../../bits/Primer";
-import type { SNIPeDataset } from "../../lib/datasets";
-import type { SNIPePrimerSet, SNIPeSearchParams } from "../../lib/types";
+import Primer from "./Primer";
+import type { SNIPeDataset } from "../lib/datasets";
+import type { SNIPePrimerSet, SNIPeSearchParams } from "../lib/types";
 
 import TaxonWithGroupAndPathPopover from "./TaxonWithGroupAndPathPopover";
 import TaxaFilterRadioSelector from "./TaxaFilterRadioSelector";
