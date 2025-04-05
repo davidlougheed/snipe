@@ -114,7 +114,9 @@ const TaxaModal = ({ dataset, result, open, onCancel }: TaxaModalProps) => {
         [dataset, filteredTaxa, primerSet],
     );
 
-    const shownTitle = `${shownTaxa.length} taxa (${filteredTaxa.length} shown)`;
+    const shownTitle =
+        `${shownTaxa.length} taxa` +
+        (filteredTaxa.length < shownTaxa.length ? ` (${filteredTaxa.length} shown)` : "");
 
     return (
         <Modal
