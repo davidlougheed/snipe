@@ -46,7 +46,7 @@ SNIPe (the program) is copyright &copy; 2023-2025 David Lougheed ([david.loughee
 
 ## Development
 
-First, ensure you have NodeJS 20+ installed.
+First, ensure you have NodeJS 24.x installed.
 
 Then, to get the tool set up in a development environment, the following should be sufficient:
 
