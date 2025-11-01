@@ -39,7 +39,7 @@ export const REQUIRED_DATASET_COLUMNS = [...PRIMER_GROUPINGS, COL_PRIMER_NAME] a
 
 type RequiredDatasetKey = (typeof REQUIRED_DATASET_COLUMNS)[number];
 
-type RawLongFormDatasetRecord = Record<string, string>;
+export type RawLongFormDatasetRecord = Record<string, string>;
 export type IntermediateLongFormDatasetRecord = Record<RequiredDatasetKey, string>;
 type IntermediateLongFormDatasetRecordWithResolution = IntermediateLongFormDatasetRecord &
     Record<"Resolution", string | undefined>;

@@ -53,7 +53,7 @@ export const formatTaxon = (finalID: string, searchHighlight: string | undefined
 
     return (
         <em style={{ whiteSpace: "nowrap" }}>
-            {highlightTerm(parts.join(" ") + (parts.at(-1) === "sp" ? "." : ""), searchHighlight)}
+            {highlightTerm(parts.join(" ") + (parts[parts.length - 1] === "sp" ? "." : ""), searchHighlight)}
         </em>
     );
 };

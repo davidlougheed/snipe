@@ -18,7 +18,7 @@ import {
 } from "antd";
 import type { RcFile, UploadChangeParam } from "antd/es/upload/interface";
 import { ApartmentOutlined, ArrowRightOutlined, ExperimentOutlined, UploadOutlined } from "@ant-design/icons";
-import { createDataset, type SNIPeDataset } from "@lib/datasets";
+import { createDataset, type RawLongFormDatasetRecord, type SNIPeDataset } from "@lib/datasets";
 import Primer from "@shared/Primer";
 import TaxaModal from "@shared/TaxaModal";
 
@@ -61,7 +61,7 @@ const parseDataset = async (
             if (onParseFinish) onParseFinish();
 
             try {
-                const dataset = createDataset(data);
+                const dataset = createDataset(data as RawLongFormDatasetRecord[]);
                 console.debug("dataset:", dataset);
                 resolve(dataset);
             } catch (e) {
