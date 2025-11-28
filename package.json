@@ -24,10 +24,10 @@
   },
   "homepage": "https://github.com/davidlougheed/snipe#readme",
   "dependencies": {
-    "@ant-design/icons": "^5.6.1",
+    "@ant-design/icons": "^6.1.0",
     "@upsetjs/react": "^1.11.0",
     "@upsetjs/venn.js": "^2.0.0",
-    "antd": "^5.28.0",
+    "antd": "^6.0.0",
     "csv-parse": "^6.1.0",
     "d3-color": "^3.1.0",
     "d3-scale-chromatic": "^3.1.0",
