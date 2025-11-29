@@ -286,7 +286,7 @@ const DiscoverStep = ({ visible, dataset, onBack }: DiscoverStepProps) => {
                     </div>
                     {!hasSearched && (
                         <Alert
-                            message="No results yet"
+                            title="No results yet"
                             description={
                                 <span>
                                     Select taxa, choose your desired maximum number of primers, and press "Search"
@@ -327,8 +327,8 @@ const DiscoverStep = ({ visible, dataset, onBack }: DiscoverStepProps) => {
                     </Button>,
                 ]}
             >
-                <Space direction="vertical">
-                    <Space direction="horizontal">
+                <Space orientation="vertical">
+                    <Space orientation="horizontal">
                         {nCheckedLeaves} entries selected
                         <Button size="small" onClick={selectAll}>
                             Select All

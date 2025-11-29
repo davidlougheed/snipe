@@ -190,7 +190,7 @@ const DatasetStep = ({ visible, dataset, setDataset, onFinish }: DatasetStepProp
                         onChange={(e) => setOption(e.target.value)}
                         disabled={fetchingDefault}
                     >
-                        <Space direction="vertical">
+                        <Space orientation="vertical">
                             <Radio value={0} disabled={fetchingDefaultFailed}>
                                 <Spin spinning={fetchingDefault}>
                                     Use primer dataset from{" "}

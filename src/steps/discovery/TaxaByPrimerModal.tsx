@@ -64,8 +64,8 @@ const TaxaByPrimerModal = ({ dataset, primerSet, resultParams, open, onCancel }:
             style={{ top: 24 }}
             onCancel={onCancel}
         >
-            <Space direction="vertical" style={{ width: "100%" }}>
-                <Space direction="horizontal" size={16}>
+            <Space orientation="vertical" style={{ width: "100%" }}>
+                <Space orientation="horizontal" size={16}>
                     <TaxaFilterRadioSelector
                         value={taxaTargetFilter}
                         onChange={(v) => setTaxaTargetFilter(v)}

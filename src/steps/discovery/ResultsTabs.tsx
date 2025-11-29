@@ -26,7 +26,7 @@ const ResultsTabs = ({ dataset, results, resultParams }: ResultsTabsProps) => {
                 open={diagramModalVisible}
                 title={`Primer pair set ${selectedPrimerSet?.id}: Euler diagram`}
                 footer={null}
-                destroyOnClose={true}
+                destroyOnHidden={true}
                 width={1040}
                 style={{ top: 30 }}
                 onCancel={() => setDiagramModalVisible(false)}

@@ -126,8 +126,8 @@ const TaxaModal = ({ dataset, result, open, onCancel }: TaxaModalProps) => {
             style={{ top: 24 }}
             onCancel={onCancel}
         >
-            <Space direction="vertical" style={{ width: "100%" }}>
-                <Space direction="horizontal" size={16}>
+            <Space orientation="vertical" style={{ width: "100%" }}>
+                <Space orientation="horizontal" size={16}>
                     <Input
                         placeholder="Search"
                         value={searchValue}

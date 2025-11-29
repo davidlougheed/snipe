@@ -165,7 +165,7 @@ const PrimerSet = ({
                 size="small"
                 style={style}
                 extra={
-                    <Space direction="horizontal" size={12}>
+                    <Space orientation="horizontal" size={12}>
                         <span>Download filtered data:</span>
                         <Button size="small" icon={<DownloadOutlined />} onClick={downloadPrimerSet}>
                             On-target {/* TODO: options for downloading with off-target data */}
@@ -173,7 +173,7 @@ const PrimerSet = ({
                     </Space>
                 }
             >
-                <Space direction="vertical" size={16}>
+                <Space orientation="vertical" size={16}>
                     <div>
                         <Title level={5} style={{ marginTop: 0 }}>
                             Primers
@@ -234,7 +234,7 @@ const PrimerSet = ({
                             Resolution{" "}
                             <span style={{ fontWeight: "normal", fontStyle: "italic" }}>(on-target)</span>
                         </Title>
-                        <Space direction="horizontal">
+                        <Space orientation="horizontal">
                             {RESOLUTIONS_WITH_SPECIES.map((r) => (
                                 <Statistic key={r} title={r} value={primerSet.onTarget.resolutionSummary[r]} />
                             ))}
