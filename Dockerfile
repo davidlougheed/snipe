@@ -1,4 +1,4 @@
-FROM node:24-bookworm-slim AS build
+FROM node:24-trixie-slim AS build
 
 WORKDIR /build
 
@@ -23,7 +23,7 @@ RUN npm ci
 RUN npm run build
 
 
-FROM nginx:1.26-bookworm
+FROM nginx:1.29-trixie
 
 WORKDIR /
 
