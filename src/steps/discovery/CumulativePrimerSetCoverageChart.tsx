@@ -10,11 +10,10 @@ import {
     Legend,
     ResponsiveContainer,
     Tooltip,
-    type TooltipProps,
+    type TooltipContentProps,
     XAxis,
     YAxis,
 } from "recharts";
-import type { NameType, ValueType } from "recharts/types/component/DefaultTooltipContent";
 
 import { supergroupOrGroupColor } from "@lib/colors";
 import ChartDownloadButtons from "./ChartDownloadButtons";
@@ -22,9 +21,7 @@ import TaxaFilterRadioSelector from "@shared/TaxaFilterRadioSelector";
 import { SNIPeDataset } from "@lib/datasets";
 import { SNIPeResults, SNIPeSearchParams } from "@lib/types";
 
-type CustomTooltipProps = TooltipProps<ValueType, NameType> & {
-    currentBar?: string;
-};
+type CustomTooltipProps = TooltipContentProps & { currentBar?: string; };
 
 const CustomTooltip = ({ active, payload, currentBar, coordinate }: CustomTooltipProps) => {
     if (!currentBar) return null;
@@ -147,7 +144,10 @@ const CumulativePrimerSetCoverageChart = ({
                         />
                     </YAxis>
                     <Legend verticalAlign="bottom" wrapperStyle={{ minHeight: 88, bottom: 0 }} />
-                    <Tooltip content={<CustomTooltip currentBar={currentBar} />} isAnimationActive={false} />
+                    <Tooltip
+                        content={(props) => <CustomTooltip {...props} currentBar={currentBar} />}
+                        isAnimationActive={false}
+                    />
                     {barType === "group"
                         ? Object.entries(dataset?.supergroupGroups ?? {}).flatMap(([sg, gs]) =>
                               gs

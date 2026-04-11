@@ -5,9 +5,9 @@
     "target": "es2015",
 
     "paths": {
-      "@/*": ["src/*"],
-      "@lib/*": ["src/lib/*"],
-      "@shared/*": ["src/shared/*"],
+      "@/*": ["./src/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@shared/*": ["./src/shared/*"],
     },
 
     "outDir": "./dist/",
