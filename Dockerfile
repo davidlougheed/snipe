@@ -23,7 +23,7 @@ RUN npm ci
 RUN npm run build
 
 
-FROM nginx:1.29-trixie
+FROM nginx:1.31-trixie
 
 WORKDIR /
 
